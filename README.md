@@ -1,2 +1,3 @@
-# CS50_Project1_windows
-CS50_Project1_windows
+# Project 1
+
+Web Programming with Python and JavaScript

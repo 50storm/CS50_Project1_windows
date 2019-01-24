@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+My Page
+{% endblock %}
+
+{% block body %}
+
+<div class="row">
+  <div class="col-sm">
+    <ul>
+        {% for user in users %}
+            <li>{{ user['username'] }}</li>
+            <li>{{ user['firstname'] }}</li>
+        {% endfor %}
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm">
+    <form action="{{ url_for('logout') }}" method="post">
+      <input type="submit" name="logout" value="logout" />
+    </form>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm">
+    <form action="{{ url_for('searchBook') }}" method="post">
+      <input type="text" name="booktitle" placeholder="part of booktitle here">
+      <input type="text" name="isbn" placeholder="isbn here">
+      <input type="text" name="authorname" placeholder="author name here">
+      <input type="submit" name="searchBook" value="searchBook" />
+
+    </form>
+  </div>
+</div>
+{% endblock %}

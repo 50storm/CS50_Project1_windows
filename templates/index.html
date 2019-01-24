@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+    Bookreview
+{% endblock %}
+
+{% block body %}
+      <div class="row">
+        <div class="col-sm">
+          <h2>Log in</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <form action="{{ url_for('mypage') }}" method="post">
+              <input type="text" name="username" placeholder="Enter username here">
+              <input type="password" name="password" placeholder="Enter password Here">
+              <button>Log in</button>
+          </form>
+        </div>
+      </div>
+    　<div class="row">
+      　<div class="col-sm text-left">
+        　<a href="{{ url_for('register') }}">Register your account</a>
+      　</div>
+    　</div>
+{% endblock %}
