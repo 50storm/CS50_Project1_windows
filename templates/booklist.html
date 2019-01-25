@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+My Page
+{% endblock %}
+
+{% block body %}
+
+<div class="row">
+  <div class="col-sm">
+    <table class="table table-striped">
+        <tr class="thead-dark">
+          <th>Title</th>
+          <th>Author</th>
+        </tr>
+        {% for book in books %}
+        <tr>
+            <td><a href="{{ url_for('searchBook') }}?isbn={{ book['isbn'] }}" >{{ book['title'] }}</a></td>
+            <td>{{ book['author'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm">
+    <form action="{{ url_for('logout') }}" method="post">
+      <input type="submit" name="logout" value="logout" />
+    </form>
+  </div>
+</div>
+
+{% endblock %}

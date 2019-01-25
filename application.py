@@ -118,6 +118,9 @@ def mypage():
             {"username":username, "password":password}
         )
         # Add data to Seession
+        for user in users :
+            session["user_id"]=user["id"]
+			
         session["username"] = username
         session["password"] = password
 
@@ -231,13 +234,41 @@ def searchBook():
         print(b["title"])
         print(b["author"])
         print(b["year"])
+        #Sessionに持っておく(1レコード分)
+        session["isbn"] = b["isbn"]
+        session["author"] = b["author"]
+        session["title"] = b["title"]
+        session["year"] = b["year"]
+  
+        #表示用
         author = b["author"]
         title = b["title"]
         year = b["year"]
+        
+        
+        
     print("========")
     print(author)
 
     return render_template("bookdetail.html", isbn=isbn, title=title, author=author, year=year )
+
+@app.route("/writeBookReview", methods=["GET","POST"])
+def writeBookReview():
+    if request.method == "POST":#TODO
+        comment = request.form.get("comment").strip()
+        user_id = session.get("user_id")
+        isbn    = session.get("isbn")
+        title   = session.get("title")
+        author  = session.get("author")
+        year    = session.get("year")
+        
+        insertSQL ="INSERT INTO bookreviews (isbn, user_id, comment, created_at ) VALUES (:isbn, :user_id, :comment, current_timestamp)" #TODO;isbn
+        params    = {"isbn":isbn, "user_id":user_id, "comment":comment }
+        
+        resultInsert = db.execute(insertSQL, params)
+        db.commit()
+        
+        return render_template("bookdetail.html", isbn=isbn, title=title, author=author, year=year )
 
 @app.route("/getsession")
 def getsession():
