@@ -40,7 +40,7 @@ def checkPassword( password, confiromPassword, username ):
         return (True, None)
 
 def checkUserName(username):
-    if(username == "" ):
+    if( username == "" ):
         return (False, "Plsease enter username.")
     users = db.execute(
         "SELECT * FROM users WHERE username=:username",
@@ -141,8 +141,8 @@ def logout():
         session.pop("password", None)
         return render_template("logout.html")
 
-@app.route("/searchBook", methods=["GET","POST"])
-def searchBook():
+@app.route("/searchBooks", methods=["GET","POST"])
+def searchBooks():
     if request.method == "POST":
         booktitle  = '%' + request.form.get("booktitle").strip() + '%'
         isbn       = request.form.get("isbn").strip()
@@ -204,15 +204,40 @@ def searchBook():
         print(sqlparameters)
 
         books = db.execute(queryBook,sqlparameters)
+        # booklist = books.fetchall()
+        # for book in booklist:
+        #     session["isbn"]  = book["isbn"]
+        #     session["title"] =  book["isbn"]
+        #     session["author"] =  book["author"]
 
+        return render_template("booklist.html", books=books)
 
-        return render_template("bookresult.html", books=books)
+    return render_template("mypage.html")
 
-    # return render_template("mypage.html", users=users)
-    # regirect ? session clear
-    session.pop("username", None)
-    session.pop("password", None)
-    return render_template("index.html")
+@app.route("/searchBook", methods=["GET","POST"])
+def searchBook():
+    title=""
+    author=""
+    year=""
+    isbn = request.args.get("isbn","")
+    print("==debug==")
+    print(isbn)#None
+    book = db.execute(
+        "SELECT * FROM books WHERE isbn=:isbn",
+        {"isbn":isbn}
+    )
+    for b in book:
+        print(b["isbn"])
+        print(b["title"])
+        print(b["author"])
+        print(b["year"])
+        author = b["author"]
+        title = b["title"]
+        year = b["year"]
+    print("========")
+    print(author)
+
+    return render_template("bookdetail.html", isbn=isbn, title=title, author=author, year=year )
 
 @app.route("/getsession")
 def getsession():
