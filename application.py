@@ -307,6 +307,26 @@ def updateBookReview():
         
         return render_template("bookdetail.html", isbn=isbn, title=title, author=author, year=year , comment=comment )
 
+@app.route("/deleteBookReview", methods=["GET","POST"])
+def deleteBookReview():
+    if request.method == "POST":#TODO
+        # rate = request.form.get("rate").strip()
+        # comment = request.form.get("comment").strip()
+        user_id = session.get("user_id")
+        isbn    = session.get("isbn")
+        title   = session.get("title")
+        author  = session.get("author")
+        year    = session.get("year")
+ 
+ 
+        updateSQL ="DELETE FROM  bookreviews  WHERE isbn = :isbn AND user_id = :user_id "
+        params    = {"isbn":isbn, "user_id":user_id  }
+        
+        resultInsert = db.execute(updateSQL, params)
+        db.commit()
+        
+        return render_template("bookdetail.html", isbn=isbn, title=title, author=author, year=year , comment="" )
+
         
 @app.route("/getsession")
 def getsession():

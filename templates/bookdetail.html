@@ -44,11 +44,16 @@ Write your review!!
         {% else %}
             <input type="submit" name="updateReview" value="updateReview" />
         {% endif %}
-        
-      
-      <input type="submit" name="logout" value="logout" />
-
-
+    </form>
+     {% if comment!="" %}
+        <form action="{{ url_for('deleteBookReview') }}" method="post">
+            <input type="submit" name="deleteReview" value="deleteReview" />
+        </form>
+     {% endif %}
+    
+    <form action="{{ url_for('logout') }}" method="post">
+    
+        <input type="submit" name="logout" value="logout" />
     </form>
   </div>
 </div>
