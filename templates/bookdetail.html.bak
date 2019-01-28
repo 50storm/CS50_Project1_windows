@@ -10,13 +10,11 @@ Write your review!!
   <div class="col-sm">
     <table class="table table-striped">
         <tr class="thead-dark">
-          <th>Isbn</th>
           <th>Title</th>
           <th>Author</th>
           <th>Year</th>
         </tr>
         <tr>
-          <th>{{ isbn }}</th>
           <th>{{ title }}</th>
           <th>{{ author }}</th>
           <th>{{ year }}</th>
