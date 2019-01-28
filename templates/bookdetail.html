@@ -26,12 +26,26 @@ Write your review!!
 </div>
 <div class="row">
   <div class="col-sm">
+  {% if comment=="" %}
     <form action="{{ url_for('writeBookReview') }}" method="post">
-
-      <textarea name="comment" cols="50" rows="10" class="w-100"></textarea>
+  {% else %}
+    <form action="{{ url_for('updateBookReview') }}" method="post">
+  {% endif %}
+      <input type="radio" name="rate" value="1" >Did not like it
+      <input type="radio" name="rate" value="2" >It was ok.
+      <input type="radio" name="rate" value="3" checked="checked">Liked it
+      <input type="radio" name="rate" value="4" >Really liked it
+      <input type="radio" name="rate" value="5" >It was amazing.
       <br/>
-
-      <input type="submit" name="submitReview" value="submitReview" />
+      <textarea name="comment" cols="50" rows="10" class="w-100">{{ comment }}</textarea>
+      <br/>
+        {% if comment=="" %}
+            <input type="submit" name="submitReview" value="submitReview" />
+        {% else %}
+            <input type="submit" name="updateReview" value="updateReview" />
+        {% endif %}
+        
+      
       <input type="submit" name="logout" value="logout" />
 
 

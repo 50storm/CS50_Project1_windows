@@ -222,7 +222,9 @@ def searchBook():
     title=""
     author=""
     year=""
-    isbn = request.args.get("isbn","")
+    isbn   = request.args.get("isbn","")
+    user_id =  session.get("user_id")
+    
     print("==debug==")
     print(isbn)#None
     book = db.execute(
@@ -245,31 +247,67 @@ def searchBook():
         title = b["title"]
         year = b["year"]
         
-        
-        
+     #reviwe exist?
+    bookreviews = db.execute(
+        "SELECT * FROM bookreviews WHERE isbn=:isbn AND user_id =:user_id",
+        {"isbn":isbn,"user_id":user_id}
+    )
+    bookreviewList = bookreviews.fetchall()
+    
+    if( len(bookreviewList ) == 0 ):
+        #レビューなし
+        comment = ""
+    else:
+        for review in bookreviewList:
+            comment = review["comment"]
+     
+    
     print("========")
     print(author)
 
-    return render_template("bookdetail.html", isbn=isbn, title=title, author=author, year=year )
+    return render_template("bookdetail.html", isbn=isbn, title=title, author=author, year=year, comment=comment )
 
 @app.route("/writeBookReview", methods=["GET","POST"])
 def writeBookReview():
     if request.method == "POST":#TODO
+        rate = request.form.get("rate").strip()
         comment = request.form.get("comment").strip()
         user_id = session.get("user_id")
         isbn    = session.get("isbn")
         title   = session.get("title")
         author  = session.get("author")
         year    = session.get("year")
-        
-        insertSQL ="INSERT INTO bookreviews (isbn, user_id, comment, created_at ) VALUES (:isbn, :user_id, :comment, current_timestamp)" #TODO;isbn
-        params    = {"isbn":isbn, "user_id":user_id, "comment":comment }
+ 
+  
+        insertSQL ="INSERT INTO bookreviews (isbn, user_id, rate, comment, created_at ) VALUES (:isbn, :user_id, :rate, :comment, current_timestamp)" #TODO;isbn
+        params    = {"isbn":isbn, "user_id":user_id, "rate":rate ,"comment":comment }
         
         resultInsert = db.execute(insertSQL, params)
         db.commit()
         
         return render_template("bookdetail.html", isbn=isbn, title=title, author=author, year=year )
 
+@app.route("/updateBookReview", methods=["GET","POST"])
+def updateBookReview():
+    if request.method == "POST":#TODO
+        rate = request.form.get("rate").strip()
+        comment = request.form.get("comment").strip()
+        user_id = session.get("user_id")
+        isbn    = session.get("isbn")
+        title   = session.get("title")
+        author  = session.get("author")
+        year    = session.get("year")
+ 
+  
+        updateSQL ="UPDATE bookreviews  SET  rate = :rate, comment = :comment, created_at=current_timestamp  WHERE isbn = :isbn AND user_id = :user_id "
+        params    = {"isbn":isbn, "user_id":user_id, "rate":rate, "comment":comment }
+        
+        resultInsert = db.execute(updateSQL, params)
+        db.commit()
+        
+        return render_template("bookdetail.html", isbn=isbn, title=title, author=author, year=year , comment=comment )
+
+        
 @app.route("/getsession")
 def getsession():
     session.pop("username", None)
