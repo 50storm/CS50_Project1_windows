@@ -25,6 +25,18 @@ Write your review!!
   </div>
 </div>
 <div class="row">
+    <div class="col-sm">
+    {% for bookreview in bookreviews %}
+        <p>
+        {{ bookreview["username"] }} | 
+        {{ bookreview["rate"]    }}  |
+        {{ bookreview["comment"] }}
+        </p>
+    
+    {% endfor %}
+    </div>
+</div>
+<div class="row">
   <div class="col-sm">
   {% if comment=="" %}
     <form action="{{ url_for('writeBookReview') }}" method="post">

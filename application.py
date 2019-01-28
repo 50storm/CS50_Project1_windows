@@ -247,25 +247,35 @@ def searchBook():
         title = b["title"]
         year = b["year"]
         
-     #reviwe exist?
-    bookreviews = db.execute(
+     #myreviwe exist?
+    mybookreview = db.execute(
         "SELECT * FROM bookreviews WHERE isbn=:isbn AND user_id =:user_id",
+       
         {"isbn":isbn,"user_id":user_id}
     )
-    bookreviewList = bookreviews.fetchall()
-    
-    if( len(bookreviewList ) == 0 ):
+    mybookreviewList = mybookreview.fetchall()
+    if( len(mybookreviewList ) == 0 ):
         #レビューなし
         comment = ""
     else:
-        for review in bookreviewList:
-            comment = review["comment"]
+        for myreview in mybookreviewList:
+            comment = myreview["comment"]
      
+    bookreviews = db.execute(
+        "SELECT  u.username as username, br.rate as rate, br.comment as comment, br.isbn as isbn FROM bookreviews br INNER JOIN users u ON br.user_id = u.id WHERE isbn=:isbn ",
+        {"isbn":isbn }
+    )
     
-    print("========")
-    print(author)
+    print("=======bookreviewList============")
+    # bookreviewList = bookreviews.fetchall()
+    # for bookreview in bookreviewList:
+        # print(bookreview["rate"])
+        # print(bookreview["username"])
+        # print(bookreview["comment"])
 
-    return render_template("bookdetail.html", isbn=isbn, title=title, author=author, year=year, comment=comment )
+    # print("=======bookreviewList============")
+     
+    return render_template("bookdetail.html", isbn=isbn, title=title, author=author, year=year, comment=comment, bookreviews=bookreviews )
 
 @app.route("/writeBookReview", methods=["GET","POST"])
 def writeBookReview():
