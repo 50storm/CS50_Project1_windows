@@ -41,7 +41,7 @@ Write your review!!
         {% elif bookreview["rate"] == 5 %}
             ★★★★★
         {% endif %}    
-        comment:{{ bookreview["comment"] }}
+        comment:{{ bookreview["comment"] | nl2br }}
         </p>
 
     {% endfor %}
