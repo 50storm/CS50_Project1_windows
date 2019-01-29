@@ -45,17 +45,14 @@ def checkUserName(username):
     users = db.execute(
         "SELECT * FROM users WHERE username=:username",
         {"username":username}
-    )
-    usersList = users.fetchall()
-    print("======debug=============")
-    print(usersList) #list
-    for user in usersList:
-        print(user["username"])
-
-    if(len(usersList) == 0):
+    )   
+    user = users.fetchone()
+    if(user == None):
         return (True, None)
     else:
         return (False, username + " is alreaded used.")
+    
+    
 
 @app.route("/", methods=["GET"])
 def root():
@@ -108,34 +105,29 @@ def register():
 
 @app.route("/mypage", methods=["GET", "POST"])
 def mypage():
+    sqlUser = "SELECT * FROM users WHERE username=:username AND password=:password"
+    
     if request.method == "POST":
         username = request.form.get("username").strip()
         password = request.form.get("password").strip()
+        user = db.execute(
+            sqlUser,
+            {"username":username,"password":password}
+        )
+        rowUser = user.fetchone()
+        if(rowUser is None):
+            return render_template("index.html", message="Login Error...Incorrect passward entered.. Please Try agin.")
+        
         print(username)
         print(password)
-        users = db.execute(
-            "SELECT * FROM users WHERE username=:username AND password=:password",
-            {"username":username, "password":password}
-        )
-        # Add data to Seession
-        for user in users :
-            session["user_id"]=user["id"]
-			
-        session["username"] = username
-        session["password"] = password
-
-        return render_template("mypage.html", users=users)
+        print(rowUser)
+        session['username'] = rowUser['username']
+        session['password'] = rowUser['password']
+      
+        return render_template("mypage.html", username=rowUser["username"], message="")
+   
     #GET
-    print("====GET[Session]=====")
-    username = session.get("username")
-    password = session.get("password")
-    print(username)
-    print(password)
-    users = db.execute(
-        "SELECT * FROM users WHERE username=:username AND password=:password",
-        {"username":username, "password":password}
-    )
-    return render_template("mypage.html", users=users)
+    return render_template("mypage.html", username=session.get("username") ,  message="")
 
 @app.route("/logout", methods=["POST"])
 def logout():
@@ -219,63 +211,58 @@ def searchBooks():
 
 @app.route("/searchBook", methods=["GET","POST"])
 def searchBook():
+    #book
+    isbn =""
     title=""
     author=""
     year=""
-    isbn   = request.args.get("isbn","")
-    user_id =  session.get("user_id")
-    
-    print("==debug==")
-    print(isbn)#None
-    book = db.execute(
-        "SELECT * FROM books WHERE isbn=:isbn",
-        {"isbn":isbn}
-    )
-    for b in book:
-        print(b["isbn"])
-        print(b["title"])
-        print(b["author"])
-        print(b["year"])
-        #Sessionに持っておく(1レコード分)
-        session["isbn"] = b["isbn"]
-        session["author"] = b["author"]
-        session["title"] = b["title"]
-        session["year"] = b["year"]
-  
-        #表示用
-        author = b["author"]
-        title = b["title"]
-        year = b["year"]
-        
-     #myreviwe exist?
-    mybookreview = db.execute(
-        "SELECT * FROM bookreviews WHERE isbn=:isbn AND user_id =:user_id",
-       
-        {"isbn":isbn,"user_id":user_id}
-    )
-    mybookreviewList = mybookreview.fetchall()
-    if( len(mybookreviewList ) == 0 ):
-        #レビューなし
-        comment = ""
-    else:
-        for myreview in mybookreviewList:
-            comment = myreview["comment"]
-     
-    bookreviews = db.execute(
-        "SELECT  u.username as username, br.rate as rate, br.comment as comment, br.isbn as isbn FROM bookreviews br INNER JOIN users u ON br.user_id = u.id WHERE isbn=:isbn ",
-        {"isbn":isbn }
-    )
-    
-    print("=======bookreviewList============")
-    # bookreviewList = bookreviews.fetchall()
-    # for bookreview in bookreviewList:
-        # print(bookreview["rate"])
-        # print(bookreview["username"])
-        # print(bookreview["comment"])
 
-    # print("=======bookreviewList============")
-     
-    return render_template("bookdetail.html", isbn=isbn, title=title, author=author, year=year, comment=comment, bookreviews=bookreviews )
+    username=""
+    rate=-1
+    comment=""
+    sql_book = "SELECT * FROM books WHERE isbn=:isbn "
+    sql_my_book_review = "SELECT  u.username as username, br.rate as rate, br.comment as comment, br.isbn as isbn FROM bookreviews br INNER JOIN users u ON br.user_id = u.id WHERE isbn=:isbn AND user_id = :user_id "
+    sql_book_reiviews =  "SELECT  u.username as username, br.rate as rate, br.comment as comment, br.isbn as isbn FROM bookreviews br INNER JOIN users u ON br.user_id = u.id WHERE isbn=:isbn "
+    if request.method == "GET":
+        isbn   = request.args.get("isbn","")
+        user_id =  session.get("user_id")
+        
+        print("==debug==")
+        print(isbn)#None
+        book = db.execute(
+            sql_book,
+            {"isbn":isbn}
+        )
+        row_book = book.fetchone()
+        if(row_book is not None):
+            #表示用
+            isbn   = row_book["isbn"]
+            author = row_book["author"]
+            title  = row_book["title"]
+            year   = row_book["year"]
+    
+            #Sessionに持っておく(1レコード分)
+            session["isbn"]   = row_book["isbn"]
+            session["author"] = row_book["author"]
+            session["title"]  = row_book["title"]
+            session["year"]   = row_book["year"]
+    
+        
+        mybookreview = db.execute(
+            sql_my_book_review,
+            {"isbn":isbn,"user_id":user_id}
+        )
+        row_mybookreview = mybookreview.fetchone()
+        if(row_mybookreview is not None) :
+            username = row_mybookreview['username']
+            rate = row_mybookreview['rate']
+            comment = row_mybookreview['comment']
+
+        bookreviews = db.execute(
+            sql_book_reiviews,
+            {"isbn":isbn }
+        )
+        return render_template("bookdetail.html", isbn=isbn, title=title, author=author, year=year, rate = rate, comment=comment, bookreviews=bookreviews )
 
 @app.route("/writeBookReview", methods=["GET","POST"])
 def writeBookReview():

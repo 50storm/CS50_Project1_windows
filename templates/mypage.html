@@ -1,36 +1,36 @@
 {% extends "layout.html" %}
 
 {% block heading %}
-My Page
+<div class="row ">
+  <div class="col-sm bg-primary text-white">
+    My Page
+   </div>
 {% endblock %}
 
 {% block body %}
 
 <div class="row">
-  <div class="col-sm">
-    <ul>
-        {% for user in users %}
-            <li>{{ user['username'] }}</li>
-            <li>{{ user['firstname'] }}</li>
-        {% endfor %}
-    </ul>
+  <div class="col-sm bg-info text-white">
+         <h2>username:{{username}}</h2>
   </div>
 </div>
+
 <div class="row">
   <div class="col-sm">
-    <form action="{{ url_for('logout') }}" method="post">
-      <input type="submit" name="logout" value="logout" />
-    </form>
-  </div>
-</div>
-<div class="row">
-  <div class="col-sm">
+    <h3>Search Books you want to write reviews</h3>
     <form action="{{ url_for('searchBooks') }}" method="post">
       <input type="text" name="booktitle" placeholder="part of booktitle here">
       <input type="text" name="isbn" placeholder="isbn here">
       <input type="text" name="authorname" placeholder="author name here">
       <input type="submit" name="searchBooks" value="searchBooks" />
+    </form>
+  </div>
+</div>
 
+<div class="row">
+  <div class="col-sm">
+    <form action="{{ url_for('logout') }}" method="post">
+      <input type="submit" name="logout" value="logout" />
     </form>
   </div>
 </div>
