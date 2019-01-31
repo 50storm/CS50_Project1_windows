@@ -8,7 +8,6 @@ from models import *
 import datetime, sys, re
 from jinja2 import evalcontextfilter, Markup, escape
 
-_paragraph_re = re.compile(r'(?:\r\n|\r|\n){2,}')
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -35,8 +34,14 @@ db = scoped_session(sessionmaker(bind=engine))
 @app.template_filter()
 @evalcontextfilter
 def nl2br(eval_ctx, value):
-    result = u'\n\n'.join(u'<p>%s</p>' % p.replace('\n', '<br>\n') \
-        for p in _paragraph_re.split(escape(value)))
+    _paragraph_re = re.compile(r'(?:\r\n|\r|\n){2,}')
+
+    # print(eval_ctx)
+    print(value)
+    # result = u'\n\n'.join(u'<p>%s</p>' % p.replace('\n', '<br>\n') for p in _paragraph_re.split(escape(value)))
+    result = u'\n\n'.join(u'%s<br>' % p.replace('\n', '<br>') for p  in _paragraph_re.split(escape(value)))
+    # result = u'\n\n'.join(p.replace('\n', '<br>') for p  in _paragraph_re.split(escape(value)))
+    
     if eval_ctx.autoescape:
         result = Markup(result)
     return result
@@ -221,6 +226,34 @@ def searchBooks():
 
     return render_template("mypage.html")
 
+def find_book_by_isbn(isbn):
+    sql_book = "SELECT * FROM books WHERE isbn=:isbn "
+    
+    book = db.execute(sql_book, {"isbn":isbn})   
+    row_book = book.fetchone()
+    if(row_book is None):
+        return None
+    else:
+        return row_book
+
+def find_my_book_review(isbn, user_id):
+    sql_my_book_review = "SELECT u.username as username, br.rate as rate, br.comment as comment, br.isbn as isbn FROM bookreviews br INNER JOIN users u ON br.user_id = u.id WHERE isbn=:isbn AND user_id = :user_id "
+    mybookreview = db.execute(
+            sql_my_book_review,
+            {"isbn":isbn,"user_id":user_id}
+    )
+    row_mybookreview = mybookreview.fetchone()
+    if(row_mybookreview is  None) :
+        return None
+    else:
+        return row_mybookreview
+
+def find_book_reviews(isbn):
+    sql_book_reiviews =  "SELECT  u.username as username, br.rate as rate, br.comment as comment, br.isbn as isbn FROM bookreviews br INNER JOIN users u ON br.user_id = u.id WHERE isbn=:isbn "
+    bookreviews = db.execute(sql_book_reiviews,{"isbn":isbn })
+    return bookreviews
+        
+        
 @app.route("/searchBook", methods=["GET","POST"])
 def searchBook():
     #book
@@ -232,48 +265,28 @@ def searchBook():
     username=""
     rate=-1
     comment=""
-    sql_book = "SELECT * FROM books WHERE isbn=:isbn "
-    sql_my_book_review = "SELECT  u.username as username, br.rate as rate, br.comment as comment, br.isbn as isbn FROM bookreviews br INNER JOIN users u ON br.user_id = u.id WHERE isbn=:isbn AND user_id = :user_id "
-    sql_book_reiviews =  "SELECT  u.username as username, br.rate as rate, br.comment as comment, br.isbn as isbn FROM bookreviews br INNER JOIN users u ON br.user_id = u.id WHERE isbn=:isbn "
+    
     if request.method == "GET":
         isbn   = request.args.get("isbn","")
         user_id =  session.get("user_id")
+      
+        result = find_book_by_isbn(isbn)
+        if  result is not None  :
+            isbn=result['isbn']
+            title=result['title']
+            author=result['author']
+            year=result['year']
         
-        print("==debug==")
-        print(isbn)#None
-        book = db.execute(
-            sql_book,
-            {"isbn":isbn}
-        )
-        row_book = book.fetchone()
-        if(row_book is not None):
-            #表示用
-            isbn   = row_book["isbn"]
-            author = row_book["author"]
-            title  = row_book["title"]
-            year   = row_book["year"]
-    
-            #Sessionに持っておく(1レコード分)
-            session["isbn"]   = row_book["isbn"]
-            session["author"] = row_book["author"]
-            session["title"]  = row_book["title"]
-            session["year"]   = row_book["year"]
-    
+        print(result)
         
-        mybookreview = db.execute(
-            sql_my_book_review,
-            {"isbn":isbn,"user_id":user_id}
-        )
-        row_mybookreview = mybookreview.fetchone()
-        if(row_mybookreview is not None) :
-            username = row_mybookreview['username']
-            rate = row_mybookreview['rate']
-            comment = row_mybookreview['comment']
+        my_book_review = find_my_book_review(isbn, user_id)
+        print(my_book_review)
+        if my_book_review is not None :
+            rate    = my_book_review['rate']
+            comment = my_book_review['comment']
 
-        bookreviews = db.execute(
-            sql_book_reiviews,
-            {"isbn":isbn }
-        )
+        bookreviews = find_book_reviews(isbn)
+        
         return render_template("bookdetail.html", isbn=isbn, title=title, author=author, year=year, rate = rate, comment=comment, bookreviews=bookreviews )
 
 @app.route("/writeBookReview", methods=["GET","POST"])
