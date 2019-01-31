@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, session, render_template, request, Response, flash, redirect
+from flask import Flask, session, render_template, request, Response, flash, redirect, jsonify
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -68,8 +68,68 @@ def checkUserName(username):
         return (True, None)
     else:
         return (False, username + " is alreaded used.")
+tasks = [
+    {
+        'id': 1,
+        'title': '日用品を買ってくる',
+        'description': 'ミルク、チーズ、ピザ、フルーツ',
+        'done': False
+    },
+    {
+        'id': 2,
+        'title': 'Python の勉強',
+        'description': 'Python で Restful API を作る',
+        'done': False
+    }
+]
+
+@app.route("/api/<string:isbn>", methods=["GET"])
+def api(isbn):
+    book_info =  {
+            "title": "",
+            "author": "",
+            "year":0 ,
+            "isbn": "",
+            "review_count": 0,
+            "average_score": 0.0
+            }
     
     
+    if request.method == "GET":
+    
+         # return f"Hello, {isbn}!"
+        # print(isbn)
+        # return f"{isbn}"
+        sqlSel = " SELECT b.title, b.author, b.year, b.isbn, count(*) as review_count , AVG(rate) as average_score "
+        sqlSel += " FROM bookreviews br "
+        sqlSel += " INNER JOIN books b "
+        sqlSel += " ON br.isbn = b.isbn "
+        sqlSel += " GROUP BY b.title, b.author, b.year, b.isbn "
+        sqlSel += " HAVING  b.isbn = :isbn "
+        book = db.execute(sqlSel, {"isbn":isbn})   
+        row_book = book.fetchone()
+        if(row_book is None):
+            return None
+        else:
+            book_info["title"] = row_book['title']
+            book_info["author"] = row_book['author']
+            book_info["year"] = row_book['year']
+            book_info["isbn"] = row_book['isbn']
+            book_info["review_count"] = row_book['review_count']
+            print(row_book['average_score'])
+            # book_info["average_score"] = round(row_book['average_score'],1)
+            book_info["average_score"] = round(float(row_book['average_score']),1)
+            return jsonify(book_info)
+
+        
+        # return jsonify({'tasks': tasks}) 
+    
+@app.route("/<string:name>")
+def hello(name):
+    return f"Hello, {name}!"
+    
+    
+
 
 @app.route("/", methods=["GET"])
 def root():
@@ -295,10 +355,10 @@ def writeBookReview():
         rate = request.form.get("rate").strip()
         comment = request.form.get("comment").strip()
         user_id = session.get("user_id")
-        isbn    = session.get("isbn")
-        title   = session.get("title")
-        author  = session.get("author")
-        year    = session.get("year")
+        isbn    = request.form.get("isbn")
+        title   = request.form.get("title")
+        author  = request.form.get("author")
+        year    = request.form.get("year")
    
         insertSQL ="INSERT INTO bookreviews (isbn, user_id, rate, comment, created_at ) VALUES (:isbn, :user_id, :rate, :comment, current_timestamp)" #TODO;isbn
         params    = {"isbn":isbn, "user_id":user_id, "rate":rate ,"comment":comment }
@@ -323,11 +383,11 @@ def updateBookReview():
         rate = request.form.get("rate").strip()
         comment = request.form.get("comment").strip()
         user_id = session.get("user_id")
-        isbn    = session.get("isbn")
-        title   = session.get("title")
-        author  = session.get("author")
-        year    = session.get("year")
- 
+        isbn    = request.form.get("isbn")
+        title   = request.form.get("title")
+        author  = request.form.get("author")
+        year    = request.form.get("year")
+   
   
         updateSQL ="UPDATE bookreviews  SET  rate = :rate, comment = :comment, created_at=current_timestamp  WHERE isbn = :isbn AND user_id = :user_id "
         params    = {"isbn":isbn, "user_id":user_id, "rate":rate, "comment":comment }
@@ -353,11 +413,11 @@ def deleteBookReview():
         rate = -1
         comment = ""
         user_id = session.get("user_id")
-        isbn    = session.get("isbn")
-        title   = session.get("title")
-        author  = session.get("author")
-        year    = session.get("year")
- 
+        isbn    = request.form.get("isbn")
+        title   = request.form.get("title")
+        author  = request.form.get("author")
+        year    = request.form.get("year")
+   
  
         updateSQL ="DELETE FROM  bookreviews  WHERE isbn = :isbn AND user_id = :user_id "
         params    = {"isbn":isbn, "user_id":user_id  }
