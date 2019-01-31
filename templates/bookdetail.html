@@ -31,17 +31,18 @@ Write your review!!
         <p>
         {{ bookreview["username"] }} :
         {% if bookreview["rate"] == 1  %}
-            ★
+            ★☆☆☆☆
         {% elif bookreview["rate"] == 2 %}
-            ★★
+            ★★☆☆☆
         {% elif bookreview["rate"] == 3 %}
-            ★★★
+            ★★★☆☆
         {% elif bookreview["rate"] == 4 %}
-            ★★★★
+            ★★★★☆
         {% elif bookreview["rate"] == 5 %}
             ★★★★★
-        {% endif %}    
-        comment:{{ bookreview["comment"] | nl2br }}
+        {% endif %}
+        <br>
+        {{ bookreview["comment"] | nl2br }}
         </p>
 
     {% endfor %}
@@ -54,10 +55,10 @@ Write your review!!
   {% else %}
     <form action="{{ url_for('updateBookReview') }}" method="post">
   {% endif %}
-      <input type="radio" name="rate" value="1" >Did not like it.(★)
-      <input type="radio" name="rate" value="2" >It was ok.(★★)
-      <input type="radio" name="rate" value="3" checked="checked">Liked it.(★★★)
-      <input type="radio" name="rate" value="4" >Really liked it.(★★★★)
+      <input type="radio" name="rate" value="1" >Did not like it.(★☆☆☆☆)
+      <input type="radio" name="rate" value="2" >It was ok.(★★☆☆☆)
+      <input type="radio" name="rate" value="3" checked="checked">Liked it.(★★★☆☆)
+      <input type="radio" name="rate" value="4" >Really liked it.(★★★★☆)
       <input type="radio" name="rate" value="5" >It was amazing.(★★★★★)
       <br/>
       <textarea name="comment" cols="50" rows="10" class="w-100">{{ comment }}</textarea>
