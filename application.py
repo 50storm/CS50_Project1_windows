@@ -68,21 +68,34 @@ def checkUserName(username):
         return (True, None)
     else:
         return (False, username + " is alreaded used.")
-tasks = [
-    {
-        'id': 1,
-        'title': '日用品を買ってくる',
-        'description': 'ミルク、チーズ、ピザ、フルーツ',
-        'done': False
-    },
-    {
-        'id': 2,
-        'title': 'Python の勉強',
-        'description': 'Python で Restful API を作る',
-        'done': False
-    }
-]
 
+def find_book_by_isbn(isbn):
+    sql_book = "SELECT * FROM books WHERE isbn=:isbn "
+    
+    book = db.execute(sql_book, {"isbn":isbn})   
+    row_book = book.fetchone()
+    if(row_book is None):
+        return None
+    else:
+        return row_book
+
+def find_my_book_review(isbn, user_id):
+    sql_my_book_review = "SELECT u.username as username, br.rate as rate, br.comment as comment, br.isbn as isbn FROM bookreviews br INNER JOIN users u ON br.user_id = u.id WHERE isbn=:isbn AND user_id = :user_id "
+    mybookreview = db.execute(
+            sql_my_book_review,
+            {"isbn":isbn,"user_id":user_id}
+    )
+    row_mybookreview = mybookreview.fetchone()
+    if(row_mybookreview is  None) :
+        return None
+    else:
+        return row_mybookreview
+
+def find_book_reviews(isbn):
+    sql_book_reiviews =  "SELECT  u.username as username, br.rate as rate, br.comment as comment, br.isbn as isbn FROM bookreviews br INNER JOIN users u ON br.user_id = u.id WHERE isbn=:isbn "
+    bookreviews = db.execute(sql_book_reiviews,{"isbn":isbn })
+    return bookreviews
+  
 @app.route("/api/<string:isbn>", methods=["GET"])
 def api(isbn):
     book_info =  {
@@ -121,20 +134,9 @@ def api(isbn):
             book_info["average_score"] = round(float(row_book['average_score']),1)
             return jsonify(book_info)
 
-        
-        # return jsonify({'tasks': tasks}) 
-    
-@app.route("/<string:name>")
-def hello(name):
-    return f"Hello, {name}!"
-    
-    
-
-
 @app.route("/", methods=["GET"])
 def root():
     return render_template("index.html")
-
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -143,14 +145,14 @@ def login():
 @app.route("/register", methods=["GET","POST"])
 def register():
     if request.method == "POST":
-        username = request.form.get("username").strip()
-        firstname = request.form.get("firstname").strip()
-        lastname = request.form.get("lastname").strip()
-        password = request.form.get("password").strip()
+        session['username']  = username = request.form.get("username").strip()
+        session['firstname'] = firstname = request.form.get("firstname").strip()
+        session['lastname']  = lastname = request.form.get("lastname").strip()
+        session['password']  = password = request.form.get("password").strip()
+        
         confirmPassword = request.form.get("confirmPassword").strip()
 
         resultCheckUserName = checkUserName(username)
-
         resultCheckPassword = checkPassword(password, confirmPassword, username)
         print(resultCheckUserName)
         print(resultCheckPassword)
@@ -160,6 +162,11 @@ def register():
             resultInsert = db.execute(insertSQL, params)
             db.commit()
             print(resultInsert)
+            session.pop("username", None)
+            session.pop("firstname", None)
+            session.pop("lastname", None)
+            session.pop("password", None)
+            
             return render_template("success.html")
         else:
             #invalid inputs
@@ -287,33 +294,6 @@ def searchBooks():
 
     return render_template("mypage.html")
 
-def find_book_by_isbn(isbn):
-    sql_book = "SELECT * FROM books WHERE isbn=:isbn "
-    
-    book = db.execute(sql_book, {"isbn":isbn})   
-    row_book = book.fetchone()
-    if(row_book is None):
-        return None
-    else:
-        return row_book
-
-def find_my_book_review(isbn, user_id):
-    sql_my_book_review = "SELECT u.username as username, br.rate as rate, br.comment as comment, br.isbn as isbn FROM bookreviews br INNER JOIN users u ON br.user_id = u.id WHERE isbn=:isbn AND user_id = :user_id "
-    mybookreview = db.execute(
-            sql_my_book_review,
-            {"isbn":isbn,"user_id":user_id}
-    )
-    row_mybookreview = mybookreview.fetchone()
-    if(row_mybookreview is  None) :
-        return None
-    else:
-        return row_mybookreview
-
-def find_book_reviews(isbn):
-    sql_book_reiviews =  "SELECT  u.username as username, br.rate as rate, br.comment as comment, br.isbn as isbn FROM bookreviews br INNER JOIN users u ON br.user_id = u.id WHERE isbn=:isbn "
-    bookreviews = db.execute(sql_book_reiviews,{"isbn":isbn })
-    return bookreviews
-  
 @app.route("/searchBook", methods=["GET","POST"])
 def searchBook():
     #book
@@ -406,7 +386,6 @@ def updateBookReview():
         
         return render_template("bookdetail.html", isbn=isbn, title=title, author=author, year=year, rate = rate, comment=comment, bookreviews=bookreviews )
 
-
 @app.route("/deleteBookReview", methods=["GET","POST"])
 def deleteBookReview():
     if request.method == "POST":#TODO
@@ -435,7 +414,6 @@ def deleteBookReview():
         bookreviews = find_book_reviews(isbn)
         
         return render_template("bookdetail.html", isbn=isbn, title=title, author=author, year=year, rate = rate, comment=comment, bookreviews=bookreviews )
-
         
 @app.route("/getsession")
 def getsession():

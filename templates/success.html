@@ -1,17 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>
-  successe
-  </title>
-</head>
-<body>
-<h1>
-  Success!
-</h1>
-<p>
-Successfully inserted!
-</p>
+{% extends "layout.html" %}
 
-</body>
-</html>
+{% block heading %}
+    Book Review Site
+{% endblock %}
+{% block body %}
+<div class="row">
+    <div class="col-sm ">
+        <h2  class="bg-primary text-white p-2 mb-2" >Registraion Success!</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm ">
+        <p>
+            <a href="{{ url_for('login') }}"  class="btn btn-outline-primary ">Login Page</a>
+        </p>
+    </div>
+</div>
+{% endblock %}
