@@ -223,12 +223,12 @@ def logout():
         session.pop("password", None)
         return render_template("logout.html")
 
-@app.route("/searchBooks", methods=["GET","POST"])
+@app.route("/searchBooks", methods=["GET"])
 def searchBooks():
-    if request.method == "POST":
-        booktitle  = '%' + request.form.get("booktitle").strip() + '%'
-        isbn       = request.form.get("isbn").strip()
-        authorname = request.form.get("authorname").strip()
+    
+        booktitle  = '%' + request.args.get("booktitle").strip() + '%'
+        isbn       = request.args.get("isbn").strip()
+        authorname = request.args.get("authorname").strip()
 
         if ( booktitle == "" and isbn == "" and authorname == "" ):
             print("error")
@@ -294,7 +294,7 @@ def searchBooks():
 
         return render_template("booklist.html", books=books)
 
-    return render_template("mypage.html")
+
 
 @app.route("/searchBook", methods=["GET","POST"])
 def searchBook():
