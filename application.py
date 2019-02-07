@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, session, render_template, request, Response, flash, redirect, jsonify
+from flask import Flask, session, render_template, request, Response, flash, redirect, jsonify, url_for
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -138,10 +138,34 @@ def api(isbn):
 def root():
     return render_template("index.html")
 
-@app.route("/login", methods=["GET", "POST"])
+@app.route("/login", methods=["GET"])
 def login():
     return render_template("index.html")
-
+    
+@app.route("/login", methods=["POST"])
+def validate_login():
+    sqlUser = "SELECT * FROM users WHERE username=:username AND password=:password"
+    username = request.form.get("username").strip()
+    password = request.form.get("password").strip()
+    user = db.execute(
+        sqlUser,
+        {"username":username,"password":password}
+    )
+    rowUser = user.fetchone()
+    if(rowUser is None):
+        return render_template("index.html", message="Login Error...Incorrect passward entered.. Please Try agin.")
+    
+    print(username)
+    print(password)
+    print(rowUser)
+    session['user_id'] = rowUser['id']
+    session['username'] = rowUser['username']
+    session['password'] = rowUser['password']
+    
+    #return render_template("mypage.html", username=rowUser["username"], message="")
+    return redirect(url_for("mypage"))
+    
+ 
 @app.route("/register", methods=["GET","POST"])
 def register():
     if request.method == "POST":
@@ -187,31 +211,9 @@ def register():
     #GET
     return render_template("registration.html")
 
-@app.route("/mypage", methods=["GET", "POST"])
+@app.route("/mypage", methods=["GET"])
 def mypage():
-    sqlUser = "SELECT * FROM users WHERE username=:username AND password=:password"
-    
-    if request.method == "POST":
-        username = request.form.get("username").strip()
-        password = request.form.get("password").strip()
-        user = db.execute(
-            sqlUser,
-            {"username":username,"password":password}
-        )
-        rowUser = user.fetchone()
-        if(rowUser is None):
-            return render_template("index.html", message="Login Error...Incorrect passward entered.. Please Try agin.")
-        
-        print(username)
-        print(password)
-        print(rowUser)
-        session['user_id'] = rowUser['id']
-        session['username'] = rowUser['username']
-        session['password'] = rowUser['password']
-      
-        return render_template("mypage.html", username=rowUser["username"], message="")
-   
-    #GET
+    #GET ONLY
     return render_template("mypage.html", username=session.get("username") ,  message="")
 
 @app.route("/logout", methods=["POST"])
