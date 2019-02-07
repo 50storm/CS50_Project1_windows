@@ -1,11 +1,24 @@
 {% extends "layout.html" %}
 
 {% block heading %}
-
+    Book Review Site
 {% endblock %}
 
 {% block body %}
-
+<div class="row">
+  <div class="col-sm-11 ">
+    <!-- <h2 class="bg-primary text-white p-2 mb-2" > -->
+    <h2 class="bg-primary text-white p-2 mb-2"  >
+       Username:{{session['username']}}
+    </h2>
+  </div>
+  <div class="col-sm ">
+    <form action="{{ url_for('logout') }}" method="post">
+      <input type="submit" name="logout" value="logout" />
+    </form>
+  </div>
+</div>
+<hr  class="my-4" />
 <div class="row">
   <div class="col-sm">
     <table class="table table-striped">
