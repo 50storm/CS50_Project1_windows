@@ -12,10 +12,20 @@
     <body>
       <div class="container-fluid">
         <div class="mx-auto" style="width:700px;">
+            {% block nav %}
+            {% endblock %}
+            
             <h1>
             {% block heading %}
             {% endblock %}
             </h1>
+            
+            <div class="row">
+                <div class="col-sm">
+                    {% block userinfo  %}{% endblock %}
+                </div>
+            </div>
+            
             {% block body %}
             {% endblock %}
             <!-- Optional JavaScript -->

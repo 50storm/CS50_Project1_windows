@@ -153,6 +153,7 @@ def validate_login():
     )
     rowUser = user.fetchone()
     if(rowUser is None):
+        session['username'] = username
         return render_template("index.html", message="Login Error...Incorrect passward entered.. Please Try agin.")
     
     print(username)

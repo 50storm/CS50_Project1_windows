@@ -1,8 +1,12 @@
+{# https://www.python.ambitious-engineer.com/archives/760 #}
+{# index.html #}
 {% extends "layout.html" %}
-
 {% block heading %}
     Book Review Site
 {% endblock %}
+{% block userinfo  %}
+{% endblock %}
+
 {% block body %}
     <div class="row">
         <div class="col-sm ">
@@ -12,11 +16,12 @@
           <h2 class="bg-primary text-white p-2 mb-2">Login Form</h2>
         </div>
     </div>
+    
     <div class="row">
           <form action="{{ url_for('login') }}" method="post">
               <div class="form-group col-sm">
                     <label for="username">User Name</label>
-                    <input id="username" type="text" class="h-100 w-100 p-3" name="username"  class="form-control" placeholder="Enter username here">
+                    <input id="username" type="text" class="h-100 w-100 p-3" name="username"  class="form-control" placeholder="Enter username here" value="{{ session['username']}}">
               </div>
               <div class="form-group col-sm">
                     <label for="password">Password</label>
