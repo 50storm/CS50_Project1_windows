@@ -41,7 +41,7 @@ def nl2br(eval_ctx, value):
     # result = u'\n\n'.join(u'<p>%s</p>' % p.replace('\n', '<br>\n') for p in _paragraph_re.split(escape(value)))
     result = u'\n\n'.join(u'%s<br>' % p.replace('\n', '<br>') for p  in _paragraph_re.split(escape(value)))
     # result = u'\n\n'.join(p.replace('\n', '<br>') for p  in _paragraph_re.split(escape(value)))
-    
+
     if eval_ctx.autoescape:
         result = Markup(result)
     return result
@@ -62,7 +62,7 @@ def checkUserName(username):
     users = db.execute(
         "SELECT * FROM users WHERE username=:username",
         {"username":username}
-    )   
+    )
     user = users.fetchone()
     if(user == None):
         return (True, None)
@@ -71,8 +71,8 @@ def checkUserName(username):
 
 def find_book_by_isbn(isbn):
     sql_book = "SELECT * FROM books WHERE isbn=:isbn "
-    
-    book = db.execute(sql_book, {"isbn":isbn})   
+
+    book = db.execute(sql_book, {"isbn":isbn})
     row_book = book.fetchone()
     if(row_book is None):
         return None
@@ -80,7 +80,9 @@ def find_book_by_isbn(isbn):
         return row_book
 
 def find_my_book_review(isbn, user_id):
-    sql_my_book_review = "SELECT u.username as username, br.rate as rate, br.comment as comment, br.isbn as isbn FROM bookreviews br INNER JOIN users u ON br.user_id = u.id WHERE isbn=:isbn AND user_id = :user_id "
+    sql_my_book_review = "SELECT u.username as username, br.rate as rate, br.comment as comment, br.isbn as isbn FROM bookreviews br "
+    sql_my_book_review +=  "INNER JOIN users u ON br.user_id = u.id  "
+    sql_my_book_review +=  " WHERE isbn=:isbn AND user_id = :user_id"
     mybookreview = db.execute(
             sql_my_book_review,
             {"isbn":isbn,"user_id":user_id}
@@ -92,10 +94,12 @@ def find_my_book_review(isbn, user_id):
         return row_mybookreview
 
 def find_book_reviews(isbn):
-    sql_book_reiviews =  "SELECT  u.username as username, br.rate as rate, br.comment as comment, br.isbn as isbn FROM bookreviews br INNER JOIN users u ON br.user_id = u.id WHERE isbn=:isbn "
+    sql_book_reiviews =  "SELECT  u.username as username, br.rate as rate, br.comment as comment, br.isbn as isbn FROM bookreviews br "
+    sql_book_reiviews +=  " INNER JOIN users u ON br.user_id = u.id  "
+    sql_my_book_review +=  " WHERE isbn=:isbn "
     bookreviews = db.execute(sql_book_reiviews,{"isbn":isbn })
     return bookreviews
-  
+
 @app.route("/api/<string:isbn>", methods=["GET"])
 def api(isbn):
     book_info =  {
@@ -106,10 +110,10 @@ def api(isbn):
             "review_count": 0,
             "average_score": 0.0
             }
-    
-    
+
+
     if request.method == "GET":
-    
+
          # return f"Hello, {isbn}!"
         # print(isbn)
         # return f"{isbn}"
@@ -119,7 +123,7 @@ def api(isbn):
         sqlSel += " ON br.isbn = b.isbn "
         sqlSel += " GROUP BY b.title, b.author, b.year, b.isbn "
         sqlSel += " HAVING  b.isbn = :isbn "
-        book = db.execute(sqlSel, {"isbn":isbn})   
+        book = db.execute(sqlSel, {"isbn":isbn})
         row_book = book.fetchone()
         if(row_book is None):
             return None
@@ -141,7 +145,7 @@ def root():
 @app.route("/login", methods=["GET"])
 def login():
     return render_template("index.html")
-    
+
 @app.route("/login", methods=["POST"])
 def validate_login():
     sqlUser = "SELECT * FROM users WHERE username=:username AND password=:password"
@@ -155,18 +159,18 @@ def validate_login():
     if(rowUser is None):
         session['username'] = username
         return render_template("index.html", message="Login Error...Incorrect passward entered.. Please Try agin.")
-    
+
     print(username)
     print(password)
     print(rowUser)
     session['user_id'] = rowUser['id']
     session['username'] = rowUser['username']
     session['password'] = rowUser['password']
-    
+
     #return render_template("mypage.html", username=rowUser["username"], message="")
     return redirect(url_for("mypage"))
-    
- 
+
+
 @app.route("/register", methods=["GET","POST"])
 def register():
     if request.method == "POST":
@@ -174,7 +178,7 @@ def register():
         session['firstname'] = firstname = request.form.get("firstname").strip()
         session['lastname']  = lastname = request.form.get("lastname").strip()
         session['password']  = password = request.form.get("password").strip()
-        
+
         confirmPassword = request.form.get("confirmPassword").strip()
 
         resultCheckUserName = checkUserName(username)
@@ -191,7 +195,7 @@ def register():
             session.pop("firstname", None)
             session.pop("lastname", None)
             session.pop("password", None)
-            
+
             return render_template("success.html")
         else:
             #invalid inputs
@@ -226,7 +230,7 @@ def logout():
 
 @app.route("/searchBooks", methods=["GET"])
 def searchBooks():
-    
+
         booktitle  = '%' + request.args.get("booktitle").strip() + '%'
         isbn       = request.args.get("isbn").strip()
         authorname = request.args.get("authorname").strip()
@@ -308,20 +312,20 @@ def searchBook():
     username=""
     rate=-1
     comment=""
-    
+
     if request.method == "GET":
         isbn   = request.args.get("isbn","")
         user_id =  session.get("user_id")
-      
+
         result = find_book_by_isbn(isbn)
         if  result is not None  :
             isbn=result['isbn']
             title=result['title']
             author=result['author']
             year=result['year']
-        
+
         print(result)
-        
+
         my_book_review = find_my_book_review(isbn, user_id)
         print(my_book_review)
         if my_book_review is not None :
@@ -329,7 +333,7 @@ def searchBook():
             comment = my_book_review['comment']
 
         bookreviews = find_book_reviews(isbn)
-        
+
         return render_template("bookdetail.html", isbn=isbn, title=title, author=author, year=year, rate = rate, comment=comment, bookreviews=bookreviews )
 
 @app.route("/writeBookReview", methods=["GET","POST"])
@@ -342,13 +346,13 @@ def writeBookReview():
         title   = request.form.get("title")
         author  = request.form.get("author")
         year    = request.form.get("year")
-   
+
         insertSQL ="INSERT INTO bookreviews (isbn, user_id, rate, comment, created_at ) VALUES (:isbn, :user_id, :rate, :comment, current_timestamp)" #TODO;isbn
         params    = {"isbn":isbn, "user_id":user_id, "rate":rate ,"comment":comment }
-        
+
         resultInsert = db.execute(insertSQL, params)
         db.commit()
-        
+
         # for display
         my_book_review = find_my_book_review(isbn, user_id)
         print(my_book_review)
@@ -357,7 +361,7 @@ def writeBookReview():
             comment = my_book_review['comment']
 
         bookreviews = find_book_reviews(isbn)
-        
+
         return render_template("bookdetail.html", isbn=isbn, title=title, author=author, year=year, rate = rate, comment=comment, bookreviews=bookreviews )
 
 @app.route("/updateBookReview", methods=["GET","POST"])
@@ -370,14 +374,14 @@ def updateBookReview():
         title   = request.form.get("title")
         author  = request.form.get("author")
         year    = request.form.get("year")
-   
-  
+
+
         updateSQL ="UPDATE bookreviews  SET  rate = :rate, comment = :comment, created_at=current_timestamp  WHERE isbn = :isbn AND user_id = :user_id "
         params    = {"isbn":isbn, "user_id":user_id, "rate":rate, "comment":comment }
-        
+
         resultInsert = db.execute(updateSQL, params)
         db.commit()
-        
+
         # for display
         my_book_review = find_my_book_review(isbn, user_id)
         print(my_book_review)
@@ -386,7 +390,7 @@ def updateBookReview():
             comment = my_book_review['comment']
 
         bookreviews = find_book_reviews(isbn)
-        
+
         return render_template("bookdetail.html", isbn=isbn, title=title, author=author, year=year, rate = rate, comment=comment, bookreviews=bookreviews )
 
 @app.route("/deleteBookReview", methods=["GET","POST"])
@@ -399,14 +403,14 @@ def deleteBookReview():
         title   = request.form.get("title")
         author  = request.form.get("author")
         year    = request.form.get("year")
-   
- 
+
+
         updateSQL ="DELETE FROM  bookreviews  WHERE isbn = :isbn AND user_id = :user_id "
         params    = {"isbn":isbn, "user_id":user_id  }
-        
+
         resultInsert = db.execute(updateSQL, params)
         db.commit()
-        
+
         # for display
         my_book_review = find_my_book_review(isbn, user_id)
         print(my_book_review)
@@ -415,9 +419,9 @@ def deleteBookReview():
             comment = my_book_review['comment']
 
         bookreviews = find_book_reviews(isbn)
-        
+
         return render_template("bookdetail.html", isbn=isbn, title=title, author=author, year=year, rate = rate, comment=comment, bookreviews=bookreviews )
-        
+
 @app.route("/getsession")
 def getsession():
     session.pop("username", None)
