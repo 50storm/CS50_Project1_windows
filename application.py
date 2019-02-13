@@ -97,9 +97,13 @@ def find_book_reviews(isbn=None, user_id=None):
     print("==========find_book_reviews==========")
     sql_book_reiviews =  "SELECT  u.username as username, br.rate as rate, br.comment as comment, br.isbn as isbn FROM bookreviews br "
     sql_book_reiviews +=  " INNER JOIN users u ON br.user_id = u.id  "
-    sql_book_reiviews +=  "  WHERE  "
-    sql_book_reiviews +=  " isbn=:isbn "
-    bookreviews = db.execute(sql_book_reiviews, {"isbn":isbn })
+    if(isbn is not None or user_id is not None):
+        sql_book_reiviews +=  "  WHERE  "
+        if(isbn is not None):
+            sql_book_reiviews +=  " isbn=:isbn "
+            bookreviews = db.execute(sql_book_reiviews, {"isbn":isbn })
+    else:
+         print("else")
     return bookreviews.fetchall() # []　= zeros
 
 @app.route("/api/<string:isbn>", methods=["GET"])
