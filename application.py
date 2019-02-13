@@ -70,14 +70,8 @@ def checkUserName(username):
         return (False, username + " is alreaded used.")
 
 def find_book_by_isbn(isbn):
-    sql_book = "SELECT * FROM books WHERE isbn=:isbn "
-
-    book = db.execute(sql_book, {"isbn":isbn})
-    row_book = book.fetchone()
-    if(row_book is None):
-        return None
-    else:
-        return row_book
+    book = db.execute("SELECT * FROM books WHERE isbn=:isbn ", {"isbn":isbn})
+    return  book.fetchone()
 
 def find_my_book_review(isbn, user_id):
     sql_my_book_review = "SELECT u.username as username, br.rate as rate, br.comment as comment, br.isbn as isbn FROM bookreviews br "
