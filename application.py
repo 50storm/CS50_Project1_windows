@@ -229,7 +229,7 @@ def mypage():
     #GET ONLY
     my_book_reviews = find_my_book_reviews(session.get("user_id"))
     print(my_book_reviews)
-    return render_template("mypage.html", username=session.get("username") ,  message="", my_book_reviews=my_book_reviews)
+    return render_template("mypage.html", username=session.get("username") , my_book_reviews=my_book_reviews)
 
 @app.route("/logout", methods=["POST"])
 def logout():
