@@ -55,6 +55,7 @@
 <div class="row">
   <div class="col-sm">
     <h3 class="bg-primary text-white p-2 mb-2" >my book reviews</h3>
+    {% if my_book_reviews  %}
     <table class="table">
     <tr>
         <th>Title</th>
@@ -85,6 +86,9 @@
     </tr>
     {% endfor %}
     </table>
+    {% else %}
+    <p>No Entries </p>
+    {% endif %}
     </div>
 </div>
 
