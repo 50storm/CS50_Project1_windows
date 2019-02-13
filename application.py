@@ -262,8 +262,8 @@ def logout():
 def searchBooks():
 
         booktitle  = '%' + request.args.get("booktitle").strip() + '%'
-        isbn       = request.args.get("isbn").strip()
-        authorname = request.args.get("authorname").strip()
+        isbn       = '%' + request.args.get("isbn").strip() + '%'
+        authorname = '%' + request.args.get("authorname").strip() + '%'
 
         if ( booktitle == "" and isbn == "" and authorname == "" ):
             print("error")
@@ -272,56 +272,57 @@ def searchBooks():
         queryBookWhere =""
         sqlparameters ={}
 
-        if ( booktitle != "" and isbn != "" and authorname != ""):
+        if ( booktitle != "%%" and isbn != "%%" and authorname != "%%"):
             queryBookWhere += " WHERE "
-            queryBookWhere += " title like ':title' "
-            queryBookWhere += " AND isbn =:isbn "
-            queryBookWhere += " AND author =:author "
+            queryBookWhere += " title LIKE :title "
+            queryBookWhere += " AND isbn LIKE  :isbn "
+            queryBookWhere += " AND author LIKE :author "
             sqlparameters = {"title":booktitle, "isbn":isbn, "author":authorname }
-        elif( booktitle != "" and isbn != "" and authorname == ""):
+        elif( booktitle != "%%" and isbn != "%%" and authorname == "%%"):
             queryBookWhere += " WHERE "
-            queryBookWhere += " title like :title "
-            queryBookWhere += " AND isbn =:isbn "
+            queryBookWhere += " title LIKE :title "
+            queryBookWhere += " AND isbn LIKE :isbn "
             sqlparameters = {"title":booktitle, "isbn":isbn }
 
-        elif( booktitle != "" and isbn == "" and authorname != ""):
+        elif( booktitle != "%%" and isbn == "%%" and authorname != "%%"):
             queryBookWhere += " WHERE "
-            queryBookWhere += " title like :title "
-            queryBookWhere += " AND author =:author "
+            queryBookWhere += " title LIKE :title "
+            queryBookWhere += " AND author LIKE :author "
             sqlparameters = {"title":booktitle, "author":authorname }
 
-        elif( booktitle == "" and isbn != "" and authorname != ""):
+        elif( booktitle == "%%" and isbn != "%%" and authorname != "%%"):
             queryBookWhere += " WHERE "
-            queryBookWhere += " isbn =:isbn "
-            queryBookWhere += " AND author =:author "
+            queryBookWhere += " isbn LIKE :isbn "
+            queryBookWhere += " AND author LIKE :author "
             sqlparameters = {"isbn":isbn, "author":authorname }
 
-        elif( booktitle != "" and isbn == "" and authorname == "" ):
+        elif( booktitle != "%%" and isbn == "%%" and authorname == "%%" ):
             queryBookWhere += " WHERE "
-            queryBookWhere += " title like :title "
+            queryBookWhere += " title LIKE :title "
             sqlparameters = {"title":booktitle }
 
-        elif( booktitle == "" and isbn != "" and authorname == ""):
+        elif( booktitle == "%%" and isbn != "%%" and authorname == "%%"):
             queryBookWhere += " WHERE "
-            queryBookWhere += " isbn =:isbn "
+            queryBookWhere += " isbn LIKE :isbn "
             sqlparameters = {"isbn":isbn }
 
-        elif( booktitle == "" and isbn == "" and authorname != ""):
+        elif( booktitle == "%%" and isbn == "%%" and authorname != "%%"):
             queryBookWhere += " WHERE "
-            queryBookWhere += " author =:author "
+            queryBookWhere += " author LIKE :author "
             sqlparameters = {"author":authorname }
 
         else:
             print("raise error")
 
         queryBook = queryBookBase + queryBookWhere
-        print("====queryBook===")
+        print("====queryBook======")
         print(queryBook)
         print("====sqlparameters===")
         print(sqlparameters)
 
         books = db.execute(queryBook,sqlparameters)
-        return render_template("booklist.html", books=books)
+        booklist = books.fetchall()
+        return render_template("booklist.html", books= booklist)
 
 
 
