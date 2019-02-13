@@ -98,21 +98,36 @@ def find_my_book_reviews(user_id):
             { "user_id":user_id }
     )
     return mybookreview.fetchall()
+    
+def find_recent_book_reviews():
+    sql_book_reiviews =  "SELECT u.username as username, br.rate as rate, br.comment as comment, br.isbn as isbn, b.title, b.author, b.year  FROM bookreviews br "
+    sql_book_reiviews +=  " INNER JOIN users u ON br.user_id = u.id  "
+    sql_book_reiviews +=  " INNER JOIN books b ON b.isbn = br.isbn  "
+    sql_book_reiviews +=  " ORDER BY br.created_at DESC OFFSET 0 LIMIT 5"
+    bookreviews = db.execute(sql_book_reiviews)
+    return bookreviews.fetchall()
 
 
-def find_book_reviews(isbn=None, user_id=None):
+def find_book_reviews( isbn=None, user_id=None  ):
     #List [] list[0][0]
     print("==========find_book_reviews==========")
-    sql_book_reiviews =  "SELECT  u.username as username, br.rate as rate, br.comment as comment, br.isbn as isbn FROM bookreviews br "
+    sql_paramters ={}
+    sql_book_reiviews =  "SELECT u.username as username, br.rate as rate, br.comment as comment, br.isbn as isbn FROM bookreviews br "
     sql_book_reiviews +=  " INNER JOIN users u ON br.user_id = u.id  "
     if(isbn is not None or user_id is not None):
         sql_book_reiviews +=  "  WHERE  "
-        if(isbn is not None):
-            sql_book_reiviews +=  " isbn=:isbn "
-            bookreviews = db.execute(sql_book_reiviews, {"isbn":isbn })
-    else:
-         print("else")
-    return bookreviews.fetchall() # []　= zeros
+        if(isbn is not None and user_id is not None):
+            sql_book_reiviews += " isbn=:isbn AND user_id = :user_id"
+            sql_paramters = {"isbn":isbn, "user_id":user_id }
+        elif(isbn is not None and user_id is None):
+            sql_book_reiviews += " isbn=:isbn "
+            sql_paramters = {"isbn":isbn}
+        elif(isbn is None and user_id is not None):
+            sql_book_reiviews += " user_id =: user_id "
+            sql_paramters = {"user_id": user_id}
+
+    bookreviews = db.execute( sql_book_reiviews, sql_paramters )
+    return bookreviews.fetchall() # [] = zeros
 
 @app.route("/api/<string:isbn>", methods=["GET"])
 def api(isbn):
@@ -231,9 +246,10 @@ def register():
 @app.route("/mypage", methods=["GET"])
 def mypage():
     #GET ONLY
+    recent_book_reviews = find_recent_book_reviews()
     my_book_reviews = find_my_book_reviews(session.get("user_id"))
     print(my_book_reviews)
-    return render_template("mypage.html", username=session.get("username") , my_book_reviews=my_book_reviews)
+    return render_template("mypage.html", username=session.get("username") , recent_book_reviews=recent_book_reviews, my_book_reviews=my_book_reviews)
 
 @app.route("/logout", methods=["POST"])
 def logout():
