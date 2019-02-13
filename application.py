@@ -74,6 +74,7 @@ def find_book_by_isbn(isbn):
     return  book.fetchone()
 
 def find_my_book_review(isbn, user_id):
+    #None or Dictionary  dic["rate"]
     sql_my_book_review = "SELECT u.username as username, br.rate as rate, br.comment as comment, br.isbn as isbn FROM bookreviews br "
     sql_my_book_review +=  "INNER JOIN users u ON br.user_id = u.id  "
     sql_my_book_review +=  " WHERE isbn=:isbn AND user_id = :user_id"
@@ -81,20 +82,33 @@ def find_my_book_review(isbn, user_id):
             sql_my_book_review,
             {"isbn":isbn,"user_id":user_id}
     )
-    row_mybookreview = mybookreview.fetchone()
-    if(row_mybookreview is  None) :
+    row_mybookreview = mybookreview.fetchone() #only one record
+    if(row_mybookreview is None) :
         return None
     else:
         return row_mybookreview
 
+def find_my_book_reviews(user_id):
+    sql_my_book_reviews = "SELECT u.username as username, br.rate as rate, br.comment as comment, br.isbn as isbn, b.title, b.author, b.year FROM bookreviews br "
+    sql_my_book_reviews +=  "INNER JOIN users u ON br.user_id = u.id  "
+    sql_my_book_reviews +=  "INNER JOIN books b ON b.isbn = br.isbn  "
+    sql_my_book_reviews +=  " WHERE user_id = :user_id"
+    mybookreview = db.execute(
+            sql_my_book_reviews,
+            { "user_id":user_id }
+    )
+    return mybookreview.fetchall()
+
+        
 def find_book_reviews(isbn=None, user_id=None):
+    #List [] list[0][0]
     print("==========find_book_reviews==========")
     sql_book_reiviews =  "SELECT  u.username as username, br.rate as rate, br.comment as comment, br.isbn as isbn FROM bookreviews br "
     sql_book_reiviews +=  " INNER JOIN users u ON br.user_id = u.id  "
     sql_book_reiviews +=  "  WHERE  "
     sql_book_reiviews +=  " isbn=:isbn "
     bookreviews = db.execute(sql_book_reiviews, {"isbn":isbn })
-    return bookreviews.fetchall() # []　= zeros
+    return bookreviews.fetchall() # []　= zeros type=List
 
 @app.route("/api/<string:isbn>", methods=["GET"])
 def api(isbn):
@@ -213,7 +227,9 @@ def register():
 @app.route("/mypage", methods=["GET"])
 def mypage():
     #GET ONLY
-    return render_template("mypage.html", username=session.get("username") ,  message="")
+    my_book_reviews = find_my_book_reviews(session.get("user_id"))
+    print(my_book_reviews)
+    return render_template("mypage.html", username=session.get("username") ,  message="", my_book_reviews=my_book_reviews)
 
 @app.route("/logout", methods=["POST"])
 def logout():

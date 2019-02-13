@@ -51,6 +51,42 @@
     </form>
   </div>
 </div>
+<hr  class="my-4" />
+<div class="row">
+  <div class="col-sm">
+    <h3 class="bg-primary text-white p-2 mb-2" >my book reviews</h3>
+    <table class="table">
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Year</th>
+        <th>Rate</th>
+        <th>Comment</th>
+    </tr>
+    {% for my_book_reviews in my_book_reviews %}
+    <tr>
+        <td>{{ my_book_reviews["title"] }}</td>
+        <td>{{ my_book_reviews["author"] }}</td>
+        <td>{{ my_book_reviews["year"] }}</td>
+        <td>
+        {% if my_book_reviews["rate"] == 1  %}
+            ★☆☆☆☆
+        {% elif my_book_reviews["rate"] == 2 %}
+            ★★☆☆☆
+        {% elif my_book_reviews["rate"] == 3 %}
+            ★★★☆☆
+        {% elif my_book_reviews["rate"] == 4 %}
+            ★★★★☆
+        {% elif my_book_reviews["rate"] == 5 %}
+            ★★★★★
+        {% endif %}
+        </td>
+        <td>{{ my_book_reviews["comment"] | nl2br }}</td>
+    </tr>
+    {% endfor %}
+    </table>
+    </div>
+</div>
 
 
 {% endblock %}
