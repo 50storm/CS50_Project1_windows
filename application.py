@@ -106,8 +106,6 @@ def api(isbn):
             "review_count": 0,
             "average_score": 0.0
             }
-
-
     if request.method == "GET":
 
          # return f"Hello, {isbn}!"
@@ -287,27 +285,14 @@ def searchBooks():
         print(sqlparameters)
 
         books = db.execute(queryBook,sqlparameters)
-        # booklist = books.fetchall()
-        # for book in booklist:
-        #     session["isbn"]  = book["isbn"]
-        #     session["title"] =  book["isbn"]
-        #     session["author"] =  book["author"]
-
         return render_template("booklist.html", books=books)
 
 
 
 @app.route("/searchBook", methods=["GET","POST"])
 def searchBook():
-    #book
-    isbn =""
-    title=""
-    author=""
-    year=""
-
-    username=""
+    isbn = title= author= year= username=comment=""
     rate=-1
-    comment=""
 
     if request.method == "GET":
         isbn   = request.args.get("isbn","")
@@ -332,7 +317,7 @@ def searchBook():
 
         return render_template("bookdetail.html", isbn=isbn, title=title, author=author, year=year, rate = rate, comment=comment, bookreviews=bookreviews )
 
-@app.route("/writeBookReview", methods=["GET","POST"])
+@app.route("/writeBookReview", methods=["POST"])
 def writeBookReview():
     if request.method == "POST":#TODO
         rate = request.form.get("rate").strip()
@@ -360,7 +345,7 @@ def writeBookReview():
 
         return render_template("bookdetail.html", isbn=isbn, title=title, author=author, year=year, rate = rate, comment=comment, bookreviews=bookreviews )
 
-@app.route("/updateBookReview", methods=["GET","POST"])
+@app.route("/updateBookReview", methods=["POST"])
 def updateBookReview():
     if request.method == "POST":#TODO
         rate = request.form.get("rate").strip()
@@ -389,7 +374,7 @@ def updateBookReview():
 
         return render_template("bookdetail.html", isbn=isbn, title=title, author=author, year=year, rate = rate, comment=comment, bookreviews=bookreviews )
 
-@app.route("/deleteBookReview", methods=["GET","POST"])
+@app.route("/deleteBookReview", methods=["POST"])
 def deleteBookReview():
     if request.method == "POST":#TODO
         rate = -1
