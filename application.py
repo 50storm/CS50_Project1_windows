@@ -354,6 +354,33 @@ def searchBook():
 
         return render_template("bookdetail.html", isbn=isbn, title=title, author=author, year=year, rate = rate, comment=comment, bookreviews=bookreviews )
 
+@app.route("/searchMyBook", methods=["GET","POST"])
+def searchMyBook():
+    isbn=title=author=year=username=comment=""
+    rate=-1
+
+    if request.method == "GET":
+        isbn   = request.args.get("isbn","")
+        user_id =  session.get("user_id")
+
+        result = find_book_by_isbn(isbn)
+        if  result is not None  :
+            isbn=result['isbn']
+            title=result['title']
+            author=result['author']
+            year=result['year']
+
+        print(result)
+
+        my_book_review = find_my_book_review(isbn, user_id)
+        print(my_book_review)
+        if my_book_review is not None :
+            rate    = my_book_review['rate']
+            comment = my_book_review['comment']
+
+        return render_template("bookdetail.html", isbn=isbn, title=title, author=author, year=year, rate = rate, comment=comment )
+
+
 @app.route("/writeBookReview", methods=["POST"])
 def writeBookReview():
     if request.method == "POST":#TODO
@@ -396,7 +423,11 @@ def updateBookReview():
 
         updateSQL ="UPDATE bookreviews  SET  rate = :rate, comment = :comment, created_at=current_timestamp  WHERE isbn = :isbn AND user_id = :user_id "
         params    = {"isbn":isbn, "user_id":user_id, "rate":rate, "comment":comment }
-
+        print("===== updateSQL =======")
+        print(updateSQL)
+        print(params)
+        print("===== updateSQL =======")
+        
         resultInsert = db.execute(updateSQL, params)
         db.commit()
 
@@ -423,10 +454,15 @@ def deleteBookReview():
         year    = request.form.get("year")
 
 
-        updateSQL ="DELETE FROM  bookreviews  WHERE isbn = :isbn AND user_id = :user_id "
+        deleteSQL ="DELETE FROM  bookreviews  WHERE isbn = :isbn AND user_id = :user_id "
         params    = {"isbn":isbn, "user_id":user_id  }
 
-        resultInsert = db.execute(updateSQL, params)
+        print("===== deleteSQL =======")
+        print(deleteSQL)
+        print(params)
+        print("===== deleteSQL =======")
+        
+        resultInsert = db.execute(deleteSQL, params)
         db.commit()
 
         # for display

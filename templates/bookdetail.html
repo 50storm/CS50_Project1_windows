@@ -11,6 +11,21 @@
 </h2>
 {% endblock %}
 {% block body %}
+{% if comment!="" %}
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+     document.querySelector('#deleteBtn').addEventListener("click", function(){
+       if(!confirm("Are you sure?")){
+         return;
+       }else{
+         document.deleteReview.submit();
+
+       }
+     })
+
+  })
+</script>
+{% endif %}
 <!-- <div class="row"> -->
   <!-- <div class="col-sm-11 "> -->
     <!-- <h2 class="bg-primary text-white p-2 mb-2" > -->
@@ -45,7 +60,7 @@
 </div>
 <div class="row">
     <div class="col-sm">
-    <h2>Reviews</h2>
+    <h3 class="bg-primary text-white p-2 mb-2" >Book Reviews</h3>
     {% for bookreview in bookreviews %}
         <p>
         {{ bookreview["username"] }} :
@@ -70,15 +85,17 @@
 <div class="row">
   <div class="col-sm">
   {% if comment=="" %}
+    <h3 class="bg-primary text-white p-2 mb-2" >Write Your Reviews</h3>
     <form action="{{ url_for('writeBookReview') }}" method="post">
   {% else %}
+    <h3 class="bg-primary text-white p-2 mb-2" >Edit Your Reviews</h3>
     <form action="{{ url_for('updateBookReview') }}" method="post">
   {% endif %}
       <input type="hidden" name="isbn" value="{{ isbn }}" >
       <input type="hidden" name="title" value="{{ title }}" >
       <input type="hidden" name="author" value="{{ author }}" >
       <input type="hidden" name="year" value="{{ year }}" >
-      
+
       <input type="radio" name="rate" value="1" >Did not like it.(★☆☆☆☆)
       <input type="radio" name="rate" value="2" >It was ok.(★★☆☆☆)
       <input type="radio" name="rate" value="3" checked="checked">Liked it.(★★★☆☆)
@@ -94,12 +111,13 @@
         {% endif %}
     </form>
      {% if comment!="" %}
-        <form action="{{ url_for('deleteBookReview') }}" method="post">
-            <input type="submit" name="deleteReview" value="deleteReview" />
+        <form name="deleteReview" action="{{ url_for('deleteBookReview') }}" method="post">
+            <input type="hidden" name="isbn" value="{{ isbn }}" >
+            <input type="button" id="deleteBtn"  name="deleteReview" value="deleteReview" />
         </form>
      {% endif %}
-    
-    <form action="{{ url_for('logout') }}" method="post">
+
+    <form  action="{{ url_for('logout') }}" method="post">
         <input type="submit" name="logout" value="logout" />
     </form>
   </div>

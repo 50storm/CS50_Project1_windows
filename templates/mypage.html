@@ -101,6 +101,7 @@
         {% endif %}
         </td>
         <td>{{ my_book_reviews["comment"] | nl2br }}</td>
+        <td><a href="{{ url_for('searchBook') }}?isbn={{ my_book_reviews['isbn'] }}" >view</a></td>
     </tr>
     {% endfor %}
     </table>
