@@ -11,6 +11,11 @@
 </h2>
 {% endblock %}
 {% block body %}
+{% set button_text = 'Write Your Review' %}
+{% if mybookreview %}
+{% set button_text = 'Edit Your Review' %}
+{% endif %}
+
 <hr  class="my-4" />
 <div class="row">
   <div class="col-sm">
@@ -61,7 +66,7 @@
 
 <div class="row">
   <div class="col-sm">
-    <a href="{{ url_for('submission') }}?isbn={{ bookinfo['isbn'] }}" class="btn btn-success" >Write Your Review</a>
+    <a href="{{ url_for('submission') }}?isbn={{ bookinfo['isbn'] }}" class="btn btn-success" >{{ button_text }}</a>
   </div>
 </div>
 
