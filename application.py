@@ -194,7 +194,6 @@ def validate_login():
     session['username'] = rowUser['username']
     session['password'] = rowUser['password']
 
-    #return render_template("mypage.html", username=rowUser["username"], message="")
     return redirect(url_for("mypage"))
 
 
@@ -227,8 +226,8 @@ def register():
         else:
             #invalid inputs
             # messages=[1]
-            messages=["",""]
-            category=["",""]
+            messages=["",""] #String Message
+            category=["",""] #CSS Class
             if( resultCheckUserName[0] == False ):
                 #http://flask.pocoo.org/docs/1.0/patterns/flashing/
                 messages[0] = resultCheckUserName[1]
@@ -334,57 +333,35 @@ def searchBook():
     if request.method == "GET":
         isbn   = request.args.get("isbn","")
         user_id =  session.get("user_id")
+        bookinfo = find_book_by_isbn(isbn)
 
-        result = find_book_by_isbn(isbn)
-        if  result is not None  :
-            isbn=result['isbn']
-            title=result['title']
-            author=result['author']
-            year=result['year']
-
-        print(result)
-
-        my_book_review = find_my_book_review(isbn, user_id)
-        print(my_book_review)
-        if my_book_review is not None :
-            rate    = my_book_review['rate']
-            comment = my_book_review['comment']
-
+        mybookreview = find_my_book_review(isbn, user_id)
         bookreviews = find_book_reviews(isbn)
 
-        return render_template("bookdetail.html", isbn=isbn, title=title, author=author, year=year, rate = rate, comment=comment, bookreviews=bookreviews )
+        return render_template("bookdetail.html", bookinfo=bookinfo, bookreviews=bookreviews, mybookreview=mybookreview )
 
-@app.route("/searchMyBook", methods=["GET","POST"])
-def searchMyBook():
-    isbn=title=author=year=username=comment=""
-    rate=-1
-
+@app.route("/registerSubmission", methods=["GET"])
+def registerSubmission():
     if request.method == "GET":
+        user_id = session.get("user_id")
         isbn   = request.args.get("isbn","")
-        user_id =  session.get("user_id")
+        mybookreview = find_my_book_review(isbn, user_id)# TODO 不要
+        bookinfo = find_book_by_isbn(isbn)
+        return render_template("register_submission.html", bookinfo=bookinfo, mybookreview=mybookreview )
 
-        result = find_book_by_isbn(isbn)
-        if  result is not None  :
-            isbn=result['isbn']
-            title=result['title']
-            author=result['author']
-            year=result['year']
-
-        print(result)
-
-        my_book_review = find_my_book_review(isbn, user_id)
-        print(my_book_review)
-        if my_book_review is not None :
-            rate    = my_book_review['rate']
-            comment = my_book_review['comment']
-
-        return render_template("bookdetail.html", isbn=isbn, title=title, author=author, year=year, rate = rate, comment=comment )
-
-
+@app.route("/editSubmission", methods=["GET"])
+def editSubmission():
+    if request.method == "GET":
+        user_id = session.get("user_id")
+        isbn   = request.args.get("isbn","")
+        mybookreview = find_my_book_review(isbn, user_id)
+        bookinfo = find_book_by_isbn(isbn)
+        return render_template("edit_submission.html", bookinfo=bookinfo, mybookreview=mybookreview )
+        
 @app.route("/writeBookReview", methods=["POST"])
 def writeBookReview():
-    if request.method == "POST":#TODO
-        rate = request.form.get("rate").strip()
+    if request.method == "POST":
+        rate    = request.form.get("rate").strip()
         comment = request.form.get("comment").strip()
         user_id = session.get("user_id")
         isbn    = request.form.get("isbn")
@@ -392,23 +369,51 @@ def writeBookReview():
         author  = request.form.get("author")
         year    = request.form.get("year")
 
+       
         insertSQL ="INSERT INTO bookreviews (isbn, user_id, rate, comment, created_at ) VALUES (:isbn, :user_id, :rate, :comment, current_timestamp)" #TODO;isbn
         params    = {"isbn":isbn, "user_id":user_id, "rate":rate ,"comment":comment }
 
         resultInsert = db.execute(insertSQL, params)
         db.commit()
+        mybookreview = find_my_book_review(isbn, user_id)
+        bookinfo = find_book_by_isbn(isbn)       
+        
+        flash("Successfully Posted!＼(^o^)／ Thank you!", "alert alert-success")
+        return render_template("register_submission.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment, is_confirmation=True, is_posted=True )
 
-        # for display
-        my_book_review = find_my_book_review(isbn, user_id)
-        print(my_book_review)
-        if my_book_review is not None :
-            rate    = my_book_review['rate']
-            comment = my_book_review['comment']
 
-        bookreviews = find_book_reviews(isbn)
+@app.route("/confirmYourEntry", methods=["POST"])
+def confirmYourEntry():
+    if request.method == "POST":
+        rate    = int(request.form.get("rate").strip())
+        comment = request.form.get("comment").strip()
+        user_id = session.get("user_id")
+        isbn    = request.form.get("isbn")
+        # for update
+        mybookreview = find_my_book_review(isbn, user_id)
+        bookinfo = find_book_by_isbn(isbn)       
+        if(comment.strip() == ""):
+            flash('Your review is empty!! Please write your review', 'alert alert-danger')
+            return render_template("register_submission.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment,  is_confirmation=False )
+        return render_template("register_submission.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment,  is_confirmation=True )
 
-        return render_template("bookdetail.html", isbn=isbn, title=title, author=author, year=year, rate = rate, comment=comment, bookreviews=bookreviews )
 
+@app.route("/confirmEditEntry", methods=["POST"])
+def confirmEditEntry():
+    if request.method == "POST":
+        rate    = int(request.form.get("rate").strip())
+        comment = request.form.get("comment").strip()
+        user_id = session.get("user_id")
+        isbn    = request.form.get("isbn")
+        # for update
+        mybookreview = find_my_book_review(isbn, user_id)
+        bookinfo = find_book_by_isbn(isbn)       
+        if(comment.strip() == ""):
+            flash('Your review is empty!! Please write your review', 'alert alert-danger')
+            return render_template("edit_submission.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment,  is_confirmation=False )
+        return render_template("edit_submission.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment,  is_confirmation=True )
+
+        
 @app.route("/updateBookReview", methods=["POST"])
 def updateBookReview():
     if request.method == "POST":#TODO
@@ -423,25 +428,17 @@ def updateBookReview():
 
         updateSQL ="UPDATE bookreviews  SET  rate = :rate, comment = :comment, created_at=current_timestamp  WHERE isbn = :isbn AND user_id = :user_id "
         params    = {"isbn":isbn, "user_id":user_id, "rate":rate, "comment":comment }
-        print("===== updateSQL =======")
-        print(updateSQL)
-        print(params)
-        print("===== updateSQL =======")
-        
+
         resultInsert = db.execute(updateSQL, params)
         db.commit()
 
         # for display
-        my_book_review = find_my_book_review(isbn, user_id)
-        print(my_book_review)
-        if my_book_review is not None :
-            rate    = my_book_review['rate']
-            comment = my_book_review['comment']
-
+        mybookreview = find_my_book_review(isbn, user_id)
+        bookinfo = find_book_by_isbn(isbn)
         bookreviews = find_book_reviews(isbn)
-
-        return render_template("bookdetail.html", isbn=isbn, title=title, author=author, year=year, rate = rate, comment=comment, bookreviews=bookreviews )
-
+        flash("Successfully Posted!＼(^o^)／ Thank you!", "alert alert-success")
+        return render_template("edit_submission.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment, is_confirmation=True, is_posted=True )
+        
 @app.route("/deleteBookReview", methods=["POST"])
 def deleteBookReview():
     if request.method == "POST":#TODO
@@ -454,15 +451,10 @@ def deleteBookReview():
         year    = request.form.get("year")
 
 
-        deleteSQL ="DELETE FROM  bookreviews  WHERE isbn = :isbn AND user_id = :user_id "
+        updateSQL ="DELETE FROM  bookreviews  WHERE isbn = :isbn AND user_id = :user_id "
         params    = {"isbn":isbn, "user_id":user_id  }
 
-        print("===== deleteSQL =======")
-        print(deleteSQL)
-        print(params)
-        print("===== deleteSQL =======")
-        
-        resultInsert = db.execute(deleteSQL, params)
+        resultInsert = db.execute(updateSQL, params)
         db.commit()
 
         # for display
