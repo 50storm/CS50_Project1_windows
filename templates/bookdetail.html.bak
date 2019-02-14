@@ -1,0 +1,109 @@
+{% extends "layout.html" %}
+{% block nav %}
+{% include "nav.tpl" %}
+{% endblock %}
+{% block heading %}
+    Book Review Site
+{% endblock %}
+{% block userinfo  %}
+<h2 class="bg-primary text-white p-2 mb-2"  >
+       Username:{{session['username']}}
+</h2>
+{% endblock %}
+{% block body %}
+<!-- <div class="row"> -->
+  <!-- <div class="col-sm-11 "> -->
+    <!-- <h2 class="bg-primary text-white p-2 mb-2" > -->
+    <!-- <h2 class="bg-primary text-white p-2 mb-2"  > -->
+       <!-- Username:{{session['username']}} -->
+    <!-- </h2> -->
+  <!-- </div> -->
+  <!-- <div class="col-sm "> -->
+    <!-- <form action="{{ url_for('logout') }}" method="post"> -->
+      <!-- <input type="submit" name="logout" value="logout" /> -->
+    <!-- </form> -->
+  <!-- </div> -->
+<!-- </div> -->
+<hr  class="my-4" />
+<div class="row">
+  <div class="col-sm">
+    <table class="table table-striped">
+        <tr class="thead-dark">
+          <th>Isbn</th>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Year</th>
+        </tr>
+        <tr>
+          <th>{{ bookinfo["isbn"]   }}</th>
+          <th>{{ bookinfo["title"]  }}</th>
+          <th>{{ bookinfo["author"] }}</th>
+          <th>{{ bookinfo["year"]   }}</th>
+        </tr>
+    </table>
+  </div>
+</div>
+<div class="row">
+    <div class="col-sm">
+    <h2>Reviews</h2>
+    {% for bookreview in bookreviews %}
+        <p>
+        {{ bookreview["username"] }} :
+        {% if bookreview["rate"] == 1  %}
+            ★☆☆☆☆
+        {% elif bookreview["rate"] == 2 %}
+            ★★☆☆☆
+        {% elif bookreview["rate"] == 3 %}
+            ★★★☆☆
+        {% elif bookreview["rate"] == 4 %}
+            ★★★★☆
+        {% elif bookreview["rate"] == 5 %}
+            ★★★★★
+        {% endif %}
+        <br>
+        {{ bookreview["comment"] | nl2br }}
+        </p>
+
+    {% endfor %}
+    </div>
+</div>
+<div class="row">
+  <div class="col-sm">
+  {% if comment=="" %}
+    <form action="{{ url_for('writeBookReview') }}" method="post">
+  {% else %}
+    <form action="{{ url_for('updateBookReview') }}" method="post">
+  {% endif %}
+      <input type="hidden" name="isbn" value="{{ isbn }}" >
+      <input type="hidden" name="title" value="{{ title }}" >
+      <input type="hidden" name="author" value="{{ author }}" >
+      <input type="hidden" name="year" value="{{ year }}" >
+      
+      <input type="radio" name="rate" value="1" >Did not like it.(★☆☆☆☆)
+      <input type="radio" name="rate" value="2" >It was ok.(★★☆☆☆)
+      <input type="radio" name="rate" value="3" checked="checked">Liked it.(★★★☆☆)
+      <input type="radio" name="rate" value="4" >Really liked it.(★★★★☆)
+      <input type="radio" name="rate" value="5" >It was amazing.(★★★★★)
+      <br/>
+      <textarea name="comment" cols="50" rows="10" class="w-100">{{ comment }}</textarea>
+      <br/>
+        {% if comment=="" %}
+            <input type="submit" name="submitReview" value="submitReview" />
+        {% else %}
+            <input type="submit" name="updateReview" value="updateReview" />
+        {% endif %}
+    </form>
+     {% if comment!="" %}
+        <form action="{{ url_for('deleteBookReview') }}" method="post">
+            <input type="submit" name="deleteReview" value="deleteReview" />
+        </form>
+     {% endif %}
+    
+    <form action="{{ url_for('logout') }}" method="post">
+        <input type="submit" name="logout" value="logout" />
+    </form>
+  </div>
+</div>
+
+
+{% endblock %}
