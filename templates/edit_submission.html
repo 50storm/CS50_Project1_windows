@@ -13,30 +13,22 @@
 {% block body %}
 {% set header_message='' %}
 {% set url = '' %} 
-{% set header_message='Write Your Book Reviews' %}
-
-{% set url =url_for('confirmYourEntry') %}
 
 
-{% if  is_confirmation and not mybookreview %}
-{%     set url =url_for('writeBookReview') %}
-{% else %}
-{%     set url =url_for('updateBookReview') %}
-{% endif %}
-
-
-{% if mybookreview and not is_confirmation %}
-{%     set header_message='Edit Your Book Reviews' %}
-{%     set rate    =  mybookreview['rate'] | int %}
-{%     set comment = mybookreview['comment'] %}
-{% endif %}
+{% set header_message='Edit Your Book Reviews' %}
+{% set url 　　　=　url_for('confirmEditEntry') %}
+{% set rate    = mybookreview['rate'] | int %}
+{% set comment = mybookreview['comment'] %}
 
 {% if is_confirmation  %}
 {%     set header_message='Confirm Your Book Reviews' %}
 {%     set rate    =  rate | int %}
 {%     set comment = comment %}
+{%     set url =url_for('updateBookReview') %}
 {% endif %}
-
+{#
+<input type="text" name=""  value="{{ url }}" >
+#}
 <hr  class="my-4" />
 <div class="row">
   <div class="col-sm">
@@ -152,11 +144,7 @@
                 <input type="radio" name="rate" value="5" checked="checked" >It was amazing.(★★★★★)
             {% endif %}
         {% else %}
-            <input type="radio" name="rate" value="1" >Did not like it.(★☆☆☆☆)
-            <input type="radio" name="rate" value="2" >It was ok.(★★☆☆☆)
-            <input type="radio" name="rate" value="3" checked="checked">Liked it.(★★★☆☆)
-            <input type="radio" name="rate" value="4" >Really liked it.(★★★★☆)
-            <input type="radio" name="rate" value="5" >It was amazing.(★★★★★)
+           
         
         {% endif %}
       
@@ -166,7 +154,7 @@
       <br/>
       <input type="submit" name="submitReview" value="submitReview" {% if is_posted %} disabled=disabled {% endif %} />
       {% if is_posted %}
-      <a href="{{ url_for('searchBook') }}?isbn={{ bookinfo['isbn'] }}" >{{ bookinfo['title'] }}</a>
+      <a href="{{ url_for('searchBook') }}?isbn={{ bookinfo['isbn'] }}" >View {{ bookinfo['title'] }}'s Reviews</a>
       {% endif %}
       
     </form>

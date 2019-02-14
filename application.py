@@ -340,15 +340,24 @@ def searchBook():
 
         return render_template("bookdetail.html", bookinfo=bookinfo, bookreviews=bookreviews, mybookreview=mybookreview )
 
-@app.route("/submission", methods=["GET"])
-def submission():
+@app.route("/registerSubmission", methods=["GET"])
+def registerSubmission():
+    if request.method == "GET":
+        user_id = session.get("user_id")
+        isbn   = request.args.get("isbn","")
+        mybookreview = find_my_book_review(isbn, user_id)# TODO 不要
+        bookinfo = find_book_by_isbn(isbn)
+        return render_template("register_submission.html", bookinfo=bookinfo, mybookreview=mybookreview )
+
+@app.route("/editSubmission", methods=["GET"])
+def editSubmission():
     if request.method == "GET":
         user_id = session.get("user_id")
         isbn   = request.args.get("isbn","")
         mybookreview = find_my_book_review(isbn, user_id)
         bookinfo = find_book_by_isbn(isbn)
-        return render_template("submission.html", bookinfo=bookinfo, mybookreview=mybookreview )
-
+        return render_template("edit_submission.html", bookinfo=bookinfo, mybookreview=mybookreview )
+        
 @app.route("/writeBookReview", methods=["POST"])
 def writeBookReview():
     if request.method == "POST":
@@ -370,7 +379,7 @@ def writeBookReview():
         bookinfo = find_book_by_isbn(isbn)       
         
         flash("Successfully Posted!＼(^o^)／ Thank you!", "alert alert-success")
-        return render_template("submission.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment, is_confirmation=True, is_posted=True )
+        return render_template("register_submission.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment, is_confirmation=True, is_posted=True )
 
 
 @app.route("/confirmYourEntry", methods=["POST"])
@@ -385,10 +394,26 @@ def confirmYourEntry():
         bookinfo = find_book_by_isbn(isbn)       
         if(comment.strip() == ""):
             flash('Your review is empty!! Please write your review', 'alert alert-danger')
-            return render_template("submission.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment,  is_confirmation=False )
-        return render_template("submission.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment,  is_confirmation=True )
+            return render_template("register_submission.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment,  is_confirmation=False )
+        return render_template("register_submission.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment,  is_confirmation=True )
 
 
+@app.route("/confirmEditEntry", methods=["POST"])
+def confirmEditEntry():
+    if request.method == "POST":
+        rate    = int(request.form.get("rate").strip())
+        comment = request.form.get("comment").strip()
+        user_id = session.get("user_id")
+        isbn    = request.form.get("isbn")
+        # for update
+        mybookreview = find_my_book_review(isbn, user_id)
+        bookinfo = find_book_by_isbn(isbn)       
+        if(comment.strip() == ""):
+            flash('Your review is empty!! Please write your review', 'alert alert-danger')
+            return render_template("edit_submission.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment,  is_confirmation=False )
+        return render_template("edit_submission.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment,  is_confirmation=True )
+
+        
 @app.route("/updateBookReview", methods=["POST"])
 def updateBookReview():
     if request.method == "POST":#TODO
@@ -412,7 +437,7 @@ def updateBookReview():
         bookinfo = find_book_by_isbn(isbn)
         bookreviews = find_book_reviews(isbn)
         flash("Successfully Posted!＼(^o^)／ Thank you!", "alert alert-success")
-        return render_template("submission.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment, is_confirmation=True, is_posted=True )
+        return render_template("edit_submission.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment, is_confirmation=True, is_posted=True )
         
 @app.route("/deleteBookReview", methods=["POST"])
 def deleteBookReview():
