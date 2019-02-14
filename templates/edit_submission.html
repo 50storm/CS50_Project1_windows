@@ -11,10 +11,6 @@
 </h2>
 {% endblock %}
 {% block body %}
-{% set header_message='' %}
-{% set url = '' %}
-
-
 
 {% if is_confirmation  %}
 {%     set header_message='Confirm Your Book Reviews' %}
@@ -50,7 +46,7 @@
   </div>
 </div>
 {# flash message  #}
- <div class="row">
+<div class="row">
    <div class="col-sm">
        {% with messages = get_flashed_messages(with_categories=True) %}
          {% if messages %}
@@ -60,7 +56,14 @@
          {% endif %}
        {% endwith %}
      </div>
- </div>
+</div>
+<div class="row">
+    <div class="col-sm">
+       {% if is_posted %}
+        <div class="alert alert-info" role="alert"><a href="{{ url_for('searchBook') }}?isbn={{ bookinfo['isbn'] }}" >View {{ bookinfo['title'] }}'s Reviews</a></div>
+      {% endif %}
+    </div>
+</div>
       
 <div class="row">
   <div class="col-sm">
@@ -153,10 +156,7 @@
       <br/>
       <textarea name="comment" cols="50" rows="10" class="w-100 {% if is_confirmation %} bg-light {% endif %}" {% if is_confirmation %} readonly {% endif %}>{{ comment }}</textarea>
       <br/>
-      <input type="submit" name="submitReview" value="submitReview" {% if is_posted %} disabled=disabled {% endif %} />
-      {% if is_posted %}
-      <a href="{{ url_for('searchBook') }}?isbn={{ bookinfo['isbn'] }}" >View {{ bookinfo['title'] }}'s Reviews</a>
-      {% endif %}
+      <input type="submit" name="submitReview" class="btn btn-success" value="{% if is_confirmation %} submitReview {% else %} confirmReview {% endif %}" {% if is_posted %} disabled=disabled {% endif %} />
       
     </form>
   </div>

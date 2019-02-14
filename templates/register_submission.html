@@ -12,17 +12,18 @@
 {% endblock %}
 {% block body %}
 {% set header_message='' %}
-{% set url = '' %} 
+{% set url = '' %}
 
 
-{% set header_message='Write Your Book Reviews' %}
-{% set url =url_for('confirmYourEntry') %}
 
 {% if is_confirmation  %}
 {%     set header_message='Confirm Your Book Reviews' %}
 {%     set rate    =  rate | int %}
 {%     set comment = comment %}
 {%     set url =url_for('writeBookReview') %}
+{% else %}
+{% set header_message='Write Your Book Reviews' %}
+{% set url =url_for('confirmYourEntry') %}
 {% endif %}
 
 {#
@@ -48,8 +49,8 @@
   </div>
 </div>
 {# flash message  #}
- <div class="row">
-   <div class="col-sm">
+<div class="row">
+    <div class="col-sm">
        {% with messages = get_flashed_messages(with_categories=True) %}
          {% if messages %}
            {% for category, message in messages %}
@@ -57,9 +58,17 @@
            {% endfor %}
          {% endif %}
        {% endwith %}
-     </div>
- </div>
-      
+    </div>
+</div>
+  
+<div class="row">
+    <div class="col-sm">
+       {% if is_posted %}
+        <div class="alert alert-info" role="alert"><a href="{{ url_for('searchBook') }}?isbn={{ bookinfo['isbn'] }}" >View {{ bookinfo['title'] }}'s Reviews</a></div>
+      {% endif %}
+    </div>
+</div>
+          
 <div class="row">
   <div class="col-sm">
     <h3 class="bg-primary text-white p-2 mb-2" >{{ header_message }}</h3>
@@ -68,7 +77,7 @@
       <input type="hidden" name="title" value="{{ bookinfo["title"] }}" >
       <input type="hidden" name="title" value="{{ bookinfo["author"] }}">
       <input type="hidden" name="title" value="{{ bookinfo["year"] }}" >
-      {% if is_confirmation  %}         
+      {% if is_confirmation  %}
         {% if rate == 1  %}
             <input type="radio" name="rate" value="1" checked="checked"  >Did not like it.(★☆☆☆☆)
             <input type="radio" name="rate" value="2" disabled=disabled >It was ok.(★★☆☆☆)
@@ -114,10 +123,8 @@
       <br/>
       <textarea name="comment" cols="50" rows="10" class="w-100 {% if is_confirmation %} bg-light {% endif %}" {% if is_confirmation %} readonly {% endif %}>{{ comment }}</textarea>
       <br/>
-      <input type="submit" name="submitReview" value="submitReview" {% if is_posted %} disabled=disabled {% endif %} />
-      {% if is_posted %}
-      <a href="{{ url_for('searchBook') }}?isbn={{ bookinfo['isbn'] }}" >View {{ bookinfo['title'] }}'s Reviews</a>
-      {% endif %}
+      <input type="submit" name="submitReview" class="btn btn-success" value="{% if is_confirmation %} submitReview {% else %} confirmReview {% endif %}" {% if is_posted %} disabled=disabled {% endif %} />
+
     </form>
   </div>
 </div>
