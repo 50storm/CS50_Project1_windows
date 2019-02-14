@@ -12,19 +12,20 @@
 {% endblock %}
 {% block body %}
 {% set header_message='' %}
-{% set url = '' %} 
+{% set url = '' %}
 
 
-{% set header_message='Edit Your Book Reviews' %}
-{% set url 　　　=　url_for('confirmEditEntry') %}
-{% set rate    = mybookreview['rate'] | int %}
-{% set comment = mybookreview['comment'] %}
 
 {% if is_confirmation  %}
 {%     set header_message='Confirm Your Book Reviews' %}
 {%     set rate    =  rate | int %}
 {%     set comment = comment %}
 {%     set url =url_for('updateBookReview') %}
+{% else %}
+{%      set header_message='Edit Your Book Reviews' %}
+{%      set url     = url_for('confirmEditEntry') %}
+{%      set rate    = mybookreview['rate'] | int %}
+{%      set comment = mybookreview['comment'] %}
 {% endif %}
 {#
 <input type="text" name=""  value="{{ url }}" >
@@ -69,7 +70,7 @@
       <input type="hidden" name="title" value="{{ bookinfo["title"] }}" >
       <input type="hidden" name="title" value="{{ bookinfo["author"] }}">
       <input type="hidden" name="title" value="{{ bookinfo["year"] }}" >
-      {% if is_confirmation  %}         
+      {% if is_confirmation  %}
         {% if rate == 1  %}
             <input type="radio" name="rate" value="1" checked="checked"  >Did not like it.(★☆☆☆☆)
             <input type="radio" name="rate" value="2" disabled=disabled >It was ok.(★★☆☆☆)
