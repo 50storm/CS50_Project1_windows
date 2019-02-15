@@ -140,10 +140,6 @@ def api(isbn):
             "average_score": 0.0
             }
     if request.method == "GET":
-
-         # return f"Hello, {isbn}!"
-        # print(isbn)
-        # return f"{isbn}"
         sqlSel = " SELECT b.title, b.author, b.year, b.isbn, count(*) as review_count , AVG(rate) as average_score "
         sqlSel += " FROM bookreviews br "
         sqlSel += " INNER JOIN books b "
@@ -161,7 +157,6 @@ def api(isbn):
             book_info["isbn"] = row_book['isbn']
             book_info["review_count"] = row_book['review_count']
             print(row_book['average_score'])
-            # book_info["average_score"] = round(row_book['average_score'],1)
             book_info["average_score"] = round(float(row_book['average_score']),1)
             return jsonify(book_info)
 
@@ -257,6 +252,15 @@ def logout():
         session.pop("password", None)
         return render_template("logout.html")
 
+@app.route("/search", methods=["GET"])
+def search():
+    #GET ONLY
+    recent_book_reviews = find_recent_book_reviews()
+    my_book_reviews = find_my_book_reviews(session.get("user_id"))
+    print(my_book_reviews)
+    return render_template("search.html", username=session.get("username") , recent_book_reviews=recent_book_reviews, my_book_reviews=my_book_reviews)
+
+        
 @app.route("/searchBooks", methods=["GET"])
 def searchBooks():
 

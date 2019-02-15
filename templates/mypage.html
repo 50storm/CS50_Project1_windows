@@ -7,6 +7,15 @@
     Book Review Site
 {% endblock %}
 {% block userinfo  %}
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    let navMypage = document.querySelector("li#mypage");
+    navMypage.classList.add("active");
+    navMypage.classList.add("font-weight-bold");
+    navMypage.classList.add("font-italic");
+  });
+</script>
+
 <h2 class="bg-primary text-white p-2 mb-2"  >
        Username:{{session['username']}}
 </h2>
@@ -16,45 +25,11 @@
 <hr  class="my-4" />
 <div class="row">
   <div class="col-sm">
-   <h3 class="bg-primary text-white p-2 mb-2" >Rcent Book Reviews</h3>
-    {% if recent_book_reviews  %}
-        <table class="table" style="table-layout:fixed;" >
-    <tr>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Year</th>
-        <th>Username</th>
-        <th>Rate</th>
-        <th>Comment</th>
-        <th>Command</th>
-    </tr>
-    {% for recent_book_review in recent_book_reviews %}
-    <tr>
-        <td>{{ recent_book_review["title"] }}</td>
-        <td>{{ recent_book_review["author"] }}</td>
-        <td>{{ recent_book_review["year"] }}</td>
-        <td>{{ recent_book_review["username"] }}</td>
-        <td>
-        {% if recent_book_review["rate"] == 1  %}
-            ★☆☆☆☆
-        {% elif recent_book_review["rate"] == 2 %}
-            ★★☆☆☆
-        {% elif recent_book_review["rate"] == 3 %}
-            ★★★☆☆
-        {% elif recent_book_review["rate"] == 4 %}
-            ★★★★☆
-        {% elif recent_book_review["rate"] == 5 %}
-            ★★★★★
-        {% endif %}
-        </td>
-        <td   style="overflow:hidden;"  >{{ recent_book_review["comment"] | nl2br }}</td>
-        <td><a href="{{ url_for('searchBook') }}?isbn={{ recent_book_review['isbn'] }}">view</a></td>
-    </tr>
-    {% endfor %}
-    </table>
-    {% else %}
-    <p>No Entries </p>
-    {% endif %}
+    <div class="alert alert-primary" role="alert"><strong>Search Book</strong> - Click Here >>
+        <div class="btn btn-outline-primary">
+            <a href="{{ url_for('search') }}" >Search Book</a>
+        </div>
+    </div>
   </div>
 </div>
 <hr  class="my-4" />
@@ -103,24 +78,55 @@
 <hr  class="my-4" />
 <div class="row">
   <div class="col-sm">
-    <h3 class="bg-primary text-white p-2 mb-2" >Search Books</h3>
-    <form action="{{ url_for('searchBooks') }}" method="get">
-        <div class="form-group">
-            <label for="booktitle" >Booktitle</label>
-            <input type="text" id="booktitle" name="booktitle"  class="h-100 w-100 p-3" placeholder="part of booktitle here">
+   <h3 class="bg-primary text-white p-2 mb-2" >Rcent Book Reviews</h3>
+    {% if recent_book_reviews  %}
+        <table class="table" style="table-layout:fixed;" >
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Year</th>
+        <th>Username</th>
+        <th>Rate</th>
+        <th>Comment</th>
+        <th>Command</th>
+    </tr>
+    {% for recent_book_review in recent_book_reviews %}
+    <tr>
+        <td>{{ recent_book_review["title"] }}</td>
+        <td>{{ recent_book_review["author"] }}</td>
+        <td>{{ recent_book_review["year"] }}</td>
+        <td>{{ recent_book_review["username"] }}</td>
+        <td>
+        {% if recent_book_review["rate"] == 1  %}
+            ★☆☆☆☆
+        {% elif recent_book_review["rate"] == 2 %}
+            ★★☆☆☆
+        {% elif recent_book_review["rate"] == 3 %}
+            ★★★☆☆
+        {% elif recent_book_review["rate"] == 4 %}
+            ★★★★☆
+        {% elif recent_book_review["rate"] == 5 %}
+            ★★★★★
+        {% endif %}
+        </td>
+        <td   style="overflow:hidden;"  >{{ recent_book_review["comment"] | nl2br }}</td>
+        <td><a href="{{ url_for('searchBook') }}?isbn={{ recent_book_review['isbn'] }}">view</a></td>
+    </tr>
+    {% endfor %}
+    </table>
+    {% else %}
+    <p>No Entries </p>
+    {% endif %}
+  </div>
+</div>
+<hr  class="my-4" />
+<div class="row">
+  <div class="col-sm">
+    <div class="alert alert-primary" role="alert"><strong>Search Book</strong> - Click Here >>
+        <div class="btn btn-outline-primary">
+            <a href="{{ url_for('search') }}" >Search Book</a>
         </div>
-        <div class="form-group">
-            <label for="isbn" >ISBN</label>
-            <input type="text" id="isbn"  name="isbn"  class="h-100 w-100 p-3" placeholder="isbn here">
-        </div>
-        <div class="form-group">
-            <label for="author" >Author</label>
-            <input type="text" id="author" name="authorname"  class="h-100 w-100 p-3" placeholder="author name here">
-        </div>
-        <div class="form-group">
-            <input type="submit" class="btn btn-outline-primary" name="searchBooks" value="searchBooks" />
-        </div>
-    </form>
+    </div>
   </div>
 </div>
 

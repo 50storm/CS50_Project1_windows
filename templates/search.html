@@ -1,0 +1,49 @@
+{# mypage.html #}
+{% extends "layout.html" %}
+{% block nav %}
+{% include "nav.tpl" %}
+{% endblock %}
+{% block heading %}
+    Book Review Site
+{% endblock %}
+{% block userinfo  %}
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    let navSearch = document.querySelector("li#search");
+    navSearch.classList.add("active");
+    navSearch.classList.add("font-weight-bold");
+    navSearch.classList.add("font-italic");
+  });
+</script>
+<h2 class="bg-primary text-white p-2 mb-2"  >
+       Username:{{session['username']}}
+</h2>
+{% endblock %}
+{% block body %}
+<hr  class="my-4" />
+<div class="row">
+  <div class="col-sm">
+    <h3 class="bg-primary text-white p-2 mb-2" >Search Books</h3>
+    <form action="{{ url_for('searchBooks') }}" method="get">
+        <div class="form-group">
+            <label for="booktitle" >Booktitle</label>
+            <input type="text" id="booktitle" name="booktitle"  class="h-100 w-100 p-3" placeholder="part of booktitle here">
+        </div>
+        <div class="form-group">
+            <label for="isbn" >ISBN</label>
+            <input type="text" id="isbn"  name="isbn"  class="h-100 w-100 p-3" placeholder="isbn here">
+        </div>
+        <div class="form-group">
+            <label for="author" >Author</label>
+            <input type="text" id="author" name="authorname"  class="h-100 w-100 p-3" placeholder="author name here">
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-outline-primary" name="searchBooks" value="searchBooks" />
+        </div>
+    </form>
+  </div>
+</div>
+
+
+
+{% endblock %}
