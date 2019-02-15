@@ -438,7 +438,7 @@ def updateBookReview():
         mybookreview = find_my_book_review(isbn, user_id)
         bookinfo = find_book_by_isbn(isbn)
         bookreviews = find_book_reviews(isbn)
-        flash("Successfully Posted!＼(^o^)／ Thank you!", "alert alert-success")
+        flash("Successfully Updated!＼(^o^)／ Thank you!", "alert alert-success")
         return render_template("edit_submission.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment, is_confirmation=True, is_posted=True )
         
 @app.route("/deleteBookReview", methods=["POST"])
@@ -448,27 +448,20 @@ def deleteBookReview():
         comment = ""
         user_id = session.get("user_id")
         isbn    = request.form.get("isbn")
-        title   = request.form.get("title")
-        author  = request.form.get("author")
-        year    = request.form.get("year")
+        # title   = request.form.get("title")
+        # author  = request.form.get("author")
+        # year    = request.form.get("year")
 
 
-        updateSQL ="DELETE FROM  bookreviews  WHERE isbn = :isbn AND user_id = :user_id "
+        deleteSQL ="DELETE FROM  bookreviews  WHERE isbn = :isbn AND user_id = :user_id "
         params    = {"isbn":isbn, "user_id":user_id  }
 
-        resultInsert = db.execute(updateSQL, params)
+        result = db.execute(deleteSQL, params)
         db.commit()
-
-        # for display
-        my_book_review = find_my_book_review(isbn, user_id)
-        print(my_book_review)
-        if my_book_review is not None :
-            rate    = my_book_review['rate']
-            comment = my_book_review['comment']
-
+        bookinfo = find_book_by_isbn(isbn)
         bookreviews = find_book_reviews(isbn)
-
-        return render_template("bookdetail.html", isbn=isbn, title=title, author=author, year=year, rate = rate, comment=comment, bookreviews=bookreviews )
+        flash("Successfully Deleted!＼(^o^)／ Thank you!", "alert alert-success")
+        return render_template("delete_submission.html", bookinfo=bookinfo, mybookreview=None, bookreviews=bookreviews )
 
 @app.route("/getsession")
 def getsession():
@@ -478,4 +471,4 @@ def getsession():
         #return session['username']
         return session.get("username")
 
-    return "Not Loggin"
+    return "Not Login"

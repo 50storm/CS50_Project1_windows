@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+{% block nav %}
+{% include "nav.tpl" %}
+{% endblock %}
+{% block heading %}
+    Book Review Site
+{% endblock %}
+{% block userinfo  %}
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    console.log("DOM fully loaded and parsed");
+    let btn = document.querySelector('#deleteBtn');
+    btn.addEventListener('click',function(){
+        if(!confirm("Are you sure?")){
+            return;
+        }else
+        {
+            alert("delete!");
+            let deletionForm = document.querySelector("deleteionForm");
+            document.deletionForm.submit();
+        }
+    });
+    
+  });
+</script>
+
+<h2 class="bg-primary text-white p-2 mb-2"  >
+       Username:{{session['username']}}
+</h2>
+{% endblock %}
+
+{% block body %}
+
+{#
+<input type="text" name=""  value="{{ url }}" >
+#}
+<hr  class="my-4" />
+<div class="row">
+  <div class="col-sm">
+    <table class="table table-striped">
+        <tr class="thead-dark">
+          <th>Isbn</th>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Year</th>
+        </tr>
+        <tr>
+          <th>{{ bookinfo["isbn"]   }}</th>
+          <th>{{ bookinfo["title"]  }}</th>
+          <th>{{ bookinfo["author"] }}</th>
+          <th>{{ bookinfo["year"]   }}</th>
+        </tr>
+    </table>
+  </div>
+</div>
+{# flash message  #}
+<div class="row">
+   <div class="col-sm">
+       {% with messages = get_flashed_messages(with_categories=True) %}
+         {% if messages %}
+           {% for category, message in messages %}
+             <div class="{{ category }}" role="alert">{{message}}</div>
+           {% endfor %}
+         {% endif %}
+       {% endwith %}
+     </div>
+</div>
+<div class="row">
+  <div class="col-sm">
+    <div class="alert alert-info" role="alert">
+        <a href="{{ url_for('registerSubmission') }}?isbn={{ bookinfo['isbn'] }}" >Write {{ bookinfo['title'] }}'s Book Reviews Again</a>
+    </div>
+  </div>
+  <div class="col-sm">
+    <div class="alert alert-info" role="alert">
+        <a href="{{ url_for('mypage') }}" >Search Book</a>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

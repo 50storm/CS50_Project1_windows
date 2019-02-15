@@ -13,20 +13,6 @@
 {% endblock %}
 
 {% block body %}
-
-<!-- <div class="row"> -->
-  <!-- <div class="col-sm-11 "> -->
-    <!-- <h2 class="bg-primary text-white p-2 mb-2" > -->
-    <!-- <h2 class="bg-primary text-white p-2 mb-2"  > -->
-       <!-- Username:{{session['username']}} -->
-    <!-- </h2> -->
-  <!-- </div> -->
-  <!-- <div class="col-sm "> -->
-    <!-- <form action="{{ url_for('logout') }}" method="post"> -->
-      <!-- <input type="submit" name="logout" value="logout" /> -->
-    <!-- </form> -->
-  <!-- </div> -->
-<!-- </div> -->
 <hr  class="my-4" />
 <div class="row">
   <div class="col-sm">
@@ -40,6 +26,7 @@
         <th>Username</th>
         <th>Rate</th>
         <th>Comment</th>
+        <th>Command</th>
     </tr>
     {% for recent_book_review in recent_book_reviews %}
     <tr>
@@ -60,7 +47,8 @@
             ★★★★★
         {% endif %}
         </td>
-        <td style="word-wrap: break-word;" >{{ recent_book_review["comment"] | nl2br }}</td>
+        <td   style="overflow:hidden;"  >{{ recent_book_review["comment"] | nl2br }}</td>
+        <td><a href="{{ url_for('searchBook') }}?isbn={{ recent_book_review['isbn'] }}">view</a></td>
     </tr>
     {% endfor %}
     </table>
@@ -81,6 +69,7 @@
         <th>Year</th>
         <th>Rate</th>
         <th>Comment</th>
+        <th>Command</th>
     </tr>
     {% for my_book_reviews in my_book_reviews %}
     <tr >
@@ -100,8 +89,7 @@
             ★★★★★
         {% endif %}
         </td>
-        <td  style="word-wrap: break-word;" >{{ my_book_reviews["comment"] | nl2br }}</td>
-        <td>{{ my_book_reviews["comment"] | nl2br }}</td>
+        <td  style="overflow:hidden;" >{{ my_book_reviews["comment"] | nl2br }}</td>
         <td><a href="{{ url_for('searchBook') }}?isbn={{ my_book_reviews['isbn'] }}" >view</a></td>
 
     </tr>

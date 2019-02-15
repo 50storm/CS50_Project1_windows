@@ -6,10 +6,30 @@
     Book Review Site
 {% endblock %}
 {% block userinfo  %}
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    console.log("DOM fully loaded and parsed");
+    let btn = document.querySelector('#deleteBtn');
+    btn.addEventListener('click',function(){
+        if(!confirm("Are you sure?")){
+            return;
+        }else
+        {
+            alert("delete!");
+            let deletionForm = document.querySelector("deleteionForm");
+            document.deletionForm.submit();
+        }
+    });
+    
+  });
+</script>
+
 <h2 class="bg-primary text-white p-2 mb-2"  >
        Username:{{session['username']}}
 </h2>
 {% endblock %}
+
 {% block body %}
 
 {% if is_confirmation  %}
@@ -156,8 +176,11 @@
       <br/>
       <textarea name="comment" cols="50" rows="10" class="w-100 {% if is_confirmation %} bg-light {% endif %}" {% if is_confirmation %} readonly {% endif %}>{{ comment }}</textarea>
       <br/>
-      <input type="submit" name="submitReview" class="btn btn-success" value="{% if is_confirmation %} submitReview {% else %} confirmReview {% endif %}" {% if is_posted %} disabled=disabled {% endif %} />
-      
+      <input type="submit" name="submitReview" class="btn btn-success  float-left" value="{% if is_confirmation %} submitReview {% else %} confirmReview {% endif %}" {% if is_posted %} disabled=disabled {% endif %} />
+    </form>
+    <form name="deletionForm" action="{{ url_for('deleteBookReview') }}" method="post">
+        <input type="hidden" name="isbn"  value="{{ bookinfo["isbn"] }}" >
+        <button type="button" id="deleteBtn" class="btn btn-outline-danger">Delete</button>
     </form>
   </div>
 </div>
