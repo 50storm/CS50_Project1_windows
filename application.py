@@ -4,9 +4,9 @@ from flask import Flask, session, render_template, request, Response, flash, red
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
-from models import *
 import datetime, sys, re
 from jinja2 import evalcontextfilter, Markup, escape
+from flask_sqlalchemy import SQLAlchemy 
 
 
 app = Flask(__name__)
@@ -23,8 +23,10 @@ app.config["SESSION_TYPE"] = "filesystem"
 #Add Igarashi
 app.config["SQLALCHEMY_DATABASE_URI"]  = os.getenv("DATABASE_URL")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
-db.init_app(app)
 
+#Create SQLAlchemy Instance
+db = SQLAlchemy()
+db.init_app(app)
 Session(app)
 
 # Set up database
@@ -105,7 +107,6 @@ def find_recent_book_reviews():
     sql_book_reiviews +=  " ORDER BY br.created_at DESC OFFSET 0 LIMIT 5"
     bookreviews = db.execute(sql_book_reiviews)
     return bookreviews.fetchall()
-
 
 def find_book_reviews( isbn=None, user_id=None  ):
     #List [] list[0][0]
@@ -330,9 +331,6 @@ def searchBooks():
 
 @app.route("/searchBook", methods=["GET","POST"])
 def searchBook():
-    isbn = title= author= year= username=comment=""
-    rate=-1
-
     if request.method == "GET":
         isbn   = request.args.get("isbn","")
         user_id =  session.get("user_id")
@@ -346,11 +344,9 @@ def searchBook():
 @app.route("/registerSubmission", methods=["GET"])
 def registerSubmission():
     if request.method == "GET":
-        user_id = session.get("user_id")
         isbn   = request.args.get("isbn","")
-        mybookreview = find_my_book_review(isbn, user_id)# TODO 不要
         bookinfo = find_book_by_isbn(isbn)
-        return render_template("register_submission.html", bookinfo=bookinfo, mybookreview=mybookreview )
+        return render_template("register_submission.html", bookinfo=bookinfo )
         
 @app.route("/writeBookReview", methods=["POST"])
 def writeBookReview():
@@ -359,15 +355,11 @@ def writeBookReview():
         comment = request.form.get("comment").strip()
         user_id = session.get("user_id")
         isbn    = request.form.get("isbn")
-        title   = request.form.get("title")
-        author  = request.form.get("author")
-        year    = request.form.get("year")
-
        
-        insertSQL ="INSERT INTO bookreviews (isbn, user_id, rate, comment, created_at ) VALUES (:isbn, :user_id, :rate, :comment, current_timestamp)" #TODO;isbn
+        insertSQL ="INSERT INTO bookreviews (isbn, user_id, rate, comment, created_at ) VALUES (:isbn, :user_id, :rate, :comment, current_timestamp)"
         params    = {"isbn":isbn, "user_id":user_id, "rate":rate ,"comment":comment }
 
-        resultInsert = db.execute(insertSQL, params)
+        db.execute(insertSQL, params)
         db.commit()
         mybookreview = find_my_book_review(isbn, user_id)
         bookinfo = find_book_by_isbn(isbn)
@@ -406,10 +398,7 @@ def confirmEditEntry():
     if request.method == "POST":
         rate    = request.form.get("rate").strip()
         comment = request.form.get("comment").strip()
-        user_id = session.get("user_id")
         isbn    = request.form.get("isbn")
-        # for update
-        # mybookreview = find_my_book_review(isbn, user_id)
         bookinfo = find_book_by_isbn(isbn)
         if(comment.strip() == ""):
             flash('Your review is empty!! Please write your review', 'alert alert-danger')
@@ -418,45 +407,39 @@ def confirmEditEntry():
         
 @app.route("/updateBookReview", methods=["POST"])
 def updateBookReview():
-    if request.method == "POST":#TODO
+    if request.method == "POST":
         rate = request.form.get("rate").strip()
         comment = request.form.get("comment").strip()
         user_id = session.get("user_id")
         isbn    = request.form.get("isbn")
-        title   = request.form.get("title")
-        author  = request.form.get("author")
-        year    = request.form.get("year")
 
         updateSQL ="UPDATE bookreviews  SET  rate = :rate, comment = :comment, created_at=current_timestamp  WHERE isbn = :isbn AND user_id = :user_id "
         params    = {"isbn":isbn, "user_id":user_id, "rate":rate, "comment":comment }
 
-        resultInsert = db.execute(updateSQL, params)
+        db.execute(updateSQL, params)
         db.commit()
 
         # for display
         mybookreview = find_my_book_review(isbn, user_id)
         bookinfo = find_book_by_isbn(isbn)
-        bookreviews = find_book_reviews(isbn)
         flash("Successfully Updated!＼(^o^)／ Thank you!", "alert alert-success")
         return render_template("edit_submission.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment, is_confirmation=True, is_posted=True )
         
 @app.route("/deleteBookReview", methods=["POST"])
 def deleteBookReview():
-    if request.method == "POST":#TODO
-        rate = -1
-        comment = ""
+    if request.method == "POST":
         user_id = session.get("user_id")
         isbn    = request.form.get("isbn")
 
         deleteSQL ="DELETE FROM  bookreviews  WHERE isbn = :isbn AND user_id = :user_id "
         params    = {"isbn":isbn, "user_id":user_id  }
 
-        result = db.execute(deleteSQL, params)
+        db.execute(deleteSQL, params)
         db.commit()
         bookinfo = find_book_by_isbn(isbn)
-        bookreviews = find_book_reviews(isbn)
+        
         flash("Successfully Deleted!＼(^o^)／ Thank you!", "alert alert-success")
-        return render_template("delete_submission.html", bookinfo=bookinfo, mybookreview=None, bookreviews=bookreviews )
+        return render_template("delete_submission.html", bookinfo=bookinfo, mybookreview=None )
 
 @app.route("/getsession")
 def getsession():
