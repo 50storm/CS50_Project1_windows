@@ -40,8 +40,7 @@ def nl2br(eval_ctx, value):
     print(value)
     # result = u'\n\n'.join(u'<p>%s</p>' % p.replace('\n', '<br>\n') for p in _paragraph_re.split(escape(value)))
     result = u'\n\n'.join(u'%s<br>' % p.replace('\n', '<br>') for p  in _paragraph_re.split(escape(value)))
-    # result = u'\n\n'.join(p.replace('\n', '<br>') for p  in _paragraph_re.split(escape(value)))
-
+ 
     if eval_ctx.autoescape:
         result = Markup(result)
     return result
@@ -380,7 +379,7 @@ def writeBookReview():
 @app.route("/confirmYourEntry", methods=["POST"])
 def confirmYourEntry():
     if request.method == "POST":
-        rate    = int(request.form.get("rate").strip())
+        rate    = request.form.get("rate").strip()
         comment = request.form.get("comment").strip()
         user_id = session.get("user_id")
         isbn    = request.form.get("isbn")
@@ -405,7 +404,7 @@ def editSubmission():
 @app.route("/confirmEditEntry", methods=["POST"])
 def confirmEditEntry():
     if request.method == "POST":
-        rate    = int(request.form.get("rate").strip())
+        rate    = request.form.get("rate").strip()
         comment = request.form.get("comment").strip()
         user_id = session.get("user_id")
         isbn    = request.form.get("isbn")
@@ -414,11 +413,8 @@ def confirmEditEntry():
         bookinfo = find_book_by_isbn(isbn)
         if(comment.strip() == ""):
             flash('Your review is empty!! Please write your review', 'alert alert-danger')
-#             return render_template("edit_submission.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment,  is_confirmation=False )
             return render_template("edit_submission.html", bookinfo=bookinfo, mybookreview=None, rate=rate, comment=comment,  is_confirmation=False )
-#         return render_template("edit_submission.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment,  is_confirmation=True )
         return render_template("edit_submission.html", bookinfo=bookinfo, mybookreview=None, rate=rate, comment=comment,  is_confirmation=True )
-
         
 @app.route("/updateBookReview", methods=["POST"])
 def updateBookReview():
@@ -430,7 +426,6 @@ def updateBookReview():
         title   = request.form.get("title")
         author  = request.form.get("author")
         year    = request.form.get("year")
-
 
         updateSQL ="UPDATE bookreviews  SET  rate = :rate, comment = :comment, created_at=current_timestamp  WHERE isbn = :isbn AND user_id = :user_id "
         params    = {"isbn":isbn, "user_id":user_id, "rate":rate, "comment":comment }
@@ -452,10 +447,6 @@ def deleteBookReview():
         comment = ""
         user_id = session.get("user_id")
         isbn    = request.form.get("isbn")
-        # title   = request.form.get("title")
-        # author  = request.form.get("author")
-        # year    = request.form.get("year")
-
 
         deleteSQL ="DELETE FROM  bookreviews  WHERE isbn = :isbn AND user_id = :user_id "
         params    = {"isbn":isbn, "user_id":user_id  }
@@ -472,7 +463,5 @@ def getsession():
     session.pop("username", None)
 
     if 'username' in session:
-        #return session['username']
         return session.get("username")
-
     return "Not Login"

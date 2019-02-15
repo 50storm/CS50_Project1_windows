@@ -1,7 +1,7 @@
 DROP TABLE books;
 
 CREATE TABLE books (
-    isbn character varying(13) NOT NULL,
+    isbn character varying(10) NOT NULL,
     title character varying(255) NOT  NULL,
     author character varying(255) NOT NULL,
     year  smallint  NOT NULL,

@@ -1,7 +1,7 @@
 DROP TABLE bookreviews;
 
 CREATE TABLE bookreviews (
-    isbn  character varying(13) NOT NULL,
+    isbn  character varying(10) NOT NULL,
     user_id integer NOT  NULL,
     rate    integer NOT  NULL,
     comment text NOT NULL,
