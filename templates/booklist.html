@@ -20,6 +20,7 @@
           <th>Title</th>
           <th>Author</th>
           <th>Year</th>
+          <th>Command</th>
         </tr>
         {% for book in books %}
         <tr>
@@ -27,7 +28,7 @@
             <td><a href="{{ url_for('searchBook') }}?isbn={{ book['isbn'] }}" >{{ book['title'] }}</a></td>
             <td>{{ book['author'] }}</td>
             <td>{{ book['year'] }}</td>
-
+            <td><a href="{{ url_for('searchBook') }}?isbn={{ book['isbn'] }}">view</a</td>
         </tr>
         {% endfor %}
     </table>

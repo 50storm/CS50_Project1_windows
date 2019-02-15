@@ -1,3 +1,5 @@
 SELECT B.ISBN,B.TITLE,B.AUTHOR,YEAR,BR.CREATED_AT 
 FROM BOOKREVIEWS BR INNER JOIN BOOKS B ON BR.ISBN = B.ISBN;
 
+Flask Error Handling
+http://flask.pocoo.org/docs/1.0/patterns/errorpages/

@@ -27,7 +27,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 #Create SQLAlchemy Instance
 db = SQLAlchemy()
 db.init_app(app)
-Session(app)
+#Session(app)
 
 # Set up database
 engine = create_engine(os.getenv("DATABASE_URL"))
