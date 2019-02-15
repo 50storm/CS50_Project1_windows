@@ -32,7 +32,7 @@
   <div class="col-sm">
    <h3 class="bg-primary text-white p-2 mb-2" >Rcent Book Reviews</h3>
     {% if recent_book_reviews  %}
-        <table class="table">
+        <table class="table" style="table-layout:fixed;" >
     <tr>
         <th>Title</th>
         <th>Author</th>
@@ -60,7 +60,7 @@
             ★★★★★
         {% endif %}
         </td>
-        <td>{{ recent_book_review["comment"] | nl2br }}</td>
+        <td style="word-wrap: break-word;" >{{ recent_book_review["comment"] | nl2br }}</td>
     </tr>
     {% endfor %}
     </table>
@@ -74,7 +74,7 @@
   <div class="col-sm">
     <h3 class="bg-primary text-white p-2 mb-2" >My Book Reviews</h3>
     {% if my_book_reviews  %}
-    <table class="table">
+    <table class="table" style="table-layout:fixed;" >
     <tr>
         <th>Title</th>
         <th>Author</th>
@@ -83,7 +83,7 @@
         <th>Comment</th>
     </tr>
     {% for my_book_reviews in my_book_reviews %}
-    <tr>
+    <tr >
         <td>{{ my_book_reviews["title"] }}</td>
         <td>{{ my_book_reviews["author"] }}</td>
         <td>{{ my_book_reviews["year"] }}</td>
@@ -100,7 +100,7 @@
             ★★★★★
         {% endif %}
         </td>
-        <td>{{ my_book_reviews["comment"] | nl2br }}</td>
+        <td  style="word-wrap: break-word;" >{{ my_book_reviews["comment"] | nl2br }}</td>
     </tr>
     {% endfor %}
     </table>

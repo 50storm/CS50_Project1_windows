@@ -40,8 +40,8 @@
 </div>
 
 <div class="row">
-    <div class="col-sm" style="overflow-x:auto;">
-    <h2>Reviews</h2>
+    <div class="col-sm" >
+    <h3 class="bg-primary text-white p-2 mb-2" >Book Reviews</h3>
     {% if bookreviews %}
     {% for bookreview in bookreviews %}
         <p>
@@ -58,7 +58,9 @@
             ★★★★★
         {% endif %}
         <br>
+        <span style="word-wrap: break-word;">
         {{ bookreview["comment"] | nl2br }}
+        </span>
         </p>
     {% endfor %}
     {% else %}
