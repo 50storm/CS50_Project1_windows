@@ -45,6 +45,7 @@
     {% if bookreviews %}
     {% for bookreview in bookreviews %}
         <p>
+        {{ bookreview["created_at"].strftime('%Y-%m-%d %H:%M:%S') }} :
         {{ bookreview["username"] }} :
         {% if bookreview["rate"] == 1  %}
             ★☆☆☆☆

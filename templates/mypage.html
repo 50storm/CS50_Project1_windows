@@ -40,33 +40,35 @@
     {% if my_book_reviews is defined and my_book_reviews | length  %}
     <table class="table" style="table-layout:fixed;" >
     <tr>
+        <th>Date</th>
         <th>Title</th>
         <th>Author</th>
         <th>Year</th>
         <th>Rate</th>
         <th>Comment</th>
-        <th>Command</th>
+        <th> </th>
     </tr>
-    {% for my_book_reviews in my_book_reviews %}
+    {% for my_book_review in my_book_reviews %}
     <tr >
-        <td>{{ my_book_reviews["title"] }}</td>
-        <td>{{ my_book_reviews["author"] }}</td>
-        <td>{{ my_book_reviews["year"] }}</td>
+        <td>{{ my_book_review["created_at"].strftime('%Y-%m-%d %H:%M:%S') }}</td>
+        <td>{{ my_book_review["title"] }}</td>
+        <td>{{ my_book_review["author"] }}</td>
+        <td>{{ my_book_review["year"] }}</td>
         <td>
-        {% if my_book_reviews["rate"] == 1  %}
+        {% if my_book_review["rate"] == 1  %}
             ★☆☆☆☆
-        {% elif my_book_reviews["rate"] == 2 %}
+        {% elif my_book_review["rate"] == 2 %}
             ★★☆☆☆
-        {% elif my_book_reviews["rate"] == 3 %}
+        {% elif my_book_review["rate"] == 3 %}
             ★★★☆☆
-        {% elif my_book_reviews["rate"] == 4 %}
+        {% elif my_book_review["rate"] == 4 %}
             ★★★★☆
-        {% elif my_book_reviews["rate"] == 5 %}
+        {% elif my_book_review["rate"] == 5 %}
             ★★★★★
         {% endif %}
         </td>
-        <td  style="overflow:hidden;" >{{ my_book_reviews["comment"] | nl2br }}</td>
-        <td><a href="{{ url_for('searchBook') }}?isbn={{ my_book_reviews['isbn'] }}" >view</a></td>
+        <td  style="overflow:hidden;" >{{ my_book_review["comment"] | nl2br }}</td>
+        <td><a href="{{ url_for('searchBook') }}?isbn={{ my_book_review['isbn'] }}" >view</a></td>
 
     </tr>
     {% endfor %}
@@ -84,16 +86,18 @@
     {% if recent_book_reviews is defined and  recent_book_reviews | length %}
         <table class="table" style="table-layout:fixed;" >
     <tr>
+        <th>Date</th>
         <th>Title</th>
         <th>Author</th>
         <th>Year</th>
         <th>Username</th>
         <th>Rate</th>
         <th>Comment</th>
-        <th>Command</th>
+        <th>        </th>
     </tr>
     {% for recent_book_review in recent_book_reviews %}
     <tr>
+        <td>{{ recent_book_review["created_at"].strftime('%Y-%m-%d %H:%M:%S') }}</td>
         <td>{{ recent_book_review["title"] }}</td>
         <td>{{ recent_book_review["author"] }}</td>
         <td>{{ recent_book_review["year"] }}</td>

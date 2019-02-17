@@ -47,6 +47,13 @@ def nl2br(eval_ctx, value):
         result = Markup(result)
     return result
 
+def isLogin():
+    if( session.get('user_id') == "" ) :
+        print("session['user_id'] is empty")
+        return False
+    else:
+        return True
+
 def checkPassword( password, confiromPassword, username ):
     if( len(password) <7 ):
         return (False, "password is too short!")
@@ -90,7 +97,7 @@ def find_my_book_review(isbn, user_id):
         return row_mybookreview
 
 def find_my_book_reviews(user_id):
-    sql_my_book_reviews = "SELECT u.username as username, br.rate as rate, br.comment as comment, br.isbn as isbn, b.title, b.author, b.year FROM bookreviews br "
+    sql_my_book_reviews = "SELECT br.created_at, u.username, br.rate, br.comment, br.isbn, b.title, b.author, b.year FROM bookreviews br "
     sql_my_book_reviews +=  "INNER JOIN users u ON br.user_id = u.id  "
     sql_my_book_reviews +=  "INNER JOIN books b ON b.isbn = br.isbn  "
     sql_my_book_reviews +=  " WHERE user_id = :user_id"
@@ -101,7 +108,7 @@ def find_my_book_reviews(user_id):
     return mybookreview.fetchall()
     
 def find_recent_book_reviews():
-    sql_book_reiviews =  "SELECT u.username as username, br.rate as rate, br.comment as comment, br.isbn as isbn, b.title, b.author, b.year  FROM bookreviews br "
+    sql_book_reiviews =  "SELECT br.created_at, u.username, br.rate, br.comment, br.isbn, b.title, b.author, b.year  FROM bookreviews br "
     sql_book_reiviews +=  " INNER JOIN users u ON br.user_id = u.id  "
     sql_book_reiviews +=  " INNER JOIN books b ON b.isbn = br.isbn  "
     sql_book_reiviews +=  " ORDER BY br.created_at DESC OFFSET 0 LIMIT 5"
@@ -112,7 +119,7 @@ def find_book_reviews( isbn=None, user_id=None  ):
     #List [] list[0][0]
     print("==========find_book_reviews==========")
     sql_paramters ={}
-    sql_book_reiviews =  "SELECT u.username as username, br.rate as rate, br.comment as comment, br.isbn as isbn FROM bookreviews br "
+    sql_book_reiviews =  "SELECT br.created_at, u.username as username, br.rate as rate, br.comment as comment, br.isbn as isbn FROM bookreviews br "
     sql_book_reiviews +=  " INNER JOIN users u ON br.user_id = u.id  "
     if(isbn is not None or user_id is not None):
         sql_book_reiviews +=  "  WHERE  "
@@ -240,6 +247,9 @@ def register():
 @app.route("/mypage", methods=["GET"])
 def mypage():
     #GET ONLY
+    if(not isLogin):
+        return redirect(url_for("error"))
+
     recent_book_reviews = find_recent_book_reviews()
     my_book_reviews = find_my_book_reviews(session.get("user_id"))
     print(my_book_reviews)
@@ -448,3 +458,8 @@ def getsession():
     if 'username' in session:
         return session.get("username")
     return "Not Login"
+
+
+@app.route("/error")
+def error():
+    return render_template("error.html")
