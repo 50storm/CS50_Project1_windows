@@ -77,6 +77,10 @@ def checkUserName(username):
     else:
         return (False, username + " is alreaded used.")
 
+# def find_user(username, password):
+    # book = db.execute("SELECT * FROM users WHERE username=:username AND password=:password", {"username":username,"password":password})
+    # return  book.fetchone()
+    
 def find_book_by_isbn(isbn):
     book = db.execute("SELECT * FROM books WHERE isbn=:isbn ", {"isbn":isbn})
     return  book.fetchone()
@@ -136,6 +140,22 @@ def find_book_reviews( isbn=None, user_id=None  ):
     bookreviews = db.execute( sql_book_reiviews, sql_paramters )
     return bookreviews.fetchall() # [] = zeros
 
+def setUserSession(user):
+    session['user_id']  = user['id']
+    session['username'] = user['username']
+    session['firstname']= user['firstname']
+    session['lastname'] = user['lastname']
+    session['password'] = user['password'] 
+    return
+   
+def unsetUserSession():
+    session.pop("user_id", None)
+    session.pop("username", None)
+    session.pop("firstname", None)
+    session.pop("lastname", None)
+    session.pop("password", None)
+    return
+    
 @app.route("/api/<string:isbn>", methods=["GET"])
 def api(isbn):
     book_info =  {
@@ -178,6 +198,7 @@ def login():
 @app.route("/login", methods=["POST"])
 def validate_login():
     sqlUser = "SELECT * FROM users WHERE username=:username AND password=:password"
+    
     username = request.form.get("username").strip()
     password = request.form.get("password").strip()
     user = db.execute(
@@ -185,19 +206,14 @@ def validate_login():
         {"username":username,"password":password}
     )
     rowUser = user.fetchone()
+    
     if(rowUser is None):
         session['username'] = username
         return render_template("index.html", message="Login Error...Incorrect passward entered.. Please Try agin.")
-
-    print(username)
-    print(password)
-    print(rowUser)
-    session['user_id'] = rowUser['id']
-    session['username'] = rowUser['username']
-    session['password'] = rowUser['password']
-
+    
+    setUserSession(rowUser)
+    
     return redirect(url_for("mypage"))
-
 
 @app.route("/register", methods=["GET","POST"])
 def register():
@@ -206,7 +222,6 @@ def register():
         session['firstname'] = firstname = request.form.get("firstname").strip()
         session['lastname']  = lastname = request.form.get("lastname").strip()
         session['password']  = password = request.form.get("password").strip()
-
         confirmPassword = request.form.get("confirmPassword").strip()
 
         resultCheckUserName = checkUserName(username)
@@ -255,11 +270,62 @@ def mypage():
     print(my_book_reviews)
     return render_template("mypage.html", username=session.get("username") , recent_book_reviews=recent_book_reviews, my_book_reviews=my_book_reviews)
 
+@app.route("/showUserAccount", methods=["GET"])
+def showUserAccount():
+    #GET ONLY
+    if(not isLoggedin):
+        return redirect(url_for("error"))
+    return render_template("user_account.html")
+
+@app.route("/editUserAccount", methods=["GET"])
+def editUserAccount():
+    if(not isLoggedin):
+        return redirect(url_for("error"))
+    return render_template("edit_user_account.html")
+
+@app.route("/confirmUserAccount", methods=["POST"])
+def confirmUserAccount():
+    if request.method == "POST":
+        username  = username = request.form.get("username").strip()
+        firstname = firstname = request.form.get("firstname").strip()
+        lastname  = lastname = request.form.get("lastname").strip()
+        password  = password = request.form.get("password").strip()
+        confirmPassword = request.form.get("confirmPassword").strip()
+
+        resultCheckUserName = checkUserName(username)
+        resultCheckPassword = checkPassword(password, confirmPassword, username)
+        print(resultCheckUserName)
+        print(resultCheckPassword)
+        if(resultCheckUserName[0] and resultCheckPassword[0]):
+            # updateSQL ="UPDATE  users SET username=:username, firstname=:firstname, lastname=:lastname, password=:password, created_at=current_timestamp "
+            # updateSQL +="WHERE id = :user_id "
+            # params    = {"user_id";session['user_id'],"username":username, "firstname":firstname, "lastname":lastname, "password":password}
+            # resultInsert = db.execute(updateSQL, params)
+            # db.commit()
+            # print(updateSQL)
+
+            return render_template("edit_user_account.html", is_confirmation=True)
+        else:
+            #invalid inputs
+            # messages=[1]
+            messages=["",""] #String Message
+            category=["",""] #CSS Class
+            if( resultCheckUserName[0] == False ):
+                #http://flask.pocoo.org/docs/1.0/patterns/flashing/
+                messages[0] = resultCheckUserName[1]
+                category[0] = 'text-danger'
+                flash(messages[0], category[0])
+            if( resultCheckPassword[0]  == False ):
+                messages[1] = resultCheckPassword[1]
+                category[1] = 'text-danger'
+                flash(messages[1], category[1])
+            return render_template("edit_user_account.html")
+        
+        
 @app.route("/logout", methods=["POST"])
 def logout():
     if request.method == "POST":
-        session.pop("username", None)
-        session.pop("password", None)
+        unsetUserSession()
         return render_template("logout.html")
 
 @app.route("/search", methods=["GET"])
@@ -270,7 +336,6 @@ def search():
     print(my_book_reviews)
     return render_template("search.html", username=session.get("username") , recent_book_reviews=recent_book_reviews, my_book_reviews=my_book_reviews)
 
-        
 @app.route("/searchBooks", methods=["GET"])
 def searchBooks():
 
@@ -336,7 +401,6 @@ def searchBooks():
         books = db.execute(queryBook,sqlparameters)
         booklist = books.fetchall()
         return render_template("booklist.html", books= booklist)
-
 
 
 @app.route("/searchBook", methods=["GET","POST"])
