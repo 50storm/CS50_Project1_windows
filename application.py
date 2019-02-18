@@ -47,7 +47,7 @@ def nl2br(eval_ctx, value):
         result = Markup(result)
     return result
 
-def isLogin():
+def isLoggedin():
     if( session.get('user_id') == "" ) :
         print("session['user_id'] is empty")
         return False
@@ -247,7 +247,7 @@ def register():
 @app.route("/mypage", methods=["GET"])
 def mypage():
     #GET ONLY
-    if(not isLogin):
+    if(not isLoggedin):
         return redirect(url_for("error"))
 
     recent_book_reviews = find_recent_book_reviews()
