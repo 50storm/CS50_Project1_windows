@@ -49,34 +49,54 @@ def nl2br(eval_ctx, value):
 
 def isLoggedin():
     if( session.get('user_id') == "" ) :
-        print("session['user_id'] is empty")
+        print("session expired.")
         return False
     else:
         return True
 
-def checkPassword( password, confiromPassword, username ):
-    if( len(password) <7 ):
-        return (False, "password is too short!")
-    elif( password in username ):
-        return (False, "password is in username!!")
-    elif( password != confiromPassword):
-        return (False, "password is not equal confiromPassword!!")
-    else:
-        return (True, None)
 
-def checkUserName(username):
+def checkPassword(password, confiromPassword, username, user_id=None, for_update=False):
+    if(not for_update):
+        if(len(password) < 7):
+            return (False, "password is too short!")
+        elif(password in username):
+            return (False, "password is in username!!")
+        elif(password != confiromPassword):
+            return (False, "password is not equal confiromPassword!!")
+        else:
+            return (True, None)
+    else:
+        users = db.execute(
+            "SELECT * FROM users WHERE user_id=:user_id AND password=:password",
+            {"user_id": user_id, "password": password}
+        )
+        user = users.fetchone()
+        if(user == None):
+            return (False, "password is not equal to registered password!")
+        else:
+            return (True, None)
+
+def checkUserName(username, user_id=None, for_update=False):
     if( username == "" ):
         return (False, "Plsease enter username.")
-    users = db.execute(
-        "SELECT * FROM users WHERE username=:username",
-        {"username":username}
-    )
-    user = users.fetchone()
+    result_execute = db.execute( "SELECT * FROM users WHERE username=:username",{"username":username} )
+    user = result_execute.fetchone()
     if(user == None):
         return (True, None)
     else:
-        return (False, username + " is alreaded used.")
-
+        if(for_update==False):
+            if(username == user['username']):
+                return (False, username + " is alreaded used.")
+            else:
+                return (True, None)
+        else:
+            if(user_id == user['user_id']):
+                return (True, None)
+            elif(username == user['username']):
+                return (False, username + " is alreaded used.")
+            else:
+                return (True, None)
+        
 def find_book_by_isbn(isbn):
     book = db.execute("SELECT * FROM books WHERE isbn=:isbn ", {"isbn":isbn})
     return  book.fetchone()
@@ -84,7 +104,7 @@ def find_book_by_isbn(isbn):
 def find_my_book_review(isbn, user_id):
     #None or Dictionary  dic["rate"]
     sql_my_book_review = "SELECT u.username as username, br.rate as rate, br.comment as comment, br.isbn as isbn FROM bookreviews br "
-    sql_my_book_review +=  "INNER JOIN users u ON br.user_id = u.id  "
+    sql_my_book_review += "INNER JOIN users u ON br.user_id = u.user_id  "
     sql_my_book_review +=  " WHERE isbn=:isbn AND user_id = :user_id"
     mybookreview = db.execute(
             sql_my_book_review,
@@ -97,10 +117,10 @@ def find_my_book_review(isbn, user_id):
         return row_mybookreview
 
 def find_my_book_reviews(user_id):
-    sql_my_book_reviews = "SELECT br.created_at, u.username, br.rate, br.comment, br.isbn, b.title, b.author, b.year FROM bookreviews br "
-    sql_my_book_reviews +=  "INNER JOIN users u ON br.user_id = u.id  "
-    sql_my_book_reviews +=  "INNER JOIN books b ON b.isbn = br.isbn  "
-    sql_my_book_reviews +=  " WHERE user_id = :user_id"
+    sql_my_book_reviews =   "SELECT br.created_at, u.username, br.rate, br.comment, br.isbn, b.title, b.author, b.year FROM bookreviews br "
+    sql_my_book_reviews +=  " INNER JOIN users u ON br.user_id = u.user_id  "
+    sql_my_book_reviews +=  " INNER JOIN books b ON b.isbn = br.isbn  "
+    sql_my_book_reviews +=  " WHERE u.user_id = :user_id"
     mybookreview = db.execute(
             sql_my_book_reviews,
             { "user_id":user_id }
@@ -108,8 +128,8 @@ def find_my_book_reviews(user_id):
     return mybookreview.fetchall()
     
 def find_recent_book_reviews():
-    sql_book_reiviews =  "SELECT br.created_at, u.username, br.rate, br.comment, br.isbn, b.title, b.author, b.year  FROM bookreviews br "
-    sql_book_reiviews +=  " INNER JOIN users u ON br.user_id = u.id  "
+    sql_book_reiviews =   "SELECT br.created_at, u.username, br.rate, br.comment, br.isbn, b.title, b.author, b.year  FROM bookreviews br "
+    sql_book_reiviews +=  " INNER JOIN users u ON br.user_id = u.user_id  "
     sql_book_reiviews +=  " INNER JOIN books b ON b.isbn = br.isbn  "
     sql_book_reiviews +=  " ORDER BY br.created_at DESC OFFSET 0 LIMIT 5"
     bookreviews = db.execute(sql_book_reiviews)
@@ -120,7 +140,7 @@ def find_book_reviews( isbn=None, user_id=None  ):
     print("==========find_book_reviews==========")
     sql_paramters ={}
     sql_book_reiviews =  "SELECT br.created_at, u.username as username, br.rate as rate, br.comment as comment, br.isbn as isbn FROM bookreviews br "
-    sql_book_reiviews +=  " INNER JOIN users u ON br.user_id = u.id  "
+    sql_book_reiviews += " INNER JOIN users u ON br.user_id = u.user_id  "
     if(isbn is not None or user_id is not None):
         sql_book_reiviews +=  "  WHERE  "
         if(isbn is not None and user_id is not None):
@@ -135,6 +155,31 @@ def find_book_reviews( isbn=None, user_id=None  ):
 
     bookreviews = db.execute( sql_book_reiviews, sql_paramters )
     return bookreviews.fetchall() # [] = zeros
+
+def setUserSession(user):
+    session['user_id'] = user['user_id']
+    session['username'] = user['username']
+    session['firstname']= user['firstname']
+    session['lastname'] = user['lastname']
+    session['password'] = user['password'] 
+    return
+   
+def unsetUserSession():
+    session.pop("user_id", None)
+    session.pop("username", None)
+    session.pop("firstname", None)
+    session.pop("lastname", None)
+    session.pop("password", None)
+    return
+
+def setUserViewData(user_id='', username='', firstname='', lastname='', passsword=''):
+    userdata={}
+    userdata['user_id'] = user_id
+    userdata['username'] = username
+    userdata['firstname'] = firstname
+    userdata['lastname'] = lastname
+    userdata['password'] = passsword
+    return userdata
 
 @app.route("/api/<string:isbn>", methods=["GET"])
 def api(isbn):
@@ -178,6 +223,7 @@ def login():
 @app.route("/login", methods=["POST"])
 def validate_login():
     sqlUser = "SELECT * FROM users WHERE username=:username AND password=:password"
+    
     username = request.form.get("username").strip()
     password = request.form.get("password").strip()
     user = db.execute(
@@ -185,19 +231,14 @@ def validate_login():
         {"username":username,"password":password}
     )
     rowUser = user.fetchone()
+    
     if(rowUser is None):
         session['username'] = username
         return render_template("index.html", message="Login Error...Incorrect passward entered.. Please Try agin.")
-
-    print(username)
-    print(password)
-    print(rowUser)
-    session['user_id'] = rowUser['id']
-    session['username'] = rowUser['username']
-    session['password'] = rowUser['password']
-
+    
+    setUserSession(rowUser)
+    
     return redirect(url_for("mypage"))
-
 
 @app.route("/register", methods=["GET","POST"])
 def register():
@@ -206,7 +247,6 @@ def register():
         session['firstname'] = firstname = request.form.get("firstname").strip()
         session['lastname']  = lastname = request.form.get("lastname").strip()
         session['password']  = password = request.form.get("password").strip()
-
         confirmPassword = request.form.get("confirmPassword").strip()
 
         resultCheckUserName = checkUserName(username)
@@ -237,7 +277,7 @@ def register():
                 flash(messages[0], category[0])
             if( resultCheckPassword[0]  == False ):
                 messages[1] = resultCheckPassword[1]
-                category[1] = 'text-danger'
+                category[1] = 'text-danger '
                 flash(messages[1], category[1])
             return render_template("registration.html")
 
@@ -255,13 +295,82 @@ def mypage():
     print(my_book_reviews)
     return render_template("mypage.html", username=session.get("username") , recent_book_reviews=recent_book_reviews, my_book_reviews=my_book_reviews)
 
+@app.route("/showUserAccount", methods=["GET"])
+def showUserAccount():
+    #GET ONLY
+    if(not isLoggedin):
+        #TODO:Error Message by flashing
+        return redirect(url_for("error"))
+    userdata = setUserViewData(session['user_id'], session['username'], session['firstname'], session['lastname'], session['password'])
+    print(userdata)
+    return render_template("user_account.html", userdata=userdata, mode=0)
+
+@app.route("/editUserAccount", methods=["GET"])
+def editUserAccount():
+    if(not isLoggedin):
+        #TODO:Error Message by flashing
+        return redirect(url_for("error"))
+    userdata = setUserViewData(session['user_id'], session['username'],session['firstname'], session['lastname'], session['password'])
+    return render_template("user_account.html", userdata=userdata, mode=1)
+
+@app.route("/updateUserAccount", methods=["POST"])
+def updateUserAccount():
+    if(not isLoggedin):
+        #TODO:Error Message by flashing
+        return redirect(url_for("error"))
+    userdata = setUserViewData(session['user_id'],
+                               request.form.get("username").strip(),
+                               request.form.get("firstname").strip(), 
+                               request.form.get("lastname").strip(),
+                               request.form.get("password").strip())
+    updateSQL ="UPDATE  users SET username=:username, firstname=:firstname, lastname=:lastname, created_at=current_timestamp "
+    updateSQL += "WHERE user_id = :user_id "
+    params = {"user_id":session['user_id'], "username": userdata['username'], "firstname": userdata['firstname'], "lastname": userdata['lastname'] }
+    resultInsert = db.execute(updateSQL, params)
+    db.commit()
+    setUserSession(userdata)
+    flash("Successfully Updated!＼(^o^)／ Thank you!", "alert alert-success")
+    return render_template("user_account.html", userdata=userdata, mode=3)
+
+@app.route("/confirmUserAccount", methods=["POST"])
+def confirmUserAccount():
+    if(not isLoggedin):
+        #TODO:Error Message by flashing
+        return redirect(url_for("error"))
+    if request.method == "POST":
+        userdata = setUserViewData(session['user_id'],
+                                   request.form.get("username").strip(),
+                                   request.form.get("firstname").strip(), 
+                                   request.form.get("lastname").strip(),
+                                   request.form.get("password").strip()
+                                   )
+        print("===========userdata==============")
+        print(userdata)
+
+        resultCheckUserName = checkUserName(userdata['username'], session['user_id'], True)
+        resultCheckPassword = checkPassword( userdata['password'], None, None, session['user_id'],True)
+
+        if(resultCheckUserName[0] and resultCheckPassword[0]):
+            return render_template("user_account.html", userdata=userdata, mode=2)
+        else:  # invalid data
+            messages=["",""] #String Message
+            category=["",""] #CSS Class
+            if( resultCheckUserName[0] == False ):
+                #http://flask.pocoo.org/docs/1.0/patterns/flashing/
+                messages[0] = resultCheckUserName[1]
+                category[0] = 'text-danger alert alert-danger'
+                flash(messages[0], category[0])
+            if( resultCheckPassword[0]  == False ):
+                messages[1] = resultCheckPassword[1]
+                category[1] = 'text-danger alert alert-danger'
+                flash(messages[1], category[1])
+            return render_template("user_account.html", userdata=userdata, mode=1)
+                
 @app.route("/logout", methods=["POST"])
 def logout():
     if request.method == "POST":
-        session.pop("username", None)
-        session.pop("password", None)
+        unsetUserSession()
         return render_template("logout.html")
-
 @app.route("/search", methods=["GET"])
 def search():
     #GET ONLY
@@ -270,7 +379,6 @@ def search():
     print(my_book_reviews)
     return render_template("search.html", username=session.get("username") , recent_book_reviews=recent_book_reviews, my_book_reviews=my_book_reviews)
 
-        
 @app.route("/searchBooks", methods=["GET"])
 def searchBooks():
 
@@ -336,7 +444,6 @@ def searchBooks():
         books = db.execute(queryBook,sqlparameters)
         booklist = books.fetchall()
         return render_template("booklist.html", books= booklist)
-
 
 
 @app.route("/searchBook", methods=["GET","POST"])
@@ -451,6 +558,7 @@ def deleteBookReview():
         flash("Successfully Deleted!＼(^o^)／ Thank you!", "alert alert-success")
         return render_template("delete_submission.html", bookinfo=bookinfo, mybookreview=None )
 
+#TODO
 @app.route("/getsession")
 def getsession():
     session.pop("username", None)
