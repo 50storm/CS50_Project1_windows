@@ -8,6 +8,9 @@
             <li id="mypage" class="nav-item">
                 <a class="nav-link" href="{{ url_for('mypage') }}">My page</a>
             </li>
+            <li id="myaccount" class="nav-item ">
+                <a class="nav-link"  href="{{ url_for('showUserAccount') }}">My account</a>
+            </li>
             <li id="search" class="nav-item ">
                 <a class="nav-link" href="{{ url_for('search') }}">Search</a>
             </li>

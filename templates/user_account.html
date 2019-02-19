@@ -1,4 +1,7 @@
 {% extends "layout.html" %}
+{% block nav %}
+{% include "nav.tpl" %}
+{% endblock %}
 {% block heading %}
     Book Review Site
 {% endblock %}
@@ -18,23 +21,31 @@
 {%    set readonly = 'readonly' %}
 {%    set css='bg-info' %}
 {% endif %}
+<script>
+  document.addEventListener("DOMContentLoaded", function (event) {
+    let navMyAccount = document.querySelector("li#myaccount");
+    navMyAccount.classList.add("active");
+    navMyAccount.classList.add("font-weight-bold");
+    navMyAccount.classList.add("font-italic");
+  });
+</script>
       <div class="row">
         <div class="col-sm ">
           <h2 class="bg-primary text-white p-2 mb-2">My Account</h2>
         </div>
       </div>
-{# flash message  #}
-<div class="row">
-    <div class="col-sm">
-       {% with messages = get_flashed_messages(with_categories=True) %}
-         {% if messages %}
-           {% for category, message in messages %}
-             <div class="{{ category }}" role="alert">{{message}}</div>
-           {% endfor %}
-         {% endif %}
-       {% endwith %}
-    </div>
-</div>
+      {# flash message  #}
+      <div class="row">
+          <div class="col-sm">
+             {% with messages = get_flashed_messages(with_categories=True) %}
+               {% if messages %}
+                 {% for category, message in messages %}
+                   <div class="{{ category }}" role="alert">{{message}}</div>
+                 {% endfor %}
+               {% endif %}
+             {% endwith %}
+          </div>
+      </div>
       <div class="row">
       <div class="col-sm">
           <form action="{{ action }}" method="post">
