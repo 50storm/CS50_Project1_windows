@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, session, render_template, request, Response, flash, redirect, jsonify, url_for
+from flask import Flask, session, render_template, request, Response, flash, redirect, jsonify, url_for, abort
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -32,6 +32,14 @@ db.init_app(app)
 # Set up database
 engine = create_engine(os.getenv("DATABASE_URL"))
 db = scoped_session(sessionmaker(bind=engine))
+
+
+@app.errorhandler(500)
+def internal_error(e):
+    print(e)
+    flash("Sorry Error occured.." , "alert alert-danger")
+    flash(str(e), "alert alert-danger")
+    return render_template("error.html"), 500
 
 @app.template_filter()
 @evalcontextfilter
@@ -222,21 +230,29 @@ def login():
 
 @app.route("/login", methods=["POST"])
 def validate_login():
-    sqlUser = "SELECT * FROM users WHERE username=:username AND password=:password"
-    
-    username = request.form.get("username").strip()
-    password = request.form.get("password").strip()
-    user = db.execute(
-        sqlUser,
-        {"username":username,"password":password}
-    )
-    rowUser = user.fetchone()
-    
-    if(rowUser is None):
-        session['username'] = username
-        return render_template("index.html", message="Login Error...Incorrect passward entered.. Please Try agin.")
-    
-    setUserSession(rowUser)
+    try:
+        sqlUser = "SELECT * FROM users WHERE username=:username AND password=:password"
+        username = request.form.get("username").strip()
+        password = request.form.get("password").strip()
+        user = db.execute(
+            sqlUser,
+            {"username":username,"password":password}
+        )
+        rowUser = user.fetchone()
+        
+        if(rowUser is None):
+            session['username'] = username
+            return render_template("index.html", message="Login Error...Incorrect passward entered.. Please Try agin.")
+
+        setUserSession(rowUser)
+        app.logger.info('%s logged in successfully', rowUser.username)
+    except Exception as e :
+        print(str(e)) #TODO error log
+        # http://k-kuro.hatenadiary.jp/entry/20180119/p1
+        # https://www.hiramine.com/physicalcomputing/raspberrypi3/flask_debug.html
+        # http://flask.pocoo.org/docs/1.0/logging/
+        # https://codehandbook.org/writing-error-log-in-python-flask-web-application/
+        abort( 500, "Login Page" )
     
     return redirect(url_for("mypage"))
 

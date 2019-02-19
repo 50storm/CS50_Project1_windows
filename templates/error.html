@@ -1,17 +1,35 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>
-  error page
-  </title>
-</head>
-<body>
-<h1>
-  Error occured
-</h1>
-<p>
-{{message}}
-</p>
+{# https://www.python.ambitious-engineer.com/archives/760 #}
+{# index.html #}
+{% extends "layout.html" %}
+{% block heading %}
+Book Review Site
+{% endblock %}
+{% block userinfo  %}
+{% endblock %}
 
-</body>
-</html>
+{% block body %}
+<div class="row">
+  <div class="col-sm ">
+    <h2 class="alert-danger text-danger p-2 mb-2">Error Page</h2>
+  </div>
+</div>
+
+{# flash message  #}
+<div class="row">
+  <div class="col-sm">
+    {% with messages = get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="{{ category }}" role="alert">{{message}}</div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+  </div>
+</div>
+
+<div class="row">
+    <div class="form-group col-sm">
+      <div class="btn btn-outline-primary btn-lg "> <a href="{{ url_for('login') }}">Login Again</a> </div>
+    </div>
+</div>
+{% endblock %}
