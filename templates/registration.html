@@ -3,50 +3,85 @@
     Book Review Site
 {% endblock %}
 {% block body %}
+{% if mode is defined and mode == 0   %}
+{%    set btnText = "Confirm Input Data" %}
+{%    set action = url_for('registerUser') %}
+{%    set readonly = '' %}
+{%    set css='' %}
+{% elif mode is defined and mode == 1 %}
+{%    set btnText = "Register Your Account" %}
+{%    set action = url_for('insertUser') %}
+{%    set readonly = 'readonly'  %}
+{%    set css='bg-info' %}
+{% elif mode is defined and mode == 2 %}
+{%    set btnText = "Register Your Account" %}
+{%    set action = url_for('insertUser') %}
+{%    set readonly = 'readonly' %}
+{%    set css='bg-info' %}
+{% elif mode is defined and mode == 3 %}
+{%    set action = '' %}
+{%    set readonly = 'readonly' %}
+{%    set css='bg-info' %}
+{% endif %}
+<p>mode={{mode}}</p>
       <div class="row">
         <div class="col-sm ">
-          <h2 class="bg-primary text-white p-2 mb-2">Registration form</h2>
+          <h2 class="bg-primary text-white p-2 mb-2"  >Registration form</h2>
         </div>
       </div>
       <!-- </div> -->
+      {# flash message  #}
       <div class="row">
-        <div class="col-sm">
-          {% with messages = get_flashed_messages(with_categories=True) %}
-          {% if messages %}
-          <ul class=flashes>
-            {% for category, message in messages %}
-            <li class="{{ category }}">{{ message }}</li>
-            {% endfor %}
-          </ul>
-          {% endif %}
-          {% endwith %}
-        </div>
+          <div class="col-sm">
+             {% with messages = get_flashed_messages(with_categories=True) %}
+               {% if messages %}
+                 {% for category, message in messages %}
+                   <div class="{{ category }}" role="alert">{{message}}</div>
+                 {% endfor %}
+               {% endif %}
+             {% endwith %}
+          </div>
       </div>
+      {% if mode is defined and mode == 3 %}
+      <div class="alert alert-primary" role="alert">Now Login Your Page - Click Here >>
+        <div class="btn btn-outline-primary">
+                <a href="{{ url_for('login') }}"  >Login Page</a>
+        </div>
+     </div>
+     {% endif %}
       <div class="row">
       <div class="col-sm">
-          <form action="{{ url_for('register') }}" method="post">
+          <form action="{{ action }}" method="post">
             <div class="form-group ">
                 <label for="username" >Username</label>
-                <input type="text" class="h-100 w-100 p-3" id="username" name="username" placeholder="" value="{{ session['username'] }}" >
+                <input type="text" class="h-100 w-100 p-3 {{ css }} " id="username" name="username" placeholder="" value="{{ userdata['username'] }}" {{ readonly }} >
             </div>
             <div class="form-group ">
                 <label for="firstname" >Firstname</label>
-                <input type="text" class="h-100 w-100 p-3"  name="firstname" placeholder="" value="{{ session['firstname'] }}" >
+                <input type="text" class="h-100 w-100 p-3 {{ css }} "  name="firstname" placeholder="" value="{{ userdata['firstname'] }}" {{ readonly }} >
             </div>
             <div class="form-group ">
                 <label for="lastname" >Lastname</label>
-                <input type="text" class="h-100 w-100 p-3"  name="lastname" placeholder="" value="{{ session['lastname'] }}" >
+                <input type="text" class="h-100 w-100 p-3 {{ css }} "  name="lastname" placeholder="" value="{{ userdata['lastname'] }}" {{ readonly }} >
             </div>
             <div class="form-group ">
                 <label for="password" >Password</label>
-                <input type="password" class="h-100 w-100 p-3" name="password" placeholder="" value="{{ session['password'] }}" >
+                <input type="password" class="h-100F w-100 p-3 {{ css }} " name="password" placeholder="" value="{{ userdata['password'] }}" {{ readonly }} >
             </div>
             <div class="form-group ">
                 <label for="password2" >Confirm Password</label>
-                <input type="password" class="h-100 w-100 p-3"  name="confirmPassword" placeholder="same password Here">
+                {% if mode is defined and mode == 0   %}
+                <input type="password" class="h-100 w-100 p-3 {{ css }} "  name="confirmPassword" placeholder="same password Here">
+                {% else %}
+                <input type="password" class="h-100 w-100 p-3 {{ css }} "  name="confirmPassword" placeholder="same password Here" value="{{ userdata['password'] }}" {{ readonly }}  >
+                {% endif %}
             </div>
             <div class="form-group ">
-                <input type="submit" class="btn btn-outline-primary" value="Register" >
+                {% if mode is defined and mode == 3 %}
+                {% else %}
+                    <input type="submit" class="btn btn-outline-primary" value="{{ btnText }}" >
+                {% endif %}
+                
             </div>
           </form>
         </div>

@@ -113,7 +113,7 @@ def find_my_book_review(isbn, user_id):
     #None or Dictionary  dic["rate"]
     sql_my_book_review = "SELECT u.username as username, br.rate as rate, br.comment as comment, br.isbn as isbn FROM bookreviews br "
     sql_my_book_review += "INNER JOIN users u ON br.user_id = u.user_id  "
-    sql_my_book_review +=  " WHERE isbn=:isbn AND user_id = :user_id"
+    sql_my_book_review +=  " WHERE br.isbn=:isbn AND u.user_id = :user_id"
     mybookreview = db.execute(
             sql_my_book_review,
             {"isbn":isbn,"user_id":user_id}
@@ -256,31 +256,27 @@ def validate_login():
     
     return redirect(url_for("mypage"))
 
-@app.route("/register", methods=["GET","POST"])
-def register():
+@app.route("/registerUser", methods=["GET","POST"])
+def registerUser():
     if request.method == "POST":
-        session['username']  = username = request.form.get("username").strip()
-        session['firstname'] = firstname = request.form.get("firstname").strip()
-        session['lastname']  = lastname = request.form.get("lastname").strip()
-        session['password']  = password = request.form.get("password").strip()
         confirmPassword = request.form.get("confirmPassword").strip()
+        userdata = setUserViewData("", 
+                        request.form.get("username").strip(), 
+                        request.form.get("firstname").strip(),
+                        request.form.get("lastname").strip(),
+                        request.form.get("password").strip())
+        # setUserSession(userdata)
 
-        resultCheckUserName = checkUserName(username)
-        resultCheckPassword = checkPassword(password, confirmPassword, username)
+        resultCheckUserName = checkUserName(userdata['username'])
+        resultCheckPassword = checkPassword(userdata['password'], confirmPassword, userdata['username'])
         print(resultCheckUserName)
         print(resultCheckPassword)
         if(resultCheckUserName[0] and resultCheckPassword[0]):
-            insertSQL ="INSERT INTO users (username, firstname, lastname, password, created_at )VALUES (:username, :firstname, :lastname, :password, current_timestamp)"
-            params    = {"username":username, "firstname":firstname, "lastname":lastname, "password":password}
-            resultInsert = db.execute(insertSQL, params)
-            db.commit()
-            print(resultInsert)
-            session.pop("username", None)
-            session.pop("firstname", None)
-            session.pop("lastname", None)
-            session.pop("password", None)
 
-            return render_template("success.html")
+            # return render_template("success.html")
+            print("======userdata========")
+            print(userdata)
+            return render_template("registration.html", userdata=userdata, mode=1)
         else:
             #invalid inputs
             # messages=[1]
@@ -295,10 +291,37 @@ def register():
                 messages[1] = resultCheckPassword[1]
                 category[1] = 'text-danger '
                 flash(messages[1], category[1])
-            return render_template("registration.html")
+            return render_template("registration.html", userdata=userdata, mode=0)
 
     #GET
-    return render_template("registration.html")
+    return render_template("registration.html",userdata=setUserViewData("","","","",""),mode=0)
+
+@app.route("/confirmUser", methods=["POST"])
+def confirmUser():
+    userdata = setUserViewData("", 
+                        request.form.get("username").strip(), 
+                        request.form.get("firstname").strip(),
+                        request.form.get("lastname").strip(),
+                        request.form.get("password").strip())
+    # setUserSession(userdata)
+    return render_template("registration.html", userdata=userdata, mode=2)
+
+@app.route("/insertUser", methods=["POST"])
+def insertUser():
+    userdata = setUserViewData("", 
+                        request.form.get("username").strip(), 
+                        request.form.get("firstname").strip(),
+                        request.form.get("lastname").strip(),
+                        request.form.get("password").strip())
+    print("====userdata===")
+    print(userdata)
+    insertSQL ="INSERT INTO users (username, firstname, lastname, password, created_at )VALUES (:username, :firstname, :lastname, :password, current_timestamp)"
+    params    = {"username":userdata['username'], "firstname":userdata['firstname'], "lastname":userdata['lastname'], "password":userdata['password']}
+    resultInsert = db.execute(insertSQL, params)
+    db.commit()
+    print("====registered====")
+    flash("Successfully Registed!＼(^o^)／ Thank you!", "alert alert-success")
+    return render_template("registration.html", userdata=userdata, mode=3)
 
 @app.route("/mypage", methods=["GET"])
 def mypage():
@@ -499,7 +522,6 @@ def writeBookReview():
         
         flash("Successfully Posted!＼(^o^)／ Thank you!", "alert alert-success")
         return render_template("register_submission.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment, is_confirmation=True, is_posted=True )
-
 
 @app.route("/confirmYourEntry", methods=["POST"])
 def confirmYourEntry():
