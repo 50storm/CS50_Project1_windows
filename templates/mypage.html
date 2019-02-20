@@ -68,7 +68,7 @@ Username:{{session['username']}}
         {% endif %}
         </td>
         <td  style="overflow:hidden;" >{{ my_book_review["comment"] | nl2br }}</td>
-        <td><a href="{{ url_for('searchBook') }}?isbn={{ my_book_review['isbn'] }}" >view</a></td>
+        <td><a class="badge badge-primary"  href="{{ url_for('searchBook') }}?isbn={{ my_book_review['isbn'] }}" >view</a></td>
 
     </tr>
     {% endfor %}
@@ -116,7 +116,7 @@ Username:{{session['username']}}
         {% endif %}
         </td>
         <td   style="overflow:hidden;"  >{{ recent_book_review["comment"] | nl2br }}</td>
-        <td><a href="{{ url_for('searchBook') }}?isbn={{ recent_book_review['isbn'] }}">view</a></td>
+        <td><a class="badge badge-primary" href="{{ url_for('searchBook') }}?isbn={{ recent_book_review['isbn'] }}">view</a></td>
     </tr>
     {% endfor %}
     </table>
