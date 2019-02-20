@@ -62,7 +62,6 @@ def isLoggedin():
     else:
         return True
 
-
 def checkPassword(password, confiromPassword, username, user_id=None, for_update=False):
     if(not for_update):
         if(len(password) < 7):
@@ -114,10 +113,7 @@ def find_my_book_review(isbn, user_id):
     sql_my_book_review = "SELECT u.username as username, br.rate as rate, br.comment as comment, br.isbn as isbn FROM bookreviews br "
     sql_my_book_review += "INNER JOIN users u ON br.user_id = u.user_id  "
     sql_my_book_review +=  " WHERE br.isbn=:isbn AND u.user_id = :user_id"
-    mybookreview = db.execute(
-            sql_my_book_review,
-            {"isbn":isbn,"user_id":user_id}
-    )
+    mybookreview = db.execute( sql_my_book_review, {"isbn":isbn,"user_id":user_id} )
     row_mybookreview = mybookreview.fetchone() #only one record
     if(row_mybookreview is None) :
         return None
@@ -129,10 +125,7 @@ def find_my_book_reviews(user_id):
     sql_my_book_reviews +=  " INNER JOIN users u ON br.user_id = u.user_id  "
     sql_my_book_reviews +=  " INNER JOIN books b ON b.isbn = br.isbn  "
     sql_my_book_reviews +=  " WHERE u.user_id = :user_id"
-    mybookreview = db.execute(
-            sql_my_book_reviews,
-            { "user_id":user_id }
-    )
+    mybookreview = db.execute( sql_my_book_reviews, { "user_id":user_id } )
     return mybookreview.fetchall()
     
 def find_recent_book_reviews():
@@ -258,169 +251,204 @@ def validate_login():
 
 @app.route("/registerUser", methods=["GET","POST"])
 def registerUser():
-    if request.method == "POST":
-        confirmPassword = request.form.get("confirmPassword").strip()
-        userdata = setUserViewData("", 
-                        request.form.get("username").strip(), 
-                        request.form.get("firstname").strip(),
-                        request.form.get("lastname").strip(),
-                        request.form.get("password").strip())
-        # setUserSession(userdata)
+    try:
+        if request.method == "POST":
+            confirmPassword = request.form.get("confirmPassword").strip()
+            userdata = setUserViewData("", 
+                            request.form.get("username").strip(), 
+                            request.form.get("firstname").strip(),
+                            request.form.get("lastname").strip(),
+                            request.form.get("password").strip())
 
-        resultCheckUserName = checkUserName(userdata['username'])
-        resultCheckPassword = checkPassword(userdata['password'], confirmPassword, userdata['username'])
-        print(resultCheckUserName)
-        print(resultCheckPassword)
-        if(resultCheckUserName[0] and resultCheckPassword[0]):
-
-            # return render_template("success.html")
-            print("======userdata========")
-            print(userdata)
-            return render_template("registration.html", userdata=userdata, mode=1)
-        else:
-            #invalid inputs
-            # messages=[1]
-            messages=["",""] #String Message
-            category=["",""] #CSS Class
-            if( resultCheckUserName[0] == False ):
-                #http://flask.pocoo.org/docs/1.0/patterns/flashing/
-                messages[0] = resultCheckUserName[1]
-                category[0] = 'text-danger'
-                flash(messages[0], category[0])
-            if( resultCheckPassword[0]  == False ):
-                messages[1] = resultCheckPassword[1]
-                category[1] = 'text-danger '
-                flash(messages[1], category[1])
-            return render_template("registration.html", userdata=userdata, mode=0)
-
-    #GET
-    return render_template("registration.html",userdata=setUserViewData("","","","",""),mode=0)
-
+            resultCheckUserName = checkUserName(userdata['username'])
+            resultCheckPassword = checkPassword(userdata['password'], confirmPassword, userdata['username'])
+            print(resultCheckUserName)
+            print(resultCheckPassword)
+            if(resultCheckUserName[0] and resultCheckPassword[0]):
+                print("======userdata========")
+                print(userdata)
+                return render_template("registration.html", userdata=userdata, mode=1)
+            else:
+                #invalid inputs
+                # messages=[1]
+                messages=["",""] #String Message
+                category=["",""] #CSS Class
+                if( resultCheckUserName[0] == False ):
+                    #http://flask.pocoo.org/docs/1.0/patterns/flashing/
+                    messages[0] = resultCheckUserName[1]
+                    category[0] = 'text-danger'
+                    flash(messages[0], category[0])
+                if( resultCheckPassword[0]  == False ):
+                    messages[1] = resultCheckPassword[1]
+                    category[1] = 'text-danger '
+                    flash(messages[1], category[1])
+                return render_template("registration.html", userdata=userdata, mode=0)
+        else:  # GET
+            return render_template("registration.html",userdata=setUserViewData("","","","",""),mode=0)
+    except Exception as e :
+         print(str(e)) #TODO error log
+         abort( 500, "registerUser" )
+     
 @app.route("/confirmUser", methods=["POST"])
 def confirmUser():
-    userdata = setUserViewData("", 
-                        request.form.get("username").strip(), 
-                        request.form.get("firstname").strip(),
-                        request.form.get("lastname").strip(),
-                        request.form.get("password").strip())
-    # setUserSession(userdata)
-    return render_template("registration.html", userdata=userdata, mode=2)
-
+    try:
+        userdata = setUserViewData("", 
+                            request.form.get("username").strip(), 
+                            request.form.get("firstname").strip(),
+                            request.form.get("lastname").strip(),
+                            request.form.get("password").strip())
+        return render_template("registration.html", userdata=userdata, mode=2)
+    except Exception as e :
+         print(str(e)) #TODO error log
+         abort(500, "confirmUser")
+    
 @app.route("/insertUser", methods=["POST"])
 def insertUser():
-    userdata = setUserViewData("", 
-                        request.form.get("username").strip(), 
-                        request.form.get("firstname").strip(),
-                        request.form.get("lastname").strip(),
-                        request.form.get("password").strip())
-    print("====userdata===")
-    print(userdata)
-    insertSQL ="INSERT INTO users (username, firstname, lastname, password, created_at )VALUES (:username, :firstname, :lastname, :password, current_timestamp)"
-    params    = {"username":userdata['username'], "firstname":userdata['firstname'], "lastname":userdata['lastname'], "password":userdata['password']}
-    resultInsert = db.execute(insertSQL, params)
-    db.commit()
-    print("====registered====")
-    flash("Successfully Registed!＼(^o^)／ Thank you!", "alert alert-success")
-    return render_template("registration.html", userdata=userdata, mode=3)
+    try:
+        userdata = setUserViewData("", 
+                            request.form.get("username").strip(), 
+                            request.form.get("firstname").strip(),
+                            request.form.get("lastname").strip(),
+                            request.form.get("password").strip())
+        print("====userdata===")
+        print(userdata)
+        insertSQL ="INSERT INTO users (username, firstname, lastname, password, created_at )VALUES (:username, :firstname, :lastname, :password, current_timestamp)"
+        params    = {"username":userdata['username'], "firstname":userdata['firstname'], "lastname":userdata['lastname'], "password":userdata['password']}
+        resultInsert = db.execute(insertSQL, params)
+        db.commit()
+        print("====registered====")
+        flash("Successfully Registed!＼(^o^)／ Thank you!", "alert alert-success")
+        return render_template("registration.html", userdata=userdata, mode=3)
+    except Exception as e:
+         print(str(e))  # TODO error log
+         abort(500, "confirmUser")
 
 @app.route("/mypage", methods=["GET"])
 def mypage():
-    #GET ONLY
-    if(not isLoggedin):
-        return redirect(url_for("error"))
+    try:
+        #GET ONLY
+        if(not isLoggedin):
+            return redirect(url_for("error"))
 
-    recent_book_reviews = find_recent_book_reviews()
-    my_book_reviews = find_my_book_reviews(session.get("user_id"))
-    print(my_book_reviews)
-    return render_template("mypage.html", username=session.get("username") , recent_book_reviews=recent_book_reviews, my_book_reviews=my_book_reviews)
+        recent_book_reviews = find_recent_book_reviews()
+        my_book_reviews = find_my_book_reviews(session.get("user_id"))
+        print(my_book_reviews)
+        return render_template("mypage.html", username=session.get("username") , recent_book_reviews=recent_book_reviews, my_book_reviews=my_book_reviews)
+    except Exception as e:
+         print(str(e))  # TODO error log
+         abort(500, "confirmUser")
 
 @app.route("/showUserAccount", methods=["GET"])
 def showUserAccount():
-    #GET ONLY
-    if(not isLoggedin):
-        #TODO:Error Message by flashing
-        return redirect(url_for("error"))
-    userdata = setUserViewData(session['user_id'], session['username'], session['firstname'], session['lastname'], session['password'])
-    print(userdata)
-    return render_template("user_account.html", userdata=userdata, mode=0)
+    try:
+        #GET ONLY
+        if(not isLoggedin):
+            #TODO:Error Message by flashing
+            return redirect(url_for("error"))
+        userdata = setUserViewData(session['user_id'], session['username'], session['firstname'], session['lastname'], session['password'])
+        print(userdata)
+        return render_template("user_account.html", userdata=userdata, mode=0)
+    except Exception as e:
+         print(str(e))  # TODO error log
+         abort(500, "confirmUser")
 
 @app.route("/editUserAccount", methods=["GET"])
 def editUserAccount():
-    if(not isLoggedin):
-        #TODO:Error Message by flashing
-        return redirect(url_for("error"))
-    userdata = setUserViewData(session['user_id'], session['username'],session['firstname'], session['lastname'], session['password'])
-    return render_template("user_account.html", userdata=userdata, mode=1)
+    try:
+        if(not isLoggedin):
+            #TODO:Error Message by flashing
+            return redirect(url_for("error"))
+        userdata = setUserViewData(session['user_id'], session['username'],session['firstname'], session['lastname'], session['password'])
+        return render_template("user_account.html", userdata=userdata, mode=1)
+    except Exception as e:
+         print(str(e))  # TODO error log
+         abort(500, "confirmUser")
 
 @app.route("/updateUserAccount", methods=["POST"])
 def updateUserAccount():
-    if(not isLoggedin):
-        #TODO:Error Message by flashing
-        return redirect(url_for("error"))
-    userdata = setUserViewData(session['user_id'],
-                               request.form.get("username").strip(),
-                               request.form.get("firstname").strip(), 
-                               request.form.get("lastname").strip(),
-                               request.form.get("password").strip())
-    updateSQL ="UPDATE  users SET username=:username, firstname=:firstname, lastname=:lastname, created_at=current_timestamp "
-    updateSQL += "WHERE user_id = :user_id "
-    params = {"user_id":session['user_id'], "username": userdata['username'], "firstname": userdata['firstname'], "lastname": userdata['lastname'] }
-    resultInsert = db.execute(updateSQL, params)
-    db.commit()
-    setUserSession(userdata)
-    flash("Successfully Updated!＼(^o^)／ Thank you!", "alert alert-success")
-    return render_template("user_account.html", userdata=userdata, mode=3)
-
-@app.route("/confirmUserAccount", methods=["POST"])
-def confirmUserAccount():
-    if(not isLoggedin):
-        #TODO:Error Message by flashing
-        return redirect(url_for("error"))
-    if request.method == "POST":
+    try:
+        if(not isLoggedin):
+            #TODO:Error Message by flashing
+            return redirect(url_for("error"))
         userdata = setUserViewData(session['user_id'],
                                    request.form.get("username").strip(),
                                    request.form.get("firstname").strip(), 
                                    request.form.get("lastname").strip(),
-                                   request.form.get("password").strip()
-                                   )
-        print("===========userdata==============")
-        print(userdata)
+                                   request.form.get("password").strip())
+        updateSQL ="UPDATE  users SET username=:username, firstname=:firstname, lastname=:lastname, created_at=current_timestamp "
+        updateSQL += "WHERE user_id = :user_id "
+        params = {"user_id":session['user_id'], "username": userdata['username'], "firstname": userdata['firstname'], "lastname": userdata['lastname'] }
+        resultInsert = db.execute(updateSQL, params)
+        db.commit()
+        setUserSession(userdata)
+        flash("Successfully Updated!＼(^o^)／ Thank you!", "alert alert-success")
+        return render_template("user_account.html", userdata=userdata, mode=3)
+    except Exception as e:
+         print(str(e))  # TODO error log
+         abort(500, "confirmUser")
 
-        resultCheckUserName = checkUserName(userdata['username'], session['user_id'], True)
-        resultCheckPassword = checkPassword( userdata['password'], None, None, session['user_id'],True)
+@app.route("/confirmUserAccount", methods=["POST"])
+def confirmUserAccount():
+    try:
+        if(not isLoggedin):
+            #TODO:Error Message by flashing
+            return redirect(url_for("error"))
+        if request.method == "POST":
+            userdata = setUserViewData(session['user_id'],
+                                       request.form.get("username").strip(),
+                                       request.form.get("firstname").strip(), 
+                                       request.form.get("lastname").strip(),
+                                       request.form.get("password").strip()
+                                       )
+            print("===========userdata==============")
+            print(userdata)
+    
+            resultCheckUserName = checkUserName(userdata['username'], session['user_id'], True)
+            resultCheckPassword = checkPassword( userdata['password'], None, None, session['user_id'],True)
+    
+            if(resultCheckUserName[0] and resultCheckPassword[0]):
+                return render_template("user_account.html", userdata=userdata, mode=2)
+            else:  # invalid data
+                messages=["",""] #String Message
+                category=["",""] #CSS Class
+                if( resultCheckUserName[0] == False ):
+                    #http://flask.pocoo.org/docs/1.0/patterns/flashing/
+                    messages[0] = resultCheckUserName[1]
+                    category[0] = 'text-danger alert alert-danger'
+                    flash(messages[0], category[0])
+                if( resultCheckPassword[0]  == False ):
+                    messages[1] = resultCheckPassword[1]
+                    category[1] = 'text-danger alert alert-danger'
+                    flash(messages[1], category[1])
+                return render_template("user_account.html", userdata=userdata, mode=1)
+    except Exception as e:
+         print(str(e))  # TODO error log
+         abort(500, "confirmUser")
 
-        if(resultCheckUserName[0] and resultCheckPassword[0]):
-            return render_template("user_account.html", userdata=userdata, mode=2)
-        else:  # invalid data
-            messages=["",""] #String Message
-            category=["",""] #CSS Class
-            if( resultCheckUserName[0] == False ):
-                #http://flask.pocoo.org/docs/1.0/patterns/flashing/
-                messages[0] = resultCheckUserName[1]
-                category[0] = 'text-danger alert alert-danger'
-                flash(messages[0], category[0])
-            if( resultCheckPassword[0]  == False ):
-                messages[1] = resultCheckPassword[1]
-                category[1] = 'text-danger alert alert-danger'
-                flash(messages[1], category[1])
-            return render_template("user_account.html", userdata=userdata, mode=1)
-                
 @app.route("/logout", methods=["POST"])
 def logout():
-    if request.method == "POST":
+    try:
         unsetUserSession()
         return render_template("logout.html")
+    except Exception as e:
+        print(str(e))  # TODO error log
+        abort(500, "logout")
+
 @app.route("/search", methods=["GET"])
 def search():
-    #GET ONLY
-    recent_book_reviews = find_recent_book_reviews()
-    my_book_reviews = find_my_book_reviews(session.get("user_id"))
-    print(my_book_reviews)
-    return render_template("search.html", username=session.get("username") , recent_book_reviews=recent_book_reviews, my_book_reviews=my_book_reviews)
+    try:
+        #GET ONLY
+        recent_book_reviews = find_recent_book_reviews()
+        my_book_reviews = find_my_book_reviews(session.get("user_id"))
+        print(my_book_reviews)
+        return render_template("search.html", username=session.get("username") , recent_book_reviews=recent_book_reviews, my_book_reviews=my_book_reviews)
+    except Exception as e:
+        print(str(e))  # TODO error log
+        abort(500, "search")
 
 @app.route("/searchBooks", methods=["GET"])
 def searchBooks():
-
+    try:
         booktitle  = '%' + request.args.get("booktitle").strip() + '%'
         isbn       = '%' + request.args.get("isbn").strip() + '%'
         authorname = '%' + request.args.get("authorname").strip() + '%'
@@ -483,11 +511,14 @@ def searchBooks():
         books = db.execute(queryBook,sqlparameters)
         booklist = books.fetchall()
         return render_template("booklist.html", books= booklist)
+    except Exception as e:
+        print(str(e))  # TODO error log
+        abort(500, "searchBooks")
 
 
-@app.route("/searchBook", methods=["GET","POST"])
+@app.route("/searchBook", methods=["GET"])
 def searchBook():
-    if request.method == "GET":
+    try:
         isbn   = request.args.get("isbn","")
         user_id =  session.get("user_id")
         bookinfo = find_book_by_isbn(isbn)
@@ -496,17 +527,24 @@ def searchBook():
         bookreviews = find_book_reviews(isbn)
 
         return render_template("bookdetail.html", bookinfo=bookinfo, bookreviews=bookreviews, mybookreview=mybookreview )
+    except Exception as e:
+        print(str(e))  # TODO error log
+        abort(500, "searchBook")
+
 
 @app.route("/registerSubmission", methods=["GET"])
 def registerSubmission():
-    if request.method == "GET":
+    try:
         isbn   = request.args.get("isbn","")
         bookinfo = find_book_by_isbn(isbn)
         return render_template("register_submission.html", bookinfo=bookinfo )
+    except Exception as e:
+        print(str(e))  # TODO error log
+        abort(500, "registerSubmission")
         
 @app.route("/writeBookReview", methods=["POST"])
 def writeBookReview():
-    if request.method == "POST":
+    try:
         rate    = request.form.get("rate").strip()
         comment = request.form.get("comment").strip()
         user_id = session.get("user_id")
@@ -522,10 +560,13 @@ def writeBookReview():
         
         flash("Successfully Posted!＼(^o^)／ Thank you!", "alert alert-success")
         return render_template("register_submission.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment, is_confirmation=True, is_posted=True )
+    except Exception as e:
+        print(str(e))  # TODO error log
+        abort(500, "writeBookReview")
 
 @app.route("/confirmYourEntry", methods=["POST"])
 def confirmYourEntry():
-    if request.method == "POST":
+    try:
         rate    = request.form.get("rate").strip()
         comment = request.form.get("comment").strip()
         user_id = session.get("user_id")
@@ -538,19 +579,25 @@ def confirmYourEntry():
             return render_template("register_submission.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment,  is_confirmation=False )
         return render_template("register_submission.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment,  is_confirmation=True )
 
+    except Exception as e:
+        print(str(e))  # TODO error log
+        abort(500, "confirmYourEntry")
 
 @app.route("/editSubmission", methods=["GET"])
 def editSubmission():
-    if request.method == "GET":
+    try:
         user_id = session.get("user_id")
         isbn   = request.args.get("isbn","")
         mybookreview = find_my_book_review(isbn, user_id)
         bookinfo = find_book_by_isbn(isbn)
         return render_template("edit_submission.html", bookinfo=bookinfo, mybookreview=mybookreview )
-             
+    except Exception as e:
+        print(str(e))  # TODO error log
+        abort(500, "editSubmission")
+
 @app.route("/confirmEditEntry", methods=["POST"])
 def confirmEditEntry():
-    if request.method == "POST":
+    try:
         rate    = request.form.get("rate").strip()
         comment = request.form.get("comment").strip()
         isbn    = request.form.get("isbn")
@@ -559,10 +606,13 @@ def confirmEditEntry():
             flash('Your review is empty!! Please write your review', 'alert alert-danger')
             return render_template("edit_submission.html", bookinfo=bookinfo, mybookreview=None, rate=rate, comment=comment,  is_confirmation=False )
         return render_template("edit_submission.html", bookinfo=bookinfo, mybookreview=None, rate=rate, comment=comment,  is_confirmation=True )
-        
+    except Exception as e:
+        print(str(e))  # TODO error log
+        abort(500, "confirmYourEntry")
+
 @app.route("/updateBookReview", methods=["POST"])
 def updateBookReview():
-    if request.method == "POST":
+    try:
         rate = request.form.get("rate").strip()
         comment = request.form.get("comment").strip()
         user_id = session.get("user_id")
@@ -579,10 +629,13 @@ def updateBookReview():
         bookinfo = find_book_by_isbn(isbn)
         flash("Successfully Updated!＼(^o^)／ Thank you!", "alert alert-success")
         return render_template("edit_submission.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment, is_confirmation=True, is_posted=True )
-        
+    except Exception as e:
+        print(str(e))  # TODO error log
+        abort(500, "updateBookReview")
+
 @app.route("/deleteBookReview", methods=["POST"])
 def deleteBookReview():
-    if request.method == "POST":
+    try:
         user_id = session.get("user_id")
         isbn    = request.form.get("isbn")
 
@@ -595,6 +648,9 @@ def deleteBookReview():
         
         flash("Successfully Deleted!＼(^o^)／ Thank you!", "alert alert-success")
         return render_template("delete_submission.html", bookinfo=bookinfo, mybookreview=None )
+    except Exception as e:
+        print(str(e))  # TODO error log
+        abort(500, "deleteBookReview")
 
 #TODO
 @app.route("/getsession")
