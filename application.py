@@ -56,6 +56,8 @@ def nl2br(eval_ctx, value):
     return result
 
 def isLoggedin():
+    app.logger.debug('=====isLoggedin====')
+    app.logger.debug(session.get('user_id'))
     if( session.get('user_id') == "" ) :
         print("session expired.")
         return False
@@ -438,6 +440,8 @@ def logout():
 def search():
     try:
         #GET ONLY
+        if(not isLoggedin):
+            return redirect(url_for("error"))
         recent_book_reviews = find_recent_book_reviews()
         my_book_reviews = find_my_book_reviews(session.get("user_id"))
         print(my_book_reviews)
@@ -449,6 +453,8 @@ def search():
 @app.route("/searchBooks", methods=["GET"])
 def searchBooks():
     try:
+        if(not isLoggedin):
+            return redirect(url_for("error"))
         booktitle  = '%' + request.args.get("booktitle").strip() + '%'
         isbn       = '%' + request.args.get("isbn").strip() + '%'
         authorname = '%' + request.args.get("authorname").strip() + '%'
@@ -519,6 +525,8 @@ def searchBooks():
 @app.route("/searchBook", methods=["GET"])
 def searchBook():
     try:
+        if(not isLoggedin):
+            return redirect(url_for("error"))
         isbn   = request.args.get("isbn","")
         user_id =  session.get("user_id")
         bookinfo = find_book_by_isbn(isbn)
@@ -535,6 +543,8 @@ def searchBook():
 @app.route("/registerSubmission", methods=["GET"])
 def registerSubmission():
     try:
+        if(not isLoggedin):
+            return redirect(url_for("error"))
         isbn   = request.args.get("isbn","")
         bookinfo = find_book_by_isbn(isbn)
         return render_template("register_submission.html", bookinfo=bookinfo )
@@ -545,6 +555,8 @@ def registerSubmission():
 @app.route("/writeBookReview", methods=["POST"])
 def writeBookReview():
     try:
+        if(not isLoggedin):
+            return redirect(url_for("error"))
         rate    = request.form.get("rate").strip()
         comment = request.form.get("comment").strip()
         user_id = session.get("user_id")
@@ -567,6 +579,8 @@ def writeBookReview():
 @app.route("/confirmYourEntry", methods=["POST"])
 def confirmYourEntry():
     try:
+        if(not isLoggedin):
+            return redirect(url_for("error"))
         rate    = request.form.get("rate").strip()
         comment = request.form.get("comment").strip()
         user_id = session.get("user_id")
@@ -586,6 +600,8 @@ def confirmYourEntry():
 @app.route("/editSubmission", methods=["GET"])
 def editSubmission():
     try:
+        if(not isLoggedin):
+            return redirect(url_for("error"))
         user_id = session.get("user_id")
         isbn   = request.args.get("isbn","")
         mybookreview = find_my_book_review(isbn, user_id)
@@ -598,6 +614,8 @@ def editSubmission():
 @app.route("/confirmEditEntry", methods=["POST"])
 def confirmEditEntry():
     try:
+        if(not isLoggedin):
+            return redirect(url_for("error"))
         rate    = request.form.get("rate").strip()
         comment = request.form.get("comment").strip()
         isbn    = request.form.get("isbn")
@@ -613,6 +631,8 @@ def confirmEditEntry():
 @app.route("/updateBookReview", methods=["POST"])
 def updateBookReview():
     try:
+        if(not isLoggedin):
+            return redirect(url_for("error"))
         rate = request.form.get("rate").strip()
         comment = request.form.get("comment").strip()
         user_id = session.get("user_id")
@@ -636,6 +656,8 @@ def updateBookReview():
 @app.route("/deleteBookReview", methods=["POST"])
 def deleteBookReview():
     try:
+        if(not isLoggedin):
+            return redirect(url_for("error"))
         user_id = session.get("user_id")
         isbn    = request.form.get("isbn")
 
@@ -651,16 +673,6 @@ def deleteBookReview():
     except Exception as e:
         print(str(e))  # TODO error log
         abort(500, "deleteBookReview")
-
-#TODO
-@app.route("/getsession")
-def getsession():
-    session.pop("username", None)
-
-    if 'username' in session:
-        return session.get("username")
-    return "Not Login"
-
 
 @app.route("/error")
 def error():
