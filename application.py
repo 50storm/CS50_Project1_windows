@@ -1,12 +1,12 @@
-import os
+import os, datetime, sys, re, logging
 
-from flask import Flask, session, render_template, request, Response, flash, redirect, jsonify, url_for, abort
+from flask import Flask, session, render_template, request, Response, flash, redirect, jsonify, url_for, abort, Blueprint
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
-import datetime, sys, re
 from jinja2 import evalcontextfilter, Markup, escape
 from flask_sqlalchemy import SQLAlchemy 
+from logging.handlers import RotatingFileHandler
 
 
 app = Flask(__name__)
@@ -36,7 +36,7 @@ db = scoped_session(sessionmaker(bind=engine))
 
 @app.errorhandler(500)
 def internal_error(e):
-    print(e)
+    app.logger.debug(e)
     flash("Sorry Error occured.." , "alert alert-danger")
     flash(str(e), "alert alert-danger")
     return render_template("error.html"), 500
@@ -46,8 +46,8 @@ def internal_error(e):
 def nl2br(eval_ctx, value):
     _paragraph_re = re.compile(r'(?:\r\n|\r|\n){2,}')
 
-    # print(eval_ctx)
-    print(value)
+    # app.logger.debug(eval_ctx)
+    app.logger.debug(value)
     # result = u'\n\n'.join(u'<p>%s</p>' % p.replace('\n', '<br>\n') for p in _paragraph_re.split(escape(value)))
     result = u'\n\n'.join(u'%s<br>' % p.replace('\n', '<br>') for p  in _paragraph_re.split(escape(value)))
  
@@ -57,7 +57,7 @@ def nl2br(eval_ctx, value):
 
 def isLoggedin():
     if( session.get('user_id') == "" ) :
-        print("session expired.")
+        app.logger.debug("session expired.")
         return False
     else:
         return True
@@ -138,7 +138,7 @@ def find_recent_book_reviews():
 
 def find_book_reviews( isbn=None, user_id=None  ):
     #List [] list[0][0]
-    print("==========find_book_reviews==========")
+    app.logger.debug("==========find_book_reviews==========")
     sql_paramters ={}
     sql_book_reiviews =  "SELECT br.created_at, u.username as username, br.rate as rate, br.comment as comment, br.isbn as isbn FROM bookreviews br "
     sql_book_reiviews += " INNER JOIN users u ON br.user_id = u.user_id  "
@@ -209,12 +209,14 @@ def api(isbn):
             book_info["year"] = row_book['year']
             book_info["isbn"] = row_book['isbn']
             book_info["review_count"] = row_book['review_count']
-            print(row_book['average_score'])
+            app.logger.debug(row_book['average_score'])
             book_info["average_score"] = round(float(row_book['average_score']),1)
             return jsonify(book_info)
 
-@app.route("/", methods=["GET"])
+#@app.route("/", methods=["GET"])
+@bp.route("/", methods=["GET"])
 def root():
+
     return render_template("index.html")
 
 @app.route("/login", methods=["GET"])
@@ -240,7 +242,7 @@ def validate_login():
         setUserSession(rowUser)
         app.logger.info('%s logged in successfully', rowUser.username)
     except Exception as e :
-        print(str(e)) #TODO error log
+        app.logger.error(str(e)) #TODO error log
         # http://k-kuro.hatenadiary.jp/entry/20180119/p1
         # https://www.hiramine.com/physicalcomputing/raspberrypi3/flask_debug.html
         # http://flask.pocoo.org/docs/1.0/logging/
@@ -262,11 +264,11 @@ def registerUser():
 
             resultCheckUserName = checkUserName(userdata['username'])
             resultCheckPassword = checkPassword(userdata['password'], confirmPassword, userdata['username'])
-            print(resultCheckUserName)
-            print(resultCheckPassword)
+            app.logger.debug(resultCheckUserName)
+            app.logger.debug(resultCheckPassword)
             if(resultCheckUserName[0] and resultCheckPassword[0]):
-                print("======userdata========")
-                print(userdata)
+                app.logger.debug("======userdata========")
+                app.logger.debug(userdata)
                 return render_template("registration.html", userdata=userdata, mode=1)
             else:
                 #invalid inputs
@@ -286,7 +288,7 @@ def registerUser():
         else:  # GET
             return render_template("registration.html",userdata=setUserViewData("","","","",""),mode=0)
     except Exception as e :
-         print(str(e)) #TODO error log
+         app.logger.error(str(e)) #TODO error log
          abort( 500, "registerUser" )
      
 @app.route("/confirmUser", methods=["POST"])
@@ -299,7 +301,7 @@ def confirmUser():
                             request.form.get("password").strip())
         return render_template("registration.html", userdata=userdata, mode=2)
     except Exception as e :
-         print(str(e)) #TODO error log
+         app.logger.error(str(e)) #TODO error log
          abort(500, "confirmUser")
     
 @app.route("/insertUser", methods=["POST"])
@@ -310,17 +312,17 @@ def insertUser():
                             request.form.get("firstname").strip(),
                             request.form.get("lastname").strip(),
                             request.form.get("password").strip())
-        print("====userdata===")
-        print(userdata)
+        app.logger.debug("====userdata===")
+        app.logger.debug(userdata)
         insertSQL ="INSERT INTO users (username, firstname, lastname, password, created_at )VALUES (:username, :firstname, :lastname, :password, current_timestamp)"
         params    = {"username":userdata['username'], "firstname":userdata['firstname'], "lastname":userdata['lastname'], "password":userdata['password']}
         resultInsert = db.execute(insertSQL, params)
         db.commit()
-        print("====registered====")
+        app.logger.debug("====registered====")
         flash("Successfully Registed!＼(^o^)／ Thank you!", "alert alert-success")
         return render_template("registration.html", userdata=userdata, mode=3)
     except Exception as e:
-         print(str(e))  # TODO error log
+         app.logger.error(str(e))  # TODO error log
          abort(500, "confirmUser")
 
 @app.route("/mypage", methods=["GET"])
@@ -332,10 +334,10 @@ def mypage():
 
         recent_book_reviews = find_recent_book_reviews()
         my_book_reviews = find_my_book_reviews(session.get("user_id"))
-        print(my_book_reviews)
+        app.logger.debug(my_book_reviews)
         return render_template("mypage.html", username=session.get("username") , recent_book_reviews=recent_book_reviews, my_book_reviews=my_book_reviews)
     except Exception as e:
-         print(str(e))  # TODO error log
+         app.logger.error(str(e))  # TODO error log
          abort(500, "confirmUser")
 
 @app.route("/showUserAccount", methods=["GET"])
@@ -346,10 +348,10 @@ def showUserAccount():
             #TODO:Error Message by flashing
             return redirect(url_for("error"))
         userdata = setUserViewData(session['user_id'], session['username'], session['firstname'], session['lastname'], session['password'])
-        print(userdata)
+        app.logger.debug(userdata)
         return render_template("user_account.html", userdata=userdata, mode=0)
     except Exception as e:
-         print(str(e))  # TODO error log
+         app.logger.error(str(e))  # TODO error log
          abort(500, "confirmUser")
 
 @app.route("/editUserAccount", methods=["GET"])
@@ -361,7 +363,7 @@ def editUserAccount():
         userdata = setUserViewData(session['user_id'], session['username'],session['firstname'], session['lastname'], session['password'])
         return render_template("user_account.html", userdata=userdata, mode=1)
     except Exception as e:
-         print(str(e))  # TODO error log
+         app.logger.error(str(e))  # TODO error log
          abort(500, "confirmUser")
 
 @app.route("/updateUserAccount", methods=["POST"])
@@ -384,7 +386,7 @@ def updateUserAccount():
         flash("Successfully Updated!＼(^o^)／ Thank you!", "alert alert-success")
         return render_template("user_account.html", userdata=userdata, mode=3)
     except Exception as e:
-         print(str(e))  # TODO error log
+         app.logger.error(str(e))  # TODO error log
          abort(500, "confirmUser")
 
 @app.route("/confirmUserAccount", methods=["POST"])
@@ -400,8 +402,8 @@ def confirmUserAccount():
                                        request.form.get("lastname").strip(),
                                        request.form.get("password").strip()
                                        )
-            print("===========userdata==============")
-            print(userdata)
+            app.logger.debug("===========userdata==============")
+            app.logger.debug(userdata)
     
             resultCheckUserName = checkUserName(userdata['username'], session['user_id'], True)
             resultCheckPassword = checkPassword( userdata['password'], None, None, session['user_id'],True)
@@ -422,7 +424,7 @@ def confirmUserAccount():
                     flash(messages[1], category[1])
                 return render_template("user_account.html", userdata=userdata, mode=1)
     except Exception as e:
-         print(str(e))  # TODO error log
+         app.logger.error(str(e))  # TODO error log
          abort(500, "confirmUser")
 
 @app.route("/logout", methods=["POST"])
@@ -431,7 +433,7 @@ def logout():
         unsetUserSession()
         return render_template("logout.html")
     except Exception as e:
-        print(str(e))  # TODO error log
+        app.logger.error(str(e))  # TODO error log
         abort(500, "logout")
 
 @app.route("/search", methods=["GET"])
@@ -440,10 +442,10 @@ def search():
         #GET ONLY
         recent_book_reviews = find_recent_book_reviews()
         my_book_reviews = find_my_book_reviews(session.get("user_id"))
-        print(my_book_reviews)
+        app.logger.debug(my_book_reviews)
         return render_template("search.html", username=session.get("username") , recent_book_reviews=recent_book_reviews, my_book_reviews=my_book_reviews)
     except Exception as e:
-        print(str(e))  # TODO error log
+        app.logger.error(str(e))  # TODO error log
         abort(500, "search")
 
 @app.route("/searchBooks", methods=["GET"])
@@ -454,7 +456,7 @@ def searchBooks():
         authorname = '%' + request.args.get("authorname").strip() + '%'
 
         if ( booktitle == "" and isbn == "" and authorname == "" ):
-            print("error")
+            app.logger.debug("error")
 
         queryBookBase = "SELECT * FROM books "
         queryBookWhere =""
@@ -500,19 +502,19 @@ def searchBooks():
             sqlparameters = {"author":authorname }
 
         else:
-            print("raise error")
+            app.logger.debug("raise error")
 
         queryBook = queryBookBase + queryBookWhere
-        print("====queryBook======")
-        print(queryBook)
-        print("====sqlparameters===")
-        print(sqlparameters)
+        app.logger.debug("====queryBook======")
+        app.logger.debug(queryBook)
+        app.logger.debug("====sqlparameters===")
+        app.logger.debug(sqlparameters)
 
         books = db.execute(queryBook,sqlparameters)
         booklist = books.fetchall()
         return render_template("booklist.html", books= booklist)
     except Exception as e:
-        print(str(e))  # TODO error log
+        app.logger.error(str(e))  # TODO error log
         abort(500, "searchBooks")
 
 
@@ -528,7 +530,7 @@ def searchBook():
 
         return render_template("bookdetail.html", bookinfo=bookinfo, bookreviews=bookreviews, mybookreview=mybookreview )
     except Exception as e:
-        print(str(e))  # TODO error log
+        app.logger.error(str(e))  # TODO error log
         abort(500, "searchBook")
 
 
@@ -539,7 +541,7 @@ def registerSubmission():
         bookinfo = find_book_by_isbn(isbn)
         return render_template("register_submission.html", bookinfo=bookinfo )
     except Exception as e:
-        print(str(e))  # TODO error log
+        app.logger.error(str(e))  # TODO error log
         abort(500, "registerSubmission")
         
 @app.route("/writeBookReview", methods=["POST"])
@@ -561,7 +563,7 @@ def writeBookReview():
         flash("Successfully Posted!＼(^o^)／ Thank you!", "alert alert-success")
         return render_template("register_submission.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment, is_confirmation=True, is_posted=True )
     except Exception as e:
-        print(str(e))  # TODO error log
+        app.logger.error(str(e))  # TODO error log
         abort(500, "writeBookReview")
 
 @app.route("/confirmYourEntry", methods=["POST"])
@@ -580,7 +582,7 @@ def confirmYourEntry():
         return render_template("register_submission.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment,  is_confirmation=True )
 
     except Exception as e:
-        print(str(e))  # TODO error log
+        app.logger.error(str(e))  # TODO error log
         abort(500, "confirmYourEntry")
 
 @app.route("/editSubmission", methods=["GET"])
@@ -592,7 +594,7 @@ def editSubmission():
         bookinfo = find_book_by_isbn(isbn)
         return render_template("edit_submission.html", bookinfo=bookinfo, mybookreview=mybookreview )
     except Exception as e:
-        print(str(e))  # TODO error log
+        app.logger.error(str(e))  # TODO error log
         abort(500, "editSubmission")
 
 @app.route("/confirmEditEntry", methods=["POST"])
@@ -607,7 +609,7 @@ def confirmEditEntry():
             return render_template("edit_submission.html", bookinfo=bookinfo, mybookreview=None, rate=rate, comment=comment,  is_confirmation=False )
         return render_template("edit_submission.html", bookinfo=bookinfo, mybookreview=None, rate=rate, comment=comment,  is_confirmation=True )
     except Exception as e:
-        print(str(e))  # TODO error log
+        app.logger.error(str(e))  # TODO error log
         abort(500, "confirmYourEntry")
 
 @app.route("/updateBookReview", methods=["POST"])
@@ -630,7 +632,7 @@ def updateBookReview():
         flash("Successfully Updated!＼(^o^)／ Thank you!", "alert alert-success")
         return render_template("edit_submission.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment, is_confirmation=True, is_posted=True )
     except Exception as e:
-        print(str(e))  # TODO error log
+        app.logger.error(str(e))  # TODO error log
         abort(500, "updateBookReview")
 
 @app.route("/deleteBookReview", methods=["POST"])
@@ -649,7 +651,7 @@ def deleteBookReview():
         flash("Successfully Deleted!＼(^o^)／ Thank you!", "alert alert-success")
         return render_template("delete_submission.html", bookinfo=bookinfo, mybookreview=None )
     except Exception as e:
-        print(str(e))  # TODO error log
+        app.logger.error(str(e))  # TODO error log
         abort(500, "deleteBookReview")
 
 #TODO
