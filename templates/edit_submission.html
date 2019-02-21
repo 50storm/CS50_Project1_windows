@@ -2,29 +2,21 @@
 {% block nav %}
 {% include "nav.tpl" %}
 {% endblock %}
-{% block userinfo  %}
+{% block body %}
 
 <script>
-  document.addEventListener("DOMContentLoaded", function(event) {
+  document.addEventListener("DOMContentLoaded", function (event) {
     let btn = document.querySelector('#deleteBtn');
-    btn.addEventListener('click',function(){
-        if(!confirm("Are you sure?")){
-            return;
-        }else
-        {
-            let deletionForm = document.querySelector("deleteionForm");
-            document.deletionForm.submit();
-        }
+    btn.addEventListener('click', function () {
+      if (!confirm("Are you sure?")) {
+        return;
+      } else {
+        let deletionForm = document.querySelector("deleteionForm");
+        document.deletionForm.submit();
+      }
     });
   });
 </script>
-
-<h2 class="bg-primary text-white p-2 mb-2"  >
-       Username:{{session['username']}}
-</h2>
-{% endblock %}
-
-{% block body %}
 
 {% if is_confirmation  %}
 {%     set header_message='Confirm Your Book Reviews' %}

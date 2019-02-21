@@ -2,14 +2,6 @@
 {% block nav %}
 {% include "nav.tpl" %}
 {% endblock %}
-{% block heading %}
-    Book Review Site
-{% endblock %}
-{% block userinfo  %}
-<h2 class="bg-primary text-white p-2 mb-2"  >
-       Username:{{session['username']}}
-</h2>
-{% endblock %}
 {% block body %}
 {% set header_message='' %}
 {% set url = '' %}
