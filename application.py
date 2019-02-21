@@ -33,6 +33,7 @@ db.init_app(app)
 engine = create_engine(os.getenv("DATABASE_URL"))
 db = scoped_session(sessionmaker(bind=engine))
 
+PREFIX="/bookreivew"
 
 @app.errorhandler(500)
 def internal_error(e):
@@ -184,7 +185,7 @@ def setUserViewData(user_id='', username='', firstname='', lastname='', passswor
     userdata['password'] = passsword
     return userdata
 
-@app.route("/api/<string:isbn>", methods=["GET"])
+@app.route(PREFIX + "/api/<string:isbn>", methods=["GET"])
 def api(isbn):
     book_info =  {
             "title": "",
@@ -217,13 +218,15 @@ def api(isbn):
 
 @app.route("/", methods=["GET"])
 def root():
-    return render_template("index.html")
+    return redirect(url_for("login"))
 
-@app.route("/login", methods=["GET"])
+
+@app.route(PREFIX + "/login", methods=["GET"])
 def login():
     return render_template("index.html")
 
-@app.route("/login", methods=["POST"])
+
+@app.route(PREFIX + "/login", methods=["POST"])
 def validate_login():
     try:
         sqlUser = "SELECT * FROM users WHERE username=:username AND password=:password"
@@ -251,7 +254,8 @@ def validate_login():
     
     return redirect(url_for("mypage"))
 
-@app.route("/registerUser", methods=["GET","POST"])
+
+@app.route(PREFIX + "/registerUser", methods=["GET", "POST"])
 def registerUser():
     try:
         if request.method == "POST":
@@ -291,7 +295,8 @@ def registerUser():
          print(str(e)) #TODO error log
          abort( 500, "registerUser" )
      
-@app.route("/confirmUser", methods=["POST"])
+
+@app.route(PREFIX + "/confirmUser", methods=["POST"])
 def confirmUser():
     try:
         userdata = setUserViewData("", 
@@ -304,7 +309,8 @@ def confirmUser():
          print(str(e)) #TODO error log
          abort(500, "confirmUser")
     
-@app.route("/insertUser", methods=["POST"])
+
+@app.route(PREFIX + "/insertUser", methods=["POST"])
 def insertUser():
     try:
         userdata = setUserViewData("", 
@@ -325,7 +331,8 @@ def insertUser():
          print(str(e))  # TODO error log
          abort(500, "confirmUser")
 
-@app.route("/mypage", methods=["GET"])
+
+@app.route(PREFIX + "/mypage", methods=["GET"])
 def mypage():
     try:
         #GET ONLY
@@ -340,7 +347,8 @@ def mypage():
          print(str(e))  # TODO error log
          abort(500, "confirmUser")
 
-@app.route("/showUserAccount", methods=["GET"])
+
+@app.route(PREFIX + "/showUserAccount", methods=["GET"])
 def showUserAccount():
     try:
         #GET ONLY
@@ -354,7 +362,8 @@ def showUserAccount():
          print(str(e))  # TODO error log
          abort(500, "confirmUser")
 
-@app.route("/editUserAccount", methods=["GET"])
+
+@app.route(PREFIX + "/editUserAccount", methods=["GET"])
 def editUserAccount():
     try:
         if(not isLoggedin):
@@ -366,7 +375,8 @@ def editUserAccount():
          print(str(e))  # TODO error log
          abort(500, "confirmUser")
 
-@app.route("/updateUserAccount", methods=["POST"])
+
+@app.route(PREFIX + "/updateUserAccount", methods=["POST"])
 def updateUserAccount():
     try:
         if(not isLoggedin):
@@ -389,7 +399,8 @@ def updateUserAccount():
          print(str(e))  # TODO error log
          abort(500, "confirmUser")
 
-@app.route("/confirmUserAccount", methods=["POST"])
+
+@app.route(PREFIX + "/confirmUserAccount", methods=["POST"])
 def confirmUserAccount():
     try:
         if(not isLoggedin):
@@ -427,7 +438,8 @@ def confirmUserAccount():
          print(str(e))  # TODO error log
          abort(500, "confirmUser")
 
-@app.route("/logout", methods=["POST"])
+
+@app.route(PREFIX + "/logout", methods=["POST"])
 def logout():
     try:
         unsetUserSession()
@@ -436,7 +448,8 @@ def logout():
         print(str(e))  # TODO error log
         abort(500, "logout")
 
-@app.route("/search", methods=["GET"])
+
+@app.route(PREFIX + "/search", methods=["GET"])
 def search():
     try:
         #GET ONLY
@@ -450,7 +463,8 @@ def search():
         print(str(e))  # TODO error log
         abort(500, "search")
 
-@app.route("/searchBooks", methods=["GET"])
+
+@app.route(PREFIX + "/searchBooks", methods=["GET"])
 def searchBooks():
     try:
         if(not isLoggedin):
@@ -522,7 +536,7 @@ def searchBooks():
         abort(500, "searchBooks")
 
 
-@app.route("/searchBook", methods=["GET"])
+@app.route(PREFIX + "/searchBook", methods=["GET"])
 def searchBook():
     try:
         if(not isLoggedin):
@@ -540,7 +554,7 @@ def searchBook():
         abort(500, "searchBook")
 
 
-@app.route("/registerSubmission", methods=["GET"])
+@app.route(PREFIX + "/registerSubmission", methods=["GET"])
 def registerSubmission():
     try:
         if(not isLoggedin):
@@ -552,7 +566,8 @@ def registerSubmission():
         print(str(e))  # TODO error log
         abort(500, "registerSubmission")
         
-@app.route("/writeBookReview", methods=["POST"])
+
+@app.route(PREFIX + "/writeBookReview", methods=["POST"])
 def writeBookReview():
     try:
         if(not isLoggedin):
@@ -576,7 +591,8 @@ def writeBookReview():
         print(str(e))  # TODO error log
         abort(500, "writeBookReview")
 
-@app.route("/confirmYourEntry", methods=["POST"])
+
+@app.route(PREFIX + "/confirmYourEntry", methods=["POST"])
 def confirmYourEntry():
     try:
         if(not isLoggedin):
@@ -597,7 +613,8 @@ def confirmYourEntry():
         print(str(e))  # TODO error log
         abort(500, "confirmYourEntry")
 
-@app.route("/editSubmission", methods=["GET"])
+
+@app.route(PREFIX + "/editSubmission", methods=["GET"])
 def editSubmission():
     try:
         if(not isLoggedin):
@@ -611,7 +628,8 @@ def editSubmission():
         print(str(e))  # TODO error log
         abort(500, "editSubmission")
 
-@app.route("/confirmEditEntry", methods=["POST"])
+
+@app.route(PREFIX + "/confirmEditEntry", methods=["POST"])
 def confirmEditEntry():
     try:
         if(not isLoggedin):
@@ -628,7 +646,8 @@ def confirmEditEntry():
         print(str(e))  # TODO error log
         abort(500, "confirmYourEntry")
 
-@app.route("/updateBookReview", methods=["POST"])
+
+@app.route(PREFIX + "/updateBookReview", methods=["POST"])
 def updateBookReview():
     try:
         if(not isLoggedin):
@@ -653,7 +672,8 @@ def updateBookReview():
         print(str(e))  # TODO error log
         abort(500, "updateBookReview")
 
-@app.route("/deleteBookReview", methods=["POST"])
+
+@app.route(PREFIX + "/deleteBookReview", methods=["POST"])
 def deleteBookReview():
     try:
         if(not isLoggedin):
@@ -674,6 +694,7 @@ def deleteBookReview():
         print(str(e))  # TODO error log
         abort(500, "deleteBookReview")
 
-@app.route("/error")
+
+@app.route(PREFIX + "/error")
 def error():
     return render_template("error.html")
