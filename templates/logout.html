@@ -1,11 +1,14 @@
 {% extends "layout.html" %}
 
 {% block heading %}
-Bookreview
+<div class="row">
+  <div class="col-sm ">
+    <h1>Book Review Site</h1>
+  </div>
+</div>
 {% endblock %}
 
 {% block body %}
-
 <div class="row">
   <div class="col-sm">
     <div class="alert alert-success" role="alert">
@@ -18,5 +21,4 @@ Bookreview
     <div class="btn btn-outline-primary btn-lg "> <a href="{{ url_for('root') }}">Login</a> </div>
   </div>
 </div>
-
 {% endblock %}

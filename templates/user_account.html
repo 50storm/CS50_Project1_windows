@@ -2,9 +2,7 @@
 {% block nav %}
 {% include "nav.tpl" %}
 {% endblock %}
-{% block heading %}
-    Book Review Site
-{% endblock %}
+
 {% block body %}
 {% if mode is defined and mode == 0   %}
 {%    set action = ''           %}
@@ -29,7 +27,7 @@
     navMyAccount.classList.add("font-italic");
   });
 </script>
-      <div class="row">
+      <div class="row mt-2">
         <div class="col-sm ">
           <h2 class="bg-primary text-white p-2 mb-2">My Account</h2>
         </div>

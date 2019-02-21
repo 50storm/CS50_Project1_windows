@@ -1,6 +1,10 @@
 {% extends "layout.html" %}
 {% block heading %}
-    Book Review Site
+    <div class="row">
+      <div class="col-sm ">
+        <h1>Book Review Site</h1>
+      </div>
+    </div>
 {% endblock %}
 {% block body %}
 {% if mode is defined and mode == 0   %}
@@ -23,7 +27,7 @@
 {%    set readonly = 'readonly' %}
 {%    set css='bg-info' %}
 {% endif %}
-<p>mode={{mode}}</p>
+<!-- <p>mode={{mode}}</p> -->
       <div class="row">
         <div class="col-sm ">
           <h2 class="bg-primary text-white p-2 mb-2"  >Registration form</h2>

@@ -3,21 +3,31 @@
 {% block nav %}
 {% include "nav.tpl" %}
 {% endblock %}
-
-{% block userinfo  %}
-<script>
-  document.addEventListener("DOMContentLoaded", function(event) {
-    let navMypage = document.querySelector("li#mypage");
-    navMypage.classList.add("active");
-    navMypage.classList.add("font-weight-bold");
-    navMypage.classList.add("font-italic");
-  });
-</script>
+{% block pageinfo %}
+<div class="row mt-2">
+    <div class="col-sm-6">
+        <script>
+            document.addEventListener("DOMContentLoaded", function (event) {
+            let navMypage = document.querySelector("li#mypage");
+            navMypage.classList.add("active");
+            navMypage.classList.add("font-weight-bold");
+            navMypage.classList.add("font-italic");
+            });
+        </script>
+        <div class="alert alert-info" role="alert">
+                <a href="{{ url_for('showUserAccount') }}">User:{{session['username']}}</a>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="alert alert-info" role="alert">
+            Total Number of Review:{{ my_book_reviews | length }}
+        </div>
+    </div>
+</div>
 {% endblock %}
-
 {% block body %}
 <!-- <hr  class="my-4" /> -->
-<div class="row">
+<div class="row ">
   <div class="col-sm">
     <div class="alert alert-primary" role="alert"><strong>Search Book</strong> - Click Here >>
         <div class="btn btn-outline-primary">
@@ -74,7 +84,7 @@
   <div class="col-sm">
    <h3 class="bg-primary text-white p-2 mb-2" >Rcent Book Reviews</h3>
    
-    {% if recent_book_reviews is defined and  recent_book_reviews | length %}
+    {% if recent_book_reviews is defined and recent_book_reviews | length %}
         <table class="table" style="table-layout:fixed;" >
     <tr>
         <th>Date</th>
@@ -126,7 +136,5 @@
     </div>
   </div>
 </div>
-
-
 
 {% endblock %}

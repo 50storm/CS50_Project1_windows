@@ -14,23 +14,10 @@
         <div class="mx-auto" style="width:700px;">
             {% block nav %}
             {% endblock %}
-            
-            
-            <div class="row">
-                <div class="col-sm-6">
-                    <h1>
-                        Book Review Site
-                    </h1>
-                </div>
-                <div class="col-sm-6">
-                    <h1>
-                        {% block userinfo  %}
-                        {% endblock %}
-                        User:{{session['username']}}
-                    </h1>
-                </div>
-            </div>
-            
+            {% block heading %}
+            {% endblock %}
+            {% block pageinfo %}
+            {% endblock %}
             {% block body %}
             {% endblock %}
             <!-- Optional JavaScript -->

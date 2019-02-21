@@ -3,27 +3,13 @@
 {% block nav %}
 {% include "nav.tpl" %}
 {% endblock %}
-{% block heading %}
-    Book Review Site
-{% endblock %}
-{% block userinfo  %}
-<script>
-  document.addEventListener("DOMContentLoaded", function(event) {
-    let navSearch = document.querySelector("li#search");
-    navSearch.classList.add("active");
-    navSearch.classList.add("font-weight-bold");
-    navSearch.classList.add("font-italic");
-  });
-</script>
-<h2 class="bg-primary text-white p-2 mb-2"  >
-   Username:{{session['username']}}
-</h2>
+{% block pageinfo  %}
 {% endblock %}
 {% block body %}
-<hr  class="my-4" />
-<div class="row">
+
+<div class="row mt-2">
   <div class="col-sm">
-    <h3 class="bg-primary text-white p-2 mb-2" >Search Books</h3>
+    <h3 class="bg-primary text-white p-2 mb-2">Search Books</h3>
     <form action="{{ url_for('searchBooks') }}" method="get">
         <div class="form-group">
             <label for="booktitle" >Booktitle</label>

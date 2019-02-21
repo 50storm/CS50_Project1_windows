@@ -2,25 +2,14 @@
 {% block nav %}
 {% include "nav.tpl" %}
 {% endblock %}
-{% block heading %}
-    Book Review Site
-{% endblock %}
-{% block userinfo  %}
-<h2 class="bg-primary text-white p-2 mb-2"  >
-       Username:{{session['username']}}
-</h2>
-{% endblock %}
 {% block body %}
 {% set button_text = 'Write Your Review' %}
 {% set url = url_for('registerSubmission')%}
-
 {% if mybookreview %}
 {% set button_text = 'Edit Your Review' %}
 {% set url = url_for('editSubmission')%}
 {% endif %}
-
-<hr  class="my-4" />
-<div class="row">
+<div class="row mt-2">
   <div class="col-sm">
     <table class="table table-striped">
         <tr class="thead-dark">

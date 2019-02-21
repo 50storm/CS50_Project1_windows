@@ -29,8 +29,8 @@
 {#
 <input type="text" name=""  value="{{ url }}" >
 #}
-<hr  class="my-4" />
-<div class="row">
+
+<div class="row  mt-2">
   <div class="col-sm">
     <table class="table table-striped">
         <tr class="thead-dark">
@@ -124,7 +124,6 @@
       <textarea name="comment" cols="50" rows="10" class="w-100 {% if is_confirmation %} bg-light {% endif %}" {% if is_confirmation %} readonly {% endif %}>{{ comment }}</textarea>
       <br/>
       <input type="submit" name="submitReview" class="btn btn-success" value="{% if is_confirmation %} submitReview {% else %} confirmReview {% endif %}" {% if is_posted %} disabled=disabled {% endif %} />
-
     </form>
   </div>
 </div>
