@@ -246,10 +246,6 @@ def validate_login():
         app.logger.info('%s logged in successfully', rowUser.username)
     except Exception as e :
         print(str(e)) #TODO error log
-        # http://k-kuro.hatenadiary.jp/entry/20180119/p1
-        # https://www.hiramine.com/physicalcomputing/raspberrypi3/flask_debug.html
-        # http://flask.pocoo.org/docs/1.0/logging/
-        # https://codehandbook.org/writing-error-log-in-python-flask-web-application/
         abort( 500, "Login Page" )
     
     return redirect(url_for("mypage"))
@@ -273,6 +269,7 @@ def registerUser():
             if(resultCheckUserName[0] and resultCheckPassword[0]):
                 print("======userdata========")
                 print(userdata)
+                flash("Please confirm your input data", "alert alert-info")
                 return render_template("registration.html", userdata=userdata, mode=1)
             else:
                 #invalid inputs
