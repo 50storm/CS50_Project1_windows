@@ -1,12 +1,12 @@
 import os, datetime, sys, re, logging
 
-from flask import Flask, session, render_template, request, Response, flash, redirect, jsonify, url_for, abort, Blueprint
+from flask import Flask, session, render_template, request, Response, flash, redirect, jsonify, url_for, abort
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from jinja2 import evalcontextfilter, Markup, escape
 from flask_sqlalchemy import SQLAlchemy 
-from logging.handlers import RotatingFileHandler
+# from logging.handlers import RotatingFileHandler
 
 
 app = Flask(__name__)
@@ -384,7 +384,7 @@ def updateUserAccount():
                                    request.form.get("firstname").strip(), 
                                    request.form.get("lastname").strip(),
                                    request.form.get("password").strip())
-        updateSQL ="UPDATE  users SET username=:username, firstname=:firstname, lastname=:lastname, created_at=current_timestamp "
+        updateSQL ="UPDATE  users SET username=:username, firstname=:firstname, lastname=:lastname, updated_at=current_timestamp "
         updateSQL += "WHERE user_id = :user_id "
         params = {"user_id":session['user_id'], "username": userdata['username'], "firstname": userdata['firstname'], "lastname": userdata['lastname'] }
         resultInsert = db.execute(updateSQL, params)
@@ -558,7 +558,7 @@ def registerSubmission():
             return redirect(url_for("error"))
         isbn   = request.args.get("isbn","")
         bookinfo = find_book_by_isbn(isbn)
-        return render_template("register_submission.html", bookinfo=bookinfo )
+        return render_template("register_bookreview.html", bookinfo=bookinfo )
     except Exception as e:
         app.logger.error(str(e))  # TODO error log
         abort(500, "registerSubmission")
@@ -583,7 +583,7 @@ def writeBookReview():
         bookinfo = find_book_by_isbn(isbn)
         
         flash("Successfully Posted!＼(^o^)／ Thank you!", "alert alert-success")
-        return render_template("register_submission.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment, is_confirmation=True, is_posted=True )
+        return render_template("register_bookreview.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment, is_confirmation=True, is_posted=True )
     except Exception as e:
         app.logger.error(str(e))  # TODO error log
         abort(500, "writeBookReview")
@@ -603,8 +603,8 @@ def confirmYourEntry():
         bookinfo = find_book_by_isbn(isbn)
         if(comment.strip() == ""):
             flash('Your review is empty!! Please write your review', 'alert alert-danger')
-            return render_template("register_submission.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment,  is_confirmation=False )
-        return render_template("register_submission.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment,  is_confirmation=True )
+            return render_template("register_bookreview.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment,  is_confirmation=False )
+        return render_template("register_bookreview.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment,  is_confirmation=True )
 
     except Exception as e:
         app.logger.error(str(e))  # TODO error log
@@ -620,7 +620,7 @@ def editSubmission():
         isbn   = request.args.get("isbn","")
         mybookreview = find_my_book_review(isbn, user_id)
         bookinfo = find_book_by_isbn(isbn)
-        return render_template("edit_submission.html", bookinfo=bookinfo, mybookreview=mybookreview )
+        return render_template("edit_bookreview.html", bookinfo=bookinfo, mybookreview=mybookreview )
     except Exception as e:
         app.logger.error(str(e))  # TODO error log
         abort(500, "editSubmission")
@@ -637,8 +637,8 @@ def confirmEditEntry():
         bookinfo = find_book_by_isbn(isbn)
         if(comment.strip() == ""):
             flash('Your review is empty!! Please write your review', 'alert alert-danger')
-            return render_template("edit_submission.html", bookinfo=bookinfo, mybookreview=None, rate=rate, comment=comment,  is_confirmation=False )
-        return render_template("edit_submission.html", bookinfo=bookinfo, mybookreview=None, rate=rate, comment=comment,  is_confirmation=True )
+            return render_template("edit_bookreview.html", bookinfo=bookinfo, mybookreview=None, rate=rate, comment=comment,  is_confirmation=False )
+        return render_template("edit_bookreview.html", bookinfo=bookinfo, mybookreview=None, rate=rate, comment=comment,  is_confirmation=True )
     except Exception as e:
         app.logger.error(str(e))  # TODO error log
         abort(500, "confirmYourEntry")
@@ -664,7 +664,7 @@ def updateBookReview():
         mybookreview = find_my_book_review(isbn, user_id)
         bookinfo = find_book_by_isbn(isbn)
         flash("Successfully Updated!＼(^o^)／ Thank you!", "alert alert-success")
-        return render_template("edit_submission.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment, is_confirmation=True, is_posted=True )
+        return render_template("edit_bookreview.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment, is_confirmation=True, is_posted=True )
     except Exception as e:
         app.logger.error(str(e))  # TODO error log
         abort(500, "updateBookReview")
@@ -686,7 +686,7 @@ def deleteBookReview():
         bookinfo = find_book_by_isbn(isbn)
         
         flash("Successfully Deleted!＼(^o^)／ Thank you!", "alert alert-success")
-        return render_template("delete_submission.html", bookinfo=bookinfo, mybookreview=None )
+        return render_template("delete_bookreview.html", bookinfo=bookinfo, mybookreview=None )
     except Exception as e:
         app.logger.error(str(e))  # TODO error log
         abort(500, "deleteBookReview")
