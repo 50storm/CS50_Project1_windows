@@ -558,7 +558,7 @@ def registerSubmission():
             return redirect(url_for("error"))
         isbn   = request.args.get("isbn","")
         bookinfo = find_book_by_isbn(isbn)
-        return render_template("register_bookreview.html", bookinfo=bookinfo )
+        return render_template("write_bookreview.html", bookinfo=bookinfo )
     except Exception as e:
         app.logger.error(str(e))  # TODO error log
         abort(500, "registerSubmission")
@@ -583,7 +583,7 @@ def writeBookReview():
         bookinfo = find_book_by_isbn(isbn)
         
         flash("Successfully Posted!＼(^o^)／ Thank you!", "alert alert-success")
-        return render_template("register_bookreview.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment, is_confirmation=True, is_posted=True )
+        return render_template("write_bookreview.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment, is_confirmation=True, is_posted=True )
     except Exception as e:
         app.logger.error(str(e))  # TODO error log
         abort(500, "writeBookReview")
@@ -603,8 +603,8 @@ def confirmYourEntry():
         bookinfo = find_book_by_isbn(isbn)
         if(comment.strip() == ""):
             flash('Your review is empty!! Please write your review', 'alert alert-danger')
-            return render_template("register_bookreview.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment,  is_confirmation=False )
-        return render_template("register_bookreview.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment,  is_confirmation=True )
+            return render_template("write_bookreview.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment,  is_confirmation=False )
+        return render_template("write_bookreview.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment,  is_confirmation=True )
 
     except Exception as e:
         app.logger.error(str(e))  # TODO error log

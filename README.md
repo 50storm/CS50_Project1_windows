@@ -1,5 +1,4 @@
 # Project 1
-
 Web Programming with Python and JavaScript
 
 # application.py  
@@ -34,4 +33,27 @@ There is a view button to open the book.
 This page shows book information and bookreviews.
 users can write thier book reviwew and also they can edit their review when they want to change it.
 
-# 
+# write_bookreview.html
+Users can write their bookreview in this page.
+
+# edit_bookreview.html
+Users can edit their bookreview in this page and also they can delete their bookreivew.
+
+# delete_bookreview.html
+After deleting bookreview , this pages appears to let users know that the deletion operation is successfull.
+
+# error.html
+If an error occurs , this page shows error messages.
+
+# nav.tpl
+This is a navigation bar template.
+
+# tables
+## users table
+This table stores user account. 
+
+## books table
+This table stores book data.
+
+## bookreviews table
+This table stores bookreviews.
