@@ -11,7 +11,7 @@ CREATE TABLE users (
 );
 
 
-
-INSERT INTO users (username, firstname, lastname, password, updated_at, created_at )
-VALUES            ('Hakata',  'Hiroshi' , 'Igarashi','hiro1128', NULL , current_timestamp);
+-- test data
+INSERT INTO users (username, firstname, lastname, password, created_at , updated_at )
+VALUES            ('Hakata',  'Hiroshi' , 'Igarashi','hiro1128',current_timestamp , NULL );
 

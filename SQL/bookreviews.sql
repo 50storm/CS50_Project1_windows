@@ -6,6 +6,7 @@ CREATE TABLE bookreviews (
     rate    integer NOT  NULL,
     comment text NOT NULL,
     created_at timestamp without time zone,
+    updated_at timestamp without time zone,
 	PRIMARY KEY (isbn, user_id)
 );
 

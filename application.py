@@ -654,7 +654,7 @@ def updateBookReview():
         user_id = session.get("user_id")
         isbn    = request.form.get("isbn")
 
-        updateSQL ="UPDATE bookreviews  SET  rate = :rate, comment = :comment, created_at=current_timestamp  WHERE isbn = :isbn AND user_id = :user_id "
+        updateSQL ="UPDATE bookreviews  SET  rate = :rate, comment = :comment, updated_at=current_timestamp  WHERE isbn = :isbn AND user_id = :user_id "
         params    = {"isbn":isbn, "user_id":user_id, "rate":rate, "comment":comment }
 
         db.execute(updateSQL, params)
