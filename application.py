@@ -204,8 +204,9 @@ def api(isbn):
         sqlSel += " HAVING  b.isbn = :isbn "
         book = db.execute(sqlSel, {"isbn":isbn})
         row_book = book.fetchone()
+        # app.logger.debug(book)
         if(row_book is None):
-            return None
+            return jsonify(row_book)
         else:
             book_info["title"] = row_book['title']
             book_info["author"] = row_book['author']
@@ -218,6 +219,10 @@ def api(isbn):
 
 @app.route("/", methods=["GET"])
 def root():
+    return redirect(url_for("login"))
+
+@app.route(PREFIX + "/",  methods=["GET"])
+def prefix_root():
     return redirect(url_for("login"))
 
 @app.route(PREFIX + "/login", methods=["GET"])
@@ -244,7 +249,7 @@ def validate_login():
         setUserSession(rowUser)
         app.logger.info('%s logged in successfully', rowUser.username)
     except Exception as e :
-        app.logger.error(str(e)) #TODO error log
+        app.logger.error(str(e))
         abort( 500, "Login Page" )
     
     return redirect(url_for("mypage"))
@@ -289,7 +294,7 @@ def registerUser():
         else:  # GET
             return render_template("registration.html",userdata=setUserViewData("","","","",""),mode=0)
     except Exception as e :
-         app.logger.error(str(e)) #TODO error log
+         app.logger.error(str(e))
          abort( 500, "registerUser" )
      
 
@@ -303,7 +308,7 @@ def confirmUser():
                             request.form.get("password").strip())
         return render_template("registration.html", userdata=userdata, mode=2)
     except Exception as e :
-         app.logger.error(str(e)) #TODO error log
+         app.logger.error(str(e))
          abort(500, "confirmUser")
     
 
@@ -325,7 +330,7 @@ def insertUser():
         flash("Successfully Registed!＼(^o^)／ Thank you!", "alert alert-success")
         return render_template("registration.html", userdata=userdata, mode=3)
     except Exception as e:
-         app.logger.error(str(e))  # TODO error log
+         app.logger.error(str(e))   
          abort(500, "confirmUser")
 
 
@@ -341,7 +346,7 @@ def mypage():
         app.logger.debug(my_book_reviews)
         return render_template("mypage.html", username=session.get("username") , recent_book_reviews=recent_book_reviews, my_book_reviews=my_book_reviews)
     except Exception as e:
-         app.logger.error(str(e))  # TODO error log
+         app.logger.error(str(e))   
          abort(500, "confirmUser")
 
 
@@ -350,13 +355,12 @@ def showUserAccount():
     try:
         #GET ONLY
         if(not isLoggedin):
-            #TODO:Error Message by flashing
             return redirect(url_for("error"))
         userdata = setUserViewData(session['user_id'], session['username'], session['firstname'], session['lastname'], session['password'])
         app.logger.debug(userdata)
         return render_template("user_account.html", userdata=userdata, mode=0)
     except Exception as e:
-         app.logger.error(str(e))  # TODO error log
+         app.logger.error(str(e))   
          abort(500, "confirmUser")
 
 
@@ -364,12 +368,11 @@ def showUserAccount():
 def editUserAccount():
     try:
         if(not isLoggedin):
-            #TODO:Error Message by flashing
             return redirect(url_for("error"))
         userdata = setUserViewData(session['user_id'], session['username'],session['firstname'], session['lastname'], session['password'])
         return render_template("user_account.html", userdata=userdata, mode=1)
     except Exception as e:
-         app.logger.error(str(e))  # TODO error log
+         app.logger.error(str(e))   
          abort(500, "confirmUser")
 
 
@@ -377,7 +380,6 @@ def editUserAccount():
 def updateUserAccount():
     try:
         if(not isLoggedin):
-            #TODO:Error Message by flashing
             return redirect(url_for("error"))
         userdata = setUserViewData(session['user_id'],
                                    request.form.get("username").strip(),
@@ -393,7 +395,7 @@ def updateUserAccount():
         flash("Successfully Updated!＼(^o^)／ Thank you!", "alert alert-success")
         return render_template("user_account.html", userdata=userdata, mode=3)
     except Exception as e:
-         app.logger.error(str(e))  # TODO error log
+         app.logger.error(str(e))   
          abort(500, "confirmUser")
 
 
@@ -401,7 +403,6 @@ def updateUserAccount():
 def confirmUserAccount():
     try:
         if(not isLoggedin):
-            #TODO:Error Message by flashing
             return redirect(url_for("error"))
         if request.method == "POST":
             userdata = setUserViewData(session['user_id'],
@@ -432,7 +433,7 @@ def confirmUserAccount():
                     flash(messages[1], category[1])
                 return render_template("user_account.html", userdata=userdata, mode=1)
     except Exception as e:
-         app.logger.error(str(e))  # TODO error log
+         app.logger.error(str(e))   
          abort(500, "confirmUser")
 
 
@@ -442,7 +443,7 @@ def logout():
         unsetUserSession()
         return render_template("logout.html")
     except Exception as e:
-        app.logger.error(str(e))  # TODO error log
+        app.logger.error(str(e))   
         abort(500, "logout")
 
 
@@ -457,7 +458,7 @@ def search():
         app.logger.debug(my_book_reviews)
         return render_template("search.html", username=session.get("username") , recent_book_reviews=recent_book_reviews, my_book_reviews=my_book_reviews)
     except Exception as e:
-        app.logger.error(str(e))  # TODO error log
+        app.logger.error(str(e))   
         abort(500, "search")
 
 
@@ -529,7 +530,7 @@ def searchBooks():
         booklist = books.fetchall()
         return render_template("booklist.html", books= booklist)
     except Exception as e:
-        app.logger.error(str(e))  # TODO error log
+        app.logger.error(str(e))
         abort(500, "searchBooks")
 
 
@@ -547,7 +548,7 @@ def searchBook():
 
         return render_template("bookdetail.html", bookinfo=bookinfo, bookreviews=bookreviews, mybookreview=mybookreview )
     except Exception as e:
-        app.logger.error(str(e))  # TODO error log
+        app.logger.error(str(e))   
         abort(500, "searchBook")
 
 
@@ -560,7 +561,7 @@ def registerSubmission():
         bookinfo = find_book_by_isbn(isbn)
         return render_template("write_bookreview.html", bookinfo=bookinfo )
     except Exception as e:
-        app.logger.error(str(e))  # TODO error log
+        app.logger.error(str(e))   
         abort(500, "registerSubmission")
         
 
@@ -585,7 +586,7 @@ def writeBookReview():
         flash("Successfully Posted!＼(^o^)／ Thank you!", "alert alert-success")
         return render_template("write_bookreview.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment, is_confirmation=True, is_posted=True )
     except Exception as e:
-        app.logger.error(str(e))  # TODO error log
+        app.logger.error(str(e))
         abort(500, "writeBookReview")
 
 
@@ -607,7 +608,7 @@ def confirmYourEntry():
         return render_template("write_bookreview.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment,  is_confirmation=True )
 
     except Exception as e:
-        app.logger.error(str(e))  # TODO error log
+        app.logger.error(str(e))
         abort(500, "confirmYourEntry")
 
 
@@ -622,7 +623,7 @@ def editSubmission():
         bookinfo = find_book_by_isbn(isbn)
         return render_template("edit_bookreview.html", bookinfo=bookinfo, mybookreview=mybookreview )
     except Exception as e:
-        app.logger.error(str(e))  # TODO error log
+        app.logger.error(str(e)) 
         abort(500, "editSubmission")
 
 
@@ -640,7 +641,7 @@ def confirmEditEntry():
             return render_template("edit_bookreview.html", bookinfo=bookinfo, mybookreview=None, rate=rate, comment=comment,  is_confirmation=False )
         return render_template("edit_bookreview.html", bookinfo=bookinfo, mybookreview=None, rate=rate, comment=comment,  is_confirmation=True )
     except Exception as e:
-        app.logger.error(str(e))  # TODO error log
+        app.logger.error(str(e))   
         abort(500, "confirmYourEntry")
 
 
@@ -666,7 +667,7 @@ def updateBookReview():
         flash("Successfully Updated!＼(^o^)／ Thank you!", "alert alert-success")
         return render_template("edit_bookreview.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment, is_confirmation=True, is_posted=True )
     except Exception as e:
-        app.logger.error(str(e))  # TODO error log
+        app.logger.error(str(e))   
         abort(500, "updateBookReview")
 
 
@@ -688,7 +689,7 @@ def deleteBookReview():
         flash("Successfully Deleted!＼(^o^)／ Thank you!", "alert alert-success")
         return render_template("delete_bookreview.html", bookinfo=bookinfo, mybookreview=None )
     except Exception as e:
-        app.logger.error(str(e))  # TODO error log
+        app.logger.error(str(e))   
         abort(500, "deleteBookReview")
 
 
