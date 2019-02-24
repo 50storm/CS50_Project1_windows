@@ -6,6 +6,14 @@
 {% block pageinfo  %}
 {% endblock %}
 {% block body %}
+<script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+    let navMypage = document.querySelector("li#search");
+    navMypage.classList.add("active");
+    navMypage.classList.add("font-weight-bold");
+    navMypage.classList.add("font-italic");
+    });
+</script>
 
 <div class="row mt-2">
   <div class="col-sm">
