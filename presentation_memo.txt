@@ -1,1 +1,60 @@
-This is my book review site for project1.First, this is my tables.I created 3 tables.users table, books table and bookreviews table.uesrs table is used to store user account.books table is used to store book data.bookreviews table is used to store userreview about books.Let me show how it works.First , registation page.users can register their user account in this page.They need to decide their username for this system, andTheir firstname and lastname.When the data is sent to the endpoint, the data is validated whetherthe username is unique, and the password is correct.If the validation is ok, the date is stored in users table.
+Login Form
+GET  ->  index.html
+POST ->  validate_login[SELECT <- users] -> userdata -> session -> mypage.html
+
+User Registation Flow
+GET -> registration.html -> POST  registration.html[readonly] -> POST [INSERT -> users table]
+
+My page
+
+Search books
+
+
+
+
+
+
+API
+http://localhost:5000/bookreivew/api/isbn
+
+http://localhost:5000/bookreivew/api/0380795272
+
+
+
+This is my book review site for project1.
+
+First, this is my tables.
+I created 3 tables.
+users table, books table and bookreviews table.
+uesrs table is used to store user account.
+books table is used to store book data.
+bookreviews table has comosite key , ISBN and user_id,  used to uniquely store data of bookreivew .
+
+
+
+Let me show how it works.
+First , registation page.
+
+users can register their user account in this page.
+When the flask application recieves the input data, first, the flask application, returns the input values
+with readonly-registationl.html
+
+*GET - 
+* registerUser[GET] -> confirmUser -> insertUser
+
+
+
+
+They need to decide their username for this system, and
+their firstname and lastname.
+
+When the data is sent to the endpoint, the data is validated whether
+the username is unique, and the password is correct.
+
+If the validation is ok, the date is stored in users table.
+
+
+Here is my page
+users can find the their bookreviews and recent book reviews which inculdes their bookreviews .
+The logic is After loggin in the book review site
+
