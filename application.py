@@ -441,7 +441,6 @@ def confirmUserAccount():
 def logout():
     try:
         unsetUserSession()
-        db.close()
         return render_template("logout.html")
     except Exception as e:
         app.logger.error(str(e))   
@@ -696,5 +695,4 @@ def deleteBookReview():
 
 @app.route(PREFIX + "/error")
 def error():
-    db.close()
     return render_template("error.html")
