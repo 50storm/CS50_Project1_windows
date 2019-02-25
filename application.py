@@ -27,7 +27,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 #Create SQLAlchemy Instance
 db = SQLAlchemy()
 db.init_app(app)
-#Session(app)
+Session(app)
 
 # Set up database
 engine = create_engine(os.getenv("DATABASE_URL"))
@@ -441,6 +441,7 @@ def confirmUserAccount():
 def logout():
     try:
         unsetUserSession()
+        db.close()
         return render_template("logout.html")
     except Exception as e:
         app.logger.error(str(e))   
@@ -695,4 +696,5 @@ def deleteBookReview():
 
 @app.route(PREFIX + "/error")
 def error():
+    db.close()
     return render_template("error.html")
