@@ -81,6 +81,8 @@ def checkPassword(password, confiromPassword, username, user_id=None, for_update
             {"user_id": user_id, "password": password}
         )
         user = users.fetchone()
+        users.close()
+        db.close()
         if(user == None):
             return (False, "password is not equal to registered password!")
         else:
@@ -91,6 +93,8 @@ def checkUserName(username, user_id=None, for_update=False):
         return (False, "Plsease enter username.")
     result_execute = db.execute( "SELECT * FROM users WHERE username=:username",{"username":username} )
     user = result_execute.fetchone()
+    result_execute.close()
+    db.close()
     if(user == None):
         return (True, None)
     else:
@@ -124,23 +128,31 @@ def find_my_book_review(isbn, user_id):
         return row_mybookreview
 
 def find_my_book_reviews(user_id):
+    result = []
     sql_my_book_reviews =   "SELECT br.created_at, u.username, br.rate, br.comment, br.isbn, b.title, b.author, b.year FROM bookreviews br "
     sql_my_book_reviews +=  " INNER JOIN users u ON br.user_id = u.user_id  "
     sql_my_book_reviews +=  " INNER JOIN books b ON b.isbn = br.isbn  "
     sql_my_book_reviews +=  " WHERE u.user_id = :user_id"
     mybookreview = db.execute( sql_my_book_reviews, { "user_id":user_id } )
-    return mybookreview.fetchall()
+    result = mybookreview.fetchall()
+    mybookreview.close()
+    db.close()
+    return  result
     
 def find_recent_book_reviews():
+    result = []
     sql_book_reiviews =   "SELECT br.created_at, u.username, br.rate, br.comment, br.isbn, b.title, b.author, b.year  FROM bookreviews br "
     sql_book_reiviews +=  " INNER JOIN users u ON br.user_id = u.user_id  "
     sql_book_reiviews +=  " INNER JOIN books b ON b.isbn = br.isbn  "
     sql_book_reiviews +=  " ORDER BY br.created_at DESC OFFSET 0 LIMIT 5"
     bookreviews = db.execute(sql_book_reiviews)
-    return bookreviews.fetchall()
+    result = bookreviews.fetchall() 
+    bookreviews.close()
+    db.close()
+    return result
 
 def find_book_reviews( isbn=None, user_id=None ):
-    #List [] list[0][0]
+    result = []
     app.logger.debug("==========find_book_reviews==========")
     sql_paramters ={}
     sql_book_reiviews =  "SELECT br.created_at, u.username as username, br.rate as rate, br.comment as comment, br.isbn as isbn FROM bookreviews br "
@@ -158,7 +170,9 @@ def find_book_reviews( isbn=None, user_id=None ):
             sql_paramters = {"user_id": user_id}
 
     bookreviews = db.execute( sql_book_reiviews, sql_paramters )
-    return bookreviews.fetchall() # [] = zeros
+    result = bookreviews.fetchall() # [] = zeros
+    db.close()
+    return result
 
 def setUserSession(user):
     session['user_id'] = user['user_id']
@@ -204,6 +218,8 @@ def api(isbn):
         sqlSel += " HAVING  b.isbn = :isbn "
         book = db.execute(sqlSel, {"isbn":isbn})
         row_book = book.fetchone()
+        book.close()
+        db.close()
         # app.logger.debug(book)
         if(row_book is None):
             return jsonify(row_book)
@@ -241,7 +257,8 @@ def validate_login():
             {"username":username,"password":password}
         )
         rowUser = user.fetchone()
-        
+        user.close()
+        db.close()
         if(rowUser is None):
             session['username'] = username
             return render_template("index.html", message="Login Error...Incorrect passward entered.. Please Try agin.")
@@ -326,6 +343,7 @@ def insertUser():
         params    = {"username":userdata['username'], "firstname":userdata['firstname'], "lastname":userdata['lastname'], "password":userdata['password']}
         resultInsert = db.execute(insertSQL, params)
         db.commit()
+        db.close()
         app.logger.debug("====registered====")
         flash("Successfully Registed!＼(^o^)／ Thank you!", "alert alert-success")
         return render_template("registration.html", userdata=userdata, mode=3)
@@ -391,6 +409,7 @@ def updateUserAccount():
         params = {"user_id":session['user_id'], "username": userdata['username'], "firstname": userdata['firstname'], "lastname": userdata['lastname'] }
         resultInsert = db.execute(updateSQL, params)
         db.commit()
+        db.close()
         setUserSession(userdata)
         flash("Successfully Updated!＼(^o^)／ Thank you!", "alert alert-success")
         return render_template("user_account.html", userdata=userdata, mode=3)
@@ -441,6 +460,7 @@ def confirmUserAccount():
 def logout():
     try:
         unsetUserSession()
+        db.close()
         return render_template("logout.html")
     except Exception as e:
         app.logger.error(str(e))   
@@ -528,6 +548,8 @@ def searchBooks():
 
         books = db.execute(queryBook,sqlparameters)
         booklist = books.fetchall()
+        books.close()
+        db.close()
         return render_template("booklist.html", books= booklist)
     except Exception as e:
         app.logger.error(str(e))
@@ -580,6 +602,7 @@ def writeBookReview():
 
         db.execute(insertSQL, params)
         db.commit()
+        db.close()
         mybookreview = find_my_book_review(isbn, user_id)
         bookinfo = find_book_by_isbn(isbn)
         
@@ -660,7 +683,7 @@ def updateBookReview():
 
         db.execute(updateSQL, params)
         db.commit()
-
+        db.close()
         # for display
         mybookreview = find_my_book_review(isbn, user_id)
         bookinfo = find_book_by_isbn(isbn)
@@ -684,6 +707,7 @@ def deleteBookReview():
 
         db.execute(deleteSQL, params)
         db.commit()
+        db.close()
         bookinfo = find_book_by_isbn(isbn)
         
         flash("Successfully Deleted!＼(^o^)／ Thank you!", "alert alert-success")
