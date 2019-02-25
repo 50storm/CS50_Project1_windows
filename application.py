@@ -139,7 +139,7 @@ def find_recent_book_reviews():
     bookreviews = db.execute(sql_book_reiviews)
     return bookreviews.fetchall()
 
-def find_book_reviews( isbn=None, user_id=None  ):
+def find_book_reviews( isbn=None, user_id=None ):
     #List [] list[0][0]
     app.logger.debug("==========find_book_reviews==========")
     sql_paramters ={}
