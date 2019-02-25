@@ -7,6 +7,7 @@
 <div class="row mt-2">
   <div class="col-sm">
     <h3 class="bg-primary text-white p-2 mb-2">Search Result</h3>
+    {% if books %}
     <table class="table table-striped">
         <tr class="thead-dark">
           <th>ISBN</th>
@@ -25,6 +26,12 @@
         </tr>
         {% endfor %}
     </table>
+    {% else %}
+    <p>Sorry, The key words didn't match any books. </p>
+    <div class="btn btn-outline-primary">
+      <a href="{{ url_for('search') }}" >Search Book Again..</a>
+  </div>
+    {% endif %}
   </div>
 </div>
 
