@@ -3,3 +3,146 @@
 [2019-02-26 11:12:27,215] INFO in _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
 [2019-02-26 11:12:38,109] INFO in _internal:  * Detected change in 'C:\\Users\\h-igarashi\\Documents\\CS50_Project1_windows\\application.py', reloading
 [2019-02-26 11:12:38,991] WARNING in _internal:  * Debugger is active!
+[2019-02-26 11:12:39,000] INFO in _internal:  * Debugger PIN: 237-324-945
+[2019-02-26 11:12:39,010] INFO in _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2019-02-26 11:12:48,811] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011)]
+[2019-02-26 11:12:49,413] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:12:49] "GET /bookreivew/search HTTP/1.1" 200 -
+[2019-02-26 11:16:05,206] DEBUG in application: {'user_id': 1, 'username': 'Hakata', 'firstname': 'Hakata', 'lastname': 'Tarou', 'password': 'hiro1128'}
+[2019-02-26 11:16:05,814] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:16:05] "GET /bookreivew/showUserAccount HTTP/1.1" 200 -
+[2019-02-26 11:16:07,562] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011)]
+[2019-02-26 11:16:07,597] DEBUG in application: test test
+[2019-02-26 11:16:07,598] DEBUG in application: testtest test
+[2019-02-26 11:16:07,598] DEBUG in application: test test
+[2019-02-26 11:16:07,598] DEBUG in application: okookok
+[2019-02-26 11:16:07,598] DEBUG in application: okookok
+[2019-02-26 11:16:07,598] DEBUG in application: test test
+[2019-02-26 11:16:07,598] DEBUG in application: testtest test
+[2019-02-26 11:16:07,599] DEBUG in application: test test
+[2019-02-26 11:16:08,469] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:16:08] "GET /bookreivew/mypage HTTP/1.1" 200 -
+[2019-02-26 11:16:10,519] DEBUG in application: ==========find_book_reviews==========
+[2019-02-26 11:16:10,530] DEBUG in application: test test
+[2019-02-26 11:16:11,183] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:16:11] "GET /bookreivew/searchBook?isbn=0312368577 HTTP/1.1" 200 -
+[2019-02-26 11:16:13,356] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:16:13] "GET /bookreivew/editSubmission?isbn=0312368577 HTTP/1.1" 200 -
+[2019-02-26 11:16:17,975] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:16:17] "POST /bookreivew/confirmEditEntry HTTP/1.1" 200 -
+[2019-02-26 11:16:19,914] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:16:19] "POST /bookreivew/updateBookReview HTTP/1.1" 200 -
+[2019-02-26 11:16:21,854] DEBUG in application: ==========find_book_reviews==========
+[2019-02-26 11:16:21,857] DEBUG in application: test test test
+[2019-02-26 11:16:22,881] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:16:22] "GET /bookreivew/searchBook?isbn=0312368577 HTTP/1.1" 200 -
+[2019-02-26 11:16:25,701] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:16:25] "GET /bookreivew/editSubmission?isbn=0312368577 HTTP/1.1" 200 -
+[2019-02-26 11:16:27,424] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986)]
+[2019-02-26 11:16:27,426] DEBUG in application: testtest test
+[2019-02-26 11:16:27,426] DEBUG in application: test test
+[2019-02-26 11:16:27,427] DEBUG in application: okookok
+[2019-02-26 11:16:27,427] DEBUG in application: test test test
+[2019-02-26 11:16:27,427] DEBUG in application: okookok
+[2019-02-26 11:16:27,427] DEBUG in application: test test
+[2019-02-26 11:16:27,428] DEBUG in application: testtest test
+[2019-02-26 11:16:27,428] DEBUG in application: test test test
+[2019-02-26 11:16:27,922] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:16:27] "GET /bookreivew/mypage HTTP/1.1" 200 -
+[2019-02-26 11:16:29,920] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986)]
+[2019-02-26 11:16:30,222] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:16:30] "GET /bookreivew/search HTTP/1.1" 200 -
+[2019-02-26 11:16:32,268] DEBUG in application: raise error
+[2019-02-26 11:16:32,268] DEBUG in application: ====queryBook======
+[2019-02-26 11:16:32,268] DEBUG in application: SELECT * FROM books 
+[2019-02-26 11:16:32,268] DEBUG in application: ====sqlparameters===
+[2019-02-26 11:16:32,269] DEBUG in application: {}
+[2019-02-26 11:16:33,380] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:16:33] "GET /bookreivew/searchBooks?booktitle=&isbn=&authorname=&searchBooks=searchBooks HTTP/1.1" 200 -
+[2019-02-26 11:16:35,057] DEBUG in application: ==========find_book_reviews==========
+[2019-02-26 11:16:35,621] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:16:35] "GET /bookreivew/searchBook?isbn=0316126691 HTTP/1.1" 200 -
+[2019-02-26 11:16:37,434] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:16:37] "GET /bookreivew/registerSubmission?isbn=0316126691 HTTP/1.1" 200 -
+[2019-02-26 11:16:44,837] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:16:44] "POST /bookreivew/confirmYourEntry HTTP/1.1" 200 -
+[2019-02-26 11:16:46,789] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:16:46] "POST /bookreivew/writeBookReview HTTP/1.1" 200 -
+[2019-02-26 11:16:48,208] DEBUG in application: ==========find_book_reviews==========
+[2019-02-26 11:16:48,211] DEBUG in application: test test
+[2019-02-26 11:16:48,814] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:16:48] "GET /bookreivew/searchBook?isbn=0316126691 HTTP/1.1" 200 -
+[2019-02-26 11:16:50,446] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:16:50] "GET /bookreivew/editSubmission?isbn=0316126691 HTTP/1.1" 200 -
+[2019-02-26 11:16:53,847] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:16:53] "POST /bookreivew/confirmEditEntry HTTP/1.1" 200 -
+[2019-02-26 11:16:55,437] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:16:55] "POST /bookreivew/updateBookReview HTTP/1.1" 200 -
+[2019-02-26 11:16:59,026] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011)]
+[2019-02-26 11:16:59,638] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:16:59] "GET /bookreivew/search HTTP/1.1" 200 -
+[2019-02-26 11:17:00,859] DEBUG in application: raise error
+[2019-02-26 11:17:00,859] DEBUG in application: ====queryBook======
+[2019-02-26 11:17:00,859] DEBUG in application: SELECT * FROM books 
+[2019-02-26 11:17:00,860] DEBUG in application: ====sqlparameters===
+[2019-02-26 11:17:00,860] DEBUG in application: {}
+[2019-02-26 11:17:01,612] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:17:01] "GET /bookreivew/searchBooks?booktitle=&isbn=&authorname=&searchBooks=searchBooks HTTP/1.1" 200 -
+[2019-02-26 11:17:03,186] DEBUG in application: ==========find_book_reviews==========
+[2019-02-26 11:17:03,842] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:17:03] "GET /bookreivew/searchBook?isbn=1405204664 HTTP/1.1" 200 -
+[2019-02-26 11:17:05,187] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:17:05] "GET /bookreivew/registerSubmission?isbn=1405204664 HTTP/1.1" 200 -
+[2019-02-26 11:17:11,036] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:17:11] "POST /bookreivew/confirmYourEntry HTTP/1.1" 200 -
+[2019-02-26 11:17:12,280] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:17:12] "POST /bookreivew/writeBookReview HTTP/1.1" 200 -
+[2019-02-26 11:17:16,335] DEBUG in application: ==========find_book_reviews==========
+[2019-02-26 11:17:16,338] DEBUG in application: test test test
+[2019-02-26 11:17:16,956] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:17:16] "GET /bookreivew/searchBook?isbn=1405204664 HTTP/1.1" 200 -
+[2019-02-26 11:17:19,688] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933)]
+[2019-02-26 11:17:19,689] DEBUG in application: testtest test
+[2019-02-26 11:17:19,690] DEBUG in application: test test
+[2019-02-26 11:17:19,690] DEBUG in application: okookok
+[2019-02-26 11:17:19,690] DEBUG in application: test test test
+[2019-02-26 11:17:19,690] DEBUG in application: test test test
+[2019-02-26 11:17:19,690] DEBUG in application: test test test
+[2019-02-26 11:17:19,691] DEBUG in application: test test test
+[2019-02-26 11:17:19,691] DEBUG in application: test test test
+[2019-02-26 11:17:19,691] DEBUG in application: okookok
+[2019-02-26 11:17:19,691] DEBUG in application: test test
+[2019-02-26 11:17:19,691] DEBUG in application: testtest test
+[2019-02-26 11:17:20,195] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:17:20] "GET /bookreivew/mypage HTTP/1.1" 200 -
+[2019-02-26 11:17:22,337] DEBUG in application: ==========find_book_reviews==========
+[2019-02-26 11:17:22,340] DEBUG in application: testtest test
+[2019-02-26 11:17:23,036] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:17:23] "GET /bookreivew/searchBook?isbn=0061150142 HTTP/1.1" 200 -
+[2019-02-26 11:17:25,816] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:17:25] "POST /bookreivew/logout HTTP/1.1" 200 -
+[2019-02-26 11:17:28,852] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:17:28] "GET / HTTP/1.1" 302 -
+[2019-02-26 11:17:28,860] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:17:28] "GET /bookreivew/login HTTP/1.1" 200 -
+[2019-02-26 11:17:32,617] INFO in application: Hakata logged in successfully
+[2019-02-26 11:17:33,220] INFO in application: Hakata logged in successfully
+[2019-02-26 11:17:33,497] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:17:33] "POST /bookreivew/login HTTP/1.1" 302 -
+[2019-02-26 11:17:33,969] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:17:33] "POST /bookreivew/login HTTP/1.1" 302 -
+[2019-02-26 11:17:33,979] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933)]
+[2019-02-26 11:17:33,981] DEBUG in application: testtest test
+[2019-02-26 11:17:33,981] DEBUG in application: test test
+[2019-02-26 11:17:33,981] DEBUG in application: okookok
+[2019-02-26 11:17:33,982] DEBUG in application: test test test
+[2019-02-26 11:17:33,982] DEBUG in application: test test test
+[2019-02-26 11:17:33,982] DEBUG in application: test test test
+[2019-02-26 11:17:33,982] DEBUG in application: test test test
+[2019-02-26 11:17:33,983] DEBUG in application: test test test
+[2019-02-26 11:17:33,983] DEBUG in application: okookok
+[2019-02-26 11:17:33,983] DEBUG in application: test test
+[2019-02-26 11:17:33,983] DEBUG in application: testtest test
+[2019-02-26 11:17:34,709] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:17:34] "GET /bookreivew/mypage HTTP/1.1" 200 -
+[2019-02-26 11:30:25,347] DEBUG in application: ==========find_book_reviews==========
+[2019-02-26 11:30:25,349] DEBUG in application: test test test
+[2019-02-26 11:30:25,569] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:30:25] "GET /bookreivew/searchBook?isbn=1405204664 HTTP/1.1" 200 -
+[2019-02-26 11:30:27,128] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:30:27] "GET /bookreivew/editSubmission?isbn=1405204664 HTTP/1.1" 200 -
+[2019-02-26 11:30:30,494] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:30:30] "POST /bookreivew/confirmEditEntry HTTP/1.1" 200 -
+[2019-02-26 11:30:31,685] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:30:31] "POST /bookreivew/updateBookReview HTTP/1.1" 200 -
+[2019-02-26 11:30:36,431] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933)]
+[2019-02-26 11:30:36,752] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:30:36] "GET /bookreivew/search HTTP/1.1" 200 -
+[2019-02-26 11:30:38,392] DEBUG in application: raise error
+[2019-02-26 11:30:38,393] DEBUG in application: ====queryBook======
+[2019-02-26 11:30:38,393] DEBUG in application: SELECT * FROM books 
+[2019-02-26 11:30:38,393] DEBUG in application: ====sqlparameters===
+[2019-02-26 11:30:38,393] DEBUG in application: {}
+[2019-02-26 11:30:38,902] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:30:38] "GET /bookreivew/searchBooks?booktitle=&isbn=&authorname=&searchBooks=searchBooks HTTP/1.1" 200 -
+[2019-02-26 11:30:40,306] DEBUG in application: ==========find_book_reviews==========
+[2019-02-26 11:30:40,309] DEBUG in application: test test test test
+[2019-02-26 11:30:40,568] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:30:40] "GET /bookreivew/searchBook?isbn=1405204664 HTTP/1.1" 200 -
+[2019-02-26 11:30:42,043] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:30:42] "GET /bookreivew/editSubmission?isbn=1405204664 HTTP/1.1" 200 -
+[2019-02-26 11:30:44,468] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:30:44] "POST /bookreivew/confirmEditEntry HTTP/1.1" 200 -
+[2019-02-26 11:30:45,393] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 11:30:45] "POST /bookreivew/updateBookReview HTTP/1.1" 200 -
+[2019-02-26 13:24:02,682] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933)]
+[2019-02-26 13:24:02,686] DEBUG in application: testtest test
+[2019-02-26 13:24:02,686] DEBUG in application: test test
+[2019-02-26 13:24:02,687] DEBUG in application: okookok
+[2019-02-26 13:24:02,687] DEBUG in application: test test test
+[2019-02-26 13:24:02,687] DEBUG in application: test test test
+[2019-02-26 13:24:02,687] DEBUG in application: test test test test
+[2019-02-26 13:24:02,687] DEBUG in application: test test test test
+[2019-02-26 13:24:02,688] DEBUG in application: test test test
+[2019-02-26 13:24:02,688] DEBUG in application: okookok
+[2019-02-26 13:24:02,688] DEBUG in application: test test
+[2019-02-26 13:24:02,688] DEBUG in application: testtest test
+[2019-02-26 13:24:03,069] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 13:24:03] "GET /bookreivew/mypage HTTP/1.1" 200 -
+[2019-02-26 13:28:12,343] DEBUG in application: ==========find_book_reviews==========
+[2019-02-26 13:28:12,346] DEBUG in application: testtest test
+[2019-02-26 13:28:12,618] INFO in _internal: 127.0.0.1 - - [26/Feb/2019 13:28:12] "GET /bookreivew/searchBook?isbn=0061150142 HTTP/1.1" 200 -
