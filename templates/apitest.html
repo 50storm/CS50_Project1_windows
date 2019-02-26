@@ -1,0 +1,98 @@
+{# mypage.html #}
+{% extends "layout.html" %}
+{% block nav %}
+{% include "nav.tpl" %}
+{% endblock %}
+{% block pageinfo  %}
+{% endblock %}
+{% block body %}
+<script>
+    var httpRequest;
+    function makeRequest(isbn) {
+        httpRequest = new XMLHttpRequest();
+
+        if (!httpRequest) {
+          alert('abort');
+          return false;
+        }
+
+        httpRequest.onreadystatechange = setContents;
+        httpRequest.open('GET', 'http://localhost:5000/bookreivew/api/' + isbn );
+        httpRequest.responseType = 'json';
+        httpRequest.send(null);
+    }
+
+    function setContents() {
+      if (httpRequest.readyState === XMLHttpRequest.DONE) {
+        if (httpRequest.status === 200) {
+          console.log(httpRequest);
+          if(httpRequest.response == null){
+             alert('Sorry, The book with ISBN is not our database.')
+            document.querySelector('#title').innerHTML = 'xxxx';
+              document.querySelector('#author').innerHTML = 'xxxx';
+              document.querySelector('#year').innerHTML = '9999';
+              document.querySelector('#isbn').innerHTML = '99999999999';
+              document.querySelector('#review_count').innerHTML = '0';
+              document.querySelector('#average_score').innerHTML = '0';
+          }else{
+             document.querySelector('#title').innerHTML = httpRequest.response.title;
+             document.querySelector('#author').innerHTML = httpRequest.response.author;
+             document.querySelector('#year').innerHTML =  httpRequest.response.year;
+             document.querySelector('#isbn').innerHTML =  httpRequest.response.isbn;
+             document.querySelector('#review_count').innerHTML =  httpRequest.response.review_count;
+             document.querySelector('#average_score').innerHTML =  httpRequest.response.average_score;
+          }
+        } else {
+            alert('Sorry, Errro occured..');
+        }
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function (event) {
+        let btnSearchBook = document.querySelector('#btnSearchBook');
+        btnSearchBook.addEventListener('click', function () {
+            let isbn = document.querySelector('#isbn').value;
+            makeRequest(isbn);
+        });
+
+    });
+</script>
+
+<div class="row">
+  <div class="col-sm">
+    <h3 class="bg-primary text-white p-2 mb-2">API Test</h3>
+    <form action="" method="get">
+        <div class="form-group">
+            <label for="isbn" >ISBN</label>
+            <input type="text" id="isbn"  name="isbn"  class="h-100 w-100 p-3" placeholder="isbn here" value="0061150142">
+        </div>
+        <div class="form-group">
+            <input type="button" class="btn btn-outline-primary" id="btnSearchBook" name="searchBook" value="searchBooks" />
+        </div>
+    </form>
+  </div>
+</div>
+<div class="row">
+    <div class="col-sm">
+        <div id="result"></div>
+        <table class="table table-striped">
+            <tr>
+            <th>title</th>
+            <th>author</th>
+            <th>year</th>
+            <th>isbn</th>
+            <th>review_count</th>
+            <th>average_score</th>
+            </tr>
+            <tr>
+            <td><span id="title">xxxx</span></td>
+            <td><span id="author">xxxx</span></td>
+            <td><span id="year">9999</span></td>
+            <td><span id="isbn">99999999999</span></td>
+            <td><span id="review_count">0</span></td>
+            <td><span id="average_score">0</span></td>
+            </tr>
+        </table>
+    </div>
+</div>
+{% endblock %}
