@@ -112,16 +112,22 @@ def checkUserName(username, user_id=None, for_update=False):
                 return (True, None)
         
 def find_book_by_isbn(isbn):
+    result = None
     book = db.execute("SELECT * FROM books WHERE isbn=:isbn ", {"isbn":isbn})
-    return  book.fetchone()
+    result = book.fetchone()
+    book.close()
+    db.close()
+    return  result
 
 def find_my_book_review(isbn, user_id):
-    #None or Dictionary  dic["rate"]
+    result = None
     sql_my_book_review = "SELECT u.username as username, br.rate as rate, br.comment as comment, br.isbn as isbn FROM bookreviews br "
     sql_my_book_review += "INNER JOIN users u ON br.user_id = u.user_id  "
     sql_my_book_review +=  " WHERE br.isbn=:isbn AND u.user_id = :user_id"
     mybookreview = db.execute( sql_my_book_review, {"isbn":isbn,"user_id":user_id} )
     row_mybookreview = mybookreview.fetchone() #only one record
+    mybookreview.close()
+    db.close()
     if(row_mybookreview is None) :
         return None
     else:
@@ -719,4 +725,5 @@ def deleteBookReview():
 
 @app.route(PREFIX + "/error")
 def error():
+    db.close()
     return render_template("error.html")

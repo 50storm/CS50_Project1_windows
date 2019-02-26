@@ -11,16 +11,7 @@ CREATE TABLE bookreviews (
 );
 
 
-INSERT INTO bookreviews ( isbn, user_id, comment, created_at )
-VALUES            ( '0380795272', 2,'Great!', current_timestamp);
+INSERT INTO bookreviews  ( isbn,  user_id, rate,    comment, created_at )
+VALUES                   ( '0380795272', 1,    4,   'Great!', current_timestamp);
 
 
-username = request.form.get("isbn").strip()
-user_id= request.form.get("user_id").strip()
-comment   = request.form.get("comment").strip()
-insertSQL ="INSERT INTO bookreviews (isbn, user_id, comment)VALUES (:isbn, :user_id, :comment)"
-
-users = db.execute(
-
-            {"username":username, "user_id":user_id, "comment":comment}
- )
