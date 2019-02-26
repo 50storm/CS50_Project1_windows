@@ -6,6 +6,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from jinja2 import evalcontextfilter, Markup, escape
 from logging.config import dictConfig
+from flask_cors import CORS  # pip install Flask-Cors
+
 
 dictConfig({
     'version': 1,
@@ -44,6 +46,9 @@ Session(app)
 # Set up database
 engine = create_engine(os.getenv("DATABASE_URL"))
 db = scoped_session(sessionmaker(bind=engine))
+
+# Set Flask-Cors
+CORS(app)
 
 PREFIX="/bookreivew"
 
@@ -217,6 +222,7 @@ def setUserViewData(user_id='', username='', firstname='', lastname='', passswor
     userdata['password'] = passsword
     return userdata
 
+#http://localhost:5000/bookreivew/api/0061150142
 @app.route(PREFIX + "/api/<string:isbn>", methods=["GET"])
 def api(isbn):
     book_info =  {
@@ -250,6 +256,11 @@ def api(isbn):
             app.logger.debug(row_book['average_score'])
             book_info["average_score"] = round(float(row_book['average_score']),1)
             return jsonify(book_info)
+
+
+@app.route(PREFIX + "/apitest/", methods=["GET"])
+def apitest():
+    return render_template("apitest.html")
 
 @app.route("/", methods=["GET"])
 def root():
