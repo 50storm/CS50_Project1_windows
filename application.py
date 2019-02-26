@@ -725,5 +725,4 @@ def deleteBookReview():
 
 @app.route(PREFIX + "/error")
 def error():
-    db.close()
     return render_template("error.html")
