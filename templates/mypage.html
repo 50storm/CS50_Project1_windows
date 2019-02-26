@@ -4,16 +4,20 @@
 {% include "nav.tpl" %}
 {% endblock %}
 {% block pageinfo %}
+<script>
+document.addEventListener("DOMContentLoaded", function (event) {
+        let navMypage = document.querySelector("li#mypage");
+        navMypage.classList.add("active");
+        navMypage.classList.add("font-weight-bold");
+        navMypage.classList.add("font-italic");
+        $('#tableMybookreview').DataTable({});
+        $('#tableRecentBookReview').DataTable({});
+});
+</script>
+
 <div class="row mt-2">
     <div class="col-sm-6">
-        <script>
-            document.addEventListener("DOMContentLoaded", function (event) {
-            let navMypage = document.querySelector("li#mypage");
-            navMypage.classList.add("active");
-            navMypage.classList.add("font-weight-bold");
-            navMypage.classList.add("font-italic");
-            });
-        </script>
+
         <div class="alert alert-info" role="alert">
                 <a href="{{ url_for('showUserAccount') }}">User:{{session['username']}}</a>
         </div>
@@ -41,40 +45,46 @@
   <div class="col-sm">
     <h3 class="bg-primary text-white p-2 mb-2" >My Book Reviews</h3>
     {% if my_book_reviews is defined and my_book_reviews | length  %}
-    <table class="table" style="table-layout:fixed;" >
-    <tr>
-        <th>Date</th>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Year</th>
-        <th>Rate</th>
-        <th>Comment</th>
-        <th> </th>
-    </tr>
+    <table class="table" style="table-layout:fixed;"  id="tableMybookreview" >
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Year</th>
+            <th>Rate</th>
+            <th>Comment</th>
+            <th> </th>
+        </tr>
+        </thead>
+        <tbody>
+    
     {% for my_book_review in my_book_reviews %}
-    <tr >
-        <td>{{ my_book_review["created_at"].strftime('%Y-%m-%d %H:%M:%S') }}</td>
-        <td>{{ my_book_review["title"] }}</td>
-        <td>{{ my_book_review["author"] }}</td>
-        <td>{{ my_book_review["year"] }}</td>
-        <td>
-        {% if my_book_review["rate"] == 1  %}
-            ★☆☆☆☆
-        {% elif my_book_review["rate"] == 2 %}
-            ★★☆☆☆
-        {% elif my_book_review["rate"] == 3 %}
-            ★★★☆☆
-        {% elif my_book_review["rate"] == 4 %}
-            ★★★★☆
-        {% elif my_book_review["rate"] == 5 %}
-            ★★★★★
-        {% endif %}
-        </td>
-        <td  style="overflow:hidden;" >{{ my_book_review["comment"] | nl2br }}</td>
-        <td><a class="badge badge-primary" href="{{ url_for('searchBook') }}?isbn={{ my_book_review['isbn'] }}" >view</a></td>
-    </tr>
+        <tr >
+            <td>{{ my_book_review["created_at"].strftime('%Y-%m-%d %H:%M:%S') }}</td>
+            <td>{{ my_book_review["title"] }}</td>
+            <td>{{ my_book_review["author"] }}</td>
+            <td>{{ my_book_review["year"] }}</td>
+            <td>
+            {% if my_book_review["rate"] == 1  %}
+                ★☆☆☆☆
+            {% elif my_book_review["rate"] == 2 %}
+                ★★☆☆☆
+            {% elif my_book_review["rate"] == 3 %}
+                ★★★☆☆
+            {% elif my_book_review["rate"] == 4 %}
+                ★★★★☆
+            {% elif my_book_review["rate"] == 5 %}
+                ★★★★★
+            {% endif %}
+            </td>
+            <td  style="overflow:hidden;" >{{ my_book_review["comment"] | nl2br }}</td>
+            <td><a class="badge badge-primary" href="{{ url_for('searchBook') }}?isbn={{ my_book_review['isbn'] }}" >view</a></td>
+        </tr>
     {% endfor %}
-    </table>
+</tbody>    
+        
+</table>
     {% else %}
     <p>No Entries </p>
     {% endif %}
@@ -85,17 +95,20 @@
    <h3 class="bg-primary text-white p-2 mb-2" >Rcent Book Reviews</h3>
    
     {% if recent_book_reviews is defined and recent_book_reviews | length %}
-        <table class="table" style="table-layout:fixed;" >
-    <tr>
-        <th>Date</th>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Year</th>
-        <th>Username</th>
-        <th>Rate</th>
-        <th>Comment</th>
-        <th>        </th>
-    </tr>
+        <table class="table" style="table-layout:fixed;" id="tableRecentBookReview" >
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Year</th>
+                <th>Username</th>
+                <th>Rate</th>
+                <th>Comment</th>
+                <th>        </th>
+            </tr>
+         </thead>
+    <tbody>     
     {% for recent_book_review in recent_book_reviews %}
     <tr>
         <td>{{ recent_book_review["created_at"].strftime('%Y-%m-%d %H:%M:%S') }}</td>
@@ -120,6 +133,7 @@
         <td><a class="badge badge-primary" href="{{ url_for('searchBook') }}?isbn={{ recent_book_review['isbn'] }}">view</a></td>
     </tr>
     {% endfor %}
+    </tbody>
     </table>
     {% else %}
     <p>No Entries </p>

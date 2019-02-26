@@ -597,3 +597,452 @@
 [2019-02-26 15:50:12,246] WARNING in _internal:  * Debugger is active!
 [2019-02-26 15:50:12,261] INFO in _internal:  * Debugger PIN: 237-324-945
 [2019-02-26 15:50:12,261] INFO in _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2019-02-26 19:05:34,976] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 19:05:35,026] DEBUG in application: Test Comment Test Comment
+[2019-02-26 19:05:35,026] DEBUG in application: amazing.
+[2019-02-26 19:05:35,027] DEBUG in application: Comment. Comment
+[2019-02-26 19:05:35,027] DEBUG in application: Amazing book!
+[2019-02-26 19:05:35,028] DEBUG in application: Amazing!
+[2019-02-26 19:05:35,028] DEBUG in application: Comment. Comment.
+[2019-02-26 19:05:35,028] DEBUG in application: amazing.
+[2019-02-26 19:05:35,029] DEBUG in application: Comment. Comment
+[2019-02-26 19:05:35,029] DEBUG in application: Test Comment Test Comment
+[2019-02-26 19:05:35,030] DEBUG in application: Comment. Comment.
+[2019-02-26 19:05:35,030] DEBUG in application: Amazing!
+[2019-02-26 19:44:50,989] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 19:44:51,005] DEBUG in application: Test Comment Test Comment
+[2019-02-26 19:44:51,005] DEBUG in application: amazing.
+[2019-02-26 19:44:51,006] DEBUG in application: Comment. Comment
+[2019-02-26 19:44:51,007] DEBUG in application: Amazing book!
+[2019-02-26 19:44:51,007] DEBUG in application: Amazing!
+[2019-02-26 19:44:51,007] DEBUG in application: Comment. Comment.
+[2019-02-26 19:44:51,008] DEBUG in application: amazing.
+[2019-02-26 19:44:51,008] DEBUG in application: Comment. Comment
+[2019-02-26 19:44:51,008] DEBUG in application: Test Comment Test Comment
+[2019-02-26 19:44:51,008] DEBUG in application: Comment. Comment.
+[2019-02-26 19:44:51,008] DEBUG in application: Amazing!
+[2019-02-26 19:44:54,911] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 19:56:08,146] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 19:56:08,150] DEBUG in application: Test Comment Test Comment
+[2019-02-26 19:56:08,150] DEBUG in application: amazing.
+[2019-02-26 19:56:08,150] DEBUG in application: Comment. Comment
+[2019-02-26 19:56:08,150] DEBUG in application: Amazing book!
+[2019-02-26 19:56:08,151] DEBUG in application: Amazing!
+[2019-02-26 19:56:08,151] DEBUG in application: Comment. Comment.
+[2019-02-26 19:56:08,151] DEBUG in application: amazing.
+[2019-02-26 19:56:08,151] DEBUG in application: Comment. Comment
+[2019-02-26 19:56:08,151] DEBUG in application: Test Comment Test Comment
+[2019-02-26 19:56:08,152] DEBUG in application: Comment. Comment.
+[2019-02-26 19:56:08,152] DEBUG in application: Amazing!
+[2019-02-26 19:57:51,754] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 19:57:51,777] DEBUG in application: Test Comment Test Comment
+[2019-02-26 19:57:51,778] DEBUG in application: amazing.
+[2019-02-26 19:57:51,778] DEBUG in application: Comment. Comment
+[2019-02-26 19:57:51,778] DEBUG in application: Amazing book!
+[2019-02-26 19:57:51,778] DEBUG in application: Amazing!
+[2019-02-26 19:57:51,779] DEBUG in application: Comment. Comment.
+[2019-02-26 19:57:51,779] DEBUG in application: amazing.
+[2019-02-26 19:57:51,779] DEBUG in application: Comment. Comment
+[2019-02-26 19:57:51,779] DEBUG in application: Test Comment Test Comment
+[2019-02-26 19:57:51,779] DEBUG in application: Comment. Comment.
+[2019-02-26 19:57:51,780] DEBUG in application: Amazing!
+[2019-02-26 19:59:13,417] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 19:59:13,442] DEBUG in application: Test Comment Test Comment
+[2019-02-26 19:59:13,442] DEBUG in application: amazing.
+[2019-02-26 19:59:13,442] DEBUG in application: Comment. Comment
+[2019-02-26 19:59:13,442] DEBUG in application: Amazing book!
+[2019-02-26 19:59:13,443] DEBUG in application: Amazing!
+[2019-02-26 19:59:13,443] DEBUG in application: Comment. Comment.
+[2019-02-26 19:59:13,443] DEBUG in application: amazing.
+[2019-02-26 19:59:13,443] DEBUG in application: Comment. Comment
+[2019-02-26 19:59:13,444] DEBUG in application: Test Comment Test Comment
+[2019-02-26 19:59:13,444] DEBUG in application: Comment. Comment.
+[2019-02-26 19:59:13,444] DEBUG in application: Amazing!
+[2019-02-26 19:59:49,326] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 19:59:49,327] DEBUG in application: Test Comment Test Comment
+[2019-02-26 19:59:49,327] DEBUG in application: amazing.
+[2019-02-26 19:59:49,327] DEBUG in application: Comment. Comment
+[2019-02-26 19:59:49,327] DEBUG in application: Amazing book!
+[2019-02-26 19:59:49,328] DEBUG in application: Amazing!
+[2019-02-26 19:59:49,328] DEBUG in application: Comment. Comment.
+[2019-02-26 19:59:49,328] DEBUG in application: amazing.
+[2019-02-26 19:59:49,328] DEBUG in application: Comment. Comment
+[2019-02-26 19:59:49,329] DEBUG in application: Test Comment Test Comment
+[2019-02-26 19:59:49,329] DEBUG in application: Comment. Comment.
+[2019-02-26 19:59:49,329] DEBUG in application: Amazing!
+[2019-02-26 20:01:15,526] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 20:01:15,531] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:01:15,532] DEBUG in application: amazing.
+[2019-02-26 20:01:15,532] DEBUG in application: Comment. Comment
+[2019-02-26 20:01:15,533] DEBUG in application: Amazing book!
+[2019-02-26 20:01:15,534] DEBUG in application: Amazing!
+[2019-02-26 20:01:15,534] DEBUG in application: Comment. Comment.
+[2019-02-26 20:01:15,535] DEBUG in application: amazing.
+[2019-02-26 20:01:15,535] DEBUG in application: Comment. Comment
+[2019-02-26 20:01:15,535] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:01:15,536] DEBUG in application: Comment. Comment.
+[2019-02-26 20:01:15,536] DEBUG in application: Amazing!
+[2019-02-26 20:03:50,662] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 20:03:50,673] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:03:50,673] DEBUG in application: amazing.
+[2019-02-26 20:03:50,673] DEBUG in application: Comment. Comment
+[2019-02-26 20:03:50,674] DEBUG in application: Amazing book!
+[2019-02-26 20:03:50,674] DEBUG in application: Amazing!
+[2019-02-26 20:03:50,674] DEBUG in application: Comment. Comment.
+[2019-02-26 20:03:50,674] DEBUG in application: amazing.
+[2019-02-26 20:03:50,675] DEBUG in application: Comment. Comment
+[2019-02-26 20:03:50,675] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:03:50,675] DEBUG in application: Comment. Comment.
+[2019-02-26 20:03:50,675] DEBUG in application: Amazing!
+[2019-02-26 20:04:18,915] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 20:04:18,938] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:04:18,939] DEBUG in application: amazing.
+[2019-02-26 20:04:18,939] DEBUG in application: Comment. Comment
+[2019-02-26 20:04:18,939] DEBUG in application: Amazing book!
+[2019-02-26 20:04:18,939] DEBUG in application: Amazing!
+[2019-02-26 20:04:18,939] DEBUG in application: Comment. Comment.
+[2019-02-26 20:04:18,940] DEBUG in application: amazing.
+[2019-02-26 20:04:18,940] DEBUG in application: Comment. Comment
+[2019-02-26 20:04:18,941] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:04:18,943] DEBUG in application: Comment. Comment.
+[2019-02-26 20:04:18,943] DEBUG in application: Amazing!
+[2019-02-26 20:04:49,350] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 20:04:49,354] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:04:49,354] DEBUG in application: amazing.
+[2019-02-26 20:04:49,355] DEBUG in application: Comment. Comment
+[2019-02-26 20:04:49,356] DEBUG in application: Amazing book!
+[2019-02-26 20:04:49,356] DEBUG in application: Amazing!
+[2019-02-26 20:04:49,357] DEBUG in application: Comment. Comment.
+[2019-02-26 20:04:49,358] DEBUG in application: amazing.
+[2019-02-26 20:04:49,358] DEBUG in application: Comment. Comment
+[2019-02-26 20:04:49,358] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:04:49,359] DEBUG in application: Comment. Comment.
+[2019-02-26 20:04:49,360] DEBUG in application: Amazing!
+[2019-02-26 20:05:14,081] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 20:05:14,082] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:05:14,082] DEBUG in application: amazing.
+[2019-02-26 20:05:14,083] DEBUG in application: Comment. Comment
+[2019-02-26 20:05:14,083] DEBUG in application: Amazing book!
+[2019-02-26 20:05:14,083] DEBUG in application: Amazing!
+[2019-02-26 20:05:14,083] DEBUG in application: Comment. Comment.
+[2019-02-26 20:05:14,083] DEBUG in application: amazing.
+[2019-02-26 20:05:14,084] DEBUG in application: Comment. Comment
+[2019-02-26 20:05:14,084] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:05:14,084] DEBUG in application: Comment. Comment.
+[2019-02-26 20:05:14,084] DEBUG in application: Amazing!
+[2019-02-26 20:06:19,658] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 20:06:19,661] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:06:19,661] DEBUG in application: amazing.
+[2019-02-26 20:06:19,662] DEBUG in application: Comment. Comment
+[2019-02-26 20:06:19,662] DEBUG in application: Amazing book!
+[2019-02-26 20:06:19,662] DEBUG in application: Amazing!
+[2019-02-26 20:06:19,662] DEBUG in application: Comment. Comment.
+[2019-02-26 20:06:19,662] DEBUG in application: amazing.
+[2019-02-26 20:06:19,663] DEBUG in application: Comment. Comment
+[2019-02-26 20:06:19,663] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:06:19,663] DEBUG in application: Comment. Comment.
+[2019-02-26 20:06:19,663] DEBUG in application: Amazing!
+[2019-02-26 20:07:01,655] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 20:07:01,659] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:07:01,659] DEBUG in application: amazing.
+[2019-02-26 20:07:01,659] DEBUG in application: Comment. Comment
+[2019-02-26 20:07:01,659] DEBUG in application: Amazing book!
+[2019-02-26 20:07:01,660] DEBUG in application: Amazing!
+[2019-02-26 20:07:01,660] DEBUG in application: Comment. Comment.
+[2019-02-26 20:07:01,660] DEBUG in application: amazing.
+[2019-02-26 20:07:01,660] DEBUG in application: Comment. Comment
+[2019-02-26 20:07:01,661] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:07:01,661] DEBUG in application: Comment. Comment.
+[2019-02-26 20:07:01,661] DEBUG in application: Amazing!
+[2019-02-26 20:07:41,926] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 20:07:41,930] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:07:41,930] DEBUG in application: amazing.
+[2019-02-26 20:07:41,931] DEBUG in application: Comment. Comment
+[2019-02-26 20:07:41,931] DEBUG in application: Amazing book!
+[2019-02-26 20:07:41,931] DEBUG in application: Amazing!
+[2019-02-26 20:07:41,931] DEBUG in application: Comment. Comment.
+[2019-02-26 20:07:41,931] DEBUG in application: amazing.
+[2019-02-26 20:07:41,932] DEBUG in application: Comment. Comment
+[2019-02-26 20:07:41,932] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:07:41,932] DEBUG in application: Comment. Comment.
+[2019-02-26 20:07:41,932] DEBUG in application: Amazing!
+[2019-02-26 20:18:40,758] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 20:18:40,767] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:18:40,767] DEBUG in application: amazing.
+[2019-02-26 20:18:40,768] DEBUG in application: Comment. Comment
+[2019-02-26 20:18:40,768] DEBUG in application: Amazing book!
+[2019-02-26 20:18:40,768] DEBUG in application: Amazing!
+[2019-02-26 20:18:40,768] DEBUG in application: Comment. Comment.
+[2019-02-26 20:18:40,769] DEBUG in application: amazing.
+[2019-02-26 20:18:40,769] DEBUG in application: Comment. Comment
+[2019-02-26 20:18:40,769] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:18:40,769] DEBUG in application: Comment. Comment.
+[2019-02-26 20:18:40,769] DEBUG in application: Amazing!
+[2019-02-26 20:19:36,809] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 20:19:36,836] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:19:36,837] DEBUG in application: amazing.
+[2019-02-26 20:19:36,837] DEBUG in application: Comment. Comment
+[2019-02-26 20:19:36,837] DEBUG in application: Amazing book!
+[2019-02-26 20:19:36,837] DEBUG in application: Amazing!
+[2019-02-26 20:19:36,838] DEBUG in application: Comment. Comment.
+[2019-02-26 20:19:36,838] DEBUG in application: amazing.
+[2019-02-26 20:19:36,838] DEBUG in application: Comment. Comment
+[2019-02-26 20:19:36,838] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:19:36,838] DEBUG in application: Comment. Comment.
+[2019-02-26 20:19:36,839] DEBUG in application: Amazing!
+[2019-02-26 20:20:28,293] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 20:20:28,328] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:20:28,328] DEBUG in application: amazing.
+[2019-02-26 20:20:28,329] DEBUG in application: Comment. Comment
+[2019-02-26 20:20:28,329] DEBUG in application: Amazing book!
+[2019-02-26 20:20:28,329] DEBUG in application: Amazing!
+[2019-02-26 20:20:28,330] DEBUG in application: Comment. Comment.
+[2019-02-26 20:20:28,330] DEBUG in application: amazing.
+[2019-02-26 20:20:28,330] DEBUG in application: Comment. Comment
+[2019-02-26 20:20:28,330] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:20:28,331] DEBUG in application: Comment. Comment.
+[2019-02-26 20:20:28,331] DEBUG in application: Amazing!
+[2019-02-26 20:20:36,897] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 20:20:36,898] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:20:36,898] DEBUG in application: amazing.
+[2019-02-26 20:20:36,899] DEBUG in application: Comment. Comment
+[2019-02-26 20:20:36,899] DEBUG in application: Amazing book!
+[2019-02-26 20:20:36,899] DEBUG in application: Amazing!
+[2019-02-26 20:20:36,900] DEBUG in application: Comment. Comment.
+[2019-02-26 20:20:36,900] DEBUG in application: amazing.
+[2019-02-26 20:20:36,900] DEBUG in application: Comment. Comment
+[2019-02-26 20:20:36,901] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:20:36,901] DEBUG in application: Comment. Comment.
+[2019-02-26 20:20:36,901] DEBUG in application: Amazing!
+[2019-02-26 20:20:37,358] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 20:20:37,359] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:20:37,360] DEBUG in application: amazing.
+[2019-02-26 20:20:37,360] DEBUG in application: Comment. Comment
+[2019-02-26 20:20:37,361] DEBUG in application: Amazing book!
+[2019-02-26 20:20:37,361] DEBUG in application: Amazing!
+[2019-02-26 20:20:37,362] DEBUG in application: Comment. Comment.
+[2019-02-26 20:20:37,363] DEBUG in application: amazing.
+[2019-02-26 20:20:37,363] DEBUG in application: Comment. Comment
+[2019-02-26 20:20:37,364] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:20:37,365] DEBUG in application: Comment. Comment.
+[2019-02-26 20:20:37,366] DEBUG in application: Amazing!
+[2019-02-26 20:20:51,029] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 20:20:51,055] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:20:51,055] DEBUG in application: amazing.
+[2019-02-26 20:20:51,055] DEBUG in application: Comment. Comment
+[2019-02-26 20:20:51,055] DEBUG in application: Amazing book!
+[2019-02-26 20:20:51,056] DEBUG in application: Amazing!
+[2019-02-26 20:20:51,056] DEBUG in application: Comment. Comment.
+[2019-02-26 20:20:51,056] DEBUG in application: amazing.
+[2019-02-26 20:20:51,056] DEBUG in application: Comment. Comment
+[2019-02-26 20:20:51,057] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:20:51,057] DEBUG in application: Comment. Comment.
+[2019-02-26 20:20:51,057] DEBUG in application: Amazing!
+[2019-02-26 20:22:06,096] DEBUG in application: ==========find_book_reviews==========
+[2019-02-26 20:22:06,114] DEBUG in application: Comment. Comment.
+[2019-02-26 20:23:40,727] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 20:23:40,732] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:23:40,733] DEBUG in application: amazing.
+[2019-02-26 20:23:40,733] DEBUG in application: Comment. Comment
+[2019-02-26 20:23:40,733] DEBUG in application: Amazing book!
+[2019-02-26 20:23:40,733] DEBUG in application: Amazing!
+[2019-02-26 20:23:40,734] DEBUG in application: Comment. Comment.
+[2019-02-26 20:23:40,734] DEBUG in application: amazing.
+[2019-02-26 20:23:40,735] DEBUG in application: Comment. Comment
+[2019-02-26 20:23:40,736] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:23:40,736] DEBUG in application: Comment. Comment.
+[2019-02-26 20:23:40,736] DEBUG in application: Amazing!
+[2019-02-26 20:23:58,690] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 20:23:58,695] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:23:58,696] DEBUG in application: amazing.
+[2019-02-26 20:23:58,696] DEBUG in application: Comment. Comment
+[2019-02-26 20:23:58,696] DEBUG in application: Amazing book!
+[2019-02-26 20:23:58,696] DEBUG in application: Amazing!
+[2019-02-26 20:23:58,696] DEBUG in application: Comment. Comment.
+[2019-02-26 20:23:58,697] DEBUG in application: amazing.
+[2019-02-26 20:23:58,697] DEBUG in application: Comment. Comment
+[2019-02-26 20:23:58,697] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:23:58,697] DEBUG in application: Comment. Comment.
+[2019-02-26 20:23:58,697] DEBUG in application: Amazing!
+[2019-02-26 20:24:57,053] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 20:24:57,060] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:24:57,060] DEBUG in application: amazing.
+[2019-02-26 20:24:57,060] DEBUG in application: Comment. Comment
+[2019-02-26 20:24:57,060] DEBUG in application: Amazing book!
+[2019-02-26 20:24:57,061] DEBUG in application: Amazing!
+[2019-02-26 20:24:57,061] DEBUG in application: Comment. Comment.
+[2019-02-26 20:24:57,061] DEBUG in application: amazing.
+[2019-02-26 20:24:57,061] DEBUG in application: Comment. Comment
+[2019-02-26 20:24:57,061] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:24:57,062] DEBUG in application: Comment. Comment.
+[2019-02-26 20:24:57,062] DEBUG in application: Amazing!
+[2019-02-26 20:26:18,795] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 20:26:18,830] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:26:18,831] DEBUG in application: amazing.
+[2019-02-26 20:26:18,831] DEBUG in application: Comment. Comment
+[2019-02-26 20:26:18,832] DEBUG in application: Amazing book!
+[2019-02-26 20:26:18,832] DEBUG in application: Amazing!
+[2019-02-26 20:26:18,832] DEBUG in application: Comment. Comment.
+[2019-02-26 20:26:18,833] DEBUG in application: amazing.
+[2019-02-26 20:26:18,833] DEBUG in application: Comment. Comment
+[2019-02-26 20:26:18,833] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:26:18,833] DEBUG in application: Comment. Comment.
+[2019-02-26 20:26:18,834] DEBUG in application: Amazing!
+[2019-02-26 20:26:38,440] DEBUG in application: {'user_id': 6, 'username': 'Iga', 'firstname': 'Igarashi', 'lastname': 'Hiroshi', 'password': 'hiro1128'}
+[2019-02-26 20:26:40,544] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 20:26:40,545] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:26:40,545] DEBUG in application: amazing.
+[2019-02-26 20:26:40,545] DEBUG in application: Comment. Comment
+[2019-02-26 20:26:40,545] DEBUG in application: Amazing book!
+[2019-02-26 20:26:40,546] DEBUG in application: Amazing!
+[2019-02-26 20:26:40,546] DEBUG in application: Comment. Comment.
+[2019-02-26 20:26:40,546] DEBUG in application: amazing.
+[2019-02-26 20:26:40,547] DEBUG in application: Comment. Comment
+[2019-02-26 20:26:40,547] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:26:40,547] DEBUG in application: Comment. Comment.
+[2019-02-26 20:26:40,547] DEBUG in application: Amazing!
+[2019-02-26 20:29:06,912] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 20:29:06,937] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:29:06,937] DEBUG in application: amazing.
+[2019-02-26 20:29:06,937] DEBUG in application: Comment. Comment
+[2019-02-26 20:29:06,938] DEBUG in application: Amazing book!
+[2019-02-26 20:29:06,938] DEBUG in application: Amazing!
+[2019-02-26 20:29:06,938] DEBUG in application: Comment. Comment.
+[2019-02-26 20:29:06,938] DEBUG in application: amazing.
+[2019-02-26 20:29:06,939] DEBUG in application: Comment. Comment
+[2019-02-26 20:29:06,939] DEBUG in application: Test Comment Test Comment
+[2019-02-26 20:29:06,939] DEBUG in application: Comment. Comment.
+[2019-02-26 20:29:06,939] DEBUG in application: Amazing!
+[2019-02-26 21:20:55,396] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 21:20:55,433] DEBUG in application: Test Comment Test Comment
+[2019-02-26 21:20:55,434] DEBUG in application: amazing.
+[2019-02-26 21:20:55,434] DEBUG in application: Comment. Comment
+[2019-02-26 21:20:55,434] DEBUG in application: Amazing book!
+[2019-02-26 21:20:55,435] DEBUG in application: Amazing!
+[2019-02-26 21:20:55,435] DEBUG in application: Comment. Comment.
+[2019-02-26 21:20:55,436] DEBUG in application: amazing.
+[2019-02-26 21:20:55,436] DEBUG in application: Comment. Comment
+[2019-02-26 21:20:55,437] DEBUG in application: Test Comment Test Comment
+[2019-02-26 21:20:55,438] DEBUG in application: Comment. Comment.
+[2019-02-26 21:20:55,438] DEBUG in application: Amazing!
+[2019-02-26 21:22:20,548] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 21:22:20,575] DEBUG in application: Test Comment Test Comment
+[2019-02-26 21:22:20,575] DEBUG in application: amazing.
+[2019-02-26 21:22:20,575] DEBUG in application: Comment. Comment
+[2019-02-26 21:22:20,575] DEBUG in application: Amazing book!
+[2019-02-26 21:22:20,576] DEBUG in application: Amazing!
+[2019-02-26 21:22:20,577] DEBUG in application: Comment. Comment.
+[2019-02-26 21:22:20,578] DEBUG in application: amazing.
+[2019-02-26 21:22:20,578] DEBUG in application: Comment. Comment
+[2019-02-26 21:22:20,579] DEBUG in application: Test Comment Test Comment
+[2019-02-26 21:22:20,579] DEBUG in application: Comment. Comment.
+[2019-02-26 21:22:20,579] DEBUG in application: Amazing!
+[2019-02-26 21:23:03,249] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 21:23:03,275] DEBUG in application: Test Comment Test Comment
+[2019-02-26 21:23:03,275] DEBUG in application: amazing.
+[2019-02-26 21:23:03,275] DEBUG in application: Comment. Comment
+[2019-02-26 21:23:03,275] DEBUG in application: Amazing book!
+[2019-02-26 21:23:03,276] DEBUG in application: Amazing!
+[2019-02-26 21:23:03,276] DEBUG in application: Comment. Comment.
+[2019-02-26 21:23:03,277] DEBUG in application: amazing.
+[2019-02-26 21:23:03,277] DEBUG in application: Comment. Comment
+[2019-02-26 21:23:03,278] DEBUG in application: Test Comment Test Comment
+[2019-02-26 21:23:03,278] DEBUG in application: Comment. Comment.
+[2019-02-26 21:23:03,278] DEBUG in application: Amazing!
+[2019-02-26 21:23:09,582] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 21:23:25,109] DEBUG in application: raise error
+[2019-02-26 21:23:25,109] DEBUG in application: ====queryBook======
+[2019-02-26 21:23:25,110] DEBUG in application: SELECT * FROM books 
+[2019-02-26 21:23:25,110] DEBUG in application: ====sqlparameters===
+[2019-02-26 21:23:25,110] DEBUG in application: {}
+[2019-02-26 21:26:26,564] DEBUG in application: raise error
+[2019-02-26 21:26:26,565] DEBUG in application: ====queryBook======
+[2019-02-26 21:26:26,565] DEBUG in application: SELECT * FROM books 
+[2019-02-26 21:26:26,565] DEBUG in application: ====sqlparameters===
+[2019-02-26 21:26:26,565] DEBUG in application: {}
+[2019-02-26 21:27:05,990] DEBUG in application: ==========find_book_reviews==========
+[2019-02-26 21:32:13,073] DEBUG in application: raise error
+[2019-02-26 21:32:13,077] DEBUG in application: ====queryBook======
+[2019-02-26 21:32:13,077] DEBUG in application: SELECT * FROM books 
+[2019-02-26 21:32:13,077] DEBUG in application: ====sqlparameters===
+[2019-02-26 21:32:13,077] DEBUG in application: {}
+[2019-02-26 21:38:23,985] DEBUG in application: raise error
+[2019-02-26 21:38:23,989] DEBUG in application: ====queryBook======
+[2019-02-26 21:38:23,989] DEBUG in application: SELECT * FROM books 
+[2019-02-26 21:38:23,989] DEBUG in application: ====sqlparameters===
+[2019-02-26 21:38:23,989] DEBUG in application: {}
+[2019-02-26 21:40:12,835] DEBUG in application: ==========find_book_reviews==========
+[2019-02-26 21:40:22,559] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 21:40:24,322] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 21:40:24,349] DEBUG in application: Test Comment Test Comment
+[2019-02-26 21:40:24,350] DEBUG in application: amazing.
+[2019-02-26 21:40:24,350] DEBUG in application: Comment. Comment
+[2019-02-26 21:40:24,350] DEBUG in application: Amazing book!
+[2019-02-26 21:40:24,350] DEBUG in application: Amazing!
+[2019-02-26 21:40:24,350] DEBUG in application: Comment. Comment.
+[2019-02-26 21:40:24,351] DEBUG in application: amazing.
+[2019-02-26 21:40:24,351] DEBUG in application: Comment. Comment
+[2019-02-26 21:40:24,351] DEBUG in application: Test Comment Test Comment
+[2019-02-26 21:40:24,352] DEBUG in application: Comment. Comment.
+[2019-02-26 21:40:24,352] DEBUG in application: Amazing!
+[2019-02-26 21:40:25,775] DEBUG in application: {'user_id': 6, 'username': 'Iga', 'firstname': 'Igarashi', 'lastname': 'Hiroshi', 'password': 'hiro1128'}
+[2019-02-26 22:42:20,291] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 22:42:22,115] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 22:42:22,117] DEBUG in application: Test Comment Test Comment
+[2019-02-26 22:42:22,118] DEBUG in application: amazing.
+[2019-02-26 22:42:22,118] DEBUG in application: Comment. Comment
+[2019-02-26 22:42:22,119] DEBUG in application: Amazing book!
+[2019-02-26 22:42:22,120] DEBUG in application: Amazing!
+[2019-02-26 22:42:22,121] DEBUG in application: Comment. Comment.
+[2019-02-26 22:42:22,122] DEBUG in application: amazing.
+[2019-02-26 22:42:22,123] DEBUG in application: Comment. Comment
+[2019-02-26 22:42:22,123] DEBUG in application: Test Comment Test Comment
+[2019-02-26 22:42:22,123] DEBUG in application: Comment. Comment.
+[2019-02-26 22:42:22,123] DEBUG in application: Amazing!
+[2019-02-26 22:42:44,737] DEBUG in application: {'user_id': 6, 'username': 'Iga', 'firstname': 'Igarashi', 'lastname': 'Hiroshi', 'password': 'hiro1128'}
+[2019-02-26 22:42:46,989] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 22:42:46,990] DEBUG in application: Test Comment Test Comment
+[2019-02-26 22:42:46,990] DEBUG in application: amazing.
+[2019-02-26 22:42:46,991] DEBUG in application: Comment. Comment
+[2019-02-26 22:42:46,991] DEBUG in application: Amazing book!
+[2019-02-26 22:42:46,991] DEBUG in application: Amazing!
+[2019-02-26 22:42:46,991] DEBUG in application: Comment. Comment.
+[2019-02-26 22:42:46,991] DEBUG in application: amazing.
+[2019-02-26 22:42:46,992] DEBUG in application: Comment. Comment
+[2019-02-26 22:42:46,992] DEBUG in application: Test Comment Test Comment
+[2019-02-26 22:42:46,992] DEBUG in application: Comment. Comment.
+[2019-02-26 22:42:46,993] DEBUG in application: Amazing!
+[2019-02-26 22:42:49,924] DEBUG in application: ==========find_book_reviews==========
+[2019-02-26 22:42:49,926] DEBUG in application: Amazing book!
+[2019-02-26 22:42:53,588] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 22:42:53,589] DEBUG in application: Test Comment Test Comment
+[2019-02-26 22:42:53,590] DEBUG in application: amazing.
+[2019-02-26 22:42:53,590] DEBUG in application: Comment. Comment
+[2019-02-26 22:42:53,590] DEBUG in application: Amazing book!
+[2019-02-26 22:42:53,590] DEBUG in application: Amazing!
+[2019-02-26 22:42:53,591] DEBUG in application: Comment. Comment.
+[2019-02-26 22:42:53,591] DEBUG in application: amazing.
+[2019-02-26 22:42:53,591] DEBUG in application: Comment. Comment
+[2019-02-26 22:42:53,591] DEBUG in application: Test Comment Test Comment
+[2019-02-26 22:42:53,591] DEBUG in application: Comment. Comment.
+[2019-02-26 22:42:53,592] DEBUG in application: Amazing!
+[2019-02-26 22:43:46,613] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 22:43:50,442] DEBUG in application: raise error
+[2019-02-26 22:43:50,442] DEBUG in application: ====queryBook======
+[2019-02-26 22:43:50,442] DEBUG in application: SELECT * FROM books 
+[2019-02-26 22:43:50,443] DEBUG in application: ====sqlparameters===
+[2019-02-26 22:43:50,443] DEBUG in application: {}
+[2019-02-26 22:44:02,289] DEBUG in application: ==========find_book_reviews==========
+[2019-02-26 22:44:08,229] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 22:44:10,046] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-26 22:44:10,047] DEBUG in application: Test Comment Test Comment
+[2019-02-26 22:44:10,047] DEBUG in application: amazing.
+[2019-02-26 22:44:10,047] DEBUG in application: Comment. Comment
+[2019-02-26 22:44:10,047] DEBUG in application: Amazing book!
+[2019-02-26 22:44:10,047] DEBUG in application: Amazing!
+[2019-02-26 22:44:10,048] DEBUG in application: Comment. Comment.
+[2019-02-26 22:44:10,048] DEBUG in application: amazing.
+[2019-02-26 22:44:10,048] DEBUG in application: Comment. Comment
+[2019-02-26 22:44:10,048] DEBUG in application: Test Comment Test Comment
+[2019-02-26 22:44:10,049] DEBUG in application: Comment. Comment.
+[2019-02-26 22:44:10,049] DEBUG in application: Amazing!
