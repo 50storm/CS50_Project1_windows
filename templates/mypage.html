@@ -4,16 +4,124 @@
 {% include "nav.tpl" %}
 {% endblock %}
 {% block pageinfo %}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function (event) {
+    var chartConfig = {
+        type: 'horizontalBar',
+        data: {
+            datasets: [
+                {
+                    label: 'Book Review Number',
+                    data: [],
+                    borderColor: 'rgb(54, 162, 235, 1)',
+                    borderWidth: 1,
+                    backgroundColor: 'rgb(54, 162, 235, 0.5)'
+                }
+            ]
+        },
+        options: {
+            scaleStartValue: 0,
+            responsive: true,
+            legend: {
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: 'My Total Book Review Number'
+            },
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        min: 0,
+                        max: 30,
+                        stepSize: 1
+                    }
+                }]
+            }
+        }
+    };
+    function createChart(chartConfig){
+            var ctx = document.getElementById('canvas').getContext('2d');
+            window.myBar = new Chart(ctx, chartConfig);
+     }
+
+        let navMypage = document.querySelector("li#mypage");
+        navMypage.classList.add("active");
+        navMypage.classList.add("font-weight-bold");
+        navMypage.classList.add("font-italic");
+        let datatableOptions =     {
+                "lengthMenu": [5, 10, 20, 30, 40, 50],
+                "displayLength": 5,
+                "columnDefs": [
+                    { "targets": [5], "orderable": false },
+                ],
+                "language": {
+                    //filter
+                    "lengthMenu": "Display _MENU_ reviews",
+                },
+                // footer 
+                "infoCallback": function (settings, start, end, max, total, pre) {
+                    return '<span class="px-2 font-italic">' + start + " / " + end + " entries" + '</span>';
+                }
+        };
+
+        $('#tableMybookreview').DataTable(
+           datatableOptions
+        );
+        
+        datatableOptions["columnDefs"][0]={ "targets": [6], "orderable": false },
+        $('#tableRecentBookReview').DataTable(
+           datatableOptions
+        );
+   
+    var httpRequest;
+    function makeRequest(user_id) {
+        httpRequest = new XMLHttpRequest();
+
+        if (!httpRequest) {
+            alert('abort');
+            return false;
+        }
+
+        httpRequest.onreadystatechange = setContents;
+        httpRequest.open('GET', 'http://localhost:5000/bookreivew/api/getBookReviewNumber/' + user_id);
+        httpRequest.responseType = 'json';
+        httpRequest.send(null);
+    }
+
+    function setContents() {
+        if (httpRequest.readyState === XMLHttpRequest.DONE) {
+            if (httpRequest.status === 200) {
+                let data = [];
+                if (httpRequest.response == null) {
+                    data[0] =[0];
+                } else {
+                    data[0] = httpRequest.response.review_count * 1;
+                    if (data[0] >= 0 && data[0]  <= 30) {
+                        // default
+                    }else if(data[0] >= 31 && data[0] <= 49){
+                        chartConfig.options.scales.xAxes[0].ticks.max = 50;
+                    }else{
+                        chartConfig.options.scales.xAxes[0].ticks.max = 100;
+                    }
+                }
+                chartConfig.data.datasets[0].data=data;
+                
+                createChart(chartConfig);
+                
+            } else {
+                alert('Sorry, Errro occured..');
+            }
+        }
+    }
+    
+    makeRequest({{ session.get("user_id") }});
+});
+</script>
 <div class="row mt-2">
     <div class="col-sm-6">
-        <script>
-            document.addEventListener("DOMContentLoaded", function (event) {
-            let navMypage = document.querySelector("li#mypage");
-            navMypage.classList.add("active");
-            navMypage.classList.add("font-weight-bold");
-            navMypage.classList.add("font-italic");
-            });
-        </script>
         <div class="alert alert-info" role="alert">
                 <a href="{{ url_for('showUserAccount') }}">User:{{session['username']}}</a>
         </div>
@@ -26,83 +134,113 @@
 </div>
 {% endblock %}
 {% block body %}
-<!-- <hr  class="my-4" /> -->
 <div class="row ">
-  <div class="col-sm">
-    <div class="alert alert-primary" role="alert"><strong>Search Book</strong> - Click Here >>
-        <div class="btn btn-outline-primary">
-            <a href="{{ url_for('search') }}" >Search Book</a>
+    <div class="col-sm">
+        <div class="alert alert-primary" role="alert"><strong>Search Book</strong> - Click Here >>
+            <div class="btn btn-outline-primary">
+                <a href="{{ url_for('search') }}">Search Book</a>
+            </div>
         </div>
     </div>
-  </div>
 </div>
-<!-- <hr  class="my-1" /> -->
+<div class="row">
+    <div class="col-sm">
+        <h3 class="bg-primary text-white p-2 mb-2">
+            <a class="btn btn-primary m-0 p-0" data-toggle="collapse" href="#collapseMyBookReviewNumber" role="button"
+                aria-expanded="false" aria-controls="collapseMyBookReviewNumber"><span class="h3">My Total Book Review Number</span></a>
+        </h3>
+        <div class="collapse show" id="collapseMyBookReviewNumber">
+            <canvas id="canvas" width="977" height="488" class="chartjs-render-monitor"
+                style="display: block; width: 977px; height: 488px;"></canvas>
+        </div>
+    </div>
+</div>
+
 <div class="row">
   <div class="col-sm">
-    <h3 class="bg-primary text-white p-2 mb-2" >My Book Reviews</h3>
+    <h3 class="bg-primary text-white p-2 mb-2" >
+        <a class="btn btn-primary m-0 p-0" data-toggle="collapse" href="#collapseMyBookReview" role="button" aria-expanded="false"
+        aria-controls="collapseMyBookReview"><span class="h3">My Book Reviews</span></a>
+    </h3>
+    <div class="collapse show" id="collapseMyBookReview">
     {% if my_book_reviews is defined and my_book_reviews | length  %}
-    <table class="table" style="table-layout:fixed;" >
-    <tr>
-        <th>Date</th>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Year</th>
-        <th>Rate</th>
-        <th>Comment</th>
-        <th> </th>
-    </tr>
-    {% for my_book_review in my_book_reviews %}
-    <tr >
-        <td>{{ my_book_review["created_at"].strftime('%Y-%m-%d %H:%M:%S') }}</td>
-        <td>{{ my_book_review["title"] }}</td>
-        <td>{{ my_book_review["author"] }}</td>
-        <td>{{ my_book_review["year"] }}</td>
-        <td>
-        {% if my_book_review["rate"] == 1  %}
-            ★☆☆☆☆
-        {% elif my_book_review["rate"] == 2 %}
-            ★★☆☆☆
-        {% elif my_book_review["rate"] == 3 %}
-            ★★★☆☆
-        {% elif my_book_review["rate"] == 4 %}
-            ★★★★☆
-        {% elif my_book_review["rate"] == 5 %}
-            ★★★★★
-        {% endif %}
-        </td>
-        <td  style="overflow:hidden;" >{{ my_book_review["comment"] | nl2br }}</td>
-        <td><a class="badge badge-primary" href="{{ url_for('searchBook') }}?isbn={{ my_book_review['isbn'] }}" >view</a></td>
-    </tr>
-    {% endfor %}
+    <table class="table" style="table-layout:fixed;" id="tableMybookreview">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Year</th>
+                <th>Rate</th>
+                <th>Comment</th>
+                <!-- <th> </th> -->
+            </tr>
+        </thead>
+        <tbody>
+    
+            {% for my_book_review in my_book_reviews %}
+            <tr>
+                <td>{{ my_book_review["created_at"].strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                <td>{{ my_book_review["title"] }}</td>
+                <td>{{ my_book_review["author"] }}</td>
+                <td>{{ my_book_review["year"] }}</td>
+                <td>
+                    {% if my_book_review["rate"] == 1  %}
+                    ★☆☆☆☆
+                    {% elif my_book_review["rate"] == 2 %}
+                    ★★☆☆☆
+                    {% elif my_book_review["rate"] == 3 %}
+                    ★★★☆☆
+                    {% elif my_book_review["rate"] == 4 %}
+                    ★★★★☆
+                    {% elif my_book_review["rate"] == 5 %}
+                    ★★★★★
+                    {% endif %}
+                </td>
+                <!-- <td  style="overflow:hidden;" >{{ my_book_review["comment"] | nl2br }}</td> -->
+                <td><a class="badge badge-primary"
+                        href="{{ url_for('searchBook') }}?isbn={{ my_book_review['isbn'] }}">view</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    
     </table>
     {% else %}
     <p>No Entries </p>
     {% endif %}
     </div>
+    </div>
 </div>
 <div class="row">
   <div class="col-sm">
-   <h3 class="bg-primary text-white p-2 mb-2" >Rcent Book Reviews</h3>
-   
+   <h3 class="bg-primary text-white p-2 mb-2" >
+        <a class="btn btn-primary m-0 p-0" data-toggle="collapse" href="#collapseRecentReview" role="button"
+        aria-expanded="false" aria-controls="collapseRecentReview"><span class="h3">Recent Book Reviews</span></a>
+    </h3>
+    <div class="collapse show" id="collapseRecentReview">
     {% if recent_book_reviews is defined and recent_book_reviews | length %}
-        <table class="table" style="table-layout:fixed;" >
-    <tr>
-        <th>Date</th>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Year</th>
-        <th>Username</th>
-        <th>Rate</th>
-        <th>Comment</th>
-        <th>        </th>
-    </tr>
+        <table class="table" style="table-layout:fixed;" id="tableRecentBookReview" >
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Username</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Year</th>
+                <th>Rate</th>
+                <th>Comment</th>
+                <!-- <th>        </th> -->
+            </tr>
+         </thead>
+    <tbody>     
     {% for recent_book_review in recent_book_reviews %}
     <tr>
         <td>{{ recent_book_review["created_at"].strftime('%Y-%m-%d %H:%M:%S') }}</td>
+        <td>{{ recent_book_review["username"] }}</td>
         <td>{{ recent_book_review["title"] }}</td>
         <td>{{ recent_book_review["author"] }}</td>
         <td>{{ recent_book_review["year"] }}</td>
-        <td>{{ recent_book_review["username"] }}</td>
+        
         <td>
         {% if recent_book_review["rate"] == 1  %}
             ★☆☆☆☆
@@ -116,17 +254,18 @@
             ★★★★★
         {% endif %}
         </td>
-        <td   style="overflow:hidden;"  >{{ recent_book_review["comment"] | nl2br }}</td>
+        <!-- <td   style="overflow:hidden;"  >{{ recent_book_review["comment"] | nl2br }}</td> -->
         <td><a class="badge badge-primary" href="{{ url_for('searchBook') }}?isbn={{ recent_book_review['isbn'] }}">view</a></td>
     </tr>
     {% endfor %}
+    </tbody>
     </table>
     {% else %}
     <p>No Entries </p>
     {% endif %}
+    </div>
   </div>
 </div>
-<hr  class="my-4" />
 <div class="row">
   <div class="col-sm">
     <div class="alert alert-primary" role="alert"><strong>Search Book</strong> - Click Here >>

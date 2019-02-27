@@ -1,0 +1,58 @@
+{# mypage.html #}
+{% extends "layout.html" %}
+{% block nav %}
+{% include "nav.tpl" %}
+{% endblock %}
+{% block pageinfo  %}
+{% endblock %}
+{% block body %}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
+
+<script>
+    window.onload = function () {
+      var ctx = document.getElementById('canvas').getContext('2d');
+      window.myBar = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          datasets: [
+            {
+              data: [10, 20, 30]
+            }
+          ]
+
+        },
+        options: {
+          responsive: true,
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: 'Chart.js Bar Chart'
+          },
+          scales: {
+            yAxes: [{
+              ticks: {
+                min: 0,
+                max: 50,
+                stepSize: 1
+              }
+            }]
+
+          }
+        }
+      });
+
+
+    };
+</script>
+
+<div class="row">
+  <div class="col-sm">
+    <h3 class="bg-primary text-white p-2 mb-2">CHART Test</h3>
+<canvas id="canvas" width="977" height="488" class="chartjs-render-monitor"
+  style="display: block; width: 977px; height: 488px;"></canvas>
+
+  </div>
+</div>
+{% endblock %}

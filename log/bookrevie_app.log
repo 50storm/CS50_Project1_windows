@@ -3447,3 +3447,7 @@
 [2019-02-27 16:33:46,599] WARNING in _internal:  * Debugger is active!
 [2019-02-27 16:33:46,610] INFO in _internal:  * Debugger PIN: 237-324-945
 [2019-02-27 16:33:46,622] INFO in _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2019-02-27 16:34:54,427] INFO in _internal:  * Detected change in 'C:\\Users\\h-igarashi\\Documents\\CS50_Project1_windows\\application.py', reloading
+[2019-02-27 16:34:55,484] WARNING in _internal:  * Debugger is active!
+[2019-02-27 16:34:55,494] INFO in _internal:  * Debugger PIN: 237-324-945
+[2019-02-27 16:34:55,502] INFO in _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
