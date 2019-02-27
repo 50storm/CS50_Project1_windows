@@ -10,8 +10,30 @@ document.addEventListener("DOMContentLoaded", function (event) {
         navMypage.classList.add("active");
         navMypage.classList.add("font-weight-bold");
         navMypage.classList.add("font-italic");
-        $('#tableMybookreview').DataTable({});
-        $('#tableRecentBookReview').DataTable({});
+        let datatableOptions =     {
+                "lengthMenu": [5, 10, 20, 30, 40, 50],
+                "displayLength": 5,
+                "columnDefs": [
+                    { "targets": [5], "orderable": false },
+                ],
+                "language": {
+                    //filter
+                    "lengthMenu": "Display _MENU_ reviews",
+                },
+                // footer 
+                "infoCallback": function (settings, start, end, max, total, pre) {
+                    return '<span class="px-2 font-italic">' + start + " / " + end + " entries" + '</span>';
+                }
+        };
+
+        $('#tableMybookreview').DataTable(
+           datatableOptions
+        );
+        
+        datatableOptions["columnDefs"][0]={ "targets": [6], "orderable": false },
+        $('#tableRecentBookReview').DataTable(
+           datatableOptions
+        );
 });
 </script>
 
@@ -54,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
             <th>Year</th>
             <th>Rate</th>
             <th>Comment</th>
-            <th> </th>
+            <!-- <th> </th> -->
         </tr>
         </thead>
         <tbody>
@@ -78,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 ★★★★★
             {% endif %}
             </td>
-            <td  style="overflow:hidden;" >{{ my_book_review["comment"] | nl2br }}</td>
+            <!-- <td  style="overflow:hidden;" >{{ my_book_review["comment"] | nl2br }}</td> -->
             <td><a class="badge badge-primary" href="{{ url_for('searchBook') }}?isbn={{ my_book_review['isbn'] }}" >view</a></td>
         </tr>
     {% endfor %}
@@ -99,23 +121,24 @@ document.addEventListener("DOMContentLoaded", function (event) {
             <thead>
             <tr>
                 <th>Date</th>
+                <th>Username</th>
                 <th>Title</th>
                 <th>Author</th>
                 <th>Year</th>
-                <th>Username</th>
                 <th>Rate</th>
                 <th>Comment</th>
-                <th>        </th>
+                <!-- <th>        </th> -->
             </tr>
          </thead>
     <tbody>     
     {% for recent_book_review in recent_book_reviews %}
     <tr>
         <td>{{ recent_book_review["created_at"].strftime('%Y-%m-%d %H:%M:%S') }}</td>
+        <td>{{ recent_book_review["username"] }}</td>
         <td>{{ recent_book_review["title"] }}</td>
         <td>{{ recent_book_review["author"] }}</td>
         <td>{{ recent_book_review["year"] }}</td>
-        <td>{{ recent_book_review["username"] }}</td>
+        
         <td>
         {% if recent_book_review["rate"] == 1  %}
             ★☆☆☆☆
@@ -129,7 +152,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
             ★★★★★
         {% endif %}
         </td>
-        <td   style="overflow:hidden;"  >{{ recent_book_review["comment"] | nl2br }}</td>
+        <!-- <td   style="overflow:hidden;"  >{{ recent_book_review["comment"] | nl2br }}</td> -->
         <td><a class="badge badge-primary" href="{{ url_for('searchBook') }}?isbn={{ recent_book_review['isbn'] }}">view</a></td>
     </tr>
     {% endfor %}

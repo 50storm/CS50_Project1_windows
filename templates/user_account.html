@@ -7,17 +7,17 @@
 {% if mode is defined and mode == 0   %}
 {%    set action = ''           %}
 {%    set readonly = 'readonly' %}
-{%    set css='bg-info' %}
+{%    set css='bg-light' %}
 {% elif mode is defined and mode == 1 %}
 {%    set action = url_for('confirmUserAccount') %}
 {%    set readonly = ''  %}
 {% elif mode is defined and mode == 2 %}
 {%    set action = url_for('updateUserAccount') %}
 {%    set readonly = 'readonly' %}
-{%    set css='bg-info' %}
+{%    set css='bg-light' %}
 {% elif mode is defined and mode == 3 %}
 {%    set readonly = 'readonly' %}
-{%    set css='bg-info' %}
+{%    set css='bg-light' %}
 {% endif %}
 <script>
   document.addEventListener("DOMContentLoaded", function (event) {
@@ -29,7 +29,7 @@
 </script>
       <div class="row mt-2">
         <div class="col-sm ">
-          <h2 class="bg-primary text-white p-2 mb-2">My Account</h2>
+          <h2 class="bg-primary text-white p-2 mb-2">My User Account</h2>
         </div>
       </div>
       {# flash message  #}
@@ -75,9 +75,9 @@
               {% if mode is defined and mode == 0   %}
                 <div class="alert alert-info" role="alert"><a href="{{ url_for('editUserAccount') }}">Edit User Account</a></div>
               {% elif mode is defined and mode == 1   %}
-                <input class="alert alert-info" type="submit" value="confirm your input" / >
+                <input class="alert alert-info" type="submit" value="Confirm Input Data" / >
               {% elif mode is defined and mode == 2   %}
-                <input class="alert alert-info" type="submit" value="update your input" />
+                <input class="alert alert-info" type="submit" value="Update User Account" />
               {% elif mode is defined and mode == 3   %}
                 <div class="alert alert-info" role="alert"><a href="{{ url_for('editUserAccount') }}">Edit User Account</a></div>
               {% endif %}  

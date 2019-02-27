@@ -5,11 +5,21 @@
 {% block body %}
 <script>
     document.addEventListener("DOMContentLoaded", function (event) {
-            $('#tableBookList').DataTable({
-              "language": {
-    "lengthMenu": "Display _MENU_ records"
-  }
-            });
+        $('#tableBookList').DataTable(
+          {
+            "columnDefs": [
+              { "targets": [4], "orderable": false },
+            ],
+            "language": {
+              //filter
+              "lengthMenu": "Display _MENU_ books",
+            },
+            // footer 
+            "infoCallback": function (settings, start, end, max, total, pre) {
+              return '<span class="px-2 font-italic">' + start + " / " + end + " entries" + '</span>';
+            }
+          }
+        );
     });
 </script>
 <div class="row mt-2">
@@ -23,7 +33,7 @@
           <th>Title</th>
           <th>Author</th>
           <th>Year</th>
-          <th>Command</th>
+          <th> </th>
         </tr>
       </thead>
       <tbody>

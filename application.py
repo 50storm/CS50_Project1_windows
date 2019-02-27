@@ -167,7 +167,8 @@ def find_recent_book_reviews():
     sql_book_reiviews =   "SELECT br.created_at, u.username, br.rate, br.comment, br.isbn, b.title, b.author, b.year  FROM bookreviews br "
     sql_book_reiviews +=  " INNER JOIN users u ON br.user_id = u.user_id  "
     sql_book_reiviews +=  " INNER JOIN books b ON b.isbn = br.isbn  "
-    sql_book_reiviews +=  " ORDER BY br.created_at DESC OFFSET 0 LIMIT 5"
+    # sql_book_reiviews +=  " ORDER BY br.created_at DESC OFFSET 0 LIMIT 5"
+    sql_book_reiviews +=  " ORDER BY br.created_at DESC "
     bookreviews = db.execute(sql_book_reiviews)
     result = bookreviews.fetchall() 
     bookreviews.close()

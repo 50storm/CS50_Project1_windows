@@ -6,13 +6,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li id="mypage" class="nav-item">
-                <a class="nav-link" href="{{ url_for('mypage') }}">My page</a>
+                <a class="nav-link" href="{{ url_for('mypage') }}">My Page</a>
             </li>
             <li id="myaccount" class="nav-item ">
-                <a class="nav-link"  href="{{ url_for('showUserAccount') }}">My account</a>
+                <a class="nav-link"  href="{{ url_for('showUserAccount') }}">My User Account</a>
             </li>
             <li id="search" class="nav-item ">
-                <a class="nav-link" href="{{ url_for('search') }}">Search</a>
+                <a class="nav-link" href="{{ url_for('search') }}">Search Books</a>
             </li>
             <li class="nav-item">
                 <form action="{{ url_for('logout') }}" method="post">
