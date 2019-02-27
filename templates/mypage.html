@@ -122,7 +122,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <div class="row mt-2">
     <div class="col-sm-6">
-
         <div class="alert alert-info" role="alert">
                 <a href="{{ url_for('showUserAccount') }}">User:{{session['username']}}</a>
         </div>
@@ -135,73 +134,90 @@ document.addEventListener("DOMContentLoaded", function (event) {
 </div>
 {% endblock %}
 {% block body %}
-<!-- <hr  class="my-4" /> -->
-
-<canvas id="canvas" width="977" height="488" class="chartjs-render-monitor" style="display: block; width: 977px; height: 488px;"></canvas>
-
 <div class="row ">
-  <div class="col-sm">
-    <div class="alert alert-primary" role="alert"><strong>Search Book</strong> - Click Here >>
-        <div class="btn btn-outline-primary">
-            <a href="{{ url_for('search') }}" >Search Book</a>
+    <div class="col-sm">
+        <div class="alert alert-primary" role="alert"><strong>Search Book</strong> - Click Here >>
+            <div class="btn btn-outline-primary">
+                <a href="{{ url_for('search') }}">Search Book</a>
+            </div>
         </div>
     </div>
-  </div>
 </div>
-<!-- <hr  class="my-1" /> -->
+<div class="row">
+    <div class="col-sm">
+        <h3 class="bg-primary text-white p-2 mb-2">
+            <a class="btn btn-primary m-0 p-0" data-toggle="collapse" href="#collapseMyBookReviewNumber" role="button"
+                aria-expanded="false" aria-controls="collapseMyBookReviewNumber"><span class="h3">My Total Book Review Number</span></a>
+        </h3>
+        <div class="collapse show" id="collapseMyBookReviewNumber">
+            <canvas id="canvas" width="977" height="488" class="chartjs-render-monitor"
+                style="display: block; width: 977px; height: 488px;"></canvas>
+        </div>
+    </div>
+</div>
+
 <div class="row">
   <div class="col-sm">
-    <h3 class="bg-primary text-white p-2 mb-2" >My Book Reviews</h3>
+    <h3 class="bg-primary text-white p-2 mb-2" >
+        <a class="btn btn-primary m-0 p-0" data-toggle="collapse" href="#collapseMyBookReview" role="button" aria-expanded="false"
+        aria-controls="collapseMyBookReview"><span class="h3">My Book Reviews</span></a>
+    </h3>
+    <div class="collapse show" id="collapseMyBookReview">
     {% if my_book_reviews is defined and my_book_reviews | length  %}
-    <table class="table" style="table-layout:fixed;"  id="tableMybookreview" >
+    <table class="table" style="table-layout:fixed;" id="tableMybookreview">
         <thead>
-        <tr>
-            <th>Date</th>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Year</th>
-            <th>Rate</th>
-            <th>Comment</th>
-            <!-- <th> </th> -->
-        </tr>
+            <tr>
+                <th>Date</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Year</th>
+                <th>Rate</th>
+                <th>Comment</th>
+                <!-- <th> </th> -->
+            </tr>
         </thead>
         <tbody>
     
-    {% for my_book_review in my_book_reviews %}
-        <tr >
-            <td>{{ my_book_review["created_at"].strftime('%Y-%m-%d %H:%M:%S') }}</td>
-            <td>{{ my_book_review["title"] }}</td>
-            <td>{{ my_book_review["author"] }}</td>
-            <td>{{ my_book_review["year"] }}</td>
-            <td>
-            {% if my_book_review["rate"] == 1  %}
-                ★☆☆☆☆
-            {% elif my_book_review["rate"] == 2 %}
-                ★★☆☆☆
-            {% elif my_book_review["rate"] == 3 %}
-                ★★★☆☆
-            {% elif my_book_review["rate"] == 4 %}
-                ★★★★☆
-            {% elif my_book_review["rate"] == 5 %}
-                ★★★★★
-            {% endif %}
-            </td>
-            <!-- <td  style="overflow:hidden;" >{{ my_book_review["comment"] | nl2br }}</td> -->
-            <td><a class="badge badge-primary" href="{{ url_for('searchBook') }}?isbn={{ my_book_review['isbn'] }}" >view</a></td>
-        </tr>
-    {% endfor %}
-</tbody>    
-        
-</table>
+            {% for my_book_review in my_book_reviews %}
+            <tr>
+                <td>{{ my_book_review["created_at"].strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                <td>{{ my_book_review["title"] }}</td>
+                <td>{{ my_book_review["author"] }}</td>
+                <td>{{ my_book_review["year"] }}</td>
+                <td>
+                    {% if my_book_review["rate"] == 1  %}
+                    ★☆☆☆☆
+                    {% elif my_book_review["rate"] == 2 %}
+                    ★★☆☆☆
+                    {% elif my_book_review["rate"] == 3 %}
+                    ★★★☆☆
+                    {% elif my_book_review["rate"] == 4 %}
+                    ★★★★☆
+                    {% elif my_book_review["rate"] == 5 %}
+                    ★★★★★
+                    {% endif %}
+                </td>
+                <!-- <td  style="overflow:hidden;" >{{ my_book_review["comment"] | nl2br }}</td> -->
+                <td><a class="badge badge-primary"
+                        href="{{ url_for('searchBook') }}?isbn={{ my_book_review['isbn'] }}">view</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    
+    </table>
     {% else %}
     <p>No Entries </p>
     {% endif %}
     </div>
+    </div>
 </div>
 <div class="row">
   <div class="col-sm">
-   <h3 class="bg-primary text-white p-2 mb-2" >Rcent Book Reviews</h3>
-   
+   <h3 class="bg-primary text-white p-2 mb-2" >
+        <a class="btn btn-primary m-0 p-0" data-toggle="collapse" href="#collapseRecentReview" role="button"
+        aria-expanded="false" aria-controls="collapseRecentReview"><span class="h3">Recent Book Reviews</span></a>
+    </h3>
+    <div class="collapse show" id="collapseRecentReview">
     {% if recent_book_reviews is defined and recent_book_reviews | length %}
         <table class="table" style="table-layout:fixed;" id="tableRecentBookReview" >
             <thead>
@@ -247,9 +263,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
     {% else %}
     <p>No Entries </p>
     {% endif %}
+    </div>
   </div>
 </div>
-<hr  class="my-4" />
 <div class="row">
   <div class="col-sm">
     <div class="alert alert-primary" role="alert"><strong>Search Book</strong> - Click Here >>
