@@ -20,16 +20,16 @@
     <h3 class="bg-primary text-white p-2 mb-2">Search Books</h3>
     <form action="{{ url_for('searchBooks') }}" method="get">
         <div class="form-group">
-            <label for="booktitle" >Booktitle</label>
+            <label for="booktitle" >Title</label>
             <input type="text" id="booktitle" name="booktitle"  class="h-100 w-100 p-3" placeholder="part of booktitle here">
+        </div>
+        <div class="form-group">
+            <label for="author">Author</label>
+            <input type="text" id="author" name="authorname" class="h-100 w-100 p-3" placeholder="author name here">
         </div>
         <div class="form-group">
             <label for="isbn" >ISBN</label>
             <input type="text" id="isbn"  name="isbn"  class="h-100 w-100 p-3" placeholder="isbn here">
-        </div>
-        <div class="form-group">
-            <label for="author" >Author</label>
-            <input type="text" id="author" name="authorname"  class="h-100 w-100 p-3" placeholder="author name here">
         </div>
         <div class="form-group">
             <input type="submit" class="btn btn-outline-primary" name="searchBooks" value="Search Books" />
