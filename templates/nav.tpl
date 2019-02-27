@@ -17,7 +17,7 @@
             <li class="nav-item">
                 <form action="{{ url_for('logout') }}" method="post">
                     <!-- <input type="submit" name="logout" value="logout" class="btn btn-outline-info my-2 my-sm-0" /> -->
-                    <input type="submit" name="logout" value="logout" class="btn my-2 my-sm-0 bg-primary-light"  style="background-color: #e3f2fd;" />
+                    <input type="submit" name="logout" value="Logout" class="btn my-2 my-sm-0 bg-primary-light"  style="background-color: #e3f2fd;" />
                 </form>
             </li>
         </ul>

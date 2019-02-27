@@ -1860,3 +1860,23 @@
 [2019-02-27 11:28:06,094] INFO in _internal: 127.0.0.1 - - [27/Feb/2019 11:28:06] "GET /bookreivew/mypage HTTP/1.1" 200 -
 [2019-02-27 11:28:15,554] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 27, 11, 22, 34, 390335), 'Hakata', 5, 'test', '000100039X', 'The Prophet', 'Kahlil Gibran', 1923)]
 [2019-02-27 11:28:15,752] INFO in _internal: 127.0.0.1 - - [27/Feb/2019 11:28:15] "GET /bookreivew/search HTTP/1.1" 200 -
+[2019-02-27 11:28:28,675] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 27, 11, 22, 34, 390335), 'Hakata', 5, 'test', '000100039X', 'The Prophet', 'Kahlil Gibran', 1923)]
+[2019-02-27 11:28:28,926] INFO in _internal: 127.0.0.1 - - [27/Feb/2019 11:28:28] "GET /bookreivew/search HTTP/1.1" 200 -
+[2019-02-27 11:28:30,246] DEBUG in application: {'user_id': 1, 'username': 'Hakata', 'firstname': 'Hakata', 'lastname': 'Tarou', 'password': 'hiro1128'}
+[2019-02-27 11:28:30,493] INFO in _internal: 127.0.0.1 - - [27/Feb/2019 11:28:30] "GET /bookreivew/showUserAccount HTTP/1.1" 200 -
+[2019-02-27 11:28:31,652] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 27, 11, 22, 34, 390335), 'Hakata', 5, 'test', '000100039X', 'The Prophet', 'Kahlil Gibran', 1923)]
+[2019-02-27 11:28:31,653] DEBUG in application: testtest test
+[2019-02-27 11:28:31,653] DEBUG in application: test test
+[2019-02-27 11:28:31,654] DEBUG in application: test test test
+[2019-02-27 11:28:31,654] DEBUG in application: test test test
+[2019-02-27 11:28:31,654] DEBUG in application: test test test test
+[2019-02-27 11:28:31,654] DEBUG in application: okookok
+[2019-02-27 11:28:31,654] DEBUG in application: test
+[2019-02-27 11:28:31,655] DEBUG in application: test
+[2019-02-27 11:28:31,655] DEBUG in application: test test test test
+[2019-02-27 11:28:31,655] DEBUG in application: test test test
+[2019-02-27 11:28:31,655] DEBUG in application: okookok
+[2019-02-27 11:28:31,656] DEBUG in application: test test
+[2019-02-27 11:28:31,656] DEBUG in application: testtest test
+[2019-02-27 11:28:31,656] DEBUG in application: test test test
+[2019-02-27 11:28:31,869] INFO in _internal: 127.0.0.1 - - [27/Feb/2019 11:28:31] "GET /bookreivew/mypage HTTP/1.1" 200 -
