@@ -4,8 +4,49 @@
 {% include "nav.tpl" %}
 {% endblock %}
 {% block pageinfo %}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
+
 <script>
 document.addEventListener("DOMContentLoaded", function (event) {
+    var chartConfig = {
+        type: 'horizontalBar',
+        data: {
+            datasets: [
+                {
+                    label: 'Book Review Number',
+                    data: [],
+                    borderColor: 'rgb(54, 162, 235, 1)',
+                    borderWidth: 1,
+                    backgroundColor: 'rgb(54, 162, 235, 0.5)'
+                }
+            ]
+        },
+        options: {
+            scaleStartValue: 0,
+            responsive: true,
+            legend: {
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: 'My Total Book Review Number'
+            },
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        min: 0,
+                        max: 30,
+                        stepSize: 1
+                    }
+                }]
+            }
+        }
+    };
+    function createChart(chartConfig){
+            var ctx = document.getElementById('canvas').getContext('2d');
+            window.myBar = new Chart(ctx, chartConfig);
+     }
+
         let navMypage = document.querySelector("li#mypage");
         navMypage.classList.add("active");
         navMypage.classList.add("font-weight-bold");
@@ -34,9 +75,51 @@ document.addEventListener("DOMContentLoaded", function (event) {
         $('#tableRecentBookReview').DataTable(
            datatableOptions
         );
+   
+    var httpRequest;
+    function makeRequest(user_id) {
+        httpRequest = new XMLHttpRequest();
+
+        if (!httpRequest) {
+            alert('abort');
+            return false;
+        }
+
+        httpRequest.onreadystatechange = setContents;
+        httpRequest.open('GET', 'http://localhost:5000/bookreivew/api/getBookReviewNumber/' + user_id);
+        httpRequest.responseType = 'json';
+        httpRequest.send(null);
+    }
+
+    function setContents() {
+        if (httpRequest.readyState === XMLHttpRequest.DONE) {
+            if (httpRequest.status === 200) {
+                let data = [];
+                if (httpRequest.response == null) {
+                    data[0] =[0];
+                } else {
+                    data[0] = httpRequest.response.review_count * 1;
+                    if (data[0] >= 0 && data[0]  <= 30) {
+                        // default
+                    }else if(data[0] >= 31 && data[0] <= 49){
+                        chartConfig.options.scales.xAxes[0].ticks.max = 50;
+                    }else{
+                        chartConfig.options.scales.xAxes[0].ticks.max = 100;
+                    }
+                }
+                chartConfig.data.datasets[0].data=data;
+                
+                createChart(chartConfig);
+                
+            } else {
+                alert('Sorry, Errro occured..');
+            }
+        }
+    }
+    
+    makeRequest({{ session.get("user_id") }});
 });
 </script>
-
 <div class="row mt-2">
     <div class="col-sm-6">
 
@@ -53,6 +136,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
 {% endblock %}
 {% block body %}
 <!-- <hr  class="my-4" /> -->
+
+<canvas id="canvas" width="977" height="488" class="chartjs-render-monitor" style="display: block; width: 977px; height: 488px;"></canvas>
+
 <div class="row ">
   <div class="col-sm">
     <div class="alert alert-primary" role="alert"><strong>Search Book</strong> - Click Here >>

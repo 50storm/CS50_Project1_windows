@@ -258,6 +258,40 @@ def api(isbn):
             book_info["average_score"] = round(float(row_book['average_score']),1)
             return jsonify(book_info)
 
+#http://localhost:5000/bookreivew/api/getBookReviewNumber/1
+@app.route(PREFIX + "/api/getBookReviewNumber/<string:user_id>", methods=["GET"])
+def get_book_review_number(user_id):
+    book_info = {
+        "username":"" ,
+        "review_count": 0,
+    }
+    if request.method == "GET":
+        sqlSel = " SELECT u.username, count(*) as review_count , AVG(rate) as average_score "
+        sqlSel += " FROM bookreviews br "
+        sqlSel += " INNER JOIN books b "
+        sqlSel += " ON br.isbn = b.isbn "
+        sqlSel += " INNER JOIN users u "
+        sqlSel += " ON u.user_id = br.user_id "
+        sqlSel += " GROUP BY u.user_id "
+        sqlSel += " HAVING  u.user_id = :user_id "
+        app.logger.debug(sqlSel)
+        book = db.execute(sqlSel, {"user_id": user_id})
+        row_book = book.fetchone()
+        book.close()
+        db.close()
+        # app.logger.debug(book)
+        if(row_book is None):
+            return jsonify(row_book)
+        else:
+            book_info["username"] = row_book['username']
+            book_info["review_count"] = row_book['review_count']
+
+            return jsonify(book_info)
+
+
+@app.route(PREFIX + "/charttest/", methods=["GET"])
+def charttest():
+    return render_template("charttest.html")
 
 @app.route(PREFIX + "/apitest/", methods=["GET"])
 def apitest():
