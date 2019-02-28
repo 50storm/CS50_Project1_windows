@@ -1,11 +1,3 @@
-My page
-
-Search books
-
-
-
-
-
 
 API
 http://localhost:5000/bookreivew/api/isbn
@@ -14,18 +6,25 @@ http://localhost:5000/bookreivew/api/0380795272
 
 
 Hello, My name is Hiroshi Igarshi.
-This is my book review site for project1.
+Fisrt , please briefly show how I design bookreview tables.
 
-# Tables
+""" Tables """"
 First, this is my tables.
 I created 3 tables.
 users table, books table and bookreviews table.
-uesrs table is used to store user account.
-books table is used to store book data.
-bookreviews table has comosite key , ISBN and user_id,  used to uniquely store data of bookreivew .
+uesrs table can store user account.
+books table has master data of book information.
+bookreviews table has comosite key , ISBN and user_id, which are used to uniquely store data of bookreivew .
+
+
+This is the registration page for my book review site for project1.
 
 
 Let me show you how it works.
+
+
+
+
 # Login Form
 This is Login Form .
 Users need to input their user account to log onto this bookreview app.
