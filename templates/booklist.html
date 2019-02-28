@@ -2,29 +2,51 @@
 {% block nav %}
 {% include "nav.tpl" %}
 {% endblock %}
-
 {% block body %}
+<script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+        $('#tableBookList').DataTable(
+          {
+            "columnDefs": [
+              { "targets": [4], "orderable": false },
+            ],
+            "language": {
+              //filter
+              "lengthMenu": "Display _MENU_ books",
+            },
+            // footer 
+            "infoCallback": function (settings, start, end, max, total, pre) {
+              return '<span class="px-2 font-italic">' + start + " / " + end + " entries" + '</span>';
+            }
+          }
+        );
+    });
+</script>
 <div class="row mt-2">
   <div class="col-sm">
     <h3 class="bg-primary text-white p-2 mb-2">Search Result</h3>
     {% if books %}
-    <table class="table table-striped">
+    <table class="table table-striped" id="tableBookList">
+      <thead>
         <tr class="thead-dark">
           <th>ISBN</th>
           <th>Title</th>
           <th>Author</th>
           <th>Year</th>
-          <th>Command</th>
+          <th> </th>
         </tr>
-        {% for book in books %}
-        <tr>
-            <td>{{ book['isbn'] }}</td>
-            <td>{{ book['title'] }}</td>
-            <td>{{ book['author'] }}</td>
-            <td>{{ book['year'] }}</td>
-            <td><a class="badge badge-primary"  href="{{ url_for('searchBook') }}?isbn={{ book['isbn'] }}">view</a</td>
-        </tr>
-        {% endfor %}
+      </thead>
+      <tbody>
+          {% for book in books %}
+          <tr>
+              <td>{{ book['isbn'] }}</td>
+              <td>{{ book['title'] }}</td>
+              <td>{{ book['author'] }}</td>
+              <td>{{ book['year'] }}</td>
+              <td><a class="badge badge-primary"  href="{{ url_for('searchBook') }}?isbn={{ book['isbn'] }}">view</a</td>
+          </tr>
+          {% endfor %}
+        </tbody>
     </table>
     {% else %}
     <p>Sorry, The key words didn't match any books. </p>

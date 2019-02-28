@@ -115,7 +115,7 @@
       <br/>
       <textarea name="comment" cols="50" rows="10" class="w-100 {% if is_confirmation %} bg-light {% endif %}" {% if is_confirmation %} readonly {% endif %}>{{ comment }}</textarea>
       <br/>
-      <input type="submit" name="submitReview" class="btn btn-success" value="{% if is_confirmation %} submitReview {% else %} confirmReview {% endif %}" {% if is_posted %} disabled=disabled {% endif %} />
+      <input type="submit" name="submitReview" class="btn btn-success" value="{% if is_confirmation %} Post My Book Review {% else %} Confirm Input Data {% endif %}" {% if is_posted %} disabled=disabled {% endif %} />
     </form>
   </div>
 </div>
