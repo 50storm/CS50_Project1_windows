@@ -3679,3 +3679,189 @@
 [2019-02-28 15:14:34,694] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
 [2019-02-28 15:14:35,023] INFO in _internal: 127.0.0.1 - - [28/Feb/2019 15:14:35] "GET /bookreivew/api/getBookReviewNumber/1 HTTP/1.1" 200 -
 >>>>>>> 33ef8629202329c794483707c3a7a69554c31136
+[2019-02-28 20:09:04,738] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-28 20:09:04,773] DEBUG in application: Test Comment Test Comment
+[2019-02-28 20:09:04,773] DEBUG in application: amazing.
+[2019-02-28 20:09:04,774] DEBUG in application: Comment. Comment
+[2019-02-28 20:09:04,774] DEBUG in application: Amazing book!
+[2019-02-28 20:09:04,774] DEBUG in application: Amazing!
+[2019-02-28 20:09:04,775] DEBUG in application: Comment. Comment.
+[2019-02-28 20:09:04,775] DEBUG in application: amazing.
+[2019-02-28 20:09:04,775] DEBUG in application: Comment. Comment
+[2019-02-28 20:09:04,775] DEBUG in application: Test Comment Test Comment
+[2019-02-28 20:09:04,775] DEBUG in application: Comment. Comment.
+[2019-02-28 20:09:04,776] DEBUG in application: Amazing!
+[2019-02-28 20:09:04,776] DEBUG in application: Amazing book!
+[2019-02-28 20:09:04,776] DEBUG in application: Test Comment.
+[2019-02-28 20:09:04,776] DEBUG in application: Test Comment. Test Comment. Test Comment.
+[2019-02-28 20:09:04,776] DEBUG in application: It was really informative.
+[2019-02-28 20:09:04,777] DEBUG in application: I like this book. I leaned a lot of things from this book.
+I recommend reading it.
+[2019-02-28 20:09:18,143] INFO in application: Iga logged in successfully
+[2019-02-28 20:09:18,160] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-28 20:09:18,163] DEBUG in application: Test Comment Test Comment
+[2019-02-28 20:09:18,163] DEBUG in application: amazing.
+[2019-02-28 20:09:18,164] DEBUG in application: Comment. Comment
+[2019-02-28 20:09:18,164] DEBUG in application: Amazing book!
+[2019-02-28 20:09:18,164] DEBUG in application: Amazing!
+[2019-02-28 20:09:18,165] DEBUG in application: Comment. Comment.
+[2019-02-28 20:09:18,165] DEBUG in application: amazing.
+[2019-02-28 20:09:18,165] DEBUG in application: Comment. Comment
+[2019-02-28 20:09:18,165] DEBUG in application: Test Comment Test Comment
+[2019-02-28 20:09:18,165] DEBUG in application: Comment. Comment.
+[2019-02-28 20:09:18,166] DEBUG in application: Amazing!
+[2019-02-28 20:09:18,166] DEBUG in application: Amazing book!
+[2019-02-28 20:09:18,166] DEBUG in application: Test Comment.
+[2019-02-28 20:09:18,166] DEBUG in application: Test Comment. Test Comment. Test Comment.
+[2019-02-28 20:09:18,167] DEBUG in application: It was really informative.
+[2019-02-28 20:09:18,167] DEBUG in application: I like this book. I leaned a lot of things from this book.
+I recommend reading it.
+[2019-02-28 20:09:25,298] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
+[2019-02-28 20:15:01,138] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-28 20:15:01,166] DEBUG in application: Test Comment Test Comment
+[2019-02-28 20:15:01,166] DEBUG in application: amazing.
+[2019-02-28 20:15:01,166] DEBUG in application: Comment. Comment
+[2019-02-28 20:15:01,167] DEBUG in application: Amazing book!
+[2019-02-28 20:15:01,167] DEBUG in application: Amazing!
+[2019-02-28 20:15:01,167] DEBUG in application: Comment. Comment.
+[2019-02-28 20:15:01,167] DEBUG in application: amazing.
+[2019-02-28 20:15:01,167] DEBUG in application: Comment. Comment
+[2019-02-28 20:15:01,168] DEBUG in application: Test Comment Test Comment
+[2019-02-28 20:15:01,168] DEBUG in application: Comment. Comment.
+[2019-02-28 20:15:01,168] DEBUG in application: Amazing!
+[2019-02-28 20:15:01,168] DEBUG in application: Amazing book!
+[2019-02-28 20:15:01,168] DEBUG in application: Test Comment.
+[2019-02-28 20:15:01,169] DEBUG in application: Test Comment. Test Comment. Test Comment.
+[2019-02-28 20:15:01,169] DEBUG in application: It was really informative.
+[2019-02-28 20:15:01,169] DEBUG in application: I like this book. I leaned a lot of things from this book.
+I recommend reading it.
+[2019-02-28 20:15:01,421] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
+[2019-02-28 20:17:11,878] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-28 20:17:11,880] DEBUG in application: Test Comment Test Comment
+[2019-02-28 20:17:11,880] DEBUG in application: amazing.
+[2019-02-28 20:17:11,880] DEBUG in application: Comment. Comment
+[2019-02-28 20:17:11,881] DEBUG in application: Amazing book!
+[2019-02-28 20:17:11,881] DEBUG in application: Amazing!
+[2019-02-28 20:17:11,881] DEBUG in application: Comment. Comment.
+[2019-02-28 20:17:11,881] DEBUG in application: amazing.
+[2019-02-28 20:17:11,882] DEBUG in application: Comment. Comment
+[2019-02-28 20:17:11,882] DEBUG in application: Test Comment Test Comment
+[2019-02-28 20:17:11,882] DEBUG in application: Comment. Comment.
+[2019-02-28 20:17:11,882] DEBUG in application: Amazing!
+[2019-02-28 20:17:11,882] DEBUG in application: Amazing book!
+[2019-02-28 20:17:11,883] DEBUG in application: Test Comment.
+[2019-02-28 20:17:11,883] DEBUG in application: Test Comment. Test Comment. Test Comment.
+[2019-02-28 20:17:11,883] DEBUG in application: It was really informative.
+[2019-02-28 20:17:11,883] DEBUG in application: I like this book. I leaned a lot of things from this book.
+I recommend reading it.
+[2019-02-28 20:17:12,071] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
+[2019-02-28 20:19:40,037] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-28 20:19:40,076] DEBUG in application: Test Comment Test Comment
+[2019-02-28 20:19:40,077] DEBUG in application: amazing.
+[2019-02-28 20:19:40,077] DEBUG in application: Comment. Comment
+[2019-02-28 20:19:40,078] DEBUG in application: Amazing book!
+[2019-02-28 20:19:40,078] DEBUG in application: Amazing!
+[2019-02-28 20:19:40,078] DEBUG in application: Comment. Comment.
+[2019-02-28 20:19:40,078] DEBUG in application: amazing.
+[2019-02-28 20:19:40,079] DEBUG in application: Comment. Comment
+[2019-02-28 20:19:40,079] DEBUG in application: Test Comment Test Comment
+[2019-02-28 20:19:40,079] DEBUG in application: Comment. Comment.
+[2019-02-28 20:19:40,079] DEBUG in application: Amazing!
+[2019-02-28 20:19:40,079] DEBUG in application: Amazing book!
+[2019-02-28 20:19:40,080] DEBUG in application: Test Comment.
+[2019-02-28 20:19:40,080] DEBUG in application: Test Comment. Test Comment. Test Comment.
+[2019-02-28 20:19:40,080] DEBUG in application: It was really informative.
+[2019-02-28 20:19:40,080] DEBUG in application: I like this book. I leaned a lot of things from this book.
+I recommend reading it.
+[2019-02-28 20:19:40,320] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
+[2019-02-28 20:19:46,407] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-28 20:19:46,409] DEBUG in application: Test Comment Test Comment
+[2019-02-28 20:19:46,409] DEBUG in application: amazing.
+[2019-02-28 20:19:46,409] DEBUG in application: Comment. Comment
+[2019-02-28 20:19:46,409] DEBUG in application: Amazing book!
+[2019-02-28 20:19:46,410] DEBUG in application: Amazing!
+[2019-02-28 20:19:46,410] DEBUG in application: Comment. Comment.
+[2019-02-28 20:19:46,411] DEBUG in application: amazing.
+[2019-02-28 20:19:46,411] DEBUG in application: Comment. Comment
+[2019-02-28 20:19:46,412] DEBUG in application: Test Comment Test Comment
+[2019-02-28 20:19:46,412] DEBUG in application: Comment. Comment.
+[2019-02-28 20:19:46,413] DEBUG in application: Amazing!
+[2019-02-28 20:19:46,413] DEBUG in application: Amazing book!
+[2019-02-28 20:19:46,414] DEBUG in application: Test Comment.
+[2019-02-28 20:19:46,415] DEBUG in application: Test Comment. Test Comment. Test Comment.
+[2019-02-28 20:19:46,415] DEBUG in application: It was really informative.
+[2019-02-28 20:19:46,416] DEBUG in application: I like this book. I leaned a lot of things from this book.
+I recommend reading it.
+[2019-02-28 20:19:46,575] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
+[2019-02-28 20:24:04,234] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-28 20:24:04,235] DEBUG in application: Test Comment Test Comment
+[2019-02-28 20:24:04,235] DEBUG in application: amazing.
+[2019-02-28 20:24:04,235] DEBUG in application: Comment. Comment
+[2019-02-28 20:24:04,235] DEBUG in application: Amazing book!
+[2019-02-28 20:24:04,236] DEBUG in application: Amazing!
+[2019-02-28 20:24:04,236] DEBUG in application: Comment. Comment.
+[2019-02-28 20:24:04,236] DEBUG in application: amazing.
+[2019-02-28 20:24:04,236] DEBUG in application: Comment. Comment
+[2019-02-28 20:24:04,236] DEBUG in application: Test Comment Test Comment
+[2019-02-28 20:24:04,237] DEBUG in application: Comment. Comment.
+[2019-02-28 20:24:04,237] DEBUG in application: Amazing!
+[2019-02-28 20:24:04,237] DEBUG in application: Amazing book!
+[2019-02-28 20:24:04,237] DEBUG in application: Test Comment.
+[2019-02-28 20:24:04,237] DEBUG in application: Test Comment. Test Comment. Test Comment.
+[2019-02-28 20:24:04,238] DEBUG in application: It was really informative.
+[2019-02-28 20:24:04,238] DEBUG in application: I like this book. I leaned a lot of things from this book.
+I recommend reading it.
+[2019-02-28 20:24:04,486] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
+[2019-02-28 20:24:17,694] DEBUG in application: {'user_id': 6, 'username': 'Iga', 'firstname': 'Igarashi', 'lastname': 'Hiroshi', 'password': 'hiro1128'}
+[2019-02-28 20:24:19,802] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-28 20:24:19,804] DEBUG in application: Test Comment Test Comment
+[2019-02-28 20:24:19,804] DEBUG in application: amazing.
+[2019-02-28 20:24:19,804] DEBUG in application: Comment. Comment
+[2019-02-28 20:24:19,804] DEBUG in application: Amazing book!
+[2019-02-28 20:24:19,805] DEBUG in application: Amazing!
+[2019-02-28 20:24:19,805] DEBUG in application: Comment. Comment.
+[2019-02-28 20:24:19,805] DEBUG in application: amazing.
+[2019-02-28 20:24:19,806] DEBUG in application: Comment. Comment
+[2019-02-28 20:24:19,806] DEBUG in application: Test Comment Test Comment
+[2019-02-28 20:24:19,806] DEBUG in application: Comment. Comment.
+[2019-02-28 20:24:19,807] DEBUG in application: Amazing!
+[2019-02-28 20:24:19,807] DEBUG in application: Amazing book!
+[2019-02-28 20:24:19,807] DEBUG in application: Test Comment.
+[2019-02-28 20:24:19,808] DEBUG in application: Test Comment. Test Comment. Test Comment.
+[2019-02-28 20:24:19,808] DEBUG in application: It was really informative.
+[2019-02-28 20:24:19,808] DEBUG in application: I like this book. I leaned a lot of things from this book.
+I recommend reading it.
+[2019-02-28 20:24:19,974] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
+[2019-02-28 20:26:20,982] INFO in application: Iga logged in successfully
+[2019-02-28 20:26:20,998] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-02-28 20:26:20,999] DEBUG in application: Test Comment Test Comment
+[2019-02-28 20:26:21,000] DEBUG in application: amazing.
+[2019-02-28 20:26:21,000] DEBUG in application: Comment. Comment
+[2019-02-28 20:26:21,000] DEBUG in application: Amazing book!
+[2019-02-28 20:26:21,000] DEBUG in application: Amazing!
+[2019-02-28 20:26:21,000] DEBUG in application: Comment. Comment.
+[2019-02-28 20:26:21,001] DEBUG in application: amazing.
+[2019-02-28 20:26:21,001] DEBUG in application: Comment. Comment
+[2019-02-28 20:26:21,001] DEBUG in application: Test Comment Test Comment
+[2019-02-28 20:26:21,001] DEBUG in application: Comment. Comment.
+[2019-02-28 20:26:21,001] DEBUG in application: Amazing!
+[2019-02-28 20:26:21,002] DEBUG in application: Amazing book!
+[2019-02-28 20:26:21,002] DEBUG in application: Test Comment.
+[2019-02-28 20:26:21,002] DEBUG in application: Test Comment. Test Comment. Test Comment.
+[2019-02-28 20:26:21,002] DEBUG in application: It was really informative.
+[2019-02-28 20:26:21,003] DEBUG in application: I like this book. I leaned a lot of things from this book.
+I recommend reading it.
+[2019-02-28 20:26:21,304] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
+[2019-02-28 20:35:25,282] DEBUG in application: (True, None)
+[2019-02-28 20:35:25,283] DEBUG in application: (True, None)
+[2019-02-28 20:35:25,283] DEBUG in application: ======userdata========
+[2019-02-28 20:35:25,283] DEBUG in application: {'user_id': '', 'username': 'Iga3', 'firstname': 'Igarashi', 'lastname': 'Hiroshi', 'password': 'hiro1128'}
+[2019-02-28 20:35:34,071] DEBUG in application: ====userdata===
+[2019-02-28 20:35:34,072] DEBUG in application: {'user_id': '', 'username': 'Iga3', 'firstname': 'Igarashi', 'lastname': 'Hiroshi', 'password': 'hiro1128'}
+[2019-02-28 20:35:34,110] DEBUG in application: ====registered====
+[2019-02-28 20:36:06,475] DEBUG in application: ====userdata===
+[2019-02-28 20:36:06,475] DEBUG in application: {'user_id': '', 'username': 'Iga3', 'firstname': 'Igarashi', 'lastname': 'Hiroshi', 'password': 'hiro1128'}
+[2019-02-28 20:36:06,479] DEBUG in application: ====registered====
+[2019-02-28 20:38:53,650] DEBUG in application: ====userdata===
+[2019-02-28 20:38:53,650] DEBUG in application: {'user_id': '', 'username': 'Iga3', 'firstname': 'Igarashi', 'lastname': 'Hiroshi', 'password': 'hiro1128'}
+[2019-02-28 20:38:53,653] DEBUG in application: ====registered====
