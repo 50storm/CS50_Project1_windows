@@ -1,5 +1,3 @@
-
-
 Hello, My name is Hiroshi Igarshi.
 Fisrt , please briefly show how I design bookreview tables.
 
@@ -19,6 +17,7 @@ Second ,  uses confirm their input data in the confirmation page.
 Finally,  uses are allowed to register data to database.
 
 
+
 """ Registration Form """
 This is the registration page.
 So, as I mentinoned before, first, users need to create thier unique username.
@@ -36,7 +35,6 @@ Next, After user finishied inputting userdata and press [Confrim Input Data] but
 If the validation is invalid, flask app returns error messages to users.
 If the validation is fine, flask app return confirmation page to users.
 Finally, In [insertUser] function, the insert query is bulit and executed by SQLAlchemy.
-
 
 
 # Login Form

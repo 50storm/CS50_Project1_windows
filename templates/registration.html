@@ -19,7 +19,7 @@
 {%    set css='bg-light' %}
 {% elif mode is defined and mode == 2 %}
 {%    set btnText = "Register Your Account" %}
-{%    set action = '' %}
+{%    set action = url_for('insertUser') %}
 {%    set readonly = 'readonly' %}
 {%    set css='bg-light' %}
 {% endif %}
