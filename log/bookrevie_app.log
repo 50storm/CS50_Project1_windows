@@ -1,307 +1,562 @@
-[2019-03-01 11:16:15,094] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:16:15] "GET / HTTP/1.1" 302 -
-[2019-03-01 11:16:15,617] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:16:15] "GET /bookreivew/login HTTP/1.1" 200 -
-[2019-03-01 11:16:31,418] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:16:31] "POST /bookreivew/login HTTP/1.1" 200 -
-[2019-03-01 11:16:38,360] INFO in application: Hakata logged in successfully
-[2019-03-01 11:16:38,564] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:16:38] "POST /bookreivew/login HTTP/1.1" 302 -
-[2019-03-01 11:16:38,591] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 27, 11, 22, 34, 390335), 'Hakata', 5, 'test', '000100039X', 'The Prophet', 'Kahlil Gibran', 1923)]
-[2019-03-01 11:16:38,624] DEBUG in application: testtest test
-[2019-03-01 11:16:38,624] DEBUG in application: test test
-[2019-03-01 11:16:38,624] DEBUG in application: test test test
-[2019-03-01 11:16:38,625] DEBUG in application: test test test
-[2019-03-01 11:16:38,625] DEBUG in application: test test test test
-[2019-03-01 11:16:38,625] DEBUG in application: okookok
-[2019-03-01 11:16:38,626] DEBUG in application: test
-[2019-03-01 11:16:38,626] DEBUG in application: test
-[2019-03-01 11:16:38,626] DEBUG in application: test
-[2019-03-01 11:16:38,626] DEBUG in application: test test test test
-[2019-03-01 11:16:38,627] DEBUG in application: test test test
-[2019-03-01 11:16:38,627] DEBUG in application: okookok
-[2019-03-01 11:16:38,627] DEBUG in application: test test
-[2019-03-01 11:16:38,627] DEBUG in application: testtest test
-[2019-03-01 11:16:38,628] DEBUG in application: test test test
-[2019-03-01 11:16:38,858] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:16:38] "GET /bookreivew/mypage HTTP/1.1" 200 -
-[2019-03-01 11:16:39,453] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
-[2019-03-01 11:16:39,709] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:16:39] "GET /bookreivew/api/getBookReviewNumber/1 HTTP/1.1" 200 -
-[2019-03-01 11:16:44,654] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 27, 11, 22, 34, 390335), 'Hakata', 5, 'test', '000100039X', 'The Prophet', 'Kahlil Gibran', 1923)]
-[2019-03-01 11:16:44,906] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:16:44] "GET /bookreivew/search HTTP/1.1" 200 -
-[2019-03-01 11:16:47,585] DEBUG in application: raise error
-[2019-03-01 11:16:47,585] DEBUG in application: ====queryBook======
-[2019-03-01 11:16:47,585] DEBUG in application: SELECT * FROM books 
-[2019-03-01 11:16:47,585] DEBUG in application: ====sqlparameters===
-[2019-03-01 11:16:47,585] DEBUG in application: {}
-[2019-03-01 11:16:48,306] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:16:48] "GET /bookreivew/searchBooks?booktitle=&authorname=&isbn=&searchBooks=Search+Books HTTP/1.1" 200 -
-[2019-03-01 11:19:29,760] DEBUG in application: {'user_id': 1, 'username': 'Hakata', 'firstname': 'Hakata', 'lastname': 'Tarou', 'password': 'hiro1128'}
-[2019-03-01 11:19:30,004] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:19:30] "GET /bookreivew/showUserAccount HTTP/1.1" 200 -
-[2019-03-01 11:19:32,557] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:19:32] "GET /bookreivew/editUserAccount HTTP/1.1" 200 -
-[2019-03-01 11:19:33,733] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 27, 11, 22, 34, 390335), 'Hakata', 5, 'test', '000100039X', 'The Prophet', 'Kahlil Gibran', 1923)]
-[2019-03-01 11:19:33,735] DEBUG in application: testtest test
-[2019-03-01 11:19:33,735] DEBUG in application: test test
-[2019-03-01 11:19:33,736] DEBUG in application: test test test
-[2019-03-01 11:19:33,736] DEBUG in application: test test test
-[2019-03-01 11:19:33,737] DEBUG in application: test test test test
-[2019-03-01 11:19:33,737] DEBUG in application: okookok
-[2019-03-01 11:19:33,738] DEBUG in application: test
-[2019-03-01 11:19:33,738] DEBUG in application: test
-[2019-03-01 11:19:33,738] DEBUG in application: test
-[2019-03-01 11:19:33,738] DEBUG in application: test test test test
-[2019-03-01 11:19:33,738] DEBUG in application: test test test
-[2019-03-01 11:19:33,739] DEBUG in application: okookok
-[2019-03-01 11:19:33,739] DEBUG in application: test test
-[2019-03-01 11:19:33,739] DEBUG in application: testtest test
-[2019-03-01 11:19:33,739] DEBUG in application: test test test
-[2019-03-01 11:19:34,059] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 27, 11, 22, 34, 390335), 'Hakata', 5, 'test', '000100039X', 'The Prophet', 'Kahlil Gibran', 1923)]
-[2019-03-01 11:19:34,060] DEBUG in application: testtest test
-[2019-03-01 11:19:34,060] DEBUG in application: test test
-[2019-03-01 11:19:34,060] DEBUG in application: test test test
-[2019-03-01 11:19:34,061] DEBUG in application: test test test
-[2019-03-01 11:19:34,061] DEBUG in application: test test test test
-[2019-03-01 11:19:34,061] DEBUG in application: okookok
-[2019-03-01 11:19:34,061] DEBUG in application: test
-[2019-03-01 11:19:34,061] DEBUG in application: test
-[2019-03-01 11:19:34,062] DEBUG in application: test
-[2019-03-01 11:19:34,062] DEBUG in application: test test test test
-[2019-03-01 11:19:34,062] DEBUG in application: test test test
-[2019-03-01 11:19:34,062] DEBUG in application: okookok
-[2019-03-01 11:19:34,062] DEBUG in application: test test
-[2019-03-01 11:19:34,062] DEBUG in application: testtest test
-[2019-03-01 11:19:34,063] DEBUG in application: test test test
-[2019-03-01 11:19:34,279] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:19:34] "GET /bookreivew/mypage HTTP/1.1" 200 -
-[2019-03-01 11:19:34,471] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:19:34] "GET /bookreivew/mypage HTTP/1.1" 200 -
-[2019-03-01 11:19:34,679] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
-[2019-03-01 11:19:35,337] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:19:35] "GET /bookreivew/api/getBookReviewNumber/1 HTTP/1.1" 200 -
-[2019-03-01 11:19:44,205] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 27, 11, 22, 34, 390335), 'Hakata', 5, 'test', '000100039X', 'The Prophet', 'Kahlil Gibran', 1923)]
-[2019-03-01 11:19:44,428] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:19:44] "GET /bookreivew/search HTTP/1.1" 200 -
-[2019-03-01 11:19:56,840] DEBUG in application: ====queryBook======
-[2019-03-01 11:19:56,840] DEBUG in application: SELECT * FROM books  WHERE  isbn LIKE :isbn 
-[2019-03-01 11:19:56,840] DEBUG in application: ====sqlparameters===
-[2019-03-01 11:19:56,840] DEBUG in application: {'isbn': '%00611501421111%'}
-[2019-03-01 11:19:57,114] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:19:57] "GET /bookreivew/searchBooks?booktitle=&authorname=&isbn=00611501421111&searchBooks=Search+Books HTTP/1.1" 200 -
-[2019-03-01 11:19:59,117] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 27, 11, 22, 34, 390335), 'Hakata', 5, 'test', '000100039X', 'The Prophet', 'Kahlil Gibran', 1923)]
-[2019-03-01 11:19:59,327] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:19:59] "GET /bookreivew/search HTTP/1.1" 200 -
-[2019-03-01 11:20:00,445] DEBUG in application: {'user_id': 1, 'username': 'Hakata', 'firstname': 'Hakata', 'lastname': 'Tarou', 'password': 'hiro1128'}
-[2019-03-01 11:20:00,644] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:20:00] "GET /bookreivew/showUserAccount HTTP/1.1" 200 -
-[2019-03-01 11:20:01,370] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 27, 11, 22, 34, 390335), 'Hakata', 5, 'test', '000100039X', 'The Prophet', 'Kahlil Gibran', 1923)]
-[2019-03-01 11:20:01,371] DEBUG in application: testtest test
-[2019-03-01 11:20:01,371] DEBUG in application: test test
-[2019-03-01 11:20:01,371] DEBUG in application: test test test
-[2019-03-01 11:20:01,372] DEBUG in application: test test test
-[2019-03-01 11:20:01,372] DEBUG in application: test test test test
-[2019-03-01 11:20:01,372] DEBUG in application: okookok
-[2019-03-01 11:20:01,372] DEBUG in application: test
-[2019-03-01 11:20:01,373] DEBUG in application: test
-[2019-03-01 11:20:01,373] DEBUG in application: test
-[2019-03-01 11:20:01,373] DEBUG in application: test test test test
-[2019-03-01 11:20:01,373] DEBUG in application: test test test
-[2019-03-01 11:20:01,373] DEBUG in application: okookok
-[2019-03-01 11:20:01,374] DEBUG in application: test test
-[2019-03-01 11:20:01,374] DEBUG in application: testtest test
-[2019-03-01 11:20:01,374] DEBUG in application: test test test
-[2019-03-01 11:20:01,568] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:20:01] "GET /bookreivew/mypage HTTP/1.1" 200 -
-[2019-03-01 11:20:01,768] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
-[2019-03-01 11:20:01,960] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:20:01] "GET /bookreivew/api/getBookReviewNumber/1 HTTP/1.1" 200 -
-[2019-03-01 11:34:14,985] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:34:14] "POST /bookreivew/logout HTTP/1.1" 200 -
-[2019-03-01 11:34:16,218] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:34:16] "GET / HTTP/1.1" 302 -
-[2019-03-01 11:34:16,226] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:34:16] "GET /bookreivew/login HTTP/1.1" 200 -
-[2019-03-01 11:34:23,969] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:34:23] "GET /bookreivew/registerUser HTTP/1.1" 200 -
-[2019-03-01 11:34:38,952] DEBUG in application: (True, None)
-[2019-03-01 11:34:38,952] DEBUG in application: (True, None)
-[2019-03-01 11:34:38,952] DEBUG in application: ======userdata========
-[2019-03-01 11:34:38,952] DEBUG in application: {'user_id': '', 'username': 'Hakata10', 'firstname': 'Haka', 'lastname': 'tarou', 'password': 'hiro1128'}
-[2019-03-01 11:34:38,954] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:34:38] "POST /bookreivew/registerUser HTTP/1.1" 200 -
-[2019-03-01 11:34:45,900] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:34:45] "GET /bookreivew/registerUser HTTP/1.1" 200 -
-[2019-03-01 11:35:37,226] DEBUG in application: (True, None)
-[2019-03-01 11:35:37,226] DEBUG in application: (False, 'password is too short!')
-[2019-03-01 11:35:37,228] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:35:37] "POST /bookreivew/registerUser HTTP/1.1" 200 -
-[2019-03-01 11:35:42,291] DEBUG in application: (True, None)
-[2019-03-01 11:35:42,291] DEBUG in application: (True, None)
-[2019-03-01 11:35:42,291] DEBUG in application: ======userdata========
-[2019-03-01 11:35:42,291] DEBUG in application: {'user_id': '', 'username': 'Hakata10', 'firstname': 'Haka', 'lastname': 'tarou', 'password': 'hiro1128'}
-[2019-03-01 11:35:42,292] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:35:42] "POST /bookreivew/registerUser HTTP/1.1" 200 -
-[2019-03-01 11:37:34,126] DEBUG in application: ====userdata===
-[2019-03-01 11:37:34,126] DEBUG in application: {'user_id': '', 'username': 'Hakata10', 'firstname': 'Haka', 'lastname': 'tarou', 'password': 'hiro1128'}
-[2019-03-01 11:37:34,249] DEBUG in application: ====registered====
-[2019-03-01 11:37:34,251] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:37:34] "POST /bookreivew/insertUser HTTP/1.1" 200 -
-[2019-03-01 11:37:36,030] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:37:36] "GET /bookreivew/login HTTP/1.1" 200 -
-[2019-03-01 11:37:43,223] INFO in application: Hakata10 logged in successfully
-[2019-03-01 11:37:43,557] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:37:43] "POST /bookreivew/login HTTP/1.1" 302 -
-[2019-03-01 11:37:43,566] DEBUG in application: []
-[2019-03-01 11:37:43,567] DEBUG in application: test
-[2019-03-01 11:37:43,567] DEBUG in application: test
-[2019-03-01 11:37:43,568] DEBUG in application: test test test test
-[2019-03-01 11:37:43,568] DEBUG in application: test test test
-[2019-03-01 11:37:43,568] DEBUG in application: okookok
-[2019-03-01 11:37:43,568] DEBUG in application: test test
-[2019-03-01 11:37:43,568] DEBUG in application: testtest test
-[2019-03-01 11:37:43,568] DEBUG in application: test test test
-[2019-03-01 11:37:43,824] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:37:43] "GET /bookreivew/mypage HTTP/1.1" 200 -
-[2019-03-01 11:37:44,309] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
-[2019-03-01 11:37:44,551] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:37:44] "GET /bookreivew/api/getBookReviewNumber/4 HTTP/1.1" 200 -
-[2019-03-01 11:44:37,030] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:44:37] "POST /bookreivew/logout HTTP/1.1" 200 -
-[2019-03-01 11:44:38,842] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:44:38] "GET / HTTP/1.1" 302 -
-[2019-03-01 11:44:38,848] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:44:38] "GET /bookreivew/login HTTP/1.1" 200 -
-[2019-03-01 11:44:41,024] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:44:41] "GET /bookreivew/registerUser HTTP/1.1" 200 -
-[2019-03-01 11:44:54,459] DEBUG in application: (True, None)
-[2019-03-01 11:44:54,460] DEBUG in application: (True, None)
-[2019-03-01 11:44:54,460] DEBUG in application: ======userdata========
-[2019-03-01 11:44:54,460] DEBUG in application: {'user_id': '', 'username': 'Hakata40', 'firstname': 'H', 'lastname': 'I', 'password': 'hiro1128'}
-[2019-03-01 11:44:54,462] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:44:54] "POST /bookreivew/registerUser HTTP/1.1" 200 -
-[2019-03-01 11:44:56,690] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:44:56] "GET /bookreivew/registerUser HTTP/1.1" 200 -
-[2019-03-01 11:44:57,836] DEBUG in application: (True, None)
-[2019-03-01 11:44:57,837] DEBUG in application: (False, 'password is too short!')
-[2019-03-01 11:44:57,935] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:44:57] "POST /bookreivew/registerUser HTTP/1.1" 200 -
-[2019-03-01 11:48:09,406] INFO in _internal:  * Detected change in 'C:\\Users\\h-igarashi\\Documents\\CS50_Project1_windows\\application.py', reloading
-[2019-03-01 11:48:19,615] WARNING in _internal:  * Debugger is active!
-[2019-03-01 11:48:19,657] INFO in _internal:  * Debugger PIN: 237-324-945
-[2019-03-01 11:48:19,796] INFO in _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-[2019-03-01 11:49:04,037] INFO in _internal:  * Detected change in 'C:\\Users\\h-igarashi\\Documents\\CS50_Project1_windows\\application.py', reloading
-[2019-03-01 11:49:05,159] WARNING in _internal:  * Debugger is active!
-[2019-03-01 11:49:05,178] INFO in _internal:  * Debugger PIN: 237-324-945
-[2019-03-01 11:49:05,187] INFO in _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-[2019-03-01 11:52:32,200] INFO in _internal:  * Detected change in 'C:\\Users\\h-igarashi\\Documents\\CS50_Project1_windows\\application.py', reloading
-[2019-03-01 11:52:33,193] WARNING in _internal:  * Debugger is active!
-[2019-03-01 11:52:33,203] INFO in _internal:  * Debugger PIN: 237-324-945
-[2019-03-01 11:52:33,213] INFO in _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-[2019-03-01 11:52:46,205] DEBUG in application: (True, None)
-[2019-03-01 11:52:46,205] DEBUG in application: (False, 'password is not equal confiromPassword!!')
-[2019-03-01 11:52:46,259] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:52:46] "POST /bookreivew/registerUser HTTP/1.1" 200 -
-[2019-03-01 11:52:50,002] DEBUG in application: (True, None)
-[2019-03-01 11:52:50,002] DEBUG in application: (False, 'password is not equal confiromPassword!!')
-[2019-03-01 11:52:50,003] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:52:50] "POST /bookreivew/registerUser HTTP/1.1" 200 -
-[2019-03-01 11:52:56,706] DEBUG in application: (True, None)
-[2019-03-01 11:52:56,706] DEBUG in application: (False, 'password is not equal confiromPassword!!')
-[2019-03-01 11:52:56,709] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:52:56] "POST /bookreivew/registerUser HTTP/1.1" 200 -
-[2019-03-01 11:53:06,536] DEBUG in application: (True, None)
-[2019-03-01 11:53:06,536] DEBUG in application: (True, None)
-[2019-03-01 11:53:06,537] DEBUG in application: ======userdata========
-[2019-03-01 11:53:06,537] DEBUG in application: {'user_id': '', 'username': 'Hakata40', 'firstname': 'H', 'lastname': 'I', 'password': 'hiro1128'}
-[2019-03-01 11:53:06,538] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:53:06] "POST /bookreivew/registerUser HTTP/1.1" 200 -
-[2019-03-01 11:53:09,443] DEBUG in application: ====userdata===
-[2019-03-01 11:53:09,444] DEBUG in application: {'user_id': '', 'username': 'Hakata40', 'firstname': 'H', 'lastname': 'I', 'password': 'hiro1128'}
-[2019-03-01 11:53:09,450] DEBUG in application: ====registered====
-[2019-03-01 11:53:09,453] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:53:09] "POST /bookreivew/insertUser HTTP/1.1" 200 -
-[2019-03-01 11:53:10,625] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:53:10] "GET /bookreivew/login HTTP/1.1" 200 -
-[2019-03-01 11:53:14,587] INFO in application: Hakata logged in successfully
-[2019-03-01 11:53:14,854] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:53:14] "POST /bookreivew/login HTTP/1.1" 302 -
-[2019-03-01 11:53:14,899] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 27, 11, 22, 34, 390335), 'Hakata', 5, 'test', '000100039X', 'The Prophet', 'Kahlil Gibran', 1923)]
-[2019-03-01 11:53:14,920] DEBUG in application: testtest test
-[2019-03-01 11:53:14,920] DEBUG in application: test test
-[2019-03-01 11:53:14,921] DEBUG in application: test test test
-[2019-03-01 11:53:14,921] DEBUG in application: test test test
-[2019-03-01 11:53:14,921] DEBUG in application: test test test test
-[2019-03-01 11:53:14,921] DEBUG in application: okookok
-[2019-03-01 11:53:14,921] DEBUG in application: test
-[2019-03-01 11:53:14,922] DEBUG in application: test
-[2019-03-01 11:53:14,922] DEBUG in application: test
-[2019-03-01 11:53:14,922] DEBUG in application: test test test test
-[2019-03-01 11:53:14,922] DEBUG in application: test test test
-[2019-03-01 11:53:14,922] DEBUG in application: okookok
-[2019-03-01 11:53:14,922] DEBUG in application: test test
-[2019-03-01 11:53:14,923] DEBUG in application: testtest test
-[2019-03-01 11:53:14,923] DEBUG in application: test test test
-[2019-03-01 11:53:15,145] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:53:15] "GET /bookreivew/mypage HTTP/1.1" 200 -
-[2019-03-01 11:53:15,611] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
-[2019-03-01 11:53:15,820] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:53:15] "GET /bookreivew/api/getBookReviewNumber/1 HTTP/1.1" 200 -
-[2019-03-01 11:53:16,700] DEBUG in application: {'user_id': 1, 'username': 'Hakata', 'firstname': 'Hakata', 'lastname': 'Tarou', 'password': 'hiro1128'}
-[2019-03-01 11:53:16,904] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:53:16] "GET /bookreivew/showUserAccount HTTP/1.1" 200 -
-[2019-03-01 11:53:20,021] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:53:20] "GET /bookreivew/editUserAccount HTTP/1.1" 200 -
-[2019-03-01 11:53:21,034] DEBUG in application: ===========userdata==============
-[2019-03-01 11:53:21,034] DEBUG in application: {'user_id': 1, 'username': 'Hakata', 'firstname': 'Hakata', 'lastname': 'Tarou', 'password': 'hiro1128'}
-[2019-03-01 11:53:21,328] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:53:21] "POST /bookreivew/confirmUserAccount HTTP/1.1" 200 -
-[2019-03-01 11:53:22,689] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:53:22] "POST /bookreivew/updateUserAccount HTTP/1.1" 200 -
-[2019-03-01 11:53:25,220] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:53:25] "GET /bookreivew/editUserAccount HTTP/1.1" 200 -
-[2019-03-01 11:53:26,975] DEBUG in application: ===========userdata==============
-[2019-03-01 11:53:26,975] DEBUG in application: {'user_id': 1, 'username': 'Hakata', 'firstname': 'Hakata', 'lastname': 'Tarou', 'password': 'hiro1128'}
-[2019-03-01 11:53:27,178] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:53:27] "POST /bookreivew/confirmUserAccount HTTP/1.1" 200 -
-[2019-03-01 11:53:30,315] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 11:53:30] "POST /bookreivew/updateUserAccount HTTP/1.1" 200 -
-[2019-03-01 11:53:53,456] INFO in _internal:  * Detected change in 'C:\\Users\\h-igarashi\\Documents\\CS50_Project1_windows\\application.py', reloading
-[2019-03-01 11:53:54,443] WARNING in _internal:  * Debugger is active!
-[2019-03-01 11:53:54,453] INFO in _internal:  * Debugger PIN: 237-324-945
-[2019-03-01 11:53:54,465] INFO in _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-[2019-03-01 13:12:55,336] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:12:55] "POST /bookreivew/logout HTTP/1.1" 200 -
-[2019-03-01 13:12:56,365] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:12:56] "GET / HTTP/1.1" 302 -
-[2019-03-01 13:12:56,373] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:12:56] "GET /bookreivew/login HTTP/1.1" 200 -
-[2019-03-01 13:12:58,923] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:12:58] "GET /bookreivew/registerUser HTTP/1.1" 200 -
-[2019-03-01 13:13:14,085] DEBUG in application: (True, None)
-[2019-03-01 13:13:14,085] DEBUG in application: (True, None)
-[2019-03-01 13:13:14,085] DEBUG in application: ======userdata========
-[2019-03-01 13:13:14,085] DEBUG in application: {'user_id': '', 'username': 'Test', 'firstname': 'Test', 'lastname': 'Test', 'password': 'hiro1128'}
-[2019-03-01 13:13:14,087] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:13:14] "POST /bookreivew/registerUser HTTP/1.1" 200 -
-[2019-03-01 13:13:19,833] DEBUG in application: ====userdata===
-[2019-03-01 13:13:19,833] DEBUG in application: {'user_id': '', 'username': 'Test', 'firstname': 'Test', 'lastname': 'Test', 'password': 'hiro1128'}
-[2019-03-01 13:13:19,836] DEBUG in application: ====registered====
-[2019-03-01 13:13:19,838] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:13:19] "POST /bookreivew/insertUser HTTP/1.1" 200 -
-[2019-03-01 13:13:47,637] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:13:47] "GET /bookreivew/login HTTP/1.1" 200 -
-[2019-03-01 13:13:49,189] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:13:49] "GET /bookreivew/registerUser HTTP/1.1" 200 -
-[2019-03-01 13:13:57,433] DEBUG in application: (True, None)
-[2019-03-01 13:13:57,433] DEBUG in application: (True, None)
-[2019-03-01 13:13:57,433] DEBUG in application: ======userdata========
-[2019-03-01 13:13:57,433] DEBUG in application: {'user_id': '', 'username': 'hoge', 'firstname': 'hoge', 'lastname': 'foo', 'password': 'hiro1128'}
-[2019-03-01 13:13:57,435] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:13:57] "POST /bookreivew/registerUser HTTP/1.1" 200 -
-[2019-03-01 13:14:01,784] DEBUG in application: ====userdata===
-[2019-03-01 13:14:01,784] DEBUG in application: {'user_id': '', 'username': 'hoge', 'firstname': 'hoge', 'lastname': 'foo', 'password': 'hiro1128'}
-[2019-03-01 13:14:01,787] DEBUG in application: ====registered====
-[2019-03-01 13:14:01,790] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:14:01] "POST /bookreivew/insertUser HTTP/1.1" 200 -
-[2019-03-01 13:14:04,192] DEBUG in application: ====userdata===
-[2019-03-01 13:14:04,192] DEBUG in application: {'user_id': '', 'username': 'hoge', 'firstname': 'hoge', 'lastname': 'foo', 'password': 'hiro1128'}
-[2019-03-01 13:14:04,195] DEBUG in application: ====registered====
-[2019-03-01 13:14:04,196] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:14:04] "POST /bookreivew/insertUser HTTP/1.1" 200 -
-[2019-03-01 13:14:34,766] INFO in _internal:  * Detected change in 'C:\\Users\\h-igarashi\\Documents\\CS50_Project1_windows\\application.py', reloading
-[2019-03-01 13:14:35,867] WARNING in _internal:  * Debugger is active!
-[2019-03-01 13:14:35,878] INFO in _internal:  * Debugger PIN: 237-324-945
-[2019-03-01 13:14:35,887] INFO in _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-[2019-03-01 13:14:38,268] DEBUG in application: ====userdata===
-[2019-03-01 13:14:38,268] DEBUG in application: {'user_id': '', 'username': 'hoge', 'firstname': 'hoge', 'lastname': 'foo', 'password': 'hiro1128'}
-[2019-03-01 13:14:38,322] DEBUG in application: ====registered====
-[2019-03-01 13:14:38,340] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:14:38] "POST /bookreivew/insertUser HTTP/1.1" 200 -
-[2019-03-01 13:15:31,660] DEBUG in application: ====userdata===
-[2019-03-01 13:15:31,660] DEBUG in application: {'user_id': '', 'username': 'hoge', 'firstname': 'hoge', 'lastname': 'foo', 'password': 'hiro1128'}
-[2019-03-01 13:15:31,687] DEBUG in application: ====registered====
-[2019-03-01 13:15:31,709] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:15:31] "POST /bookreivew/insertUser HTTP/1.1" 200 -
-[2019-03-01 13:15:33,039] DEBUG in application: ====userdata===
-[2019-03-01 13:15:33,039] DEBUG in application: {'user_id': '', 'username': 'hoge', 'firstname': 'hoge', 'lastname': 'foo', 'password': 'hiro1128'}
-[2019-03-01 13:15:33,041] DEBUG in application: ====registered====
-[2019-03-01 13:15:33,043] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:15:33] "POST /bookreivew/insertUser HTTP/1.1" 200 -
-[2019-03-01 13:15:35,516] DEBUG in application: ====userdata===
-[2019-03-01 13:15:35,516] DEBUG in application: {'user_id': '', 'username': 'hoge', 'firstname': 'hoge', 'lastname': 'foo', 'password': 'hiro1128'}
-[2019-03-01 13:15:35,551] DEBUG in application: ====registered====
-[2019-03-01 13:15:35,552] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:15:35] "POST /bookreivew/insertUser HTTP/1.1" 200 -
-[2019-03-01 13:15:36,321] DEBUG in application: ====userdata===
-[2019-03-01 13:15:36,321] DEBUG in application: {'user_id': '', 'username': 'hoge', 'firstname': 'hoge', 'lastname': 'foo', 'password': 'hiro1128'}
-[2019-03-01 13:15:36,342] DEBUG in application: ====registered====
-[2019-03-01 13:15:36,344] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:15:36] "POST /bookreivew/insertUser HTTP/1.1" 200 -
-[2019-03-01 13:15:36,895] DEBUG in application: ====userdata===
-[2019-03-01 13:15:36,896] DEBUG in application: {'user_id': '', 'username': 'hoge', 'firstname': 'hoge', 'lastname': 'foo', 'password': 'hiro1128'}
-[2019-03-01 13:15:36,898] DEBUG in application: ====registered====
-[2019-03-01 13:15:36,899] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:15:36] "POST /bookreivew/insertUser HTTP/1.1" 200 -
-[2019-03-01 13:15:37,201] DEBUG in application: ====userdata===
-[2019-03-01 13:15:37,201] DEBUG in application: {'user_id': '', 'username': 'hoge', 'firstname': 'hoge', 'lastname': 'foo', 'password': 'hiro1128'}
-[2019-03-01 13:15:37,202] DEBUG in application: ====registered====
-[2019-03-01 13:15:37,204] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:15:37] "POST /bookreivew/insertUser HTTP/1.1" 200 -
-[2019-03-01 13:15:52,932] DEBUG in application: ====userdata===
-[2019-03-01 13:15:52,932] DEBUG in application: {'user_id': '', 'username': 'hoge', 'firstname': 'hoge', 'lastname': 'foo', 'password': 'hiro1128'}
-[2019-03-01 13:15:52,934] DEBUG in application: ====registered====
-[2019-03-01 13:15:52,948] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:15:52] "POST /bookreivew/insertUser HTTP/1.1" 200 -
-[2019-03-01 13:16:15,763] DEBUG in application: ====userdata===
-[2019-03-01 13:16:15,763] DEBUG in application: {'user_id': '', 'username': 'hoge', 'firstname': 'hoge', 'lastname': 'foo', 'password': 'hiro1128'}
-[2019-03-01 13:16:15,765] DEBUG in application: ====registered====
-[2019-03-01 13:16:15,782] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:16:15] "POST /bookreivew/insertUser HTTP/1.1" 200 -
-[2019-03-01 13:16:32,206] DEBUG in application: ====userdata===
-[2019-03-01 13:16:32,206] DEBUG in application: {'user_id': '', 'username': 'hoge', 'firstname': 'hoge', 'lastname': 'foo', 'password': 'hiro1128'}
-[2019-03-01 13:16:32,208] DEBUG in application: ====registered====
-[2019-03-01 13:16:32,210] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:16:32] "POST /bookreivew/insertUser HTTP/1.1" 200 -
-[2019-03-01 13:16:48,685] DEBUG in application: ====userdata===
-[2019-03-01 13:16:48,685] DEBUG in application: {'user_id': '', 'username': 'hoge', 'firstname': 'hoge', 'lastname': 'foo', 'password': 'hiro1128'}
-[2019-03-01 13:16:48,687] DEBUG in application: ====registered====
-[2019-03-01 13:16:48,702] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:16:48] "POST /bookreivew/insertUser HTTP/1.1" 200 -
-[2019-03-01 13:16:51,823] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:16:51] "GET /bookreivew/login HTTP/1.1" 200 -
-[2019-03-01 13:16:54,392] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:16:54] "GET /bookreivew/registerUser HTTP/1.1" 200 -
-[2019-03-01 13:17:08,650] DEBUG in application: (True, None)
-[2019-03-01 13:17:08,650] DEBUG in application: (True, None)
-[2019-03-01 13:17:08,650] DEBUG in application: ======userdata========
-[2019-03-01 13:17:08,650] DEBUG in application: {'user_id': '', 'username': 'Test2', 'firstname': 'test', 'lastname': 'tes', 'password': 'hiro1128'}
-[2019-03-01 13:17:08,652] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:17:08] "POST /bookreivew/registerUser HTTP/1.1" 200 -
-[2019-03-01 13:17:12,836] DEBUG in application: ====userdata===
-[2019-03-01 13:17:12,836] DEBUG in application: {'user_id': '', 'username': 'Test2', 'firstname': 'test', 'lastname': 'tes', 'password': 'hiro1128'}
-[2019-03-01 13:17:12,838] DEBUG in application: ====registered====
-[2019-03-01 13:17:12,839] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:17:12] "POST /bookreivew/insertUser HTTP/1.1" 200 -
-[2019-03-01 13:17:16,191] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:17:16] "GET /bookreivew/login HTTP/1.1" 200 -
+[2019-03-01 13:38:14,636] DEBUG in application: None
+[2019-03-01 13:38:14,640] DEBUG in application: []
+[2019-03-01 13:38:14,641] DEBUG in application: test
+[2019-03-01 13:38:14,641] DEBUG in application: test
+[2019-03-01 13:38:14,641] DEBUG in application: test test test test
+[2019-03-01 13:38:14,641] DEBUG in application: test test test
+[2019-03-01 13:38:14,642] DEBUG in application: okookok
+[2019-03-01 13:38:14,642] DEBUG in application: test test
+[2019-03-01 13:38:14,642] DEBUG in application: testtest test
+[2019-03-01 13:38:14,642] DEBUG in application: test test test
+[2019-03-01 13:38:14,643] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:38:14] "GET /bookreivew/mypage HTTP/1.1" 200 -
+[2019-03-01 13:38:46,868] INFO in _internal:  * Detected change in 'C:\\Users\\h-igarashi\\Documents\\CS50_Project1_windows\\application.py', reloading
+[2019-03-01 13:38:47,889] WARNING in _internal:  * Debugger is active!
+[2019-03-01 13:38:47,899] INFO in _internal:  * Debugger PIN: 237-324-945
+[2019-03-01 13:38:47,909] INFO in _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2019-03-01 13:38:49,051] INFO in _internal:  * Detected change in 'C:\\Users\\h-igarashi\\Documents\\CS50_Project1_windows\\application.py', reloading
+[2019-03-01 13:38:50,168] WARNING in _internal:  * Debugger is active!
+[2019-03-01 13:38:50,180] INFO in _internal:  * Debugger PIN: 237-324-945
+[2019-03-01 13:38:50,190] INFO in _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2019-03-01 13:38:52,251] ERROR in application: can only concatenate str (not "NoneType") to str
+[2019-03-01 13:38:52,251] DEBUG in application: 500 Internal Server Error: confirmUser
+[2019-03-01 13:38:52,284] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:38:52] "GET /bookreivew/mypage HTTP/1.1" 500 -
+[2019-03-01 13:39:19,954] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:39:19] "GET /bookreivew/login HTTP/1.1" 200 -
+[2019-03-01 13:39:25,901] INFO in application: Hakata logged in successfully
+[2019-03-01 13:39:26,133] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:39:26] "POST /bookreivew/login HTTP/1.1" 302 -
+[2019-03-01 13:39:26,138] ERROR in application: can only concatenate str (not "int") to str
+[2019-03-01 13:39:26,138] DEBUG in application: 500 Internal Server Error: confirmUser
+[2019-03-01 13:39:26,341] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:39:26] "GET /bookreivew/mypage HTTP/1.1" 500 -
+[2019-03-01 13:40:16,808] INFO in _internal:  * Detected change in 'C:\\Users\\h-igarashi\\Documents\\CS50_Project1_windows\\application.py', reloading
+[2019-03-01 13:40:57,265] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 27, 11, 22, 34, 390335), 'Hakata', 5, 'test', '000100039X', 'The Prophet', 'Kahlil Gibran', 1923)]
+[2019-03-01 13:40:57,291] DEBUG in application: testtest test
+[2019-03-01 13:40:57,291] DEBUG in application: test test
+[2019-03-01 13:40:57,291] DEBUG in application: test test test
+[2019-03-01 13:40:57,291] DEBUG in application: test test test
+[2019-03-01 13:40:57,291] DEBUG in application: test test test test
+[2019-03-01 13:40:57,292] DEBUG in application: okookok
+[2019-03-01 13:40:57,292] DEBUG in application: test
+[2019-03-01 13:40:57,292] DEBUG in application: test
+[2019-03-01 13:40:57,293] DEBUG in application: test
+[2019-03-01 13:40:57,293] DEBUG in application: test test test test
+[2019-03-01 13:40:57,293] DEBUG in application: test test test
+[2019-03-01 13:40:57,294] DEBUG in application: okookok
+[2019-03-01 13:40:57,294] DEBUG in application: test test
+[2019-03-01 13:40:57,294] DEBUG in application: testtest test
+[2019-03-01 13:40:57,294] DEBUG in application: test test test
+[2019-03-01 13:40:58,003] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
+[2019-03-01 13:41:41,178] WARNING in _internal:  * Debugger is active!
+[2019-03-01 13:41:41,191] INFO in _internal:  * Debugger PIN: 237-324-945
+[2019-03-01 13:41:41,201] INFO in _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2019-03-01 13:41:43,218] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 27, 11, 22, 34, 390335), 'Hakata', 5, 'test', '000100039X', 'The Prophet', 'Kahlil Gibran', 1923)]
+[2019-03-01 13:41:43,243] DEBUG in application: testtest test
+[2019-03-01 13:41:43,243] DEBUG in application: test test
+[2019-03-01 13:41:43,243] DEBUG in application: test test test
+[2019-03-01 13:41:43,244] DEBUG in application: test test test
+[2019-03-01 13:41:43,244] DEBUG in application: test test test test
+[2019-03-01 13:41:43,244] DEBUG in application: okookok
+[2019-03-01 13:41:43,244] DEBUG in application: test
+[2019-03-01 13:41:43,244] DEBUG in application: test
+[2019-03-01 13:41:43,245] DEBUG in application: test
+[2019-03-01 13:41:43,245] DEBUG in application: test test test test
+[2019-03-01 13:41:43,245] DEBUG in application: test test test
+[2019-03-01 13:41:43,245] DEBUG in application: okookok
+[2019-03-01 13:41:43,245] DEBUG in application: test test
+[2019-03-01 13:41:43,245] DEBUG in application: testtest test
+[2019-03-01 13:41:43,246] DEBUG in application: test test test
+[2019-03-01 13:41:43,473] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:41:43] "GET /bookreivew/mypage HTTP/1.1" 200 -
+[2019-03-01 13:41:43,814] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
+[2019-03-01 13:41:44,015] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:41:44] "GET /bookreivew/api/getBookReviewNumber/1 HTTP/1.1" 200 -
+[2019-03-01 13:41:53,380] INFO in _internal:  * Detected change in 'C:\\Users\\h-igarashi\\Documents\\CS50_Project1_windows\\application.py', reloading
+[2019-03-01 13:41:54,660] WARNING in _internal:  * Debugger is active!
+[2019-03-01 13:41:54,672] INFO in _internal:  * Debugger PIN: 237-324-945
+[2019-03-01 13:41:54,682] INFO in _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2019-03-01 13:41:56,000] DEBUG in application: =====isLoggedin====
+[2019-03-01 13:41:56,000] DEBUG in application: 1
+[2019-03-01 13:41:56,068] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 27, 11, 22, 34, 390335), 'Hakata', 5, 'test', '000100039X', 'The Prophet', 'Kahlil Gibran', 1923)]
+[2019-03-01 13:41:56,092] DEBUG in application: testtest test
+[2019-03-01 13:41:56,093] DEBUG in application: test test
+[2019-03-01 13:41:56,093] DEBUG in application: test test test
+[2019-03-01 13:41:56,093] DEBUG in application: test test test
+[2019-03-01 13:41:56,093] DEBUG in application: test test test test
+[2019-03-01 13:41:56,093] DEBUG in application: okookok
+[2019-03-01 13:41:56,093] DEBUG in application: test
+[2019-03-01 13:41:56,094] DEBUG in application: test
+[2019-03-01 13:41:56,094] DEBUG in application: test
+[2019-03-01 13:41:56,094] DEBUG in application: test test test test
+[2019-03-01 13:41:56,094] DEBUG in application: test test test
+[2019-03-01 13:41:56,095] DEBUG in application: okookok
+[2019-03-01 13:41:56,095] DEBUG in application: test test
+[2019-03-01 13:41:56,095] DEBUG in application: testtest test
+[2019-03-01 13:41:56,095] DEBUG in application: test test test
+[2019-03-01 13:41:56,315] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:41:56] "GET /bookreivew/mypage HTTP/1.1" 200 -
+[2019-03-01 13:41:56,641] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
+[2019-03-01 13:41:56,831] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:41:56] "GET /bookreivew/api/getBookReviewNumber/1 HTTP/1.1" 200 -
+[2019-03-01 13:42:30,904] INFO in _internal:  * Detected change in 'C:\\Users\\h-igarashi\\Documents\\CS50_Project1_windows\\application.py', reloading
+[2019-03-01 13:42:31,944] WARNING in _internal:  * Debugger is active!
+[2019-03-01 13:42:31,955] INFO in _internal:  * Debugger PIN: 237-324-945
+[2019-03-01 13:42:31,966] INFO in _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2019-03-01 13:42:33,103] INFO in _internal:  * Detected change in 'C:\\Users\\h-igarashi\\Documents\\CS50_Project1_windows\\application.py', reloading
+[2019-03-01 13:42:34,223] WARNING in _internal:  * Debugger is active!
+[2019-03-01 13:42:34,239] INFO in _internal:  * Debugger PIN: 237-324-945
+[2019-03-01 13:42:34,257] INFO in _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2019-03-01 13:42:35,215] DEBUG in application: =====isLoggedin====
+[2019-03-01 13:42:35,215] DEBUG in application: 1
+[2019-03-01 13:42:35,297] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 27, 11, 22, 34, 390335), 'Hakata', 5, 'test', '000100039X', 'The Prophet', 'Kahlil Gibran', 1923)]
+[2019-03-01 13:42:35,321] DEBUG in application: testtest test
+[2019-03-01 13:42:35,322] DEBUG in application: test test
+[2019-03-01 13:42:35,322] DEBUG in application: test test test
+[2019-03-01 13:42:35,322] DEBUG in application: test test test
+[2019-03-01 13:42:35,322] DEBUG in application: test test test test
+[2019-03-01 13:42:35,322] DEBUG in application: okookok
+[2019-03-01 13:42:35,322] DEBUG in application: test
+[2019-03-01 13:42:35,323] DEBUG in application: test
+[2019-03-01 13:42:35,323] DEBUG in application: test
+[2019-03-01 13:42:35,323] DEBUG in application: test test test test
+[2019-03-01 13:42:35,323] DEBUG in application: test test test
+[2019-03-01 13:42:35,323] DEBUG in application: okookok
+[2019-03-01 13:42:35,324] DEBUG in application: test test
+[2019-03-01 13:42:35,324] DEBUG in application: testtest test
+[2019-03-01 13:42:35,324] DEBUG in application: test test test
+[2019-03-01 13:42:35,564] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:42:35] "GET /bookreivew/mypage HTTP/1.1" 200 -
+[2019-03-01 13:42:35,932] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
+[2019-03-01 13:42:36,129] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:42:36] "GET /bookreivew/api/getBookReviewNumber/1 HTTP/1.1" 200 -
+[2019-03-01 13:43:18,106] INFO in _internal:  * Detected change in 'C:\\Users\\h-igarashi\\Documents\\CS50_Project1_windows\\application.py', reloading
+[2019-03-01 13:43:19,120] WARNING in _internal:  * Debugger is active!
+[2019-03-01 13:43:19,131] INFO in _internal:  * Debugger PIN: 237-324-945
+[2019-03-01 13:43:19,141] INFO in _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2019-03-01 13:43:20,267] INFO in _internal:  * Detected change in 'C:\\Users\\h-igarashi\\Documents\\CS50_Project1_windows\\application.py', reloading
+[2019-03-01 13:43:21,453] WARNING in _internal:  * Debugger is active!
+[2019-03-01 13:43:21,476] INFO in _internal:  * Debugger PIN: 237-324-945
+[2019-03-01 13:43:21,488] INFO in _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2019-03-01 13:43:25,679] DEBUG in application: =====isLoggedin====
+[2019-03-01 13:43:25,679] DEBUG in application: 1
+[2019-03-01 13:43:25,763] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 27, 11, 22, 34, 390335), 'Hakata', 5, 'test', '000100039X', 'The Prophet', 'Kahlil Gibran', 1923)]
+[2019-03-01 13:43:25,789] DEBUG in application: testtest test
+[2019-03-01 13:43:25,789] DEBUG in application: test test
+[2019-03-01 13:43:25,790] DEBUG in application: test test test
+[2019-03-01 13:43:25,790] DEBUG in application: test test test
+[2019-03-01 13:43:25,790] DEBUG in application: test test test test
+[2019-03-01 13:43:25,790] DEBUG in application: okookok
+[2019-03-01 13:43:25,790] DEBUG in application: test
+[2019-03-01 13:43:25,791] DEBUG in application: test
+[2019-03-01 13:43:25,791] DEBUG in application: test
+[2019-03-01 13:43:25,791] DEBUG in application: test test test test
+[2019-03-01 13:43:25,791] DEBUG in application: test test test
+[2019-03-01 13:43:25,791] DEBUG in application: okookok
+[2019-03-01 13:43:25,791] DEBUG in application: test test
+[2019-03-01 13:43:25,792] DEBUG in application: testtest test
+[2019-03-01 13:43:25,792] DEBUG in application: test test test
+[2019-03-01 13:43:26,054] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:43:26] "GET /bookreivew/mypage HTTP/1.1" 200 -
+[2019-03-01 13:43:26,369] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
+[2019-03-01 13:43:26,578] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:43:26] "GET /bookreivew/api/getBookReviewNumber/1 HTTP/1.1" 200 -
+[2019-03-01 13:43:32,578] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:43:32] "POST /bookreivew/logout HTTP/1.1" 200 -
+[2019-03-01 13:43:34,932] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:43:34] "GET / HTTP/1.1" 302 -
+[2019-03-01 13:43:35,239] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:43:35] "GET /bookreivew/login HTTP/1.1" 200 -
+[2019-03-01 13:43:39,994] INFO in application: Hakata logged in successfully
+[2019-03-01 13:43:40,243] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:43:40] "POST /bookreivew/login HTTP/1.1" 302 -
+[2019-03-01 13:43:40,248] DEBUG in application: =====isLoggedin====
+[2019-03-01 13:43:40,248] DEBUG in application: 1
+[2019-03-01 13:43:40,253] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 27, 11, 22, 34, 390335), 'Hakata', 5, 'test', '000100039X', 'The Prophet', 'Kahlil Gibran', 1923)]
+[2019-03-01 13:43:40,254] DEBUG in application: testtest test
+[2019-03-01 13:43:40,254] DEBUG in application: test test
+[2019-03-01 13:43:40,255] DEBUG in application: test test test
+[2019-03-01 13:43:40,255] DEBUG in application: test test test
+[2019-03-01 13:43:40,255] DEBUG in application: test test test test
+[2019-03-01 13:43:40,255] DEBUG in application: okookok
+[2019-03-01 13:43:40,255] DEBUG in application: test
+[2019-03-01 13:43:40,256] DEBUG in application: test
+[2019-03-01 13:43:40,256] DEBUG in application: test
+[2019-03-01 13:43:40,256] DEBUG in application: test test test test
+[2019-03-01 13:43:40,256] DEBUG in application: test test test
+[2019-03-01 13:43:40,256] DEBUG in application: okookok
+[2019-03-01 13:43:40,256] DEBUG in application: test test
+[2019-03-01 13:43:40,257] DEBUG in application: testtest test
+[2019-03-01 13:43:40,257] DEBUG in application: test test test
+[2019-03-01 13:43:40,501] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:43:40] "GET /bookreivew/mypage HTTP/1.1" 200 -
+[2019-03-01 13:43:40,657] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
+[2019-03-01 13:43:40,859] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:43:40] "GET /bookreivew/api/getBookReviewNumber/1 HTTP/1.1" 200 -
+[2019-03-01 13:43:51,976] DEBUG in application: =====isLoggedin====
+[2019-03-01 13:43:51,976] DEBUG in application: 1
+[2019-03-01 13:43:51,981] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 27, 11, 22, 34, 390335), 'Hakata', 5, 'test', '000100039X', 'The Prophet', 'Kahlil Gibran', 1923)]
+[2019-03-01 13:43:51,983] DEBUG in application: testtest test
+[2019-03-01 13:43:51,983] DEBUG in application: test test
+[2019-03-01 13:43:51,984] DEBUG in application: test test test
+[2019-03-01 13:43:51,984] DEBUG in application: test test test
+[2019-03-01 13:43:51,984] DEBUG in application: test test test test
+[2019-03-01 13:43:51,984] DEBUG in application: okookok
+[2019-03-01 13:43:51,985] DEBUG in application: test
+[2019-03-01 13:43:51,985] DEBUG in application: test
+[2019-03-01 13:43:51,985] DEBUG in application: test
+[2019-03-01 13:43:51,985] DEBUG in application: test test test test
+[2019-03-01 13:43:51,986] DEBUG in application: test test test
+[2019-03-01 13:43:51,986] DEBUG in application: okookok
+[2019-03-01 13:43:51,986] DEBUG in application: test test
+[2019-03-01 13:43:51,986] DEBUG in application: testtest test
+[2019-03-01 13:43:51,986] DEBUG in application: test test test
+[2019-03-01 13:43:52,216] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:43:52] "GET /bookreivew/mypage HTTP/1.1" 200 -
+[2019-03-01 13:43:52,831] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
+[2019-03-01 13:43:53,392] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:43:53] "GET /bookreivew/api/getBookReviewNumber/1 HTTP/1.1" 200 -
+[2019-03-01 13:43:58,092] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:43:58] "POST /bookreivew/logout HTTP/1.1" 200 -
+[2019-03-01 13:44:00,552] DEBUG in application: =====isLoggedin====
+[2019-03-01 13:44:00,552] DEBUG in application: None
+[2019-03-01 13:44:00,553] DEBUG in application: session expired.
+[2019-03-01 13:44:00,560] DEBUG in application: []
+[2019-03-01 13:44:00,561] DEBUG in application: test
+[2019-03-01 13:44:00,561] DEBUG in application: test
+[2019-03-01 13:44:00,561] DEBUG in application: test test test test
+[2019-03-01 13:44:00,561] DEBUG in application: test test test
+[2019-03-01 13:44:00,562] DEBUG in application: okookok
+[2019-03-01 13:44:00,562] DEBUG in application: test test
+[2019-03-01 13:44:00,562] DEBUG in application: testtest test
+[2019-03-01 13:44:00,562] DEBUG in application: test test test
+[2019-03-01 13:44:00,563] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:44:00] "GET /bookreivew/mypage HTTP/1.1" 200 -
+[2019-03-01 13:44:01,684] DEBUG in application: =====isLoggedin====
+[2019-03-01 13:44:01,684] DEBUG in application: None
+[2019-03-01 13:44:01,685] DEBUG in application: session expired.
+[2019-03-01 13:44:01,689] DEBUG in application: []
+[2019-03-01 13:44:01,690] DEBUG in application: test
+[2019-03-01 13:44:01,691] DEBUG in application: test
+[2019-03-01 13:44:01,691] DEBUG in application: test test test test
+[2019-03-01 13:44:01,692] DEBUG in application: test test test
+[2019-03-01 13:44:01,692] DEBUG in application: okookok
+[2019-03-01 13:44:01,692] DEBUG in application: test test
+[2019-03-01 13:44:01,692] DEBUG in application: testtest test
+[2019-03-01 13:44:01,693] DEBUG in application: test test test
+[2019-03-01 13:44:01,693] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:44:01] "GET /bookreivew/mypage HTTP/1.1" 200 -
+[2019-03-01 13:45:53,145] INFO in _internal:  * Detected change in 'C:\\Users\\h-igarashi\\Documents\\CS50_Project1_windows\\application.py', reloading
+[2019-03-01 13:46:12,412] DEBUG in application: =====isLoggedin====
+[2019-03-01 13:46:12,412] DEBUG in application: None
+[2019-03-01 13:46:12,415] DEBUG in application: session expired.
+[2019-03-01 13:46:12,496] DEBUG in application: []
+[2019-03-01 13:46:12,519] DEBUG in application: test
+[2019-03-01 13:46:12,520] DEBUG in application: test
+[2019-03-01 13:46:12,520] DEBUG in application: test test test test
+[2019-03-01 13:46:12,520] DEBUG in application: test test test
+[2019-03-01 13:46:12,520] DEBUG in application: okookok
+[2019-03-01 13:46:12,520] DEBUG in application: test test
+[2019-03-01 13:46:12,520] DEBUG in application: testtest test
+[2019-03-01 13:46:12,521] DEBUG in application: test test test
+[2019-03-01 13:46:13,938] DEBUG in application: =====isLoggedin====
+[2019-03-01 13:46:13,938] DEBUG in application: None
+[2019-03-01 13:46:13,938] DEBUG in application: session expired.
+[2019-03-01 13:46:13,943] DEBUG in application: []
+[2019-03-01 13:46:13,945] DEBUG in application: test
+[2019-03-01 13:46:13,945] DEBUG in application: test
+[2019-03-01 13:46:13,946] DEBUG in application: test test test test
+[2019-03-01 13:46:13,946] DEBUG in application: test test test
+[2019-03-01 13:46:13,946] DEBUG in application: okookok
+[2019-03-01 13:46:13,946] DEBUG in application: test test
+[2019-03-01 13:46:13,947] DEBUG in application: testtest test
+[2019-03-01 13:46:13,947] DEBUG in application: test test test
+[2019-03-01 13:46:17,455] DEBUG in application: =====isLoggedin====
+[2019-03-01 13:46:17,456] DEBUG in application: None
+[2019-03-01 13:46:17,456] DEBUG in application: session expired.
+[2019-03-01 13:46:17,461] DEBUG in application: []
+[2019-03-01 13:46:17,462] DEBUG in application: test
+[2019-03-01 13:46:17,463] DEBUG in application: test
+[2019-03-01 13:46:17,463] DEBUG in application: test test test test
+[2019-03-01 13:46:17,463] DEBUG in application: test test test
+[2019-03-01 13:46:17,463] DEBUG in application: okookok
+[2019-03-01 13:46:17,463] DEBUG in application: test test
+[2019-03-01 13:46:17,464] DEBUG in application: testtest test
+[2019-03-01 13:46:17,464] DEBUG in application: test test test
+[2019-03-01 13:46:47,933] DEBUG in application: =====isLoggedin====
+[2019-03-01 13:46:47,933] DEBUG in application: None
+[2019-03-01 13:46:47,933] DEBUG in application: session expired.
+[2019-03-01 13:46:47,938] DEBUG in application: []
+[2019-03-01 13:46:47,939] DEBUG in application: test
+[2019-03-01 13:46:47,939] DEBUG in application: test
+[2019-03-01 13:46:47,939] DEBUG in application: test test test test
+[2019-03-01 13:46:47,939] DEBUG in application: test test test
+[2019-03-01 13:46:47,940] DEBUG in application: okookok
+[2019-03-01 13:46:47,940] DEBUG in application: test test
+[2019-03-01 13:46:47,940] DEBUG in application: testtest test
+[2019-03-01 13:46:47,940] DEBUG in application: test test test
+[2019-03-01 13:46:49,173] DEBUG in application: =====isLoggedin====
+[2019-03-01 13:46:49,174] DEBUG in application: None
+[2019-03-01 13:46:49,174] DEBUG in application: session expired.
+[2019-03-01 13:46:49,182] DEBUG in application: []
+[2019-03-01 13:46:49,184] DEBUG in application: test
+[2019-03-01 13:46:49,184] DEBUG in application: test
+[2019-03-01 13:46:49,184] DEBUG in application: test test test test
+[2019-03-01 13:46:49,184] DEBUG in application: test test test
+[2019-03-01 13:46:49,185] DEBUG in application: okookok
+[2019-03-01 13:46:49,185] DEBUG in application: test test
+[2019-03-01 13:46:49,185] DEBUG in application: testtest test
+[2019-03-01 13:46:49,185] DEBUG in application: test test test
+[2019-03-01 13:46:50,766] DEBUG in application: []
+[2019-03-01 13:47:07,086] WARNING in _internal:  * Debugger is active!
+[2019-03-01 13:47:07,103] INFO in _internal:  * Debugger PIN: 237-324-945
+[2019-03-01 13:47:07,116] INFO in _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2019-03-01 13:47:15,226] ERROR in application: 'user_id'
+[2019-03-01 13:47:15,226] DEBUG in application: 500 Internal Server Error: confirmUser
+[2019-03-01 13:47:15,236] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:47:15] "GET /bookreivew/showUserAccount HTTP/1.1" 500 -
+[2019-03-01 13:47:21,602] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:47:21] "GET /bookreivew/login HTTP/1.1" 200 -
+[2019-03-01 13:47:25,373] INFO in application: Hakata logged in successfully
+[2019-03-01 13:47:25,612] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:47:25] "POST /bookreivew/login HTTP/1.1" 302 -
+[2019-03-01 13:47:25,616] DEBUG in application: =====isLoggedin====
+[2019-03-01 13:47:25,617] DEBUG in application: 1
+[2019-03-01 13:47:25,624] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 27, 11, 22, 34, 390335), 'Hakata', 5, 'test', '000100039X', 'The Prophet', 'Kahlil Gibran', 1923)]
+[2019-03-01 13:47:25,647] DEBUG in application: testtest test
+[2019-03-01 13:47:25,647] DEBUG in application: test test
+[2019-03-01 13:47:25,647] DEBUG in application: test test test
+[2019-03-01 13:47:25,648] DEBUG in application: test test test
+[2019-03-01 13:47:25,648] DEBUG in application: test test test test
+[2019-03-01 13:47:25,648] DEBUG in application: okookok
+[2019-03-01 13:47:25,648] DEBUG in application: test
+[2019-03-01 13:47:25,648] DEBUG in application: test
+[2019-03-01 13:47:25,648] DEBUG in application: test
+[2019-03-01 13:47:25,649] DEBUG in application: test test test test
+[2019-03-01 13:47:25,649] DEBUG in application: test test test
+[2019-03-01 13:47:25,649] DEBUG in application: okookok
+[2019-03-01 13:47:25,649] DEBUG in application: test test
+[2019-03-01 13:47:25,649] DEBUG in application: testtest test
+[2019-03-01 13:47:25,649] DEBUG in application: test test test
+[2019-03-01 13:47:25,846] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:47:25] "GET /bookreivew/mypage HTTP/1.1" 200 -
+[2019-03-01 13:47:26,341] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
+[2019-03-01 13:47:26,578] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:47:26] "GET /bookreivew/api/getBookReviewNumber/1 HTTP/1.1" 200 -
+[2019-03-01 13:47:31,813] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:47:31] "GET /bookreivew/mypage. HTTP/1.1" 404 -
+[2019-03-01 13:47:33,912] DEBUG in application: =====isLoggedin====
+[2019-03-01 13:47:33,912] DEBUG in application: 1
+[2019-03-01 13:47:33,918] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 27, 11, 22, 34, 390335), 'Hakata', 5, 'test', '000100039X', 'The Prophet', 'Kahlil Gibran', 1923)]
+[2019-03-01 13:47:33,920] DEBUG in application: testtest test
+[2019-03-01 13:47:33,920] DEBUG in application: test test
+[2019-03-01 13:47:33,920] DEBUG in application: test test test
+[2019-03-01 13:47:33,920] DEBUG in application: test test test
+[2019-03-01 13:47:33,920] DEBUG in application: test test test test
+[2019-03-01 13:47:33,920] DEBUG in application: okookok
+[2019-03-01 13:47:33,921] DEBUG in application: test
+[2019-03-01 13:47:33,921] DEBUG in application: test
+[2019-03-01 13:47:33,921] DEBUG in application: test
+[2019-03-01 13:47:33,921] DEBUG in application: test test test test
+[2019-03-01 13:47:33,921] DEBUG in application: test test test
+[2019-03-01 13:47:33,921] DEBUG in application: okookok
+[2019-03-01 13:47:33,922] DEBUG in application: test test
+[2019-03-01 13:47:33,922] DEBUG in application: testtest test
+[2019-03-01 13:47:33,922] DEBUG in application: test test test
+[2019-03-01 13:47:34,237] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:47:34] "GET /bookreivew/mypage HTTP/1.1" 200 -
+[2019-03-01 13:47:34,437] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
+[2019-03-01 13:47:34,688] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:47:34] "GET /bookreivew/api/getBookReviewNumber/1 HTTP/1.1" 200 -
+[2019-03-01 13:47:36,270] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:47:36] "POST /bookreivew/logout HTTP/1.1" 200 -
+[2019-03-01 13:47:38,256] DEBUG in application: =====isLoggedin====
+[2019-03-01 13:47:38,256] DEBUG in application: None
+[2019-03-01 13:47:38,259] DEBUG in application: session expired.
+[2019-03-01 13:47:38,264] DEBUG in application: []
+[2019-03-01 13:47:38,265] DEBUG in application: test
+[2019-03-01 13:47:38,265] DEBUG in application: test
+[2019-03-01 13:47:38,266] DEBUG in application: test test test test
+[2019-03-01 13:47:38,266] DEBUG in application: test test test
+[2019-03-01 13:47:38,266] DEBUG in application: okookok
+[2019-03-01 13:47:38,267] DEBUG in application: test test
+[2019-03-01 13:47:38,267] DEBUG in application: testtest test
+[2019-03-01 13:47:38,268] DEBUG in application: test test test
+[2019-03-01 13:47:38,269] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:47:38] "GET /bookreivew/mypage HTTP/1.1" 200 -
+[2019-03-01 13:47:39,437] DEBUG in application: =====isLoggedin====
+[2019-03-01 13:47:39,437] DEBUG in application: None
+[2019-03-01 13:47:39,438] DEBUG in application: session expired.
+[2019-03-01 13:47:39,443] DEBUG in application: []
+[2019-03-01 13:47:39,443] DEBUG in application: test
+[2019-03-01 13:47:39,444] DEBUG in application: test
+[2019-03-01 13:47:39,444] DEBUG in application: test test test test
+[2019-03-01 13:47:39,444] DEBUG in application: test test test
+[2019-03-01 13:47:39,444] DEBUG in application: okookok
+[2019-03-01 13:47:39,444] DEBUG in application: test test
+[2019-03-01 13:47:39,445] DEBUG in application: testtest test
+[2019-03-01 13:47:39,445] DEBUG in application: test test test
+[2019-03-01 13:47:39,445] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:47:39] "GET /bookreivew/mypage HTTP/1.1" 200 -
+[2019-03-01 13:47:39,737] DEBUG in application: =====isLoggedin====
+[2019-03-01 13:47:39,737] DEBUG in application: None
+[2019-03-01 13:47:39,738] DEBUG in application: session expired.
+[2019-03-01 13:47:39,741] DEBUG in application: []
+[2019-03-01 13:47:39,743] DEBUG in application: test
+[2019-03-01 13:47:39,743] DEBUG in application: test
+[2019-03-01 13:47:39,743] DEBUG in application: test test test test
+[2019-03-01 13:47:39,743] DEBUG in application: test test test
+[2019-03-01 13:47:39,743] DEBUG in application: okookok
+[2019-03-01 13:47:39,744] DEBUG in application: test test
+[2019-03-01 13:47:39,744] DEBUG in application: testtest test
+[2019-03-01 13:47:39,744] DEBUG in application: test test test
+[2019-03-01 13:47:39,744] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:47:39] "GET /bookreivew/mypage HTTP/1.1" 200 -
+[2019-03-01 13:47:40,021] DEBUG in application: =====isLoggedin====
+[2019-03-01 13:47:40,021] DEBUG in application: None
+[2019-03-01 13:47:40,022] DEBUG in application: session expired.
+[2019-03-01 13:47:40,026] DEBUG in application: []
+[2019-03-01 13:47:40,027] DEBUG in application: test
+[2019-03-01 13:47:40,027] DEBUG in application: test
+[2019-03-01 13:47:40,027] DEBUG in application: test test test test
+[2019-03-01 13:47:40,028] DEBUG in application: test test test
+[2019-03-01 13:47:40,028] DEBUG in application: okookok
+[2019-03-01 13:47:40,028] DEBUG in application: test test
+[2019-03-01 13:47:40,028] DEBUG in application: testtest test
+[2019-03-01 13:47:40,028] DEBUG in application: test test test
+[2019-03-01 13:47:40,029] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:47:40] "GET /bookreivew/mypage HTTP/1.1" 200 -
+[2019-03-01 13:48:12,541] INFO in _internal:  * Detected change in 'C:\\Users\\h-igarashi\\Documents\\CS50_Project1_windows\\application.py', reloading
+[2019-03-01 13:48:13,582] WARNING in _internal:  * Debugger is active!
+[2019-03-01 13:48:13,594] INFO in _internal:  * Debugger PIN: 237-324-945
+[2019-03-01 13:48:13,605] INFO in _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2019-03-01 13:48:15,132] DEBUG in application: =====isLoggedin====
+[2019-03-01 13:48:15,132] DEBUG in application: None
+[2019-03-01 13:48:15,133] DEBUG in application: session expired.
+[2019-03-01 13:48:15,133] ERROR in application: can only concatenate str (not "function") to str
+[2019-03-01 13:48:15,133] DEBUG in application: 500 Internal Server Error: confirmUser
+[2019-03-01 13:48:15,144] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:48:15] "GET /bookreivew/mypage HTTP/1.1" 500 -
+[2019-03-01 13:48:21,812] DEBUG in application: =====isLoggedin====
+[2019-03-01 13:48:21,812] DEBUG in application: None
+[2019-03-01 13:48:21,813] DEBUG in application: session expired.
+[2019-03-01 13:48:21,813] ERROR in application: can only concatenate str (not "function") to str
+[2019-03-01 13:48:21,813] DEBUG in application: 500 Internal Server Error: confirmUser
+[2019-03-01 13:48:21,816] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:48:21] "GET /bookreivew/mypage HTTP/1.1" 500 -
+[2019-03-01 13:48:23,213] DEBUG in application: =====isLoggedin====
+[2019-03-01 13:48:23,213] DEBUG in application: None
+[2019-03-01 13:48:23,214] DEBUG in application: session expired.
+[2019-03-01 13:48:23,214] ERROR in application: can only concatenate str (not "function") to str
+[2019-03-01 13:48:23,214] DEBUG in application: 500 Internal Server Error: confirmUser
+[2019-03-01 13:48:23,216] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:48:23] "GET /bookreivew/mypage HTTP/1.1" 500 -
+[2019-03-01 13:48:28,904] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:48:28] "GET /bookreivew/login HTTP/1.1" 200 -
+[2019-03-01 13:48:33,031] INFO in application: Hakata logged in successfully
+[2019-03-01 13:48:33,280] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:48:33] "POST /bookreivew/login HTTP/1.1" 302 -
+[2019-03-01 13:48:33,295] DEBUG in application: =====isLoggedin====
+[2019-03-01 13:48:33,295] DEBUG in application: 1
+[2019-03-01 13:48:33,296] ERROR in application: can only concatenate str (not "function") to str
+[2019-03-01 13:48:33,296] DEBUG in application: 500 Internal Server Error: confirmUser
+[2019-03-01 13:48:33,499] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:48:33] "GET /bookreivew/mypage HTTP/1.1" 500 -
+[2019-03-01 13:48:49,857] INFO in _internal:  * Detected change in 'C:\\Users\\h-igarashi\\Documents\\CS50_Project1_windows\\application.py', reloading
+[2019-03-01 13:48:50,887] WARNING in _internal:  * Debugger is active!
+[2019-03-01 13:48:50,904] INFO in _internal:  * Debugger PIN: 237-324-945
+[2019-03-01 13:48:50,914] INFO in _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2019-03-01 13:49:35,911] INFO in _internal:  * Detected change in 'C:\\Users\\h-igarashi\\Documents\\CS50_Project1_windows\\application.py', reloading
+[2019-03-01 13:49:36,990] WARNING in _internal:  * Debugger is active!
+[2019-03-01 13:49:37,004] INFO in _internal:  * Debugger PIN: 237-324-945
+[2019-03-01 13:49:37,014] INFO in _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2019-03-01 13:49:39,281] INFO in _internal:  * Detected change in 'C:\\Users\\h-igarashi\\Documents\\CS50_Project1_windows\\application.py', reloading
+[2019-03-01 13:49:40,299] WARNING in _internal:  * Debugger is active!
+[2019-03-01 13:49:40,318] INFO in _internal:  * Debugger PIN: 237-324-945
+[2019-03-01 13:49:40,333] INFO in _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2019-03-01 13:49:42,602] INFO in _internal:  * Detected change in 'C:\\Users\\h-igarashi\\Documents\\CS50_Project1_windows\\application.py', reloading
+[2019-03-01 13:49:43,600] WARNING in _internal:  * Debugger is active!
+[2019-03-01 13:49:43,614] INFO in _internal:  * Debugger PIN: 237-324-945
+[2019-03-01 13:49:43,628] INFO in _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2019-03-01 13:50:14,733] INFO in _internal:  * Detected change in 'C:\\Users\\h-igarashi\\Documents\\CS50_Project1_windows\\application.py', reloading
+[2019-03-01 13:50:15,743] WARNING in _internal:  * Debugger is active!
+[2019-03-01 13:50:15,753] INFO in _internal:  * Debugger PIN: 237-324-945
+[2019-03-01 13:50:15,763] INFO in _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2019-03-01 13:50:20,770] DEBUG in application: =====isLoggedin====
+[2019-03-01 13:50:20,770] DEBUG in application: 1
+[2019-03-01 13:50:20,852] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 27, 11, 22, 34, 390335), 'Hakata', 5, 'test', '000100039X', 'The Prophet', 'Kahlil Gibran', 1923)]
+[2019-03-01 13:50:20,878] DEBUG in application: testtest test
+[2019-03-01 13:50:20,878] DEBUG in application: test test
+[2019-03-01 13:50:20,878] DEBUG in application: test test test
+[2019-03-01 13:50:20,878] DEBUG in application: test test test
+[2019-03-01 13:50:20,878] DEBUG in application: test test test test
+[2019-03-01 13:50:20,879] DEBUG in application: okookok
+[2019-03-01 13:50:20,879] DEBUG in application: test
+[2019-03-01 13:50:20,879] DEBUG in application: test
+[2019-03-01 13:50:20,879] DEBUG in application: test
+[2019-03-01 13:50:20,879] DEBUG in application: test test test test
+[2019-03-01 13:50:20,879] DEBUG in application: test test test
+[2019-03-01 13:50:20,880] DEBUG in application: okookok
+[2019-03-01 13:50:20,880] DEBUG in application: test test
+[2019-03-01 13:50:20,880] DEBUG in application: testtest test
+[2019-03-01 13:50:20,880] DEBUG in application: test test test
+[2019-03-01 13:50:21,076] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:50:21] "GET /bookreivew/mypage HTTP/1.1" 200 -
+[2019-03-01 13:50:21,415] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
+[2019-03-01 13:50:21,637] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:50:21] "GET /bookreivew/api/getBookReviewNumber/1 HTTP/1.1" 200 -
+[2019-03-01 13:50:33,209] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:50:33] "GET /bookreivew/ HTTP/1.1" 302 -
+[2019-03-01 13:50:33,451] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:50:33] "GET /bookreivew/login HTTP/1.1" 200 -
+[2019-03-01 13:50:38,764] DEBUG in application: =====isLoggedin====
+[2019-03-01 13:50:38,764] DEBUG in application: 1
+[2019-03-01 13:50:38,769] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 27, 11, 22, 34, 390335), 'Hakata', 5, 'test', '000100039X', 'The Prophet', 'Kahlil Gibran', 1923)]
+[2019-03-01 13:50:38,770] DEBUG in application: testtest test
+[2019-03-01 13:50:38,771] DEBUG in application: test test
+[2019-03-01 13:50:38,771] DEBUG in application: test test test
+[2019-03-01 13:50:38,771] DEBUG in application: test test test
+[2019-03-01 13:50:38,771] DEBUG in application: test test test test
+[2019-03-01 13:50:38,772] DEBUG in application: okookok
+[2019-03-01 13:50:38,772] DEBUG in application: test
+[2019-03-01 13:50:38,772] DEBUG in application: test
+[2019-03-01 13:50:38,772] DEBUG in application: test
+[2019-03-01 13:50:38,772] DEBUG in application: test test test test
+[2019-03-01 13:50:38,772] DEBUG in application: test test test
+[2019-03-01 13:50:38,773] DEBUG in application: okookok
+[2019-03-01 13:50:38,773] DEBUG in application: test test
+[2019-03-01 13:50:38,773] DEBUG in application: testtest test
+[2019-03-01 13:50:38,773] DEBUG in application: test test test
+[2019-03-01 13:50:39,027] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:50:39] "GET /bookreivew/mypage HTTP/1.1" 200 -
+[2019-03-01 13:50:39,213] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
+[2019-03-01 13:50:39,446] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:50:39] "GET /bookreivew/api/getBookReviewNumber/1 HTTP/1.1" 200 -
+[2019-03-01 13:50:41,402] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:50:41] "POST /bookreivew/logout HTTP/1.1" 200 -
+[2019-03-01 13:50:43,072] DEBUG in application: =====isLoggedin====
+[2019-03-01 13:50:43,072] DEBUG in application: None
+[2019-03-01 13:50:43,072] DEBUG in application: session expired.
+[2019-03-01 13:50:43,073] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:50:43] "GET /bookreivew/mypage HTTP/1.1" 302 -
+[2019-03-01 13:50:43,084] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:50:43] "GET /bookreivew/error HTTP/1.1" 200 -
+[2019-03-01 13:50:48,275] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:50:48] "GET /bookreivew/login HTTP/1.1" 200 -
+[2019-03-01 13:51:24,016] INFO in _internal:  * Detected change in 'C:\\Users\\h-igarashi\\Documents\\CS50_Project1_windows\\application.py', reloading
+[2019-03-01 13:51:25,096] WARNING in _internal:  * Debugger is active!
+[2019-03-01 13:51:25,109] INFO in _internal:  * Debugger PIN: 237-324-945
+[2019-03-01 13:51:25,119] INFO in _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2019-03-01 13:52:13,732] INFO in _internal:  * Detected change in 'C:\\Users\\h-igarashi\\Documents\\CS50_Project1_windows\\application.py', reloading
+[2019-03-01 13:52:14,796] WARNING in _internal:  * Debugger is active!
+[2019-03-01 13:52:14,805] INFO in _internal:  * Debugger PIN: 237-324-945
+[2019-03-01 13:52:14,819] INFO in _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2019-03-01 13:56:13,080] INFO in _internal:  * Detected change in 'C:\\Users\\h-igarashi\\Documents\\CS50_Project1_windows\\application.py', reloading
+[2019-03-01 13:56:14,082] WARNING in _internal:  * Debugger is active!
+[2019-03-01 13:56:14,092] INFO in _internal:  * Debugger PIN: 237-324-945
+[2019-03-01 13:56:14,102] INFO in _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2019-03-01 13:56:23,961] INFO in _internal:  * Detected change in 'C:\\Users\\h-igarashi\\Documents\\CS50_Project1_windows\\application.py', reloading
+[2019-03-01 13:56:24,991] WARNING in _internal:  * Debugger is active!
+[2019-03-01 13:56:25,000] INFO in _internal:  * Debugger PIN: 237-324-945
+[2019-03-01 13:56:25,013] INFO in _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2019-03-01 13:56:36,146] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:56:36] "GET / HTTP/1.1" 302 -
+[2019-03-01 13:56:36,159] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:56:36] "GET /bookreivew/login HTTP/1.1" 200 -
+[2019-03-01 13:56:40,464] INFO in application: Hakata logged in successfully
+[2019-03-01 13:56:40,663] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:56:40] "POST /bookreivew/login HTTP/1.1" 302 -
+[2019-03-01 13:56:40,686] DEBUG in application: =====isLoggedin====
+[2019-03-01 13:56:40,686] DEBUG in application: 1
+[2019-03-01 13:56:40,692] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 27, 11, 22, 34, 390335), 'Hakata', 5, 'test', '000100039X', 'The Prophet', 'Kahlil Gibran', 1923)]
+[2019-03-01 13:56:40,715] DEBUG in application: testtest test
+[2019-03-01 13:56:40,715] DEBUG in application: test test
+[2019-03-01 13:56:40,715] DEBUG in application: test test test
+[2019-03-01 13:56:40,715] DEBUG in application: test test test
+[2019-03-01 13:56:40,715] DEBUG in application: test test test test
+[2019-03-01 13:56:40,716] DEBUG in application: okookok
+[2019-03-01 13:56:40,716] DEBUG in application: test
+[2019-03-01 13:56:40,716] DEBUG in application: test
+[2019-03-01 13:56:40,716] DEBUG in application: test
+[2019-03-01 13:56:40,716] DEBUG in application: test test test test
+[2019-03-01 13:56:40,717] DEBUG in application: test test test
+[2019-03-01 13:56:40,717] DEBUG in application: okookok
+[2019-03-01 13:56:40,717] DEBUG in application: test test
+[2019-03-01 13:56:40,717] DEBUG in application: testtest test
+[2019-03-01 13:56:40,717] DEBUG in application: test test test
+[2019-03-01 13:56:40,949] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:56:40] "GET /bookreivew/mypage HTTP/1.1" 200 -
+[2019-03-01 13:56:41,444] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
+[2019-03-01 13:56:41,651] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:56:41] "GET /bookreivew/api/getBookReviewNumber/1 HTTP/1.1" 200 -
+[2019-03-01 13:56:46,057] DEBUG in application: =====isLoggedin====
+[2019-03-01 13:56:46,057] DEBUG in application: 1
+[2019-03-01 13:56:46,062] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 27, 11, 22, 34, 390335), 'Hakata', 5, 'test', '000100039X', 'The Prophet', 'Kahlil Gibran', 1923)]
+[2019-03-01 13:56:46,063] DEBUG in application: testtest test
+[2019-03-01 13:56:46,063] DEBUG in application: test test
+[2019-03-01 13:56:46,064] DEBUG in application: test test test
+[2019-03-01 13:56:46,064] DEBUG in application: test test test
+[2019-03-01 13:56:46,064] DEBUG in application: test test test test
+[2019-03-01 13:56:46,064] DEBUG in application: okookok
+[2019-03-01 13:56:46,064] DEBUG in application: test
+[2019-03-01 13:56:46,065] DEBUG in application: test
+[2019-03-01 13:56:46,065] DEBUG in application: test
+[2019-03-01 13:56:46,065] DEBUG in application: test test test test
+[2019-03-01 13:56:46,065] DEBUG in application: test test test
+[2019-03-01 13:56:46,065] DEBUG in application: okookok
+[2019-03-01 13:56:46,066] DEBUG in application: test test
+[2019-03-01 13:56:46,066] DEBUG in application: testtest test
+[2019-03-01 13:56:46,066] DEBUG in application: test test test
+[2019-03-01 13:56:46,380] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:56:46] "GET /bookreivew/mypage HTTP/1.1" 200 -
+[2019-03-01 13:56:46,608] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
+[2019-03-01 13:56:47,129] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:56:47] "GET /bookreivew/api/getBookReviewNumber/1 HTTP/1.1" 200 -
+[2019-03-01 13:56:48,507] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:56:48] "POST /bookreivew/logout HTTP/1.1" 200 -
+[2019-03-01 13:56:50,429] DEBUG in application: =====isLoggedin====
+[2019-03-01 13:56:50,429] DEBUG in application: None
+[2019-03-01 13:56:50,430] DEBUG in application: 
+[2019-03-01 13:56:50,712] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:56:50] "GET /bookreivew/mypage HTTP/1.1" 302 -
+[2019-03-01 13:56:50,866] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:56:50] "GET /bookreivew/error HTTP/1.1" 200 -
+[2019-03-01 13:57:01,479] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 13:57:01] "GET /bookreivew/login HTTP/1.1" 200 -

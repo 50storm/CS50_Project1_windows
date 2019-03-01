@@ -76,8 +76,10 @@ def nl2br(eval_ctx, value):
 def isLoggedin():
     app.logger.debug('=====isLoggedin====')
     app.logger.debug(session.get('user_id'))
-    if( session.get('user_id') == "" ) :
-        app.logger.debug("session expired.")
+    print(session.get('user_id'))
+    if( session.get('user_id') is None ) :
+        app.logger.debug("")
+        flash('session expired.', 'alert alert-danger')
         return False
     else:
         return True
@@ -407,7 +409,7 @@ def insertUser():
 def mypage():
     try:
         #GET ONLY
-        if(not isLoggedin):
+        if(not isLoggedin()):
             return redirect(url_for("error"))
 
         recent_book_reviews = find_recent_book_reviews()
@@ -423,7 +425,7 @@ def mypage():
 def showUserAccount():
     try:
         #GET ONLY
-        if(not isLoggedin):
+        if(not isLoggedin()):
             return redirect(url_for("error"))
         userdata = setUserViewData(session['user_id'], session['username'], session['firstname'], session['lastname'], session['password'])
         app.logger.debug(userdata)
@@ -436,7 +438,7 @@ def showUserAccount():
 @app.route(PREFIX + "/editUserAccount", methods=["GET"])
 def editUserAccount():
     try:
-        if(not isLoggedin):
+        if(not isLoggedin()):
             return redirect(url_for("error"))
         userdata = setUserViewData(session['user_id'], session['username'],session['firstname'], session['lastname'], session['password'])
         return render_template("user_account.html", userdata=userdata, mode=1)
@@ -448,7 +450,7 @@ def editUserAccount():
 @app.route(PREFIX + "/updateUserAccount", methods=["POST"])
 def updateUserAccount():
     try:
-        if(not isLoggedin):
+        if(not isLoggedin()):
             return redirect(url_for("error"))
         userdata = setUserViewData(session['user_id'],
                                    request.form.get("username").strip(),
@@ -472,7 +474,7 @@ def updateUserAccount():
 @app.route(PREFIX + "/confirmUserAccount", methods=["POST"])
 def confirmUserAccount():
     try:
-        if(not isLoggedin):
+        if(not isLoggedin()):
             return redirect(url_for("error"))
         if request.method == "POST":
             userdata = setUserViewData(session['user_id'],
@@ -522,7 +524,7 @@ def logout():
 def search():
     try:
         #GET ONLY
-        if(not isLoggedin):
+        if(not isLoggedin()):
             return redirect(url_for("error"))
         recent_book_reviews = find_recent_book_reviews()
         my_book_reviews = find_my_book_reviews(session.get("user_id"))
@@ -536,7 +538,7 @@ def search():
 @app.route(PREFIX + "/searchBooks", methods=["GET"])
 def searchBooks():
     try:
-        if(not isLoggedin):
+        if(not isLoggedin()):
             return redirect(url_for("error"))
         booktitle  = '%' + request.args.get("booktitle").strip() + '%'
         isbn       = '%' + request.args.get("isbn").strip() + '%'
@@ -610,7 +612,7 @@ def searchBooks():
 @app.route(PREFIX + "/searchBook", methods=["GET"])
 def searchBook():
     try:
-        if(not isLoggedin):
+        if(not isLoggedin()):
             return redirect(url_for("error"))
         isbn   = request.args.get("isbn","")
         user_id =  session.get("user_id")
@@ -628,7 +630,7 @@ def searchBook():
 @app.route(PREFIX + "/registerSubmission", methods=["GET"])
 def registerSubmission():
     try:
-        if(not isLoggedin):
+        if(not isLoggedin()):
             return redirect(url_for("error"))
         isbn   = request.args.get("isbn","")
         bookinfo = find_book_by_isbn(isbn)
@@ -641,7 +643,7 @@ def registerSubmission():
 @app.route(PREFIX + "/writeBookReview", methods=["POST"])
 def writeBookReview():
     try:
-        if(not isLoggedin):
+        if(not isLoggedin()):
             return redirect(url_for("error"))
         rate    = request.form.get("rate").strip()
         comment = request.form.get("comment").strip()
@@ -667,7 +669,7 @@ def writeBookReview():
 @app.route(PREFIX + "/confirmYourEntry", methods=["POST"])
 def confirmYourEntry():
     try:
-        if(not isLoggedin):
+        if(not isLoggedin()):
             return redirect(url_for("error"))
         rate    = request.form.get("rate").strip()
         comment = request.form.get("comment").strip()
@@ -689,7 +691,7 @@ def confirmYourEntry():
 @app.route(PREFIX + "/editSubmission", methods=["GET"])
 def editSubmission():
     try:
-        if(not isLoggedin):
+        if(not isLoggedin()):
             return redirect(url_for("error"))
         user_id = session.get("user_id")
         isbn   = request.args.get("isbn","")
@@ -704,7 +706,7 @@ def editSubmission():
 @app.route(PREFIX + "/confirmEditEntry", methods=["POST"])
 def confirmEditEntry():
     try:
-        if(not isLoggedin):
+        if(not isLoggedin()):
             return redirect(url_for("error"))
         rate    = request.form.get("rate").strip()
         comment = request.form.get("comment").strip()
@@ -722,7 +724,7 @@ def confirmEditEntry():
 @app.route(PREFIX + "/updateBookReview", methods=["POST"])
 def updateBookReview():
     try:
-        if(not isLoggedin):
+        if(not isLoggedin()):
             return redirect(url_for("error"))
         rate = request.form.get("rate").strip()
         comment = request.form.get("comment").strip()
@@ -748,7 +750,7 @@ def updateBookReview():
 @app.route(PREFIX + "/deleteBookReview", methods=["POST"])
 def deleteBookReview():
     try:
-        if(not isLoggedin):
+        if(not isLoggedin()):
             return redirect(url_for("error"))
         user_id = session.get("user_id")
         isbn    = request.form.get("isbn")
