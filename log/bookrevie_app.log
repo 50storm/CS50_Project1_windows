@@ -917,3 +917,74 @@ DETAIL:  ÉLÅ[ (isbn, user_id)=(9993911550, 1) ÇÕÇ∑Ç≈Ç…ë∂ç›ÇµÇ‹Ç∑ÅB
 [2019-03-01 14:28:07,600] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:28:07] "GET /bookreivew/mypage HTTP/1.1" 200 -
 [2019-03-01 14:28:07,838] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
 [2019-03-01 14:28:08,044] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:28:08] "GET /bookreivew/api/getBookReviewNumber/1 HTTP/1.1" 200 -
+[2019-03-01 20:40:30,972] DEBUG in application: (True, None)
+[2019-03-01 20:40:30,975] DEBUG in application: (False, 'password is not equal confiromPassword!!')
+[2019-03-01 20:40:36,060] DEBUG in application: (True, None)
+[2019-03-01 20:40:36,060] DEBUG in application: (True, None)
+[2019-03-01 20:40:36,061] DEBUG in application: ======userdata========
+[2019-03-01 20:40:36,061] DEBUG in application: {'user_id': '', 'username': 'Iga2', 'firstname': 'Igarashi', 'lastname': 'Hiroshi', 'password': 'hiro1128'}
+[2019-03-01 20:40:38,275] DEBUG in application: ====userdata===
+[2019-03-01 20:40:38,275] DEBUG in application: {'user_id': '', 'username': 'Iga2', 'firstname': 'Igarashi', 'lastname': 'Hiroshi', 'password': 'hiro1128'}
+[2019-03-01 20:40:38,316] DEBUG in application: ====registered====
+[2019-03-01 20:40:46,712] INFO in application: Iga2 logged in successfully
+[2019-03-01 20:40:46,725] DEBUG in application: =====isLoggedin====
+[2019-03-01 20:40:46,726] DEBUG in application: 10
+[2019-03-01 20:40:46,755] DEBUG in application: []
+[2019-03-01 20:40:46,963] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
+[2019-03-01 20:40:55,144] DEBUG in application: =====isLoggedin====
+[2019-03-01 20:40:55,152] DEBUG in application: 10
+[2019-03-01 20:40:55,158] DEBUG in application: []
+[2019-03-01 20:40:58,896] DEBUG in application: =====isLoggedin====
+[2019-03-01 20:40:58,896] DEBUG in application: 10
+[2019-03-01 20:40:58,897] DEBUG in application: ====queryBook======
+[2019-03-01 20:40:58,897] DEBUG in application: SELECT * FROM books  WHERE  title LIKE :title 
+[2019-03-01 20:40:58,897] DEBUG in application: ====sqlparameters===
+[2019-03-01 20:40:58,898] DEBUG in application: {'title': '%city%'}
+[2019-03-01 20:41:00,931] DEBUG in application: =====isLoggedin====
+[2019-03-01 20:41:00,931] DEBUG in application: 10
+[2019-03-01 20:41:00,935] DEBUG in application: ==========find_book_reviews==========
+[2019-03-01 20:41:02,263] DEBUG in application: =====isLoggedin====
+[2019-03-01 20:41:02,264] DEBUG in application: 10
+[2019-03-01 20:41:09,348] DEBUG in application: =====isLoggedin====
+[2019-03-01 20:41:09,349] DEBUG in application: 10
+[2019-03-01 20:41:10,717] DEBUG in application: =====isLoggedin====
+[2019-03-01 20:41:10,718] DEBUG in application: 10
+[2019-03-01 20:41:13,693] DEBUG in application: =====isLoggedin====
+[2019-03-01 20:41:13,694] DEBUG in application: 10
+[2019-03-01 20:41:13,702] DEBUG in application: ==========find_book_reviews==========
+[2019-03-01 20:41:13,707] DEBUG in application: Test comment.
+[2019-03-01 20:41:20,130] DEBUG in application: =====isLoggedin====
+[2019-03-01 20:41:20,130] DEBUG in application: 10
+[2019-03-01 20:41:20,141] DEBUG in application: [(datetime.datetime(2019, 3, 1, 20, 41, 10, 721000), 'Iga2', 3, 'Test comment.', '0441013651', 'The Atrocity Archives', 'Charles Stross', 2004)]
+[2019-03-01 20:41:20,283] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
+[2019-03-01 21:18:21,248] DEBUG in application: =====isLoggedin====
+[2019-03-01 21:18:21,252] DEBUG in application: 10
+[2019-03-01 21:18:21,252] DEBUG in application: {'user_id': 10, 'username': 'Iga2', 'firstname': 'Igarashi', 'lastname': 'Hiroshi', 'password': 'hiro1128'}
+[2019-03-01 21:18:23,051] DEBUG in application: =====isLoggedin====
+[2019-03-01 21:18:23,051] DEBUG in application: 10
+[2019-03-01 21:19:52,894] DEBUG in application: =====isLoggedin====
+[2019-03-01 21:19:52,894] DEBUG in application: 10
+[2019-03-01 21:19:52,911] DEBUG in application: [(datetime.datetime(2019, 3, 1, 20, 41, 10, 721000), 'Iga2', 3, 'Test comment.', '0441013651', 'The Atrocity Archives', 'Charles Stross', 2004)]
+[2019-03-01 21:19:54,633] DEBUG in application: =====isLoggedin====
+[2019-03-01 21:19:54,634] DEBUG in application: 10
+[2019-03-01 21:19:54,635] DEBUG in application: raise error
+[2019-03-01 21:19:54,636] DEBUG in application: ====queryBook======
+[2019-03-01 21:19:54,637] DEBUG in application: SELECT * FROM books 
+[2019-03-01 21:19:54,637] DEBUG in application: ====sqlparameters===
+[2019-03-01 21:19:54,637] DEBUG in application: {}
+[2019-03-01 21:20:05,436] DEBUG in application: =====isLoggedin====
+[2019-03-01 21:20:05,437] DEBUG in application: 10
+[2019-03-01 21:20:05,448] DEBUG in application: [(datetime.datetime(2019, 3, 1, 20, 41, 10, 721000), 'Iga2', 3, 'Test comment.', '0441013651', 'The Atrocity Archives', 'Charles Stross', 2004)]
+[2019-03-01 21:49:48,265] INFO in application: Iga logged in successfully
+[2019-03-01 21:49:48,281] DEBUG in application: =====isLoggedin====
+[2019-03-01 21:49:48,282] DEBUG in application: 6
+[2019-03-01 21:49:48,292] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-03-01 21:49:48,448] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
+[2019-03-01 22:08:36,829] DEBUG in application: =====isLoggedin====
+[2019-03-01 22:08:36,832] DEBUG in application: 6
+[2019-03-01 22:08:36,836] DEBUG in application: ==========find_book_reviews==========
+[2019-03-01 22:08:36,839] DEBUG in application: Amazing book!
+[2019-03-01 22:08:54,408] DEBUG in application: =====isLoggedin====
+[2019-03-01 22:08:54,408] DEBUG in application: 6
+[2019-03-01 22:08:54,416] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-03-01 22:08:54,635] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
