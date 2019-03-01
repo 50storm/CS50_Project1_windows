@@ -447,30 +447,6 @@ def editUserAccount():
          abort(500, "confirmUser")
 
 
-@app.route(PREFIX + "/updateUserAccount", methods=["POST"])
-def updateUserAccount():
-    try:
-        if(not isLoggedin()):
-            return redirect(url_for("error"))
-        userdata = setUserViewData(session['user_id'],
-                                   request.form.get("username").strip(),
-                                   request.form.get("firstname").strip(), 
-                                   request.form.get("lastname").strip(),
-                                   request.form.get("password").strip())
-        updateSQL ="UPDATE  users SET username=:username, firstname=:firstname, lastname=:lastname, updated_at=current_timestamp "
-        updateSQL += "WHERE user_id = :user_id "
-        params = {"user_id":session['user_id'], "username": userdata['username'], "firstname": userdata['firstname'], "lastname": userdata['lastname'] }
-        resultInsert = db.execute(updateSQL, params)
-        db.commit()
-        db.close()
-        setUserSession(userdata)
-        flash("Successfully Updated!＼(^o^)／ Thank you!", "alert alert-success")
-        return render_template("user_account.html", userdata=userdata, mode=3)
-    except Exception as e:
-         app.logger.error(str(e))   
-         abort(500, "confirmUser")
-
-
 @app.route(PREFIX + "/confirmUserAccount", methods=["POST"])
 def confirmUserAccount():
     try:
@@ -490,8 +466,11 @@ def confirmUserAccount():
             resultCheckPassword = checkPassword( userdata['password'], None, None, session['user_id'],True)
     
             if(resultCheckUserName[0] and resultCheckPassword[0]):
+                # Validation is true
+                flash("Please confirm your input data", "alert alert-info")
                 return render_template("user_account.html", userdata=userdata, mode=2)
-            else:  # invalid data
+            else:  
+                # Validation is false
                 messages=["",""] #String Message
                 category=["",""] #CSS Class
                 if( resultCheckUserName[0] == False ):
@@ -504,6 +483,30 @@ def confirmUserAccount():
                     category[1] = 'text-danger alert alert-danger'
                     flash(messages[1], category[1])
                 return render_template("user_account.html", userdata=userdata, mode=1)
+    except Exception as e:
+         app.logger.error(str(e))   
+         abort(500, "confirmUser")
+
+
+@app.route(PREFIX + "/updateUserAccount", methods=["POST"])
+def updateUserAccount():
+    try:
+        if(not isLoggedin()):
+            return redirect(url_for("error"))
+        userdata = setUserViewData(session['user_id'],
+                                   request.form.get("username").strip(),
+                                   request.form.get("firstname").strip(), 
+                                   request.form.get("lastname").strip(),
+                                   request.form.get("password").strip())
+        updateSQL ="UPDATE  users SET username=:username, firstname=:firstname, lastname=:lastname, updated_at=current_timestamp "
+        updateSQL += "WHERE user_id = :user_id "
+        params = {"user_id":session['user_id'], "username": userdata['username'], "firstname": userdata['firstname'], "lastname": userdata['lastname'] }
+        resultInsert = db.execute(updateSQL, params)
+        db.commit()
+        db.close()
+        setUserSession(userdata)
+        flash("Successfully Updated!＼(^o^)／ Thank you!", "alert alert-success")
+        return render_template("user_account.html", userdata=userdata, mode=3)
     except Exception as e:
          app.logger.error(str(e))   
          abort(500, "confirmUser")
@@ -681,6 +684,7 @@ def confirmYourEntry():
         if(comment.strip() == ""):
             flash('Your review is empty!! Please write your review', 'alert alert-danger')
             return render_template("write_bookreview.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment,  is_confirmation=False )
+        flash("Please confirm your input data", "alert alert-info")
         return render_template("write_bookreview.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment,  is_confirmation=True )
 
     except Exception as e:
@@ -715,6 +719,7 @@ def confirmEditEntry():
         if(comment.strip() == ""):
             flash('Your review is empty!! Please write your review', 'alert alert-danger')
             return render_template("edit_bookreview.html", bookinfo=bookinfo, mybookreview=None, rate=rate, comment=comment,  is_confirmation=False )
+        flash("Please confirm your input data", "alert alert-info")
         return render_template("edit_bookreview.html", bookinfo=bookinfo, mybookreview=None, rate=rate, comment=comment,  is_confirmation=True )
     except Exception as e:
         app.logger.error(str(e))   

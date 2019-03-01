@@ -17,7 +17,6 @@ Second ,  uses confirm their input data in the confirmation page.
 Finally,  uses are allowed to register data to database.
 
 
-
 """ Registration Form """
 This is the registration page.
 So, as I mentinoned before, first, users need to create thier unique username.
