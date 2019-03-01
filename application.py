@@ -352,14 +352,14 @@ def registerUser():
             app.logger.debug(resultCheckUserName)
             app.logger.debug(resultCheckPassword)
             if(resultCheckUserName[0] and resultCheckPassword[0]):
+                # Validation is fine!
                 flash("Please confirm your input data", "alert alert-info")
                 app.logger.debug("======userdata========")
                 app.logger.debug(userdata)
 
                 return render_template("registration.html", userdata=userdata, mode=1)
             else:
-                #invalid inputs
-                # messages=[1]
+                #s Validtation is invalid...
                 messages=["",""] #String Message
                 category=["",""] #CSS Class
                 if( resultCheckUserName[0] == False ):
@@ -379,19 +379,6 @@ def registerUser():
          abort( 500, "registerUser" )
      
 
-@app.route(PREFIX + "/confirmUser", methods=["POST"])
-def confirmUser():
-    try:
-        userdata = setUserViewData("", 
-                            request.form.get("username").strip(), 
-                            request.form.get("firstname").strip(),
-                            request.form.get("lastname").strip(),
-                            request.form.get("password").strip())
-        return render_template("registration.html", userdata=userdata, mode=2)
-    except Exception as e :
-         app.logger.error(str(e))
-         abort(500, "confirmUser")
-    
 
 @app.route(PREFIX + "/insertUser", methods=["POST"])
 def insertUser():
@@ -410,7 +397,7 @@ def insertUser():
         db.close()
         app.logger.debug("====registered====")
         flash("Successfully Registed!＼(^o^)／ Thank you!", "alert alert-success")
-        return render_template("registration.html", userdata=userdata, mode=3)
+        return render_template("registration.html", userdata=userdata, mode=2)
     except Exception as e:
          app.logger.error(str(e))   
          abort(500, "confirmUser")

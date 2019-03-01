@@ -16,16 +16,12 @@
 {%    set btnText = "Register Your Account" %}
 {%    set action = url_for('insertUser') %}
 {%    set readonly = 'readonly'  %}
-{%    set css='bg-info' %}
+{%    set css='bg-light' %}
 {% elif mode is defined and mode == 2 %}
 {%    set btnText = "Register Your Account" %}
-{%    set action = url_for('insertUser') %}
-{%    set readonly = 'readonly' %}
-{%    set css='bg-info' %}
-{% elif mode is defined and mode == 3 %}
 {%    set action = '' %}
 {%    set readonly = 'readonly' %}
-{%    set css='bg-info' %}
+{%    set css='bg-light' %}
 {% endif %}
 <!-- <p>mode={{mode}}</p> -->
       <div class="row">
@@ -46,7 +42,7 @@
              {% endwith %}
           </div>
       </div>
-      {% if mode is defined and mode == 3 %}
+      {% if mode is defined and mode == 2 %}
       <div class="alert alert-primary" role="alert">Now Login Your Page - Click Here >>
         <div class="btn btn-outline-primary">
                 <a href="{{ url_for('login') }}"  >Login Page</a>
@@ -81,7 +77,8 @@
                 {% endif %}
             </div>
             <div class="form-group ">
-                {% if mode is defined and mode == 3 %}
+                {% if mode is defined and mode == 2 %}
+                    <input type="submit" class="btn btn-outline-primary" value="{{ btnText }}" disabled=disabled >
                 {% else %}
                     <input type="submit" class="btn btn-outline-primary" value="{{ btnText }}" >
                 {% endif %}
