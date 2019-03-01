@@ -3,19 +3,13 @@
 {% include "nav.tpl" %}
 {% endblock %}
 {% block body %}
-{% set header_message='' %}
-{% set url = '' %}
-
-
 
 {% if is_confirmation  %}
-{%     set header_message='Confirm Your Book Reviews' %}
 {%     set rate    =  rate | int %}
 {%     set comment = comment %}
 {%     set url =url_for('writeBookReview') %}
 {% else %}
-{% set header_message='Write Your Book Reviews' %}
-{% set url =url_for('confirmYourEntry') %}
+{%     set url =url_for('confirmYourEntry') %}
 {% endif %}
 
 {#
@@ -63,7 +57,7 @@
           
 <div class="row">
   <div class="col-sm">
-    <h3 class="bg-primary text-white p-2 mb-2" >{{ header_message }}</h3>
+    <h3 class="bg-primary text-white p-2 mb-2" >Write Your Book Reviews</h3>
     <form action="{{ url }}" method="post">
       <input type="hidden" name="isbn"  value="{{ bookinfo["isbn"] }}" >
       <input type="hidden" name="title" value="{{ bookinfo["title"] }}" >

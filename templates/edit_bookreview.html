@@ -19,12 +19,10 @@
 </script>
 
 {% if is_confirmation  %}
-{%     set header_message='Confirm Your Book Reviews' %}
 {%     set rate    =  rate | int %}
 {%     set comment = comment %}
 {%     set url =url_for('updateBookReview') %}
 {% else %}
-{%      set header_message='Edit Your Book Reviews' %}
 {%      set url     = url_for('confirmEditEntry') %}
 {%      set rate    = mybookreview['rate'] | int %}
 {%      set comment = mybookreview['comment'] %}
@@ -73,7 +71,7 @@
 
 <div class="row">
   <div class="col-sm">
-    <h3 class="bg-primary text-white p-2 mb-2" >{{ header_message }}</h3>
+    <h3 class="bg-primary text-white p-2 mb-2" >Edit Your Book Review</h3>
     <form action="{{ url }}" method="post">
       <input type="hidden" name="isbn"  value="{{ bookinfo["isbn"] }}" >
       <input type="hidden" name="title" value="{{ bookinfo["title"] }}" >

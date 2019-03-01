@@ -669,3 +669,197 @@
 [2019-03-01 14:07:35,182] DEBUG in application: =====isLoggedin====
 [2019-03-01 14:07:35,182] DEBUG in application: 1
 [2019-03-01 14:07:35,608] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:07:35] "POST /bookreivew/confirmEditEntry HTTP/1.1" 200 -
+[2019-03-01 14:10:42,906] DEBUG in application: =====isLoggedin====
+[2019-03-01 14:10:42,906] DEBUG in application: 1
+[2019-03-01 14:10:43,107] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:10:43] "GET /bookreivew/editSubmission?isbn=000100039X HTTP/1.1" 200 -
+[2019-03-01 14:10:44,319] DEBUG in application: =====isLoggedin====
+[2019-03-01 14:10:44,319] DEBUG in application: 1
+[2019-03-01 14:10:44,590] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:10:44] "POST /bookreivew/confirmEditEntry HTTP/1.1" 200 -
+[2019-03-01 14:10:47,002] DEBUG in application: =====isLoggedin====
+[2019-03-01 14:10:47,002] DEBUG in application: 1
+[2019-03-01 14:10:47,191] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:10:47] "POST /bookreivew/updateBookReview HTTP/1.1" 200 -
+[2019-03-01 14:10:52,660] DEBUG in application: =====isLoggedin====
+[2019-03-01 14:10:52,660] DEBUG in application: 1
+[2019-03-01 14:10:52,664] DEBUG in application: ==========find_book_reviews==========
+[2019-03-01 14:10:52,677] DEBUG in application: test
+[2019-03-01 14:10:52,677] DEBUG in application: test
+[2019-03-01 14:10:52,831] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:10:52] "GET /bookreivew/searchBook?isbn=000100039X HTTP/1.1" 200 -
+[2019-03-01 14:10:54,779] DEBUG in application: =====isLoggedin====
+[2019-03-01 14:10:54,779] DEBUG in application: 1
+[2019-03-01 14:10:54,784] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 27, 11, 22, 34, 390335), 'Hakata', 5, 'test', '000100039X', 'The Prophet', 'Kahlil Gibran', 1923)]
+[2019-03-01 14:10:55,027] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:10:55] "GET /bookreivew/search HTTP/1.1" 200 -
+[2019-03-01 14:10:55,996] DEBUG in application: =====isLoggedin====
+[2019-03-01 14:10:55,996] DEBUG in application: 1
+[2019-03-01 14:10:55,996] DEBUG in application: raise error
+[2019-03-01 14:10:55,996] DEBUG in application: ====queryBook======
+[2019-03-01 14:10:55,997] DEBUG in application: SELECT * FROM books 
+[2019-03-01 14:10:55,997] DEBUG in application: ====sqlparameters===
+[2019-03-01 14:10:55,997] DEBUG in application: {}
+[2019-03-01 14:10:56,690] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:10:56] "GET /bookreivew/searchBooks?booktitle=&authorname=&isbn=&searchBooks=Search+Books HTTP/1.1" 200 -
+[2019-03-01 14:11:03,076] DEBUG in application: =====isLoggedin====
+[2019-03-01 14:11:03,076] DEBUG in application: 1
+[2019-03-01 14:11:03,080] DEBUG in application: ==========find_book_reviews==========
+[2019-03-01 14:11:03,414] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:11:03] "GET /bookreivew/searchBook?isbn=9993911550 HTTP/1.1" 200 -
+[2019-03-01 14:11:05,074] DEBUG in application: =====isLoggedin====
+[2019-03-01 14:11:05,075] DEBUG in application: 1
+[2019-03-01 14:11:05,399] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:11:05] "GET /bookreivew/registerSubmission?isbn=9993911550 HTTP/1.1" 200 -
+[2019-03-01 14:12:53,593] DEBUG in application: =====isLoggedin====
+[2019-03-01 14:12:53,593] DEBUG in application: 1
+[2019-03-01 14:12:54,036] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:12:54] "POST /bookreivew/confirmYourEntry HTTP/1.1" 200 -
+[2019-03-01 14:12:56,377] DEBUG in application: =====isLoggedin====
+[2019-03-01 14:12:56,377] DEBUG in application: 1
+[2019-03-01 14:12:56,631] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:12:56] "POST /bookreivew/writeBookReview HTTP/1.1" 200 -
+[2019-03-01 14:13:04,706] DEBUG in application: =====isLoggedin====
+[2019-03-01 14:13:04,706] DEBUG in application: 1
+[2019-03-01 14:13:04,754] ERROR in application: (psycopg2.IntegrityError) 重複キーが一意性制約"bookreviews_pkey"に違反しています
+DETAIL:  キー (isbn, user_id)=(9993911550, 1) はすでに存在します。
+ [SQL: 'INSERT INTO bookreviews (isbn, user_id, rate, comment, created_at ) VALUES (%(isbn)s, %(user_id)s, %(rate)s, %(comment)s, current_timestamp)'] [parameters: {'isbn': '9993911550', 'user_id': 1, 'rate': '3', 'comment': 'あああああああああああああああ'}] (Background on this error at: http://sqlalche.me/e/gkpj)
+[2019-03-01 14:13:04,766] DEBUG in application: 500 Internal Server Error: writeBookReview
+[2019-03-01 14:13:05,000] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:13:05] "POST /bookreivew/writeBookReview HTTP/1.1" 500 -
+[2019-03-01 14:13:06,247] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:13:06] "GET /bookreivew/login HTTP/1.1" 200 -
+[2019-03-01 14:13:09,491] INFO in application: Hakata logged in successfully
+[2019-03-01 14:13:09,689] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:13:09] "POST /bookreivew/login HTTP/1.1" 302 -
+[2019-03-01 14:13:09,728] DEBUG in application: =====isLoggedin====
+[2019-03-01 14:13:09,728] DEBUG in application: 1
+[2019-03-01 14:13:09,734] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 27, 11, 22, 34, 390335), 'Hakata', 5, 'test', '000100039X', 'The Prophet', 'Kahlil Gibran', 1923), (datetime.datetime(2019, 3, 1, 14, 12, 56, 379468), 'Hakata', 3, 'あああああああああああああああ', '9993911550', 'The Courts of Chaos', 'Roger Zelazny', 1978)]
+[2019-03-01 14:13:09,753] DEBUG in application: testtest test
+[2019-03-01 14:13:09,754] DEBUG in application: test test
+[2019-03-01 14:13:09,754] DEBUG in application: test test test
+[2019-03-01 14:13:09,754] DEBUG in application: test test test
+[2019-03-01 14:13:09,754] DEBUG in application: test test test test
+[2019-03-01 14:13:09,754] DEBUG in application: okookok
+[2019-03-01 14:13:09,755] DEBUG in application: test
+[2019-03-01 14:13:09,755] DEBUG in application: あああああああああああああああ
+[2019-03-01 14:13:09,755] DEBUG in application: あああああああああああああああ
+[2019-03-01 14:13:09,755] DEBUG in application: test
+[2019-03-01 14:13:09,755] DEBUG in application: test
+[2019-03-01 14:13:09,756] DEBUG in application: test test test test
+[2019-03-01 14:13:09,756] DEBUG in application: test test test
+[2019-03-01 14:13:09,756] DEBUG in application: okookok
+[2019-03-01 14:13:09,756] DEBUG in application: test test
+[2019-03-01 14:13:09,756] DEBUG in application: testtest test
+[2019-03-01 14:13:09,756] DEBUG in application: test test test
+[2019-03-01 14:13:10,017] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:13:10] "GET /bookreivew/mypage HTTP/1.1" 200 -
+[2019-03-01 14:13:10,505] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
+[2019-03-01 14:13:10,756] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:13:10] "GET /bookreivew/api/getBookReviewNumber/1 HTTP/1.1" 200 -
+[2019-03-01 14:13:15,581] DEBUG in application: =====isLoggedin====
+[2019-03-01 14:13:15,582] DEBUG in application: 1
+[2019-03-01 14:13:15,588] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 27, 11, 22, 34, 390335), 'Hakata', 5, 'test', '000100039X', 'The Prophet', 'Kahlil Gibran', 1923), (datetime.datetime(2019, 3, 1, 14, 12, 56, 379468), 'Hakata', 3, 'あああああああああああああああ', '9993911550', 'The Courts of Chaos', 'Roger Zelazny', 1978)]
+[2019-03-01 14:13:15,763] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:13:15] "GET /bookreivew/search HTTP/1.1" 200 -
+[2019-03-01 14:13:17,583] DEBUG in application: =====isLoggedin====
+[2019-03-01 14:13:17,584] DEBUG in application: 1
+[2019-03-01 14:13:17,584] DEBUG in application: raise error
+[2019-03-01 14:13:17,584] DEBUG in application: ====queryBook======
+[2019-03-01 14:13:17,585] DEBUG in application: SELECT * FROM books 
+[2019-03-01 14:13:17,585] DEBUG in application: ====sqlparameters===
+[2019-03-01 14:13:17,585] DEBUG in application: {}
+[2019-03-01 14:13:18,305] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:13:18] "GET /bookreivew/searchBooks?booktitle=&authorname=&isbn=&searchBooks=Search+Books HTTP/1.1" 200 -
+[2019-03-01 14:13:27,340] DEBUG in application: =====isLoggedin====
+[2019-03-01 14:13:27,340] DEBUG in application: 1
+[2019-03-01 14:13:27,345] DEBUG in application: ==========find_book_reviews==========
+[2019-03-01 14:13:27,538] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:13:27] "GET /bookreivew/searchBook?isbn=000712774X HTTP/1.1" 200 -
+[2019-03-01 14:13:28,477] DEBUG in application: =====isLoggedin====
+[2019-03-01 14:13:28,477] DEBUG in application: 1
+[2019-03-01 14:13:28,671] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:13:28] "GET /bookreivew/registerSubmission?isbn=000712774X HTTP/1.1" 200 -
+[2019-03-01 14:13:36,908] DEBUG in application: =====isLoggedin====
+[2019-03-01 14:13:36,909] DEBUG in application: 1
+[2019-03-01 14:13:37,079] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:13:37] "POST /bookreivew/confirmYourEntry HTTP/1.1" 200 -
+[2019-03-01 14:13:38,802] DEBUG in application: =====isLoggedin====
+[2019-03-01 14:13:38,802] DEBUG in application: 1
+[2019-03-01 14:13:38,962] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:13:38] "POST /bookreivew/writeBookReview HTTP/1.1" 200 -
+[2019-03-01 14:13:41,365] DEBUG in application: =====isLoggedin====
+[2019-03-01 14:13:41,366] DEBUG in application: 1
+[2019-03-01 14:13:41,370] DEBUG in application: ==========find_book_reviews==========
+[2019-03-01 14:13:41,373] DEBUG in application: てすと
+[2019-03-01 14:13:41,571] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:13:41] "GET /bookreivew/searchBook?isbn=000712774X HTTP/1.1" 200 -
+[2019-03-01 14:13:44,252] DEBUG in application: =====isLoggedin====
+[2019-03-01 14:13:44,252] DEBUG in application: 1
+[2019-03-01 14:13:44,256] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 27, 11, 22, 34, 390335), 'Hakata', 5, 'test', '000100039X', 'The Prophet', 'Kahlil Gibran', 1923), (datetime.datetime(2019, 3, 1, 14, 12, 56, 379468), 'Hakata', 3, 'あああああああああああああああ', '9993911550', 'The Courts of Chaos', 'Roger Zelazny', 1978), (datetime.datetime(2019, 3, 1, 14, 13, 38, 804451), 'Hakata', 5, 'てすと', '000712774X', 'The Illustrated Man', 'Ray Bradbury', 1951)]
+[2019-03-01 14:13:44,258] DEBUG in application: testtest test
+[2019-03-01 14:13:44,258] DEBUG in application: test test
+[2019-03-01 14:13:44,259] DEBUG in application: test test test
+[2019-03-01 14:13:44,259] DEBUG in application: test test test
+[2019-03-01 14:13:44,259] DEBUG in application: test test test test
+[2019-03-01 14:13:44,260] DEBUG in application: okookok
+[2019-03-01 14:13:44,260] DEBUG in application: test
+[2019-03-01 14:13:44,260] DEBUG in application: あああああああああああああああ
+[2019-03-01 14:13:44,260] DEBUG in application: てすと
+[2019-03-01 14:13:44,260] DEBUG in application: てすと
+[2019-03-01 14:13:44,261] DEBUG in application: あああああああああああああああ
+[2019-03-01 14:13:44,261] DEBUG in application: test
+[2019-03-01 14:13:44,261] DEBUG in application: test
+[2019-03-01 14:13:44,261] DEBUG in application: test test test test
+[2019-03-01 14:13:44,262] DEBUG in application: test test test
+[2019-03-01 14:13:44,262] DEBUG in application: okookok
+[2019-03-01 14:13:44,262] DEBUG in application: test test
+[2019-03-01 14:13:44,262] DEBUG in application: testtest test
+[2019-03-01 14:13:44,263] DEBUG in application: test test test
+[2019-03-01 14:13:44,474] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:13:44] "GET /bookreivew/mypage HTTP/1.1" 200 -
+[2019-03-01 14:13:44,668] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
+[2019-03-01 14:13:44,973] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:13:44] "GET /bookreivew/api/getBookReviewNumber/1 HTTP/1.1" 200 -
+[2019-03-01 14:15:57,367] DEBUG in application: =====isLoggedin====
+[2019-03-01 14:15:57,368] DEBUG in application: 1
+[2019-03-01 14:15:57,376] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 27, 11, 22, 34, 390335), 'Hakata', 5, 'test', '000100039X', 'The Prophet', 'Kahlil Gibran', 1923), (datetime.datetime(2019, 3, 1, 14, 12, 56, 379468), 'Hakata', 3, 'あああああああああああああああ', '9993911550', 'The Courts of Chaos', 'Roger Zelazny', 1978), (datetime.datetime(2019, 3, 1, 14, 13, 38, 804451), 'Hakata', 5, 'てすと', '000712774X', 'The Illustrated Man', 'Ray Bradbury', 1951)]
+[2019-03-01 14:15:57,635] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:15:57] "GET /bookreivew/mypage HTTP/1.1" 200 -
+[2019-03-01 14:15:57,992] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
+[2019-03-01 14:15:58,306] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:15:58] "GET /bookreivew/api/getBookReviewNumber/1 HTTP/1.1" 200 -
+[2019-03-01 14:17:03,298] DEBUG in application: =====isLoggedin====
+[2019-03-01 14:17:03,298] DEBUG in application: 1
+[2019-03-01 14:17:03,303] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 27, 11, 22, 34, 390335), 'Hakata', 5, 'test', '000100039X', 'The Prophet', 'Kahlil Gibran', 1923), (datetime.datetime(2019, 3, 1, 14, 12, 56, 379468), 'Hakata', 3, 'あああああああああああああああ', '9993911550', 'The Courts of Chaos', 'Roger Zelazny', 1978), (datetime.datetime(2019, 3, 1, 14, 13, 38, 804451), 'Hakata', 5, 'てすと', '000712774X', 'The Illustrated Man', 'Ray Bradbury', 1951)]
+[2019-03-01 14:17:03,498] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:17:03] "GET /bookreivew/mypage HTTP/1.1" 200 -
+[2019-03-01 14:17:03,845] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
+[2019-03-01 14:17:04,031] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:17:04] "GET /bookreivew/api/getBookReviewNumber/1 HTTP/1.1" 200 -
+[2019-03-01 14:18:21,410] DEBUG in application: =====isLoggedin====
+[2019-03-01 14:18:21,411] DEBUG in application: 1
+[2019-03-01 14:18:21,419] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 27, 11, 22, 34, 390335), 'Hakata', 5, 'test', '000100039X', 'The Prophet', 'Kahlil Gibran', 1923), (datetime.datetime(2019, 3, 1, 14, 12, 56, 379468), 'Hakata', 3, 'あああああああああああああああ', '9993911550', 'The Courts of Chaos', 'Roger Zelazny', 1978), (datetime.datetime(2019, 3, 1, 14, 13, 38, 804451), 'Hakata', 5, 'てすと', '000712774X', 'The Illustrated Man', 'Ray Bradbury', 1951)]
+[2019-03-01 14:18:21,847] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:18:21] "GET /bookreivew/mypage HTTP/1.1" 200 -
+[2019-03-01 14:18:22,212] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
+[2019-03-01 14:18:22,856] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:18:22] "GET /bookreivew/api/getBookReviewNumber/1 HTTP/1.1" 200 -
+[2019-03-01 14:18:58,104] DEBUG in application: =====isLoggedin====
+[2019-03-01 14:18:58,104] DEBUG in application: 1
+[2019-03-01 14:18:58,108] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 27, 11, 22, 34, 390335), 'Hakata', 5, 'test', '000100039X', 'The Prophet', 'Kahlil Gibran', 1923), (datetime.datetime(2019, 3, 1, 14, 12, 56, 379468), 'Hakata', 3, 'あああああああああああああああ', '9993911550', 'The Courts of Chaos', 'Roger Zelazny', 1978), (datetime.datetime(2019, 3, 1, 14, 13, 38, 804451), 'Hakata', 5, 'てすと', '000712774X', 'The Illustrated Man', 'Ray Bradbury', 1951)]
+[2019-03-01 14:18:58,465] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:18:58] "GET /bookreivew/mypage HTTP/1.1" 200 -
+[2019-03-01 14:18:58,820] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
+[2019-03-01 14:18:59,124] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:18:59] "GET /bookreivew/api/getBookReviewNumber/1 HTTP/1.1" 200 -
+[2019-03-01 14:19:33,605] DEBUG in application: =====isLoggedin====
+[2019-03-01 14:19:33,605] DEBUG in application: 1
+[2019-03-01 14:19:33,608] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 27, 11, 22, 34, 390335), 'Hakata', 5, 'test', '000100039X', 'The Prophet', 'Kahlil Gibran', 1923), (datetime.datetime(2019, 3, 1, 14, 12, 56, 379468), 'Hakata', 3, 'あああああああああああああああ', '9993911550', 'The Courts of Chaos', 'Roger Zelazny', 1978), (datetime.datetime(2019, 3, 1, 14, 13, 38, 804451), 'Hakata', 5, 'てすと', '000712774X', 'The Illustrated Man', 'Ray Bradbury', 1951)]
+[2019-03-01 14:19:33,813] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:19:33] "GET /bookreivew/mypage HTTP/1.1" 200 -
+[2019-03-01 14:19:34,212] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
+[2019-03-01 14:19:34,386] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:19:34] "GET /bookreivew/api/getBookReviewNumber/1 HTTP/1.1" 200 -
+[2019-03-01 14:19:53,641] DEBUG in application: =====isLoggedin====
+[2019-03-01 14:19:53,641] DEBUG in application: 1
+[2019-03-01 14:19:53,645] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 27, 11, 22, 34, 390335), 'Hakata', 5, 'test', '000100039X', 'The Prophet', 'Kahlil Gibran', 1923), (datetime.datetime(2019, 3, 1, 14, 12, 56, 379468), 'Hakata', 3, 'あああああああああああああああ', '9993911550', 'The Courts of Chaos', 'Roger Zelazny', 1978), (datetime.datetime(2019, 3, 1, 14, 13, 38, 804451), 'Hakata', 5, 'てすと', '000712774X', 'The Illustrated Man', 'Ray Bradbury', 1951)]
+[2019-03-01 14:19:53,866] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:19:53] "GET /bookreivew/mypage HTTP/1.1" 200 -
+[2019-03-01 14:19:54,260] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
+[2019-03-01 14:19:54,487] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:19:54] "GET /bookreivew/api/getBookReviewNumber/1 HTTP/1.1" 200 -
+[2019-03-01 14:21:36,234] DEBUG in application: =====isLoggedin====
+[2019-03-01 14:21:36,234] DEBUG in application: 1
+[2019-03-01 14:21:36,239] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 27, 11, 22, 34, 390335), 'Hakata', 5, 'test', '000100039X', 'The Prophet', 'Kahlil Gibran', 1923), (datetime.datetime(2019, 3, 1, 14, 12, 56, 379468), 'Hakata', 3, 'あああああああああああああああ', '9993911550', 'The Courts of Chaos', 'Roger Zelazny', 1978), (datetime.datetime(2019, 3, 1, 14, 13, 38, 804451), 'Hakata', 5, 'てすと', '000712774X', 'The Illustrated Man', 'Ray Bradbury', 1951)]
+[2019-03-01 14:21:36,588] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:21:36] "GET /bookreivew/mypage HTTP/1.1" 200 -
+[2019-03-01 14:21:36,931] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
+[2019-03-01 14:21:37,129] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:21:37] "GET /bookreivew/api/getBookReviewNumber/1 HTTP/1.1" 200 -
+[2019-03-01 14:22:11,437] DEBUG in application: =====isLoggedin====
+[2019-03-01 14:22:11,437] DEBUG in application: 1
+[2019-03-01 14:22:11,437] DEBUG in application: {'user_id': 1, 'username': 'Hakata', 'firstname': 'Hakata', 'lastname': 'Tarou', 'password': 'hiro1128'}
+[2019-03-01 14:22:11,659] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:22:11] "GET /bookreivew/showUserAccount HTTP/1.1" 200 -
+[2019-03-01 14:22:13,781] DEBUG in application: =====isLoggedin====
+[2019-03-01 14:22:13,781] DEBUG in application: 1
+[2019-03-01 14:22:13,786] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 27, 11, 22, 34, 390335), 'Hakata', 5, 'test', '000100039X', 'The Prophet', 'Kahlil Gibran', 1923), (datetime.datetime(2019, 3, 1, 14, 12, 56, 379468), 'Hakata', 3, 'あああああああああああああああ', '9993911550', 'The Courts of Chaos', 'Roger Zelazny', 1978), (datetime.datetime(2019, 3, 1, 14, 13, 38, 804451), 'Hakata', 5, 'てすと', '000712774X', 'The Illustrated Man', 'Ray Bradbury', 1951)]
+[2019-03-01 14:22:14,028] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:22:14] "GET /bookreivew/mypage HTTP/1.1" 200 -
+[2019-03-01 14:22:14,242] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
+[2019-03-01 14:22:14,446] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:22:14] "GET /bookreivew/api/getBookReviewNumber/1 HTTP/1.1" 200 -
+[2019-03-01 14:22:32,746] DEBUG in application: =====isLoggedin====
+[2019-03-01 14:22:32,746] DEBUG in application: 1
+[2019-03-01 14:22:32,751] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 27, 11, 22, 34, 390335), 'Hakata', 5, 'test', '000100039X', 'The Prophet', 'Kahlil Gibran', 1923), (datetime.datetime(2019, 3, 1, 14, 12, 56, 379468), 'Hakata', 3, 'あああああああああああああああ', '9993911550', 'The Courts of Chaos', 'Roger Zelazny', 1978), (datetime.datetime(2019, 3, 1, 14, 13, 38, 804451), 'Hakata', 5, 'てすと', '000712774X', 'The Illustrated Man', 'Ray Bradbury', 1951)]
+[2019-03-01 14:22:32,932] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:22:32] "GET /bookreivew/search HTTP/1.1" 200 -
+[2019-03-01 14:22:34,902] DEBUG in application: =====isLoggedin====
+[2019-03-01 14:22:34,902] DEBUG in application: 1
+[2019-03-01 14:22:34,907] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 27, 11, 22, 34, 390335), 'Hakata', 5, 'test', '000100039X', 'The Prophet', 'Kahlil Gibran', 1923), (datetime.datetime(2019, 3, 1, 14, 12, 56, 379468), 'Hakata', 3, 'あああああああああああああああ', '9993911550', 'The Courts of Chaos', 'Roger Zelazny', 1978), (datetime.datetime(2019, 3, 1, 14, 13, 38, 804451), 'Hakata', 5, 'てすと', '000712774X', 'The Illustrated Man', 'Ray Bradbury', 1951)]
+[2019-03-01 14:22:35,232] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:22:35] "GET /bookreivew/mypage HTTP/1.1" 200 -
+[2019-03-01 14:22:35,438] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
+[2019-03-01 14:22:35,623] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:22:35] "GET /bookreivew/api/getBookReviewNumber/1 HTTP/1.1" 200 -
+[2019-03-01 14:22:58,237] DEBUG in application: =====isLoggedin====
+[2019-03-01 14:22:58,237] DEBUG in application: 1
+[2019-03-01 14:22:58,242] DEBUG in application: [(datetime.datetime(2019, 2, 26, 10, 8, 39, 626141), 'Hakata', 3, 'testtest test', '0061150142', 'The Pact', 'Jodi Picoult', 1998), (datetime.datetime(2019, 2, 26, 10, 59, 13, 818738), 'Hakata', 3, 'test test', '0385491034', 'The Robber Bride', 'Margaret Atwood', 1993), (datetime.datetime(2019, 2, 26, 10, 8, 11, 374994), 'Hakata', 5, 'test test test', '0312368577', 'Many Waters', "Madeleine L'Engle", 1986), (datetime.datetime(2019, 2, 26, 11, 16, 46, 231731), 'Hakata', 5, 'test test test', '0316126691', 'The Art of Fielding', 'Chad Harbach', 2011), (datetime.datetime(2019, 2, 26, 11, 17, 11, 647372), 'Hakata', 1, 'test test test test', '1405204664', 'Le Roi Babar', 'Jean de Brunhoff', 1933), (datetime.datetime(2019, 2, 26, 10, 59, 39, 578788), 'Hakata', 2, 'okookok', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 2, 27, 11, 22, 34, 390335), 'Hakata', 5, 'test', '000100039X', 'The Prophet', 'Kahlil Gibran', 1923), (datetime.datetime(2019, 3, 1, 14, 12, 56, 379468), 'Hakata', 3, 'あああああああああああああああ', '9993911550', 'The Courts of Chaos', 'Roger Zelazny', 1978), (datetime.datetime(2019, 3, 1, 14, 13, 38, 804451), 'Hakata', 5, 'てすと', '000712774X', 'The Illustrated Man', 'Ray Bradbury', 1951)]
+[2019-03-01 14:22:58,581] INFO in _internal: 127.0.0.1 - - [01/Mar/2019 14:22:58] "GET /bookreivew/search HTTP/1.1" 200 -

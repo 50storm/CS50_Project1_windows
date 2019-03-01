@@ -123,12 +123,12 @@ document.addEventListener("DOMContentLoaded", function (event) {
 <div class="row mt-2">
     <div class="col-sm-6">
         <div class="alert alert-info" role="alert">
-                <a href="{{ url_for('showUserAccount') }}">User:{{session['username']}}</a>
+                <a class="font-weight-bold" href="{{ url_for('showUserAccount') }}">User:{{session['username']}}</a>
         </div>
     </div>
     <div class="col-sm-6">
         <div class="alert alert-info" role="alert">
-            Total Number of Review:{{ my_book_reviews | length }}
+             <span class="font-weight-bold"> Total Number of Book Review is {{ my_book_reviews | length }}</span>
         </div>
     </div>
 </div>
@@ -173,7 +173,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 <th>Year</th>
                 <th>Rate</th>
                 <th>Comment</th>
-                <!-- <th> </th> -->
             </tr>
         </thead>
         <tbody>
@@ -197,7 +196,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     ★★★★★
                     {% endif %}
                 </td>
-                <!-- <td  style="overflow:hidden;" >{{ my_book_review["comment"] | nl2br }}</td> -->
                 <td><a class="badge badge-primary"
                         href="{{ url_for('searchBook') }}?isbn={{ my_book_review['isbn'] }}">view</a></td>
             </tr>
@@ -229,7 +227,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 <th>Year</th>
                 <th>Rate</th>
                 <th>Comment</th>
-                <!-- <th>        </th> -->
             </tr>
          </thead>
     <tbody>     
@@ -254,7 +251,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
             ★★★★★
         {% endif %}
         </td>
-        <!-- <td   style="overflow:hidden;"  >{{ recent_book_review["comment"] | nl2br }}</td> -->
         <td><a class="badge badge-primary" href="{{ url_for('searchBook') }}?isbn={{ recent_book_review['isbn'] }}">view</a></td>
     </tr>
     {% endfor %}
