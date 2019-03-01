@@ -36,18 +36,17 @@ If the validation is fine, flask app return confirmation page to users.
 Finally, In [insertUser] function, the insert query is bulit and executed by SQLAlchemy.
 
 
-# Login Form
+""" Login Form """
 This is Login Form .
-Users need to input their user account to log onto this bookreview app.
-If they don't have their own user account , they need to register ther user account.
+Users need  to log in this bookreview app to write theri bookreviews
+If they don't have their own user account , they need to register their user account.
 If users click this link , it takes them to registation form to create their own user account.
 (But, first let me show you how this login page works,)
-====> # Registration Form
 
 When users input their own account and clikc Log In button, 
 Flask recevieves username and password.
 The code is here.
----In validate_login function,
+In [validate_login] function,
 After making sql for select users by using username and passowrd,
 the validation is perfomed if the username and password is exactly same as the record in users table.
 If the validation is ok, the user recorod is stored in session valiables
@@ -56,30 +55,33 @@ and flask take users to  mypage by redirection.
 POST ->  validate_login[SELECT <- users] -> userdata -> session -> mypage.html
 This is the login form .
 
-
-
-# mypage
-With Regard to registation page.
-Users can see their recent book reviews they wrote and also they can see the recent book reviews written by book review users including the loggedin user.
+""" mypage """"
+With Regard to registation page,
+Users can see their recent book reviews they wrote and also they can see the recent book reviews written by book review users including the logged-in user.
 If users want to write book review, they need to find out the book.
 In order to find the book they want to write, they can jump to search page.
+Furthermore, I utilized jQuery Datatables and Chart.js to make user-friendly interface.
+chart.js => https://www.chartjs.org/
+jQuery Datatables => https://datatables.net/
 
-# search page
+
+""" search page """
 Users can type Booktitle, ISBN, and Author.
 According to the typed data, flask app create SQL to find the matched books ,and return the list of the books.
 (booklist.html)
 
-# booklist page(booklist.html)
+""" booklist page(booklist.html) """
+After finding the books according to the key word, users can screen the list by using jQuery Datables.
 Users can open the book by clicking the view link.
 
-# write_bookreview.html/edit_bookreview
+""" write_bookreview.html/edit_bookreview """
 Users can write and edit thier book review.
 The procedure is the same as the registration.
 Once they input bookreview data, flask returns the inputted data with readonly html.
 Users can make sure the data , and submit their book review data.
 
 
-API
+"" API """
 http://localhost:5000/bookreivew/api/isbn
 
 http://localhost:5000/bookreivew/api/0380795272
