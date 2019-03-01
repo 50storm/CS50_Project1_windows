@@ -73,10 +73,10 @@
   <div class="col-sm">
     <h3 class="bg-primary text-white p-2 mb-2" >Edit Your Book Review</h3>
     <form action="{{ url }}" method="post">
-      <input type="hidden" name="isbn"  value="{{ bookinfo["isbn"] }}" >
-      <input type="hidden" name="title" value="{{ bookinfo["title"] }}" >
-      <input type="hidden" name="title" value="{{ bookinfo["author"] }}">
-      <input type="hidden" name="title" value="{{ bookinfo["year"] }}" >
+      <input type="hidden" name="isbn"  value="{{ bookinfo['isbn'] }}" >
+      <input type="hidden" name="title" value="{{ bookinfo['title'] }}" >
+      <input type="hidden" name="title" value="{{ bookinfo['author'] }}">
+      <input type="hidden" name="title" value="{{ bookinfo['year'] }}" >
       {% if is_confirmation  %}
         {% if rate == 1  %}
             <input type="radio" name="rate" value="1" checked="checked"  >Did not like it.(★☆☆☆☆)
