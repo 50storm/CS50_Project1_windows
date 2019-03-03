@@ -290,6 +290,28 @@ def get_book_review_number(user_id):
 
             return jsonify(book_info)
 
+# TODO 途中セーブ
+def get_goodreaders_review(isbn):
+    result ={'work_ratings_count':0,
+             'work_text_reviews_count':0,
+             'average_rating':''
+            }
+    print(isbn)
+    res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": "TTCvwkSmt1K5rBsTszGg", "isbns": isbn})
+    print(res)
+    json_str = res.json()
+    work_ratings_count = json_str['books'][0]['work_ratings_count']
+    print( work_ratings_count )
+    work_text_reviews_count = json_str['books'][0]['work_text_reviews_count']
+    print( work_text_reviews_count )
+    average_rating = json_str['books'][0]['work_text_reviews_count']
+    print( average_rating )
+    result['work_ratings_count'] = work_ratings_count
+    result['work_text_reviews_count'] = work_text_reviews_count
+    result['average_rating'] = average_rating
+    print(result)
+
+    return result
 
 @app.route(PREFIX + "/charttest/", methods=["GET"])
 def charttest():

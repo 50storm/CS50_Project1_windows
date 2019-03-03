@@ -1,0 +1,35 @@
+0380795272
+<Response [200]>
+{'books': 
+    [{'id': 92918, 
+    'isbn': '0380795272', 
+    'isbn13': '9780380795277', 
+    'ratings_count': 11835, 
+    'reviews_count': 17160, 
+    'text_reviews_count': 122, 
+    'work_ratings_count': 12874,
+    'work_reviews_count': 19492, 
+    'work_text_reviews_count': 153, 
+    'average_rating': '3.84'}]
+}
+
+Note that work_ratings_count here is the number of ratings that this particular book has received, and average_rating is the book’s average score out of 5.
+
+
+    'work_ratings_count': 12874,
+    'work_text_reviews_count': 153, 
+
+
+    {'books': [{
+                'id': 29207858,
+                'isbn': '1632168146',
+                'isbn13': '9781632168146',
+                'ratings_count': 0,
+                'reviews_count': 1,
+                'text_reviews_count': 0,
+                'work_ratings_count': 26,
+                'work_reviews_count': 113,
+                'work_text_reviews_count': 10,
+                'average_rating': '4.04'
+            }]
+}
