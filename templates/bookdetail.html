@@ -1,25 +1,38 @@
-{% extends "layout.html" %} {% block nav %} {% include "nav.tpl" %} {% endblock %} {% block body %} {% set button_text =
-'Write Your Review' %} {% set url = url_for('registerSubmission')%} {% if mybookreview %} {% set button_text = 'Edit Your
-Review' %} {% set url = url_for('editSubmission')%} {% endif %}
+{% extends "layout.html" %} 
+{% block nav %} 
+{% include "nav.tpl" %} 
+{% endblock %} 
+{% block body %} 
+{% set button_text ='Write Your Review' %} 
+{% set url = url_for('registerSubmission')%} 
+{% if mybookreview %} 
+{% set button_text = 'Edit Your Review' %} 
+{% set url = url_for('editSubmission')%} {% endif %}
 
 <div class="row">
     <div class="col-sm">
-        <h3 class="bg-primary text-white p-2 mb-2">Book Detail</h3>
-        
-        <table class="table table-bordered">
-            <tr class="thead-light">
-                <th>Isbn</th>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Year</th>
-            </tr>
-            <tr>
-                <td>{{ bookinfo["isbn"] }}</td>
-                <td>{{ bookinfo["title"] }}</td>
-                <td>{{ bookinfo["author"] }}</td>
-                <td>{{ bookinfo["year"] }}</td>
-            </tr>
-        </table>
+        <h3 class="bg-primary text-white p-2 mb-2">
+            <a class="btn btn-primary m-0 p-0" data-toggle="collapse" href="#collapseMyBookInfo" role="button" aria-expanded="false"
+                aria-controls="collapseMyBookInfo"><span class="h3"> Book Infomation</span>
+            </a>
+        </h3>
+        <div class="collapse show" id="collapseMyBookInfo">
+                <table class="table table-bordered">
+                        <tr class="thead-light">
+                            <th>Isbn</th>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Year</th>
+                        </tr>
+                        <tr>
+                            <td>{{ bookinfo["isbn"] }}</td>
+                            <td>{{ bookinfo["title"] }}</td>
+                            <td>{{ bookinfo["author"] }}</td>
+                            <td>{{ bookinfo["year"] }}</td>
+                        </tr>
+                    </table>
+        </div>
+
     </div>
 </div>
 
