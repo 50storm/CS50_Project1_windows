@@ -1,68 +1,100 @@
-{% extends "layout.html" %}
-{% block nav %}
-{% include "nav.tpl" %}
-{% endblock %}
-{% block body %}
-{% set button_text = 'Write Your Review' %}
-{% set url = url_for('registerSubmission')%}
-{% if mybookreview %}
-{% set button_text = 'Edit Your Review' %}
-{% set url = url_for('editSubmission')%}
-{% endif %}
-<div class="row mt-2">
-  <div class="col-sm">
-    <table class="table table-striped">
-        <tr class="thead-dark">
-          <th>Isbn</th>
-          <th>Title</th>
-          <th>Author</th>
-          <th>Year</th>
-        </tr>
-        <tr>
-          <th>{{ bookinfo["isbn"]   }}</th>
-          <th>{{ bookinfo["title"]  }}</th>
-          <th>{{ bookinfo["author"] }}</th>
-          <th>{{ bookinfo["year"]   }}</th>
-        </tr>
-    </table>
-  </div>
-</div>
+{% extends "layout.html" %} {% block nav %} {% include "nav.tpl" %} {% endblock %} {% block body %} {% set button_text =
+'Write Your Review' %} {% set url = url_for('registerSubmission')%} {% if mybookreview %} {% set button_text = 'Edit Your
+Review' %} {% set url = url_for('editSubmission')%} {% endif %}
 
 <div class="row">
-    <div class="col-sm" >
-    <h3 class="bg-primary text-white p-2 mb-2" >Book Reviews</h3>
-    {% if bookreviews %}
-    {% for bookreview in bookreviews %}
-        <p>
-        {{ bookreview["created_at"].strftime('%Y-%m-%d %H:%M:%S') }} :
-        {{ bookreview["username"] }} :
-        {% if bookreview["rate"] == 1  %}
-            ★☆☆☆☆
-        {% elif bookreview["rate"] == 2 %}
-            ★★☆☆☆
-        {% elif bookreview["rate"] == 3 %}
-            ★★★☆☆
-        {% elif bookreview["rate"] == 4 %}
-            ★★★★☆
-        {% elif bookreview["rate"] == 5 %}
-            ★★★★★
-        {% endif %}
-        <br>
-        <span style="word-wrap: break-word;">
-        {{ bookreview["comment"] | nl2br }}
-        </span>
-        </p>
-    {% endfor %}
-    {% else %}
-        <p>No entries</p>
-    {% endif %}
+    <div class="col-sm">
+        <h3 class="bg-primary text-white p-2 mb-2">Book Detail</h3>
+        
+        <table class="table table-bordered">
+            <tr class="thead-light">
+                <th>Isbn</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Year</th>
+            </tr>
+            <tr>
+                <td>{{ bookinfo["isbn"] }}</td>
+                <td>{{ bookinfo["title"] }}</td>
+                <td>{{ bookinfo["author"] }}</td>
+                <td>{{ bookinfo["year"] }}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="row mt-2">
+    <div class="col-sm-6">
+        <h3 class="bg-primary text-white p-2 mb-2">Book Review Site Reviews</h3>
+        
+        <table class="table table-bordered">
+            <tr class="thead-light">
+                <th>Review Count</th>
+                <th>Average Rating</th>
+            </tr>
+            {% if bookreviewsite_summary["review_count"] != 0 %}
+            <tr>
+                <td>{{ bookreviewsite_summary["review_count"] }}</td>
+                <td>{{ bookreviewsite_summary["average_score"] }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td>0</td>
+                <td>0.0</td>
+            </tr>
+            {% endif %}
+        </table>
+        
+    </div>
+    <div class="col-sm-6">
+        <h3 class="bg-primary text-white p-2 mb-2">GoodReaders Reviews</h3>
+        <table class="table table-bordered">
+            <tr class="thead-light">
+                <th>Rating Count</th>
+                <th>Review Count</th>
+                <th>Average Rating</th>
+            </tr>
+            {% if bookreviews['work_text_reviews_count'] != 0 %}
+            <tr>
+                <td>{{ goodreaders_review["work_ratings_count"] }}</td>
+                <td>{{ goodreaders_review["work_text_reviews_count"] }}</td>
+                <td>{{ goodreaders_review["average_rating"] }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td>0</th>
+                <td>0</th>
+                <td>0.0</th>
+            </tr>    
+            {% endif %}
+        </table>
+        
     </div>
 </div>
 
 <div class="row">
-  <div class="col-sm">
-    <a href="{{ url }}?isbn={{ bookinfo['isbn'] }}" class="btn btn-success" >{{ button_text }}</a>
-  </div>
+    <div class="col-sm">
+        <h3 class="bg-primary text-white p-2 mb-2">Book Reviews</h3>
+        {% if bookreviews %} {% for bookreview in bookreviews %}
+        <p>
+            {{ bookreview["created_at"].strftime('%Y-%m-%d %H:%M:%S') }} : {{ bookreview["username"] }} : {% if bookreview["rate"] ==
+            1 %} ★☆☆☆☆ {% elif bookreview["rate"] == 2 %} ★★☆☆☆ {% elif bookreview["rate"] == 3 %} ★★★☆☆ {% elif bookreview["rate"]
+            == 4 %} ★★★★☆ {% elif bookreview["rate"] == 5 %} ★★★★★ {% endif %}
+            <br>
+            <span style="word-wrap: break-word;">
+                {{ bookreview["comment"] | nl2br }}
+            </span>
+        </p>
+        {% endfor %} {% else %}
+        <p>No entries</p>
+        {% endif %}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm">
+        <a href="{{ url }}?isbn={{ bookinfo['isbn'] }}" class="btn btn-success">{{ button_text }}</a>
+    </div>
 </div>
 
 

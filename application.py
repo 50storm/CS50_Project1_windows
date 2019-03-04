@@ -1,4 +1,4 @@
-import os, datetime, sys, re, logging
+import os, datetime, sys, re, logging, requests
 
 from flask import Flask, session, render_template, request, Response, flash, redirect, jsonify, url_for, abort
 from flask_session import Session
@@ -7,7 +7,6 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 from jinja2 import evalcontextfilter, Markup, escape
 from logging.config import dictConfig
 from flask_cors import CORS  # pip install Flask-Cors
-
 
 dictConfig({
     'version': 1,
@@ -68,7 +67,7 @@ def nl2br(eval_ctx, value):
     app.logger.debug(value)
     # result = u'\n\n'.join(u'<p>%s</p>' % p.replace('\n', '<br>\n') for p in _paragraph_re.split(escape(value)))
     result = u'\n\n'.join(u'%s<br>' % p.replace('\n', '<br>') for p  in _paragraph_re.split(escape(value)))
- 
+
     if eval_ctx.autoescape:
         result = Markup(result)
     return result
@@ -129,7 +128,7 @@ def checkUserName(username, user_id=None, for_update=False):
                 return (False, username + " is alreaded used.")
             else:
                 return (True, None)
-        
+
 def find_book_by_isbn(isbn):
     result = None
     book = db.execute("SELECT * FROM books WHERE isbn=:isbn ", {"isbn":isbn})
@@ -163,7 +162,7 @@ def find_my_book_reviews(user_id):
     mybookreview.close()
     db.close()
     return  result
-    
+
 def find_recent_book_reviews():
     result = []
     sql_book_reiviews =   "SELECT br.created_at, u.username, br.rate, br.comment, br.isbn, b.title, b.author, b.year  FROM bookreviews br "
@@ -172,7 +171,7 @@ def find_recent_book_reviews():
     # sql_book_reiviews +=  " ORDER BY br.created_at DESC OFFSET 0 LIMIT 5"
     sql_book_reiviews +=  " ORDER BY br.created_at DESC "
     bookreviews = db.execute(sql_book_reiviews)
-    result = bookreviews.fetchall() 
+    result = bookreviews.fetchall()
     bookreviews.close()
     db.close()
     return result
@@ -205,9 +204,9 @@ def setUserSession(user):
     session['username'] = user['username']
     session['firstname']= user['firstname']
     session['lastname'] = user['lastname']
-    session['password'] = user['password'] 
+    session['password'] = user['password']
     return
-   
+
 def unsetUserSession():
     session.pop("user_id", None)
     session.pop("username", None)
@@ -227,7 +226,11 @@ def setUserViewData(user_id='', username='', firstname='', lastname='', passswor
 
 #http://localhost:5000/bookreivew/api/0061150142
 @app.route(PREFIX + "/api/<string:isbn>", methods=["GET"])
-def api(isbn):
+def api_get_bookreviewsite_summary(isbn):
+    book_info = get_bookreviewsite_summary(isbn, True)
+    return jsonify(book_info)
+
+def get_bookreviewsite_summary(isbn, json_format=False):
     book_info =  {
             "title": "",
             "author": "",
@@ -248,17 +251,15 @@ def api(isbn):
         book.close()
         db.close()
         # app.logger.debug(book)
-        if(row_book is None):
-            return jsonify(row_book)
-        else:
+        if(row_book is not None):
             book_info["title"] = row_book['title']
             book_info["author"] = row_book['author']
             book_info["year"] = row_book['year']
             book_info["isbn"] = row_book['isbn']
             book_info["review_count"] = row_book['review_count']
-            app.logger.debug(row_book['average_score'])
             book_info["average_score"] = round(float(row_book['average_score']),1)
-            return jsonify(book_info)
+            app.logger.debug(book_info)
+    return book_info
 
 #http://localhost:5000/bookreivew/api/getBookReviewNumber/1
 @app.route(PREFIX + "/api/getBookReviewNumber/<string:user_id>", methods=["GET"])
@@ -296,21 +297,18 @@ def get_goodreaders_review(isbn):
              'work_text_reviews_count':0,
              'average_rating':''
             }
-    print(isbn)
     res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": "TTCvwkSmt1K5rBsTszGg", "isbns": isbn})
-    print(res)
-    json_str = res.json()
-    work_ratings_count = json_str['books'][0]['work_ratings_count']
-    print( work_ratings_count )
-    work_text_reviews_count = json_str['books'][0]['work_text_reviews_count']
-    print( work_text_reviews_count )
-    average_rating = json_str['books'][0]['work_text_reviews_count']
-    print( average_rating )
-    result['work_ratings_count'] = work_ratings_count
-    result['work_text_reviews_count'] = work_text_reviews_count
-    result['average_rating'] = average_rating
-    print(result)
-
+    app.logger.debug(res)
+    if(res.status_code == 200):
+        json_str = res.json()
+        work_ratings_count = json_str['books'][0]['work_ratings_count']
+        work_text_reviews_count = json_str['books'][0]['work_text_reviews_count']
+        average_rating = json_str['books'][0]['work_text_reviews_count']
+        result['work_ratings_count'] = work_ratings_count
+        result['work_text_reviews_count'] = work_text_reviews_count
+        result['average_rating'] = average_rating
+        app.logger.debug(result)
+        
     return result
 
 @app.route(PREFIX + "/charttest/", methods=["GET"])
@@ -356,7 +354,7 @@ def validate_login():
     except Exception as e :
         app.logger.error(str(e))
         abort( 500, "Login Page" )
-    
+
     return redirect(url_for("mypage"))
 
 
@@ -365,8 +363,8 @@ def registerUser():
     try:
         if request.method == "POST":
             confirmPassword = request.form.get("confirmPassword").strip()
-            userdata = setUserViewData("", 
-                            request.form.get("username").strip(), 
+            userdata = setUserViewData("",
+                            request.form.get("username").strip(),
                             request.form.get("firstname").strip(),
                             request.form.get("lastname").strip(),
                             request.form.get("password").strip())
@@ -401,14 +399,14 @@ def registerUser():
     except Exception as e :
          app.logger.error(str(e))
          abort( 500, "registerUser" )
-     
+
 
 
 @app.route(PREFIX + "/insertUser", methods=["POST"])
 def insertUser():
     try:
-        userdata = setUserViewData("", 
-                            request.form.get("username").strip(), 
+        userdata = setUserViewData("",
+                            request.form.get("username").strip(),
                             request.form.get("firstname").strip(),
                             request.form.get("lastname").strip(),
                             request.form.get("password").strip())
@@ -423,7 +421,7 @@ def insertUser():
         flash("Successfully Registed!＼(^o^)／ Thank you!", "alert alert-success")
         return render_template("registration.html", userdata=userdata, mode=2)
     except Exception as e:
-         app.logger.error(str(e))   
+         app.logger.error(str(e))
          abort(500, "confirmUser")
 
 
@@ -439,7 +437,7 @@ def mypage():
         app.logger.debug(my_book_reviews)
         return render_template("mypage.html", username=session.get("username") , recent_book_reviews=recent_book_reviews, my_book_reviews=my_book_reviews)
     except Exception as e:
-         app.logger.error(str(e))   
+         app.logger.error(str(e))
          abort(500, "confirmUser")
 
 
@@ -453,7 +451,7 @@ def showUserAccount():
         app.logger.debug(userdata)
         return render_template("user_account.html", userdata=userdata, mode=0)
     except Exception as e:
-         app.logger.error(str(e))   
+         app.logger.error(str(e))
          abort(500, "confirmUser")
 
 
@@ -465,7 +463,7 @@ def editUserAccount():
         userdata = setUserViewData(session['user_id'], session['username'],session['firstname'], session['lastname'], session['password'])
         return render_template("user_account.html", userdata=userdata, mode=1)
     except Exception as e:
-         app.logger.error(str(e))   
+         app.logger.error(str(e))
          abort(500, "confirmUser")
 
 
@@ -477,21 +475,21 @@ def confirmUserAccount():
         if request.method == "POST":
             userdata = setUserViewData(session['user_id'],
                                        request.form.get("username").strip(),
-                                       request.form.get("firstname").strip(), 
+                                       request.form.get("firstname").strip(),
                                        request.form.get("lastname").strip(),
                                        request.form.get("password").strip()
                                        )
             app.logger.debug("===========userdata==============")
             app.logger.debug(userdata)
-    
+
             resultCheckUserName = checkUserName(userdata['username'], session['user_id'], True)
             resultCheckPassword = checkPassword( userdata['password'], None, None, session['user_id'],True)
-    
+
             if(resultCheckUserName[0] and resultCheckPassword[0]):
                 # Validation is true
                 flash("Please confirm your input data", "alert alert-info")
                 return render_template("user_account.html", userdata=userdata, mode=2)
-            else:  
+            else:
                 # Validation is false
                 messages=["",""] #String Message
                 category=["",""] #CSS Class
@@ -506,7 +504,7 @@ def confirmUserAccount():
                     flash(messages[1], category[1])
                 return render_template("user_account.html", userdata=userdata, mode=1)
     except Exception as e:
-         app.logger.error(str(e))   
+         app.logger.error(str(e))
          abort(500, "confirmUser")
 
 
@@ -517,7 +515,7 @@ def updateUserAccount():
             return redirect(url_for("error"))
         userdata = setUserViewData(session['user_id'],
                                    request.form.get("username").strip(),
-                                   request.form.get("firstname").strip(), 
+                                   request.form.get("firstname").strip(),
                                    request.form.get("lastname").strip(),
                                    request.form.get("password").strip())
         updateSQL ="UPDATE  users SET username=:username, firstname=:firstname, lastname=:lastname, updated_at=current_timestamp "
@@ -530,7 +528,7 @@ def updateUserAccount():
         flash("Successfully Updated!＼(^o^)／ Thank you!", "alert alert-success")
         return render_template("user_account.html", userdata=userdata, mode=3)
     except Exception as e:
-         app.logger.error(str(e))   
+         app.logger.error(str(e))
          abort(500, "confirmUser")
 
 
@@ -541,7 +539,7 @@ def logout():
         db.close()
         return render_template("logout.html")
     except Exception as e:
-        app.logger.error(str(e))   
+        app.logger.error(str(e))
         abort(500, "logout")
 
 
@@ -556,7 +554,7 @@ def search():
         app.logger.debug(my_book_reviews)
         return render_template("search.html", username=session.get("username") , recent_book_reviews=recent_book_reviews, my_book_reviews=my_book_reviews)
     except Exception as e:
-        app.logger.error(str(e))   
+        app.logger.error(str(e))
         abort(500, "search")
 
 
@@ -642,13 +640,13 @@ def searchBook():
         isbn   = request.args.get("isbn","")
         user_id =  session.get("user_id")
         bookinfo = find_book_by_isbn(isbn)
-
         mybookreview = find_my_book_review(isbn, user_id)
         bookreviews = find_book_reviews(isbn)
-
-        return render_template("bookdetail.html", bookinfo=bookinfo, bookreviews=bookreviews, mybookreview=mybookreview )
+        goodreaders_review = get_goodreaders_review(isbn)
+        bookreviewsite_summary = get_bookreviewsite_summary(isbn, False)
+        return render_template("bookdetail.html", bookinfo=bookinfo, bookreviews=bookreviews, mybookreview=mybookreview, bookreviewsite_summary=bookreviewsite_summary, goodreaders_review=goodreaders_review )
     except Exception as e:
-        app.logger.error(str(e))   
+        app.logger.error(str(e))
         abort(500, "searchBook")
 
 
@@ -661,9 +659,9 @@ def registerSubmission():
         bookinfo = find_book_by_isbn(isbn)
         return render_template("write_bookreview.html", bookinfo=bookinfo )
     except Exception as e:
-        app.logger.error(str(e))   
+        app.logger.error(str(e))
         abort(500, "registerSubmission")
-        
+
 
 @app.route(PREFIX + "/writeBookReview", methods=["POST"])
 def writeBookReview():
@@ -674,7 +672,7 @@ def writeBookReview():
         comment = request.form.get("comment").strip()
         user_id = session.get("user_id")
         isbn    = request.form.get("isbn")
-       
+
         insertSQL ="INSERT INTO bookreviews (isbn, user_id, rate, comment, created_at ) VALUES (:isbn, :user_id, :rate, :comment, current_timestamp)"
         params    = {"isbn":isbn, "user_id":user_id, "rate":rate ,"comment":comment }
 
@@ -683,7 +681,7 @@ def writeBookReview():
         db.close()
         mybookreview = find_my_book_review(isbn, user_id)
         bookinfo = find_book_by_isbn(isbn)
-        
+
         flash("Successfully Posted!＼(^o^)／ Thank you!", "alert alert-success")
         return render_template("write_bookreview.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment, is_confirmation=True, is_posted=True )
     except Exception as e:
@@ -725,7 +723,7 @@ def editSubmission():
         bookinfo = find_book_by_isbn(isbn)
         return render_template("edit_bookreview.html", bookinfo=bookinfo, mybookreview=mybookreview )
     except Exception as e:
-        app.logger.error(str(e)) 
+        app.logger.error(str(e))
         abort(500, "editSubmission")
 
 
@@ -744,7 +742,7 @@ def confirmEditEntry():
         flash("Please confirm your input data", "alert alert-info")
         return render_template("edit_bookreview.html", bookinfo=bookinfo, mybookreview=None, rate=rate, comment=comment,  is_confirmation=True )
     except Exception as e:
-        app.logger.error(str(e))   
+        app.logger.error(str(e))
         abort(500, "confirmYourEntry")
 
 
@@ -770,7 +768,7 @@ def updateBookReview():
         flash("Successfully Updated!＼(^o^)／ Thank you!", "alert alert-success")
         return render_template("edit_bookreview.html", bookinfo=bookinfo, mybookreview=mybookreview, rate=rate, comment=comment, is_confirmation=True, is_posted=True )
     except Exception as e:
-        app.logger.error(str(e))   
+        app.logger.error(str(e))
         abort(500, "updateBookReview")
 
 
@@ -789,11 +787,11 @@ def deleteBookReview():
         db.commit()
         db.close()
         bookinfo = find_book_by_isbn(isbn)
-        
+
         flash("Successfully Deleted!＼(^o^)／ Thank you!", "alert alert-success")
         return render_template("delete_bookreview.html", bookinfo=bookinfo, mybookreview=None )
     except Exception as e:
-        app.logger.error(str(e))   
+        app.logger.error(str(e))
         abort(500, "deleteBookReview")
 
 
