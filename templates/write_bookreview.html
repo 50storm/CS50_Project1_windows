@@ -65,46 +65,46 @@
       <input type="hidden" name="title" value="{{ bookinfo['year'] }}" >
       {% if is_confirmation  %}
         {% if rate == 1  %}
-            <input type="radio" name="rate" value="1" checked="checked"  >Did not like it.(★☆☆☆☆)
-            <input type="radio" name="rate" value="2" disabled=disabled >It was ok.(★★☆☆☆)
-            <input type="radio" name="rate" value="3" disabled=disabled >Liked it.(★★★☆☆)
-            <input type="radio" name="rate" value="4" disabled=disabled >Really liked it.(★★★★☆)
-            <input type="radio" name="rate" value="5" disabled=disabled >It was amazing.(★★★★★)
+            <input type="radio" name="rate" value="1" checked="checked" >(1) Did not like it.(★☆☆☆☆)
+            <input type="radio" name="rate" value="2" disabled=disabled >(2) It was ok.(★★☆☆☆)
+            <input type="radio" name="rate" value="3" disabled=disabled >(3) Liked it.(★★★☆☆)
+            <input type="radio" name="rate" value="4" disabled=disabled >(4) Really liked it.(★★★★☆)
+            <input type="radio" name="rate" value="5" disabled=disabled >(5) It was amazing.(★★★★★)
       
         {% elif rate == 2 %}
-            <input type="radio" name="rate" value="1" disabled=disabled >Did not like it.(★☆☆☆☆)
-            <input type="radio" name="rate" value="2" checked="checked" >It was ok.(★★☆☆☆)
-            <input type="radio" name="rate" value="3" disabled=disabled >Liked it.(★★★☆☆)
-            <input type="radio" name="rate" value="4" disabled=disabled >Really liked it.(★★★★☆)
-            <input type="radio" name="rate" value="5" disabled=disabled >It was amazing.(★★★★★)
+            <input type="radio" name="rate" value="1" disabled=disabled >(1) Did not like it.(★☆☆☆☆)
+            <input type="radio" name="rate" value="2" checked="checked" >(2) It was ok.(★★☆☆☆)
+            <input type="radio" name="rate" value="3" disabled=disabled >(3) Liked it.(★★★☆☆)
+            <input type="radio" name="rate" value="4" disabled=disabled >(4) Really liked it.(★★★★☆)
+            <input type="radio" name="rate" value="5" disabled=disabled >(5) It was amazing.(★★★★★)
       
         {% elif rate == 3 %}
-            <input type="radio" name="rate" value="1" disabled=disabled >Did not like it.(★☆☆☆☆)
-            <input type="radio" name="rate" value="2" disabled=disabled >It was ok.(★★☆☆☆)
-            <input type="radio" name="rate" value="3" checked="checked" >Liked it.(★★★☆☆)
-            <input type="radio" name="rate" value="4" disabled=disabled >Really liked it.(★★★★☆)
-            <input type="radio" name="rate" value="5" disabled=disabled >It was amazing.(★★★★★)
+            <input type="radio" name="rate" value="1" disabled=disabled >(1) Did not like it.(★☆☆☆☆)
+            <input type="radio" name="rate" value="2" disabled=disabled >(2) It was ok.(★★☆☆☆)
+            <input type="radio" name="rate" value="3" checked="checked" >(3) Liked it.(★★★☆☆)
+            <input type="radio" name="rate" value="4" disabled=disabled >(4) Really liked it.(★★★★☆)
+            <input type="radio" name="rate" value="5" disabled=disabled >(5) It was amazing.(★★★★★)
 
         {% elif rate == 4 %}
-            <input type="radio" name="rate" value="1" disabled=disabled >Did not like it.(★☆☆☆☆)
-            <input type="radio" name="rate" value="2" disabled=disabled >It was ok.(★★☆☆☆)
-            <input type="radio" name="rate" value="3" disabled=disabled >Liked it.(★★★☆☆)
-            <input type="radio" name="rate" value="4" checked="checked" >Really liked it.(★★★★☆)
-            <input type="radio" name="rate" value="5" disabled=disabled >It was amazing.(★★★★★)
+            <input type="radio" name="rate" value="1" disabled=disabled >(1) Did not like it.(★☆☆☆☆)
+            <input type="radio" name="rate" value="2" disabled=disabled >(2) It was ok.(★★☆☆☆)
+            <input type="radio" name="rate" value="3" disabled=disabled >(3) Liked it.(★★★☆☆)
+            <input type="radio" name="rate" value="4" checked="checked" >(4) Really liked it.(★★★★☆)
+            <input type="radio" name="rate" value="5" disabled=disabled >(5) It was amazing.(★★★★★)
 
         {% elif rate == 5 %}
-            <input type="radio" name="rate" value="1" disabled=disabled >Did not like it.(★☆☆☆☆)
-            <input type="radio" name="rate" value="2" disabled=disabled >It was ok.(★★☆☆☆)
-            <input type="radio" name="rate" value="3" disabled=disabled >Liked it.(★★★☆☆)
-            <input type="radio" name="rate" value="4" disabled=disabled >Really liked it.(★★★★☆)
-            <input type="radio" name="rate" value="5" checked="checked" >It was amazing.(★★★★★)
+            <input type="radio" name="rate" value="1" disabled=disabled >(1) Did not like it.(★☆☆☆☆)
+            <input type="radio" name="rate" value="2" disabled=disabled >(2) It was ok.(★★☆☆☆)
+            <input type="radio" name="rate" value="3" disabled=disabled >(3) Liked it.(★★★☆☆)
+            <input type="radio" name="rate" value="4" disabled=disabled >(4) Really liked it.(★★★★☆)
+            <input type="radio" name="rate" value="5" checked="checked" >(5) It was amazing.(★★★★★)
         {% endif %}
       {% else %}
-            <input type="radio" name="rate" value="1" >Did not like it.(★☆☆☆☆)
-            <input type="radio" name="rate" value="2" >It was ok.(★★☆☆☆)
-            <input type="radio" name="rate" value="3" checked="checked">Liked it.(★★★☆☆)
-            <input type="radio" name="rate" value="4" >Really liked it.(★★★★☆)
-            <input type="radio" name="rate" value="5" >It was amazing.(★★★★★)
+            <input type="radio" name="rate" value="1" >(1) Did not like it.(★☆☆☆☆)
+            <input type="radio" name="rate" value="2" >(2) It was ok.(★★☆☆☆)
+            <input type="radio" name="rate" value="3" checked="checked">(3) Liked it.(★★★☆☆)
+            <input type="radio" name="rate" value="4" >(4) Really liked it.(★★★★☆)
+            <input type="radio" name="rate" value="5" >(5) It was amazing.(★★★★★)
       {% endif %}
       <br/>
       <textarea name="comment" cols="50" rows="10" class="w-100 {% if is_confirmation %} bg-light {% endif %}" {% if is_confirmation %} readonly {% endif %}>{{ comment }}</textarea>

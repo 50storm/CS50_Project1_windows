@@ -108,15 +108,15 @@ Your Review' %} {% set url = url_for('registerSubmission')%} {% if mybookreview 
                 <!-- </span> -->
                 <!-- <br> -->
                  {% if bookreview["rate"] == 1 %} 
-                 ★☆☆☆☆ (1)
+                 (1) ★☆☆☆☆ 
                  {% elif bookreview["rate"] == 2 %} 
-                 ★★☆☆☆ (2)
+                 (2) ★★☆☆☆ 
                  {% elif bookreview["rate"] == 3 %} 
-                 ★★★☆☆ (3)
+                 (3) ★★★☆☆ 
                  {% elif bookreview["rate"] == 4 %} 
-                 ★★★★☆ (4)
+                 (4) ★★★★☆
                  {% elif bookreview["rate"] == 5 %} 
-                 ★★★★★ (5)
+                 (5) ★★★★★ 
                  {% endif %}
             </p>
             {% endfor %} {% else %}
