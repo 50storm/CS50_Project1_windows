@@ -88,9 +88,9 @@ def checkPassword(password, confiromPassword, username, user_id=None, for_update
         if(len(password) < 7):
             return (False, "password is too short!")
         elif(password in username):
-            return (False, "password is in username!!")
+            return (False, "password is in username!")
         elif(password != confiromPassword):
-            return (False, "password is not equal confiromPassword!!")
+            return (False, "password is not equal!")
         else:
             return (True, None)
     else:
