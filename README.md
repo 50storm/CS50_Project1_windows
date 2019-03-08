@@ -1,8 +1,8 @@
-# Project 1
-Web Programming with Python and JavaScript
+# CS50 Web Project 1
+[CS50 Web Programming with Python and JavaScript](https://www.edx.org/course/cs50s-web-programming-with-python-and-javascript)
 
 # Student Name
-Hiroshi Igarashi
+[Hiroshi Igarashi](https://www.facebook.com/hiroshibook)
 
 # application.py  
 This is a main program of this book review application.
@@ -51,20 +51,33 @@ If an error occurs , this page shows error messages.
 # nav.tpl
 This is a navigation bar template.
 
-# tables
+# Tables
 ## users table
 This table stores user account. 
+Primary key is user_id column.
 
 ## books table
-This table stores book data.
+This table stores book data. 
+Primary key is isbn column.
 
 ## bookreviews table
-This table stores bookreviews.
+This table stores bookreviews. 
+Primary key is composed of isbn and user_id column. 
 
-# logging feature
+# Logging feature
 In ./log/ directoy, this app creates bookreview_app.log so that developeres can track down bugs.
 
-# frontend framework / JavaScript library
+# Frontend frameworks / JavaScript libraries
 - bootstrap4
 - Chart.js
 - jQuery DataTables
+
+# Basic Concept about data registration
+When registring and editing data, This app requires three steps.
+First, this app sends the registration page to users and inputting and editing data is allowed.
+When this app recevies data from users, data validations is executed.(Ex. password is correct or not)
+If the data is invalid, input page is resent to users.
+If the data is valid, confirmation page is generated and sent to users.
+Second, conformation is required to review the input data. if users want to change input data, they can go back to the previous page by pressing back button on web browser. 
+Finally, when input data is sent to the server, the sql for insertion or update is created and executed.
+
