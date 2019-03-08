@@ -19,7 +19,7 @@ dictConfig({
         'file': {
             'class': 'logging.handlers.TimedRotatingFileHandler',
             'formatter': 'file',
-            'filename': './log/bookrevie_app.log',
+            'filename': './log/bookreview_app.log',
             'backupCount': 3,
             'when': 'D',
         }

@@ -1,7 +1,7 @@
 # Project 1
 Web Programming with Python and JavaScript
 
-# Name
+# Student Name
 Hiroshi Igarashi
 
 # application.py  
@@ -61,7 +61,10 @@ This table stores book data.
 ## bookreviews table
 This table stores bookreviews.
 
-# frontend
+# logging feature
+In ./log/ directoy, this app creates bookreview_app.log so that developeres can track down bugs.
+
+# frontend framework / JavaScript library
 - bootstrap4
 - Chart.js
 - jQuery DataTables
