@@ -1167,3 +1167,15 @@ DETAIL:  ÉLÅ[ (isbn, user_id)=(9993911550, 1) ÇÕÇ∑Ç≈Ç…ë∂ç›ÇµÇ‹Ç∑ÅB
 [2019-03-07 22:37:53,802] DEBUG in application: {'title': 'The Atrocity Archives', 'author': 'Charles Stross', 'year': 2004, 'isbn': '0441013651', 'review_count': 2, 'average_score': 5.0}
 [2019-03-07 22:37:53,803] DEBUG in application: Amazing .
 [2019-03-07 22:37:53,804] DEBUG in application: amazing!
+[2019-03-07 22:41:51,319] DEBUG in application: =====isLoggedin====
+[2019-03-07 22:41:51,319] DEBUG in application: 6
+[2019-03-07 22:41:51,320] DEBUG in application: {'user_id': 6, 'username': 'Iga', 'firstname': 'Igarashi', 'lastname': 'Hiroshi', 'password': 'hiro1128'}
+[2019-03-07 22:41:52,573] DEBUG in application: =====isLoggedin====
+[2019-03-07 22:41:52,574] DEBUG in application: 6
+[2019-03-07 22:41:52,581] DEBUG in application: [(datetime.datetime(2019, 2, 26, 7, 50, 38, 197314), 'Iga', 2, 'Test Comment Test Comment', '0380795272', 'Krondor: The Betrayal', 'Raymond E. Feist', 1998), (datetime.datetime(2019, 2, 26, 8, 5, 40, 188756), 'Iga', 5, 'amazing.', '0553803700', 'I, Robot', 'Isaac Asimov', 1950), (datetime.datetime(2019, 2, 26, 8, 3, 34, 145665), 'Iga', 3, 'Comment. Comment', '0375990690', 'Teardrop', 'Lauren Kate', 2013), (datetime.datetime(2019, 2, 25, 22, 17, 9, 289849), 'Iga', 5, 'Amazing book!', '0380752859', 'For Love of Evil', 'Piers Anthony', 1988), (datetime.datetime(2019, 2, 25, 22, 48, 39, 546409), 'Iga', 5, 'Amazing!', '0061284424', 'Afterlife', 'Claudia Gray', 2011), (datetime.datetime(2019, 3, 7, 22, 37, 26, 911888), 'Iga', 5, 'Amazing .', '0441013651', 'The Atrocity Archives', 'Charles Stross', 2004), (datetime.datetime(2019, 2, 26, 7, 32, 56, 667464), 'Iga', 3, 'Comment. Comment.', '0553588257', 'Velocity', 'Dean Koontz', 2005)]
+[2019-03-07 22:41:52,860] DEBUG in application:  SELECT u.username, count(*) as review_count , AVG(rate) as average_score  FROM bookreviews br  INNER JOIN books b  ON br.isbn = b.isbn  INNER JOIN users u  ON u.user_id = br.user_id  GROUP BY u.user_id  HAVING  u.user_id = :user_id 
+[2019-03-07 22:42:02,718] DEBUG in application: =====isLoggedin====
+[2019-03-07 22:42:02,719] DEBUG in application: 6
+[2019-03-07 22:42:02,719] DEBUG in application: {'user_id': 6, 'username': 'Iga', 'firstname': 'Igarashi', 'lastname': 'Hiroshi', 'password': 'hiro1128'}
+[2019-03-07 22:42:04,881] DEBUG in application: =====isLoggedin====
+[2019-03-07 22:42:04,881] DEBUG in application: 6

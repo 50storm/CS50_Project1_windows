@@ -1,6 +1,9 @@
 # Project 1
 Web Programming with Python and JavaScript
 
+# Name
+Hiroshi Igarashi
+
 # application.py  
 This is a main program of this book review application.
 After receving HTTP request from users, the identified method attempts to access to data source, and pass data to the template file.
@@ -57,3 +60,8 @@ This table stores book data.
 
 ## bookreviews table
 This table stores bookreviews.
+
+# frontend
+- bootstrap4
+- Chart.js
+- jQuery DataTables
