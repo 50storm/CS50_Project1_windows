@@ -424,3 +424,14 @@
 [2019-03-10 21:21:58,597] DEBUG in application: {'title': 'Krondor: The Betrayal', 'author': 'Raymond E. Feist', 'year': 1998, 'isbn': '0380795272', 'review_count': 3, 'average_score': 3.3}
 [2019-03-10 21:24:22,315] DEBUG in application: {'title': 'Krondor: The Betrayal', 'author': 'Raymond E. Feist', 'year': 1998, 'isbn': '0380795272', 'review_count': 3, 'average_score': 3.3}
 [2019-03-10 21:24:42,431] DEBUG in application: {'title': 'Krondor: The Betrayal', 'author': 'Raymond E. Feist', 'year': 1998, 'isbn': '0380795272', 'review_count': 3, 'average_score': 3.3}
+[2019-03-10 21:28:44,527] DEBUG in application: {'title': 'Maitreyi', 'author': 'Mircea Eliade', 'year': 1933, 'isbn': '9735004100', 'review_count': 1, 'average_score': 3.0}
+[2019-03-10 21:31:23,105] DEBUG in application: {'title': 'Krondor: The Betrayal', 'author': 'Raymond E. Feist', 'year': 1998, 'isbn': '0380795272', 'review_count': 3, 'average_score': 3.3}
+[2019-03-10 21:34:12,580] DEBUG in application: {'title': 'Krondor: The Betrayal', 'author': 'Raymond E. Feist', 'year': 1998, 'isbn': '0380795272', 'review_count': 3, 'average_score': 3.3}
+[2019-03-10 21:52:10,527] DEBUG in application: {'title': 'Krondor: The Betrayal', 'author': 'Raymond E. Feist', 'year': 1998, 'isbn': '0380795272', 'review_count': 3, 'average_score': 3.3}
+[2019-03-10 21:53:25,224] DEBUG in application: {'title': 'Krondor: The Betrayal', 'author': 'Raymond E. Feist', 'year': 1998, 'isbn': '0380795272', 'review_count': 3, 'average_score': 3.3}
+[2019-03-10 21:54:28,885] DEBUG in application: {'title': 'Krondor: The Betrayal', 'author': 'Raymond E. Feist', 'year': 1998, 'isbn': '0380795272', 'review_count': 3, 'average_score': 3.3}
+[2019-03-10 21:54:30,011] DEBUG in application: {'title': 'Krondor: The Betrayal', 'author': 'Raymond E. Feist', 'year': 1998, 'isbn': '0380795272', 'review_count': 3, 'average_score': 3.3}
+[2019-03-10 21:56:50,389] DEBUG in application: {'title': 'Krondor: The Betrayal', 'author': 'Raymond E. Feist', 'year': 1998, 'isbn': '0380795272', 'review_count': 3, 'average_score': 3.3}
+[2019-03-10 22:01:51,316] DEBUG in application: {'title': 'Krondor: The Betrayal', 'author': 'Raymond E. Feist', 'year': 1998, 'isbn': '0380795272', 'review_count': 3, 'average_score': 3.3}
+[2019-03-10 22:03:34,168] DEBUG in application: {'title': 'Krondor: The Betrayal', 'author': 'Raymond E. Feist', 'year': 1998, 'isbn': '0380795272', 'review_count': 3, 'average_score': 3.3}
+[2019-03-10 22:06:27,506] DEBUG in application: {'title': 'Krondor: The Betrayal', 'author': 'Raymond E. Feist', 'year': 1998, 'isbn': '0380795272', 'review_count': 3, 'average_score': 3.3}

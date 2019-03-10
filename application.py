@@ -227,10 +227,10 @@ def setUserViewData(user_id='', username='', firstname='', lastname='', passswor
 #http://localhost:5000/bookreivew/api/0061150142
 @app.route(PREFIX + "/api/<string:isbn>", methods=["GET"])
 def api_get_bookreviewsite_summary(isbn):
-    book_info = get_bookreviewsite_summary(isbn, True)
+    book_info = get_bookreviewsite_summary(isbn)
     return jsonify(book_info)
 
-def get_bookreviewsite_summary(isbn, json_format=False):
+def get_bookreviewsite_summary(isbn):
     book_info =  {
             "title": "",
             "author": "",
@@ -643,7 +643,7 @@ def searchBook():
         mybookreview = find_my_book_review(isbn, user_id)
         bookreviews = find_book_reviews(isbn)
         goodreaders_review = get_goodreaders_review(isbn)
-        bookreviewsite_summary = get_bookreviewsite_summary(isbn, False)
+        bookreviewsite_summary = get_bookreviewsite_summary(isbn)
         return render_template("bookdetail.html", bookinfo=bookinfo, bookreviews=bookreviews, mybookreview=mybookreview, bookreviewsite_summary=bookreviewsite_summary, goodreaders_review=goodreaders_review )
     except Exception as e:
         app.logger.error(str(e))
