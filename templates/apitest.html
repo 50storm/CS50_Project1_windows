@@ -27,8 +27,8 @@
         if (httpRequest.status === 200) {
           console.log(httpRequest);
           if(httpRequest.response == null){
-             alert('Sorry, The book with ISBN is not our database.')
-            document.querySelector('#title').innerHTML = 'xxxx';
+              alert('Sorry, The book with ISBN is not our database.')
+              document.querySelector('#title').innerHTML = 'xxxx';
               document.querySelector('#author').innerHTML = 'xxxx';
               document.querySelector('#year').innerHTML = '9999';
               document.querySelector('#isbn').innerHTML = '99999999999';
@@ -38,7 +38,7 @@
              document.querySelector('#title').innerHTML = httpRequest.response.title;
              document.querySelector('#author').innerHTML = httpRequest.response.author;
              document.querySelector('#year').innerHTML =  httpRequest.response.year;
-             document.querySelector('#isbn').innerHTML =  httpRequest.response.isbn;
+             document.querySelector('span#isbn').innerHTML =  httpRequest.response.isbn;
              document.querySelector('#review_count').innerHTML =  httpRequest.response.review_count;
              document.querySelector('#average_score').innerHTML =  httpRequest.response.average_score;
           }
@@ -51,7 +51,7 @@
     document.addEventListener("DOMContentLoaded", function (event) {
         let btnSearchBook = document.querySelector('#btnSearchBook');
         btnSearchBook.addEventListener('click', function () {
-            let isbn = document.querySelector('#isbn').value;
+            let isbn = document.querySelector('input#isbn').value;
             makeRequest(isbn);
         });
 
