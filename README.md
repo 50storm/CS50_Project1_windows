@@ -68,9 +68,12 @@ Primary key is composed of isbn and user_id column.
 In ./log/ directoy, this app creates bookreview_app.log so that developeres can track down bugs.
 
 # Frontend frameworks / JavaScript libraries
-- bootstrap4
-- Chart.js
-- jQuery DataTables
+## bootstrap4 
+In all the html files. bootstrap4 coveres the layout.
+## Chart.js
+In mypage.html , Chart.js is embeded to show the total number of book reviews per user.
+## jQuery DataTables
+In some tables , jQuery DataTables is utilized to enchance userbility.
 
 # Basic Concept about data registration
 When registring and editing data, This app requires three steps.
